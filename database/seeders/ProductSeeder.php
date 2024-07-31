@@ -13,7 +13,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('products')->insert([
+        DB::table('produk')->insert([
             [
                 'nama_produk' => 'Baju Biru',
                 'deskripsi' => 'Baju yang dibuat dengan warna biru.',

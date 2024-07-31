@@ -61,15 +61,14 @@
               </li>
             </ul> -->
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{route('transaksi.index')}}" class="nav-link">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
                 Transaksi
-                {{-- <span class="right badge badge-danger">New</span> --}}
               </p>
             </a>
-          </li>
+          </li> --}}
           {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cart-plus"></i>
