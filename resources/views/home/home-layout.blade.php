@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Martaloka Konveksi</title>
+    <title>@yield('title','Martaloka Konveksi')</title>
 
     <!-- responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,15 +74,15 @@
     <div class="boxed_wrapper ltr">
 
 
-        @include('home.partials.header')
+        @include('home.partials.home-header')
 
 
         <div>
-            @include('home.homepage')
+            @yield('content')
         </div>
 
 
-        @include('home.partials.footer')
+        @include('home.partials.home-footer')
     </div>
 
 

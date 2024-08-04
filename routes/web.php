@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BerandaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
@@ -17,9 +18,12 @@ use App\Http\Controllers\TransaksiController;
 |
 */
 
-Route::get('/', function () {
-    return view('home.layout');
-});
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+
+Route::get('/detail-produk/{produk}', [BerandaController::class, 'detailProduk'])->name('home.detail-produk');
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -30,8 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
-
+    Route::get('/add-to-cart/{produk}', [BerandaController::class, 'addToCart'])->name('home.addToCart');
+    Route::get('keranjang', [BerandaController::class, 'keranjang'])->name('home.keranjang');
     // Dashboard Admin
     Route::prefix('dashboard')->group(function () {
         Route::view('/', 'admin.layout')->name('dashboard');
@@ -58,8 +62,7 @@ Route::middleware('auth')->group(function () {
         // Route::get('transaksi/edit/{id}', [TransaksiController::class, 'edit'])->name('transaksi.edit');
     });
 
-    // Route::get('/add-to-cart/{id}', [HomeController::class, 'addTocart'])->name('home.addToCart');
-    // Route::get('/daftar-transaksi', [HomeController::class, 'daftarTransaksi'])->name('home.daftar-transaksi');
+
 });
 
 

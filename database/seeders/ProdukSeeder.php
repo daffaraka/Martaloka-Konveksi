@@ -20,7 +20,7 @@ class ProdukSeeder extends Seeder
         DB::table('produks')->insert([
             [
                 'nama_produk' => 'Baju Biru',
-                'kategori_id' => array_rand($kategori),
+                'kategori_id' => $kategori[array_rand($kategori)],
                 'deskripsi' => 'Baju yang dibuat dengan warna biru.',
                 'harga_produk' => 1500000,
                 'stok' => 10,
@@ -30,7 +30,7 @@ class ProdukSeeder extends Seeder
             ],
             [
                 'nama_produk' => 'Kaos ini itu',
-                'kategori_id' => array_rand($kategori),
+                'kategori_id' => $kategori[array_rand($kategori)],
                 'deskripsi' => 'Baju yang dibuat dengan warna mencolok.',
                 'harga_produk' => 1500000,
                 'stok' => 10,
@@ -40,7 +40,7 @@ class ProdukSeeder extends Seeder
             ],
             [
                 'nama_produk' => 'Kaos Polos',
-                'kategori_id' => array_rand($kategori),
+                'kategori_id' => $kategori[array_rand($kategori)],
                 'deskripsi' => 'Baju yang dibuat dengan warna Merah.',
                 'harga_produk' => 1500000,
                 'stok' => 10,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class ProdukController extends Controller
@@ -21,6 +22,8 @@ class ProdukController extends Controller
     public function create()
     {
         $kategori = Kategori::select('id','nama_kategori')->get();
+
+        // dd(Auth::user());
         return view('admin.produk.produk-create', compact('kategori'));
     }
 
