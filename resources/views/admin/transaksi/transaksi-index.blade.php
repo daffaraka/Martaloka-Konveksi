@@ -6,13 +6,10 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nama Pemesan</th>
-                    <th scope="col">Number</th>
-                    <th scope="col">Produk</th>
-                    <th scope="col">Harga Produk</th>
-                    <th scope="col">Qty</th>
+                    <th scope="col">Status Transaksi</th>
+                    <th scope="col" class="w-25">Produk - Qty - Harga</th>
                     <th scope="col">Total Harga</th>
-                    <th scope="col">Payment Status</th>
-                    {{-- <th>Action</th> --}}
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,22 +18,44 @@
                     <tr class="">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->user->name }}</td>
-                        <td>{{ $data->number }}</td>
-                        <td>{{ $data->product->nama_produk }}</td>
-                        <td>Rp. {{ number_format($data->product->harga_produk) }}</td>
-                        <td>{{ $data->qty }}</td>
-                        <td> Rp. {{ number_format($data->total_price) }}</td>
                         <td>
-                            @if ($data->payment_status == '1')
+                            @if ($data->status_pembayaran == 'Pending')
                                 <button class="btn btn-warning">Menunggu Pembayaran</button>
-                            @elseif($data->payment_status == '2')
+                            @elseif($data->status_pembayaran == 'Dibayar')
                                 <button class="btn btn-success">Sudah Dibayar</button>
-                            @elseif($data->payment_status == '3')
-                                <button class="btn btn-secondary">Kadaluarsa</button>
-                            @elseif($data->payment_status == '4')
+                            @elseif($data->status_pembayaran == 'Diterima')
+                                <button class="btn btn-primary">Diterima</button>
+                            @elseif($data->status_pembayaran == 'Dibatalkan')
                                 <button class="btn btn-danger">Batal</button>
                             @else
                                 <button class="btn btn-info">Status Tidak Valid</button>
+                            @endif
+                        </td>
+                        <td>
+                            <ul class="list-unstyled">
+                                @foreach ($data->detailTransaksi as $detailTransaksi)
+                                    <li> <b>{{ $detailTransaksi->produk->nama_produk }} </b> <b>-</b>
+                                        <button class="btn btn-sm p-0 px-1 btn-info">{{ $detailTransaksi->qty }}</button>
+                                        <span> <b>-</b>
+                                            Rp.{{ number_format($detailTransaksi->produk->harga_produk) }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td> Rp. {{ number_format($data->total_harga) }}</td>
+                        <td>
+                            @if ($data->status_pembayaran == 'Pending')
+                                <button class="btn btn-sm btn-warning">Belum ada bukti transfer</button>
+                            @elseif($data->status_pembayaran == 'Dibayar')
+                                <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-sm btn-success">Sudah
+                                    Dibayar</a>
+                            @elseif($data->status_pembayaran == 'Diterima')
+                                <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-sm btn-primary">Lihat Bukti
+                                    Transfer</a>
+                            @elseif($data->status_pembayaran == 'Dibatalkan')
+                                <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-sm btn-danger">Batal</a>
+                            @else
+                                <button class="btn btn-sm btn-info">Status Tidak Valid</button>
                             @endif
                         </td>
 

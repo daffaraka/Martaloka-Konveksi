@@ -52,7 +52,15 @@
                         </div>
                         <div class="link-box">
                             <ul>
-                                <li><a href="#">{{ Auth::user()->name }}</a></li>
+                                @guest
+                                    <li class="#"><a href="{{ route('login') }}">
+                                            Login</a></li>
+                                @endguest
+
+                                @auth
+                                    <li><a href="#"><i class="icon-account mr-2"></i>{{ Auth::user()->name }}</a></li>
+
+                                @endauth
                             </ul>
                         </div>
                     </div>
@@ -105,7 +113,7 @@
                                     </li>
 
                                     <li class="{{ Request::is('profil/tentangkami') ? 'current' : '' }}"><a
-                                        href="">Tentang Kami</a></li>
+                                            href="">Tentang Kami</a></li>
                                     <li class="blank-box"></li>
                                     <li class="{{ Request::is('informasi*') ? 'current' : '' }}"><a
                                             href="">Informasi</a>
@@ -115,8 +123,7 @@
                                         <li class="{{ Request::is('pendaftaran*') ? 'current' : '' }}"><a
                                                 href="{{ route('register') }}">Pendaftaran</a></li>
                                         </li>
-                                        <li class="#"><a href="{{ route('login') }}"><i class="icon-account mr-2"></i>
-                                                Login</a></li>
+
                                     @endguest
 
                                     @auth
@@ -124,6 +131,10 @@
                                                 href="#">{{ Auth::user()->name }}</a>
                                             <ul>
 
+                                                <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
+                                                        href="{{ route('home.keranjang') }}"> Keranjang </a> </li>
+                                                <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
+                                                        href="{{ route('home.transaksi') }}"> Transaksi </a> </li>
                                                 <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
                                                         href="{{ route('logout') }}"
                                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

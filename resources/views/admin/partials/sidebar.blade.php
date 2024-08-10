@@ -118,18 +118,17 @@
                             <!-- <i class="fas fa-angle-left right"></i> -->
                         </p>
                     </a>
-                </li>
+                </li> --}}
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kategori.index') }}">
-                        <i class="nav-icon fas  fa-bars"></i>
+                    <a class="nav-link" href="{{ route('transaksi.index') }}">
+                        <i class="nav-icon fas fa-cart-plus"></i>
                         <p>
                             Transaksi
-                            <!-- <i class="fas fa-angle-left right"></i> -->
                         </p>
                     </a>
-                </li> --}}
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"

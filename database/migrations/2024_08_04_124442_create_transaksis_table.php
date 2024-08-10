@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('keranjang_id')->constrained('keranjangs')->onDelete('cascade');
-            $table->enum('status_pembayaran', ['Pending', 'Sukses', 'Gagal','Dibatalkan']);
+            $table->enum('status_pembayaran', ['Pending', 'Diterima', 'Dibayar', 'Dibatalkan']);
             $table->integer('total_harga');
+            $table->string('bukti_pembayaran')->nullable();
+            $table->dateTime('tgl_bayar')->nullable();
+            $table->dateTime('tgl_kadaluarsa')->nullable();
             $table->timestamps();
         });
     }

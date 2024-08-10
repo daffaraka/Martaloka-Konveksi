@@ -36,6 +36,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/add-to-cart/{produk}', [BerandaController::class, 'addToCart'])->name('home.addToCart');
     Route::get('keranjang', [BerandaController::class, 'keranjang'])->name('home.keranjang');
+    Route::post('/checkout', [BerandaController::class, 'checkout'])->name('home.checkout');
+    Route::get('transaksi', [BerandaController::class, 'transaksi'])->name('home.transaksi');
+    Route::get('/lengkapi-transaksi/{transaksi}', [BerandaController::class, 'formLengkapiTransaksi'])->name('home.formLengkapiTransaksi');
+    Route::post('/upload-bukti-transaksi/{transaksi}', [BerandaController::class, 'uploadBuktiTransaksi'])->name('home.uploadBuktiTransaksi');
     // Dashboard Admin
     Route::prefix('dashboard')->group(function () {
         Route::view('/', 'admin.layout')->name('dashboard');
@@ -56,13 +60,13 @@ Route::middleware('auth')->group(function () {
         Route::get('produk/destroy/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy');
 
         // Transaksi
-        // Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-        // Route::get('tansaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
-        // Route::post('transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
-        // Route::get('transaksi/edit/{id}', [TransaksiController::class, 'edit'])->name('transaksi.edit');
+        Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+        Route::get('tansaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
+        Route::post('transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
+        Route::get('transaksi/show/{transaksi}', [TransaksiController::class, 'show'])->name('transaksi.show');
+        Route::post('transaksi/terima/{transaksi}', [TransaksiController::class, 'dibayar'])->name('transaksi.dibayar');
+        Route::post('transaksi/batal/{batal}', [TransaksiController::class, 'batal'])->name('transaksi.batal');
     });
-
-
 });
 
 
