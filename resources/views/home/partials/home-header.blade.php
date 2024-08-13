@@ -100,15 +100,18 @@
                                         <a href="{{ route('beranda') }}">Beranda</a>
                                     </li>
                                     <li class="dropdown {{ Request::is('profil/*') ? 'current' : '' }}"><a
-                                            href="#">Profil</a>
+                                            href="#">Kategori</a>
                                         <ul>
 
-                                            <li class="{{ Request::is('profil/sejarah') ? 'current' : '' }}"><a
-                                                    href="">Sejarah</a></li>
-                                            <li class="{{ Request::is('profil/program') ? 'current' : '' }}"><a
-                                                    href="">Program</a></li>
-                                            <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
-                                                    href="">Galeri</a></li>
+                                            @foreach ($dropdown_kategori as $dropDown)
+                                                <li
+                                                    class="{{ Request::is('kategori/' . $dropDown->nama_kategori) ? 'current' : '' }}">
+                                                    <a
+                                                        href="{{ route('home.kategori', $dropDown->nama_kategori) }}">{{ $dropDown->nama_kategori }}</a>
+                                                </li>
+                                            @endforeach
+
+
                                         </ul>
                                     </li>
 

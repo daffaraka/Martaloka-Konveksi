@@ -17,37 +17,43 @@ class ProdukSeeder extends Seeder
 
         $kategori = Kategori::pluck('id')->toArray();
 
-        DB::table('produks')->insert([
+        // Array produk yang akan diinsert
+        $produks = [
             [
                 'nama_produk' => 'Baju Biru',
-                'kategori_id' => $kategori[array_rand($kategori)],
                 'deskripsi' => 'Baju yang dibuat dengan warna biru.',
                 'harga_produk' => 1500000,
                 'stok' => 10,
                 'gambar_produk' => 'baju_biru.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'nama_produk' => 'Kaos ini itu',
-                'kategori_id' => $kategori[array_rand($kategori)],
                 'deskripsi' => 'Baju yang dibuat dengan warna mencolok.',
                 'harga_produk' => 1500000,
                 'stok' => 10,
                 'gambar_produk' => 'baju_Merah.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'nama_produk' => 'Kaos Polos',
-                'kategori_id' => $kategori[array_rand($kategori)],
-                'deskripsi' => 'Baju yang dibuat dengan warna Merah.',
+                'deskripsi' => 'Baju yang dibuat dengan warna merah.',
                 'harga_produk' => 1500000,
                 'stok' => 10,
                 'gambar_produk' => 'baju_Merah.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
-        ]);
+        ];
+
+        $inserts = [];
+
+        // Pastikan setiap kategori memiliki minimal 1 produk
+        foreach ($kategori as $kategori_id) {
+            $produk = $produks[array_rand($produks)]; // Pilih produk secara acak
+            $produk['kategori_id'] = $kategori_id;
+            $produk['created_at'] = now();
+            $produk['updated_at'] = now();
+            $inserts[] = $produk;
+        }
+
+        // Insert produk yang sudah dikumpulkan ke dalam database
+        DB::table('produks')->insert($inserts);
     }
 }

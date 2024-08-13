@@ -9,6 +9,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nama Produk</th>
+                    <th scope="col">Kategori Produk</th>
                     <th scope="col">Gambar Produk</th>
                     <th scope="col">Harga</th>
                     <th scope="col">Stok</th>
@@ -22,6 +23,7 @@
                     <tr class="">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->nama_produk }}</td>
+                        <td>{{ $data->kategori->nama_kategori }}</td>
                         <td>
                             <img src="{{ asset('produk/'.$data->gambar_produk) }}" width="200" alt="">
                         </td>

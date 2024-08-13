@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
+use App\Models\Kategori;
 use App\Models\Keranjang;
 use App\Models\Transaksi;
-use App\Models\TransaksiProduk;
 use Illuminate\Http\Request;
+use App\Models\TransaksiProduk;
 use Illuminate\Support\Facades\Auth;
 
 class BerandaController extends Controller
@@ -15,12 +16,19 @@ class BerandaController extends Controller
     public function index()
     {
 
+        $data['kategori'] = Kategori::with('produk')->get();
         $data['products'] = Produk::with('kategori')->get();
 
         // dd(Auth::user());
         return view('home.homepage', $data);
     }
 
+
+    public function kategori(Kategori $kategori)
+    {
+
+        return view('home.kategori', compact('kategori'));
+    }
 
     public function detailProduk(Produk $produk)
     {

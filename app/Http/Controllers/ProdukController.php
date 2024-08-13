@@ -14,7 +14,7 @@ class ProdukController extends Controller
     {
 
         $data['judul'] = 'Beranda Produk';
-        $data['produk'] = Produk::all();
+        $data['produk'] = Produk::with('kategori')->get();
 
         return view('admin.produk.produk-index', $data);
     }
@@ -57,7 +57,8 @@ class ProdukController extends Controller
 
     public function edit($id)
     {
-        $data['Produk'] = Produk::find($id);
+        $data['produk'] = Produk::find($id);
+        $data['kategori'] = Kategori::select('id','nama_kategori')->get();
         return view('admin.produk.produk-edit ', $data);
     }
 

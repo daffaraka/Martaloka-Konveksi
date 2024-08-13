@@ -239,7 +239,7 @@
 
 
 
-        <section class="top-categories-area">
+        {{-- <section class="top-categories-area">
             <div class="container">
                 <div class="sec-title-style3 text-center">
                     <div class="sub-title">
@@ -391,7 +391,7 @@
                     <!--End Top Categories Single-->
                 </ul>
             </div>
-        </section>
+        </section> --}}
 
 
         <section class="academy-working-process-area">

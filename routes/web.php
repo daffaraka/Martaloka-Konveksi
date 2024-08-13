@@ -19,7 +19,7 @@ use App\Http\Controllers\TransaksiController;
 */
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
-
+Route::get('/kategori/{kategori:nama_kategori}', [BerandaController::class, 'kategori'])->name('home.kategori');
 Route::get('/detail-produk/{produk}', [BerandaController::class, 'detailProduk'])->name('home.detail-produk');
 
 
