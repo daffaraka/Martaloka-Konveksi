@@ -8,7 +8,7 @@
 05. PrettyPhoto
 06. BrandCarousel
 07. Testimonial carousel
-08. ScrollToTop 
+08. ScrollToTop
 09. Cart Touch Spin
 10. PriceFilter
 11. Cart touch spin
@@ -197,7 +197,7 @@ function bottomParallax() {
         var windowpos = $(window).scrollTop();
         var siteFooter = $('.footer-area').height();
         var sitebodyHeight = $('.boxed_wrapper').height();
-        var finalHeight = sitebodyHeight - siteFooter - 1000;
+        var finalHeight = sitebodyHeight - siteFooter - 500;
         if (windowpos >= finalHeight) {
             $('body').addClass('parallax-visible');
         } else {
@@ -233,7 +233,7 @@ function beforeAfterTwentyTwenty() {
             var objName = Self.attr('id');
             $('#' + objName).twentytwenty();
 
-            // hack for bs tab 
+            // hack for bs tab
             $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
                 var paneTarget = $(e.target).attr('data-target');
                 var $thePane = $('.tab-pane' + paneTarget);
@@ -924,10 +924,10 @@ if ($('.lightbox-image').length) {
 
 if ($('.paroller').length) {
     $('.paroller').paroller({
-        factor: -0.1, // multiplier for scrolling speed and offset, +- values for direction control  
-        factorLg: -0.1, // multiplier for scrolling speed and offset if window width is less than 1200px, +- values for direction control  
-        type: 'foreground', // background, foreground  
-        direction: 'vertical' // vertical, horizontal  
+        factor: -0.1, // multiplier for scrolling speed and offset, +- values for direction control
+        factorLg: -0.1, // multiplier for scrolling speed and offset if window width is less than 1200px, +- values for direction control
+        type: 'foreground', // background, foreground
+        direction: 'vertical' // vertical, horizontal
     });
 }
 
@@ -935,10 +935,10 @@ if ($('.paroller').length) {
 
 if ($('.paroller-2').length) {
     $('.paroller-2').paroller({
-        factor: 0.05, // multiplier for scrolling speed and offset, +- values for direction control  
-        factorLg: 0.05, // multiplier for scrolling speed and offset if window width is less than 1200px, +- values for direction control  
-        type: 'foreground', // background, foreground  
-        direction: 'horizontal' // vertical, horizontal  
+        factor: 0.05, // multiplier for scrolling speed and offset, +- values for direction control
+        factorLg: 0.05, // multiplier for scrolling speed and offset if window width is less than 1200px, +- values for direction control
+        type: 'foreground', // background, foreground
+        direction: 'horizontal' // vertical, horizontal
     });
 }
 

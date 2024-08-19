@@ -21,7 +21,8 @@ use App\Http\Controllers\TransaksiController;
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/kategori/{kategori:nama_kategori}', [BerandaController::class, 'kategori'])->name('home.kategori');
 Route::get('/detail-produk/{produk}', [BerandaController::class, 'detailProduk'])->name('home.detail-produk');
-
+Route::view('kontak','home.kontak')->name('home.kontak');
+Route::view('tentang-kami','home.tentang-kami')->name('home.tentang-kami');
 
 
 
@@ -64,8 +65,8 @@ Route::middleware('auth')->group(function () {
         Route::get('tansaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
         Route::post('transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
         Route::get('transaksi/show/{transaksi}', [TransaksiController::class, 'show'])->name('transaksi.show');
-        Route::post('transaksi/terima/{transaksi}', [TransaksiController::class, 'dibayar'])->name('transaksi.dibayar');
-        Route::post('transaksi/batal/{batal}', [TransaksiController::class, 'batal'])->name('transaksi.batal');
+        Route::get('transaksi/terima/{transaksi}', [TransaksiController::class, 'dibayar'])->name('transaksi.dibayar');
+        Route::get('transaksi/batal/{transaksi}', [TransaksiController::class, 'batal'])->name('transaksi.batal');
     });
 });
 

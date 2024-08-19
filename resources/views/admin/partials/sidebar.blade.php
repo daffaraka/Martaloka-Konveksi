@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-red elevation-4" style="background-color: #901832">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <!-- <img src="home/assets/img/logo-menak.png" alt="" class="brand-image " style="opacity: .8"> -->
@@ -18,10 +18,10 @@
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                <input class="form-control form-control-sidebar bg-light" type="search" placeholder="Search"
                     aria-label="Search">
                 <div class="input-group-append">
-                    <button class="btn btn-sidebar">
+                    <button class="btn btn-sidebar bg-light ">
                         <i class="fas fa-search fa-fw"></i>
                     </button>
                 </div>

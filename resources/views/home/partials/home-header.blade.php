@@ -116,10 +116,10 @@
                                     </li>
 
                                     <li class="{{ Request::is('profil/tentangkami') ? 'current' : '' }}"><a
-                                            href="">Tentang Kami</a></li>
+                                            href="{{route('home.tentang-kami')}}">Tentang Kami</a></li>
                                     <li class="blank-box"></li>
                                     <li class="{{ Request::is('informasi*') ? 'current' : '' }}"><a
-                                            href="">Informasi</a>
+                                            href="{{route('home.kontak')}}">Kontak Kami</a>
                                     <li class="# search-toggler"><a href="javascript:void(0);"><i
                                                 class="icon-zoom mr-2"></i> Pencarian</a></li>
                                     @guest

@@ -15,7 +15,7 @@ class TransaksiController extends Controller
 
     public function show(Transaksi $transaksi)
     {
-        $transaksi = Transaksi::with(['user','detailTransaksi.produk'])->where('user_id',$transaksi->user_id)->first();
+        // $transaksi = Transaksi::with(['user','detailTransaksi.produk'])->where('user_id',$transaksi->user_id)->find($transaksi->id);
 
         // dd($transaksi);
 
@@ -25,13 +25,14 @@ class TransaksiController extends Controller
 
     public function dibayar(Transaksi $transaksi)
     {
-        $transaksi->update(['status' => 'Selesai']);
+        $transaksi->update(['status_pembayaran' => 'Selesai']);
         return redirect()->back()->with('success','Transaksi Telah Diterima');
     }
 
     public function batal(Transaksi $transaksi)
     {
-        $transaksi->update(['status' => 'Dibatalkan']);
+        // dd($transaksi);
+        $transaksi->update(['status_pembayaran' => 'Dibatalkan']);
         return redirect()->back()->with('success','Transaksi Telah Diterima');
     }
 

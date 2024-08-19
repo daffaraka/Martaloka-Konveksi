@@ -7,11 +7,11 @@
                 <div class="row text-right-rtl">
 
                     <!--Start single footer widget-->
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                         <div class="single-footer-widget marbtm50">
                             <div class="title">
                                 <div class="dotted"></div>
-                                <h3>Our Campus</h3>
+                                <h3>Martaloka Konveksi</h3>
                             </div>
                             <div class="our-company-info">
                                 <div class="text-box">
@@ -24,7 +24,7 @@
                                             <span class="icon-map"></span>
                                         </div>
                                         <div class="text">
-                                            <a href="#">Campus Map</a>
+                                            <a href="#">Peta Lokasi</a>
                                         </div>
                                     </li>
                                     <li>
@@ -32,7 +32,7 @@
                                             <span class="icon-chat"></span>
                                         </div>
                                         <div class="text">
-                                            <a href="contact.html">Request for Consult</a>
+                                            <a href="contact.html">Request Desain</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -42,40 +42,35 @@
                     <!--End single footer widget-->
 
                     <!--Start single footer widget-->
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                         <div class="single-footer-widget single-footer-widget--link-box marbtm50">
                             <div class="title">
                                 <div class="dotted"></div>
-                                <h3>Academic Life</h3>
+                                <h3>Media Sosial</h3>
                             </div>
                             <div class="footer-widget-links">
                                 <ul>
                                     <li>
                                         <a href="#">
-                                            <span class="icon-right-arrow-2"></span>IB & Subject
+                                            <span class="icon-right-arrow-2"></span>Instagram
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <span class="icon-right-arrow-2"></span>Learning Culture
+                                            <span class="icon-right-arrow-2"></span>Facebook
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <span class="icon-right-arrow-2"></span>Teaching & Learning
-                                            Support
+                                            <span class="icon-right-arrow-2"></span>Shopee
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <span class="icon-right-arrow-2"></span>Student Research
+                                            <span class="icon-right-arrow-2"></span>Tokopedia
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="icon-right-arrow-2"></span>University Guidance
-                                        </a>
-                                    </li>
+
 
                                 </ul>
                             </div>
@@ -83,54 +78,13 @@
                     </div>
                     <!--End single footer widget-->
 
-                    <!--Start single footer widget-->
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
-                        <div class="single-footer-widget single-footer-widget--link-box">
-                            <div class="title">
-                                <div class="dotted"></div>
-                                <h3>Admissions</h3>
-                            </div>
-                            <div class="footer-widget-links">
-                                <ul>
-                                    <li>
-                                        <a href="about.html">
-                                            <span class="icon-right-arrow-2"></span>About Admission
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="icon-right-arrow-2"></span>How to Apply
-                                            <sup>*[Open]</sup>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="icon-right-arrow-2"></span>Scholarship
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="icon-right-arrow-2"></span>Nomination & Acceptance
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="icon-right-arrow-2"></span>Question & Answer
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End single footer widget-->
 
                     <!--Start single footer widget-->
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                         <div class="single-footer-widget pdtop50">
                             <div class="title">
                                 <div class="dotted"></div>
-                                <h3>Get in Touch</h3>
+                                <h3>Kontak Kami</h3>
                             </div>
                             <div class="footer-widget-contact-info">
                                 <p>Educamb University 6500 NW Brook Park Drive Jacksonville, USA
