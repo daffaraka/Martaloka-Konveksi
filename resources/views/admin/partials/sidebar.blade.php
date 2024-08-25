@@ -100,7 +100,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kategori.index') }}">
+                    <a class="nav-link" href="{{ route('users.index') }}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             User Manajemen

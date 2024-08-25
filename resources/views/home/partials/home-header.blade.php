@@ -72,7 +72,7 @@
     <!--End Header Top-->
 
     <!--Start Header-->
-    <div class="header">
+    <div class="header bg-dark">
         <div class="auto-container">
             <div class="outer-box">
                 <div class="header-left"></div>

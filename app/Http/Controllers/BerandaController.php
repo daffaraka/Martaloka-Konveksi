@@ -120,6 +120,7 @@ class BerandaController extends Controller
         return to_route('home.transaksi');
     }
 
+
     public function formLengkapiTransaksi(Transaksi $transaksi)
     {
         $transaksi =   $transaksi->with(['detailTransaksi.produk.kategori', 'user'])->where('id', $transaksi->id)->first();

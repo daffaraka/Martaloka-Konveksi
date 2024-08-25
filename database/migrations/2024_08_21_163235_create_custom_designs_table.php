@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategoris', function (Blueprint $table) {
+        Schema::create('custom_designs', function (Blueprint $table) {
             $table->id();
-            $table->integer('harga_kategori')->default(0);
-            $table->string('nama_kategori');
+            $table->string('gambar_custom_design');
+            $table->foreignId('transaksi_custom_design_id')->constrained('transaksi_custom_designs')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kategoris');
+        Schema::dropIfExists('custom_designs');
     }
 };

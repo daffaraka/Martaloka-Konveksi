@@ -495,7 +495,7 @@
                                     <h2><span>Kreasiakn Kaos Anda<br>di sini</span><br></h2>
                                 </div>
                                 <div class="btns-box">
-                                    <a class="btn-one btn-one--style4" href="about-3.html">
+                                    <a class="btn-one btn-one--style4" href="https://www.kittl.com/templates/t-shirts">
                                         <span class="txt">
                                             <i class="icon-right-arrow-1"></i>
                                             Disain
@@ -518,7 +518,7 @@
                                     <h2><span>Ayo Pesan jenis Pakean<br>Anda Sekarang</h2>
                                 </div>
                                 <div class="btns-box">
-                                    <a class="btn-one btn-one--style4" href="contact-3.html">
+                                    <a class="btn-one btn-one--style4" href="{{route('home.createDesign')}}">
                                         <span class="txt">
                                             <i class="icon-right-arrow-1"></i>
                                             Pesan

@@ -11,15 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaksis', function (Blueprint $table) {
+        Schema::create('transaksi_custom_designs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('nama_pemesan');
+            $table->string('alamat_pemesan');
+            $table->string('email_pemesan');
+            $table->string('nomor_hp_pemesan');
+            $table->string('catatan')->nullable();
+            $table->integer('total_pesanan');
             $table->enum('status_pembayaran', ['Pending', 'Diterima', 'Dibayar', 'Dibatalkan']);
-            $table->integer('total_harga');
-            $table->string('metode_bayar');
+            $table->integer('total_harga')->nullable();
+            $table->string('metode_bayar')->nullable();
             $table->string('bukti_pembayaran')->nullable();
-            $table->dateTime('tgl_bayar')->nullable();
-            $table->dateTime('tgl_kadaluarsa')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaksis');
+        Schema::dropIfExists('transaksi_custom_designs');
     }
 };

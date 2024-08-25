@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\BerandaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\TransaksiCustomDesignController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,12 +37,21 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Transaksi pembelian
     Route::get('/add-to-cart/{produk}', [BerandaController::class, 'addToCart'])->name('home.addToCart');
     Route::get('keranjang', [BerandaController::class, 'keranjang'])->name('home.keranjang');
     Route::post('/checkout', [BerandaController::class, 'checkout'])->name('home.checkout');
     Route::get('transaksi', [BerandaController::class, 'transaksi'])->name('home.transaksi');
     Route::get('/lengkapi-transaksi/{transaksi}', [BerandaController::class, 'formLengkapiTransaksi'])->name('home.formLengkapiTransaksi');
     Route::post('/upload-bukti-transaksi/{transaksi}', [BerandaController::class, 'uploadBuktiTransaksi'])->name('home.uploadBuktiTransaksi');
+
+
+    // Transaksi pembelian
+    Route::get('custom-design',[TransaksiCustomDesignController::class,'createDesign'])->name('home.createDesign');
+    Route::post('kirim-design',[TransaksiCustomDesignController::class,'storeDesign'])->name('home.storeDesign');
+    Route::get('pembayaran-transaksi/{TransaksiCustomDesign}',[TransaksiCustomDesignController::class,'formPembayaranTransaksi'])->name('home.formPembayaranTransaksi');
+    Route::get('custom-design',[TransaksiCustomDesignController::class,'createDesign'])->name('home.createDesign');
+
     // Dashboard Admin
     Route::prefix('dashboard')->group(function () {
         Route::view('/', 'admin.layout')->name('dashboard');
@@ -67,6 +78,8 @@ Route::middleware('auth')->group(function () {
         Route::get('transaksi/show/{transaksi}', [TransaksiController::class, 'show'])->name('transaksi.show');
         Route::get('transaksi/terima/{transaksi}', [TransaksiController::class, 'dibayar'])->name('transaksi.dibayar');
         Route::get('transaksi/batal/{transaksi}', [TransaksiController::class, 'batal'])->name('transaksi.batal');
+
+        Route::resource('users', UserController::class);
     });
 });
 
