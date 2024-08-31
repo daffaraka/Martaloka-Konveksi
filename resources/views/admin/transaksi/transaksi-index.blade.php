@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('content')
     <div class="table-responsive mt-5 ">
-        <table class="table table-striped table-bordered shadow">
+        <table class="table table-bordered shadow">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -9,6 +9,7 @@
                     <th scope="col">Status Transaksi</th>
                     <th scope="col" class="w-25">Produk - Qty - Harga</th>
                     <th scope="col">Total Harga</th>
+                    <th scope="col">Bukti Pembayaran</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -44,19 +45,37 @@
                         </td>
                         <td> Rp. {{ number_format($data->total_harga) }}</td>
                         <td>
+                            @if ($data->bukti_pembayaran == null)
+                                Belum ada
+                            @else
+                                <a href="{{ asset('bukti_Pembayaran/' . $data->bukti_pembayaran) }}"
+                                    class="btn btn-info"> <i class="fa fa-image" aria-hidden="true"></i> Bukti pembayaran</a>
+                            @endif
+
+                        </td>
+                        <td>
                             @if ($data->status_pembayaran == 'Pending')
-                                <button class="btn btn-sm btn-warning">Belum ada bukti transfer</button>
+                                <button class="btn btn-block btn-secondary">Belum ada bukti transfer</button>
                             @elseif($data->status_pembayaran == 'Dibayar')
-                                <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-sm btn-success">Sudah
+                                <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-block btn-success">Sudah
                                     Dibayar</a>
                             @elseif($data->status_pembayaran == 'Diterima')
-                                <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-sm btn-primary">Lihat Bukti
-                                    Transfer</a>
+                                <a href="{{ route('transaksi.dibayar', $data->id) }}"
+                                    class="btn btn-block btn-outline-primary"> Terima
+                                    transaksi</a>
+                                <a href="{{ route('transaksi.batal', $data->id) }}"
+                                    class="btn btn-block btn-outline-danger">
+                                    Tolak
+                                    transaksi</a>
+
                             @elseif($data->status_pembayaran == 'Dibatalkan')
-                                <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-sm btn-danger">Batal</a>
+                                <a href="{{ route('transaksi.show', $data->id) }}"
+                                    class="btn btn-block btn-danger">Batal</a>
                             @else
-                                <button class="btn btn-sm btn-info">Status Tidak Valid</button>
+                                <button class="btn btn-block btn-info">Status Tidak Valid</button>
                             @endif
+                            <a href="" class="btn btn-block btn-outline-warning text-dark"><i class="fa fa-phone"
+                                aria-hidden="true"></i> Hubungi Pemesan</a>
                         </td>
 
                     </tr>

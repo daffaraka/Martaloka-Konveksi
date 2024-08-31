@@ -110,15 +110,27 @@
                 </li>
 
 
-                {{-- <li class="nav-item">
+
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('kategori.index') }}">
-                        <i class="nav-icon fas  fa-bars"></i>
+                        <i class="nav-icon fas fa-bold"></i>
                         <p>
-                            Keranjang
+                            Riwayat Transaksi Produk
                             <!-- <i class="fas fa-angle-left right"></i> -->
                         </p>
                     </a>
-                </li> --}}
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kategori.index') }}">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>
+                            Riwayat Pemesanan Custom Design
+                            <!-- <i class="fas fa-angle-left right"></i> -->
+                        </p>
+                    </a>
+                </li>
 
 
                 <li class="nav-item">

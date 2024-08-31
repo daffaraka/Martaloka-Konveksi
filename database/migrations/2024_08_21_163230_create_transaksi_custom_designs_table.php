@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('nomor_hp_pemesan');
             $table->string('catatan')->nullable();
             $table->integer('total_pesanan');
-            $table->enum('status_pembayaran', ['Pending', 'Diterima', 'Dibayar', 'Dibatalkan']);
+            $table->enum('status_pembayaran', ['Pending', 'Diterima', 'Dibayar', 'Dibatalkan','Selesai']);
             $table->integer('total_harga')->nullable();
             $table->string('metode_bayar')->nullable();
             $table->string('bukti_pembayaran')->nullable();

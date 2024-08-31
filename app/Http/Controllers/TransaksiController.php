@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
+use App\Models\TransaksiCustomDesign;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -41,5 +42,20 @@ class TransaksiController extends Controller
     {
         $transaksi->delete();
         return redirect()->back()->with('success','Transaksi Telah dihapus');
+    }
+
+
+    public function riwayatTransaksi()
+    {
+        $transaksiSelesai = Transaksi::with(['user','detailTransaksi.produk'])->where('status_pembayaran', 'Selesai')->get();
+
+        return view('admin.transaksi.transaksi-riwayat',compact('transaksiSelesai'));
+    }
+
+    public function riwayatTransaksiCustom()
+    {
+        $transaksiSelesai = TransaksiCustomDesign::with(['user','detailTransaksi.produk'])->where('status_pembayaran', 'Selesai')->get();
+
+        return view('admin.transaksi.transaksi-riwayat',compact('transaksiSelesai'));
     }
 }

@@ -36,7 +36,8 @@
                                 <select class="wide float-none"
                                     style="height: 40px !important;line-height: 40px !important;" name="kategori_id">
                                     @foreach ($kategori as $select)
-                                        <option value="{{ $select->id }}">{{ $select->nama_kategori }}</option>
+                                        <option value="{{ $select->id }}">{{ $select->nama_kategori }} -
+                                            Rp. {{ number_format($select->harga_kategori) }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -149,7 +150,7 @@
 
                     <div class="col-12 px-5 my-3">
                         <h3 class="mb-2">Gambar</h3>
-                        <input type="file" name="gambar_custom_design[]" id="">
+                        <input type="file" name="gambar_custom_design[]" accept="image" id="">
                     </div>
 
 
