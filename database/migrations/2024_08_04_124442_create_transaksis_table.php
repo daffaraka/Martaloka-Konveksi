@@ -15,8 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->enum('status_pembayaran', ['Pending', 'Diterima', 'Dibayar', 'Dibatalkan','Selesai']);
+            $table->string('nama_pemesan');
+            $table->string('alamat_pemesan');
+            $table->string('email_pemesan');
+            $table->string('nomor_hp_pemesan');
+            $table->string('catatan')->nullable();
             $table->integer('total_harga');
-            $table->string('metode_bayar');
+            $table->string('metode_bayar')->nullable();
             $table->string('bukti_pembayaran')->nullable();
             $table->dateTime('tgl_bayar')->nullable();
             $table->dateTime('tgl_kadaluarsa')->nullable();

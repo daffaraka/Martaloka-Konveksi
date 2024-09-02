@@ -21,7 +21,7 @@ class TransaksiCustomDesignController extends Controller
 
         $kategori = Kategori::orderBy('nama_kategori', 'asc')->get();
 
-        return view('home.custom-design.formulir-pemesanan', compact('kategori'));
+        return view('home.custom-design.formulir-pemesanan-custom', compact('kategori'));
     }
     public function storeDesign(Request $request)
     {
@@ -71,37 +71,37 @@ class TransaksiCustomDesignController extends Controller
             }
         }
 
-        return to_route('home.formPembayaranTransaksi', ['TransaksiCustomDesign' => $transaksi->id]);
+        return to_route('home.formPembayaranTransaksi', ['transaksiCustomDesign' => $transaksi]);
     }
 
     public function formPembayaranTransaksi(TransaksiCustomDesign $transaksiCustomDesign)
     {
 
+        $transaksiCustomDesign = $transaksiCustomDesign->with(['sizes','designs','kategori'])->find($transaksiCustomDesign->id);
 
-        return view('home.custom-design.formulir-pembayaran', compact('transaksiCustomDesign'));
+        // dd($transaksiCustomDesign);
+        return view('home.custom-design.formulir-pembayaran-custom', compact('transaksiCustomDesign'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TransaksiCustomDesign $transaksiCustomDesign)
+
+    public function uploadBuktiCustomDesign(Request $request, TransaksiCustomDesign $transaksiCustomDesign)
     {
-        //
+
+
+        $file = $request->file('bukti_bayar');
+        $fileName = $file->getClientOriginalName();
+        $fileSaved = $transaksiCustomDesign->user->name . '-' . $request->metode_bayar . '-' . $fileName;
+        $file->store('public/custom/bukti-bayar/' . $fileSaved);
+
+
+        $transaksiCustomDesign->update([
+            'status_pembayaran' => 'Diterima',
+            'metode_bayar' => $request->bank,
+            'bukti_pembayaran' => $fileSaved,
+        ]);
+        // dd($transaksiCustomDesign);
+
+        return redirect()->back()->with('success','Transaksi Telah Diterima');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TransaksiCustomDesign $transaksiCustomDesign)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TransaksiCustomDesign $transaksiCustomDesign)
-    {
-        //
-    }
 }

@@ -150,9 +150,12 @@
 
                     <div class="col-12 px-5 my-3">
                         <h3 class="mb-2">Gambar</h3>
-                        <input type="file" name="gambar_custom_design[]" accept="image" id="">
-                    </div>
+                        <input type="file" name="gambar_custom_design[]" accept="image/*" class="image-input" />
+                        <img id="preview" src="#" alt="Preview Image" style="display:none; max-width: 200px; margin-top: 10px;" />
 
+                        <div id="newRowImage"></div>
+                        <button id="addRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Tambah Gambar</button>
+                    </div>
 
                 </div>
                 <div class="d-grid px-5">
@@ -165,6 +168,48 @@
     </section>
 
 
+    <script type="text/javascript">
+        // Function to preview image
+        function previewImage(input, previewElement) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    previewElement.src = e.target.result;
+                    previewElement.style.display = 'block';
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                previewElement.style.display = 'none';
+                previewElement.src = '#';
+            }
+        }
 
+        // Apply preview functionality to all existing image inputs
+        document.querySelectorAll('.image-input').forEach(function(input) {
+            input.addEventListener('change', function() {
+                var preview = input.nextElementSibling;
+                previewImage(input, preview);
+            });
+        });
 
+        // Add new row and apply preview functionality
+        document.getElementById('addRow').addEventListener('click', function() {
+            var newInputRow = document.createElement('div');
+            newInputRow.innerHTML = `
+                <div id="inputFormRow" class="mt-3">
+                    <input type="file" name="gambar_custom_design[]" accept="image/*" class="image-input" />
+                    <img src="#" alt="Preview Image" style="display:none; max-width: 200px; margin-top: 10px;" />
+                </div>
+            `;
+
+            document.getElementById('newRowImage').appendChild(newInputRow);
+
+            // Apply preview functionality to the new input
+            var newInput = newInputRow.querySelector('.image-input');
+            var newPreview = newInput.nextElementSibling;
+            newInput.addEventListener('change', function() {
+                previewImage(newInput, newPreview);
+            });
+        });
+    </script>
 @endsection

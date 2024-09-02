@@ -64,7 +64,7 @@ class BerandaController extends Controller
         $keranjangs = Keranjang::with(['produk.kategori', 'user'])->where('status', 'Di Keranjang')->where('user_id', $user_id)->get();
 
         // dd(($keranjangs));
-        return view('home.keranjang', compact('keranjangs'));
+        return view('home.pembelian-produk.keranjang', compact('keranjangs'));
     }
 
     public function transaksi()
@@ -73,7 +73,7 @@ class BerandaController extends Controller
         $transaksis = Transaksi::with(['detailTransaksi.produk.kategori', 'user'])->where('status_pembayaran', 'Pending')->where('user_id', $user_id)->get();
 
         // dd(($keranjangs));
-        return view('home.transaksi', compact('transaksis'));
+        return view('home.pembelian-produk.transaksi', compact('transaksis'));
     }
 
 
@@ -117,13 +117,13 @@ class BerandaController extends Controller
         }
 
 
-        return to_route('home.transaksi');
+        return to_route('home.formLengkapiTransaksi', ['transaksi' => $transaksi]);
     }
 
 
     public function formLengkapiTransaksi(Transaksi $transaksi)
     {
-        $transaksi =   $transaksi->with(['detailTransaksi.produk.kategori', 'user'])->where('id', $transaksi->id)->first();
+        $transaksi =  $transaksi->with(['detailTransaksi.produk.kategori', 'user'])->where('id', $transaksi->id)->first();
 
         return view('home.dalam-transaksi', compact('transaksi'));
     }

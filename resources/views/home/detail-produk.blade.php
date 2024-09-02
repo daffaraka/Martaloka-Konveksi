@@ -2,7 +2,7 @@
 @section('title', 'Detail produk')
 @section('content')
 
-    <div class="">
+    <div  style="margin-top: 20vh;">
         <section class="events-details-page">
             <div class="container">
                 <div class="row">

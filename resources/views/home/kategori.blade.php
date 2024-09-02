@@ -98,9 +98,9 @@
                                         <div class="">
                                             <img src="{{ asset('produk/' . $produk->gambar_produk) }}" alt="">
                                         </div>
-                                        <div class="overlay-content">
+                                        <div class="overlay-content border">
                                             {{-- <p>76 Courses</p> --}}
-                                            <h3><a href="#">{{ $produk->nama_produk }}</a></h3>
+                                            <h3 class="mt-3"><a href="#">{{ $produk->nama_produk }}</a></h3>
                                             <div class="btns-box">
                                                 <a class="btn-one btn-one--style4"
                                                     href="{{ route('home.detail-produk', $produk->id) }}">

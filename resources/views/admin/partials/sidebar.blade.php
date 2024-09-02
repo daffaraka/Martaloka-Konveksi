@@ -109,10 +109,18 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('transaksi.index') }}">
+                        <i class="nav-icon fas fa-cart-plus"></i>
+                        <p>
+                            Transaksi
+                        </p>
+                    </a>
+                </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kategori.index') }}">
+                    <a class="nav-link" href="{{ route('transaksi.riwayatTransaksi') }}">
                         <i class="nav-icon fas fa-bold"></i>
                         <p>
                             Riwayat Transaksi Produk
@@ -123,7 +131,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kategori.index') }}">
+                    <a class="nav-link" href="{{ route('transaksi.riwayatCustomDesign') }}">
                         <i class="nav-icon fas fa-newspaper"></i>
                         <p>
                             Riwayat Pemesanan Custom Design
@@ -133,14 +141,6 @@
                 </li>
 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('transaksi.index') }}">
-                        <i class="nav-icon fas fa-cart-plus"></i>
-                        <p>
-                            Transaksi
-                        </p>
-                    </a>
-                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"

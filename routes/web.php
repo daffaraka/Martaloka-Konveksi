@@ -42,15 +42,16 @@ Route::middleware('auth')->group(function () {
     Route::get('keranjang', [BerandaController::class, 'keranjang'])->name('home.keranjang');
     Route::post('/checkout', [BerandaController::class, 'checkout'])->name('home.checkout');
     Route::get('transaksi', [BerandaController::class, 'transaksi'])->name('home.transaksi');
-    Route::get('/lengkapi-transaksi/{transaksi}', [BerandaController::class, 'formLengkapiTransaksi'])->name('home.formLengkapiTransaksi');
+    Route::get('/pembayaran-transaksi/{transaksi}', [BerandaController::class, 'formLengkapiTransaksi'])->name('home.formLengkapiTransaksi');
     Route::post('/upload-bukti-transaksi/{transaksi}', [BerandaController::class, 'uploadBuktiTransaksi'])->name('home.uploadBuktiTransaksi');
 
 
     // Transaksi pembelian
     Route::get('custom-design', [TransaksiCustomDesignController::class, 'createDesign'])->name('home.createDesign');
     Route::post('kirim-design', [TransaksiCustomDesignController::class, 'storeDesign'])->name('home.storeDesign');
-    Route::get('pembayaran-transaksi/{TransaksiCustomDesign}', [TransaksiCustomDesignController::class, 'formPembayaranTransaksi'])->name('home.formPembayaranTransaksi');
-    Route::get('custom-design', [TransaksiCustomDesignController::class, 'createDesign'])->name('home.createDesign');
+    Route::get('pembayaran-custom-design/{transaksiCustomDesign}', [TransaksiCustomDesignController::class, 'formPembayaranTransaksi'])->name('home.formPembayaranTransaksi');
+    Route::post('pembayaran-custom-design/{transaksiCustomDesign}/upload-bukti', [TransaksiCustomDesignController::class, 'uploadBuktiCustomDesign'])->name('home.uploadBuktiCustomDesign');
+    // Route::get('custom-design', [TransaksiCustomDesignController::class, 'createDesign'])->name('home.createDesign');
 
     // Dashboard Admin
     Route::prefix('dashboard')->group(function () {
@@ -79,7 +80,7 @@ Route::middleware('auth')->group(function () {
         Route::get('transaksi/terima/{transaksi}', [TransaksiController::class, 'dibayar'])->name('transaksi.dibayar');
         Route::get('transaksi/batal/{transaksi}', [TransaksiController::class, 'batal'])->name('transaksi.batal');
         Route::get('transaksi-produk/riwayat-transaksi', [TransaksiController::class, 'riwayatTransaksi'])->name('transaksi.riwayatTransaksi');
-        Route::get('transaksi-custom-design/riwayat-transaksi', [TransaksiController::class, 'riwayatTransaksi'])->name('transaksi.riwayatTransaksi');
+        Route::get('transaksi-custom-design/riwayat-transaksi', [TransaksiController::class, 'riwayatTransaksi'])->name('transaksi.riwayatCustomDesign');
 
         Route::resource('users', UserController::class);
     });

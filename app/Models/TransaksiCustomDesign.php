@@ -24,4 +24,25 @@ class TransaksiCustomDesign extends Model
         'metode_bayar',
         'bukti_pembayaran',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class,'kategori_id');
+    }
+
+
+    public function sizes()
+    {
+        return $this->hasOne(SizeCustomDesign::class);
+    }
+
+    public function designs()
+    {
+        return $this->hasMany(CustomDesign::class);
+    }
 }

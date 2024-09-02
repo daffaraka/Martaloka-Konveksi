@@ -33,6 +33,7 @@
                                             </div>
                                         </div>
                                         <div class="flex-shrink-0 ms-2">
+
                                             <form action="{{ route('home.uploadBuktiTransaksi', $transaksi->id) }}"
                                                 enctype="multipart/form-data" method="POST">
                                                 @csrf

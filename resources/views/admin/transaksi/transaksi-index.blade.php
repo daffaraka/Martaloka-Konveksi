@@ -74,7 +74,7 @@
                             @else
                                 <button class="btn btn-block btn-info">Status Tidak Valid</button>
                             @endif
-                            <a href="" class="btn btn-block btn-outline-warning text-dark"><i class="fa fa-phone"
+                            <a href="{{$data->no_hp_pemesan}}" class="btn btn-block btn-outline-warning text-dark"><i class="fa fa-phone"
                                 aria-hidden="true"></i> Hubungi Pemesan</a>
                         </td>
 
