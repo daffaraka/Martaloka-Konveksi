@@ -72,7 +72,7 @@
     <!--End Header Top-->
 
     <!--Start Header-->
-    <div class="header bg-dark">
+    <div class="header {{Request::is('/') || Request::is('/kontak') || Request::is('tentang-kami') ? '' : 'bg-dark'}}">
         <div class="auto-container">
             <div class="outer-box">
                 <div class="header-left"></div>
@@ -170,7 +170,7 @@
                 <!--Logo-->
                 <div class="logo float-left">
                     <a href="index.html" class="img-responsive">
-                        <img src="assets/images/resources/sticky-logo.png" alt="" title="">
+                        <img src="{{ asset('assets/images/logo1.png') }}" alt="" title="">
                     </a>
                 </div>
                 <!--Right Col-->

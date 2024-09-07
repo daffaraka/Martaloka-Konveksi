@@ -4,7 +4,7 @@
 
     <!--Start breadcrumb area paroller-->
     <section class="breadcrumb-area">
-        <div class="breadcrumb-area-bg" style="background-color:#fff;">
+        <div class="breadcrumb-area-bg" style="background-image: url('assets/images/slider/jj.png');">
         </div>
         <div class="container">
             <div class="row">
@@ -24,15 +24,16 @@
             </div>
         </div>
     </section>
+    
     <!--End breadcrumb area-->
     <!--Start About Style1 Area-->
     <section class="about-style1-area">
         <div class="container">
             <div class="sec-title text-center">
-                <h2>Leadership For The Global Education</h2>
+                <h2>Martaloka Konveksi </h2>
                 <div class="sub-title">
-                    <p>Untrammelled and when nothing prevents our being able do what we like<br>
-                        pleasure is to be welcomed and every pain.</p>
+                    <p>Selamat datang di Martaloka Konveksi, tempat di mana kualitas bertemu dengan keahlian<br>
+                        Kami berkomitmen untuk memberikan layanan konveksi terbaik, memenuhi kebutuhan Anda dengan hasil yang presisi dan memuaskan.</p>
                 </div>
             </div>
             <div class="row">
@@ -42,17 +43,25 @@
                             <div class="col-xl-6">
                                 <div class="about-style1-content">
                                     <div class="top">
-                                        <div class="big-text">E</div>
-                                        <div class="text">
-                                            <p>ducamb welcomed every pain avoided but in certain circumstances owing
-                                                to the claims of the obligations of business it will frequently
-                                                occurs that pleasures.</p>
+                                        <div class="big-text" style="position: relative; top: -100px;">M</div>
+                                        <div class="text-justify">
+                                            <p>artaloka Konveksi ini ialah usaha konveksi seperti pada 
+                                                umumnya yang menerima pesanan Baju losinan dari mulai baju kaos biasa 
+                                                kemudian, baju polo, dan baju kemeja. Kemudian di konveksi ini kita dapat free
+                                                diasin dan stiker logo dari baju yang kita pesan dengan pemesanan minimal 12 
+                                                pc/satulusin. Martaloka konveksi di dirikan pada tahun 2010 yang berlokasi di
+                                                Desa Banjar Tegeha, Kecamatan Banjar,Kabupaten Buleleng.
+                                                </p>
                                         </div>
                                     </div>
-                                    <div class="bottom-text">
-                                        <p>Certain circumstances owing to claims duty obligation that
-                                            off business it will frequently occurs in our free hours when our power
-                                            of choice is nothing prevents.</p>
+                                    <div class="text-justify">
+                                        <p>Martaloka Konveksi juga fokus pada produksi massal pakaian dan produk
+                                            tekstil. Proses produksi konveksi dimulai dengan pembuatan pola dan desain
+                                            pakaian yang akan diproduksi. Tahap selanjutnya melibatkan pemotongan bahan
+                                            tekstil sesuai pola yang telah dibuat, diikuti dengan proses jahit-menyulam untuk 
+                                            membentuk pakaian. Setelah itu, produk menjalani tahap finishing yang 
+                                            mencakup penambahan aksesoris, pengecekan kualitas, dan penyelesaian detail 
+                                            lainnya.</p>
                                     </div>
                                     <div class="btns-box">
                                         <a class="btn-one btn-one--style2" href="about.html">
@@ -96,7 +105,7 @@
                             <div class="col-xl-6">
                                 <div class="about-style1-img-box">
                                     <div class="inner">
-                                        <img src="assets/images/about/about-style1__image-1.jpg" alt="">
+                                        <img src="assets/images/slider/martaloka.jpg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -387,7 +396,7 @@
     <!--End Statements Style2 Area-->
 
     <!--Start  University History Area-->
-    <section class="university-history-area">
+    {{-- <section class="university-history-area">
         <div class="container">
             <div class="sec-title text-center">
                 <h2>History Of The University</h2>
@@ -563,7 +572,7 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--End  University History Area-->
 
 

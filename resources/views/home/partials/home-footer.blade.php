@@ -15,8 +15,11 @@
                             </div>
                             <div class="our-company-info">
                                 <div class="text-box">
-                                    <p>Trouble that are bound to ensue equal blame belongs to those all
-                                        fail their duty we like best every pleasure is to welcomed.</p>
+                                    <p class="text-justify">Martaloka Konveksi - Menyediakan solusi 
+                                       konveksi berkualitas tinggi dengan dedikasi 
+                                       terhadap kepuasan pelanggan. Kami memproduksi 
+                                       berbagai macam pakaian dengan standar kualitas 
+                                       terbaik. Hubungi kami untuk kebutuhan konveksi Anda.</p>
                                 </div>
                                 <ul>
                                     <li>
@@ -42,7 +45,7 @@
                     <!--End single footer widget-->
 
                     <!--Start single footer widget-->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center">
                         <div class="single-footer-widget single-footer-widget--link-box marbtm50">
                             <div class="title">
                                 <div class="dotted"></div>
@@ -87,11 +90,10 @@
                                 <h3>Kontak Kami</h3>
                             </div>
                             <div class="footer-widget-contact-info">
-                                <p>Educamb University 6500 NW Brook Park Drive Jacksonville, USA
-                                    32034.</p>
+                                <p>Dusun Abian, Desa Banjar Tegeha, Kec Banjar, Buleleng, Bali</p>
                                 <ul>
-                                    <li><a href="tel:123456789">815-641-5000</a></li>
-                                    <li><a href="mailto:yourmail@email.com">support@educamb.com</a></li>
+                                    <li><a href="tel:123456789">085847728414</a></li>
+                                    <li><a href="mailto:yourmail@email.com">martaloka@gmail.com</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -110,10 +112,8 @@
                         <p>Copyright &copy; 2022 <a href="index.html">Educamb.</a> All Rights Reserved.</p>
                     </div>
                     <div class="footer-logo-style1">
-                        <a href="index.html">
-                            <img src="assets/images/footer/footer-logo.png" alt="Awesome Logo"
-                                title="">
-                        </a>
+                        <img style="height: 70px" src="{{ asset('assets/images/logoo2.png') }}" alt="Aska Logo"
+                        title="">
                     </div>
                     <div class="footer-menu">
                         <ul>
