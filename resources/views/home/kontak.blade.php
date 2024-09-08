@@ -2,7 +2,7 @@
 @section('title', 'Kontak Kami')
 @section('content')
     <section class="breadcrumb-area">
-        <div class="breadcrumb-area-bg" style="background-image: url(assets/images/breadcrumb/breadcrumb-1.jpg);">
+        <div class="breadcrumb-area-bg" style="background-image: url(assets/images/slider/jj.png);">
         </div>
         <div class="container">
             <div class="row">
@@ -24,456 +24,200 @@
     </section>
     <!--End breadcrumb area-->
 
-    <!--Start Quick Contact Info Area-->
-    <section class="quick-contact-info-area">
+    <section class="contact-details-style2-area">
         <div class="container">
             <div class="row">
+                <div class="col-xl-12">
+                    <div class="contact-details-style2-box">
+                        <ul class="clearfix">
+                            <li>
+                                <div class="contact-details-style2-single">
+                                    <div class="icon">
+                                        <span class="icon-navigation"></span>
+                                    </div>
+                                    <div class="text">
+                                        <h3>Lokasi Kami</h3>
+                                        <p>Dusun Abian, Desa Banjar Tegeha, Kec Banjar, Buleleng, Bali</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-details-style2-single">
+                                    <div class="icon">
+                                        <span class="icon-telephone"></span>
+                                    </div>
+                                    <div class="text">
+                                        <h3>Kontak</h3>
+                                        <p>Ph: <a href="tel:085847728414">085847728414</a> & Mail: <a
+                                                href="mailto:martaloka@gmail.com">martaloka@gmail.com</a></p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
 
-                <div class="col-xl-6">
-                    <div class="quick-contact-info-title">
-                        <div class="sec-title">
-                            <h2>Temukan Informasi Kontak Khusus</h2>
-                            <div class="sub-title">
-                                <p>Tidak ada yang menolak, tidak suka, atau menghindari kesenangan itu sendiri,
-                                   karena itu adalah kesenangan, tetapi karena mereka yang tidak tahu bagaimana
-                                   mengejar kesenangan dengan bijaksana.</p>
-                            </div>
-                        </div>
+                        <ul class="clearfix">
+                            <li>
+                                <div class="contact-details-style2-single">
+                                    <div class="icon">
+                                        <span class="icon-wall-clock"></span>
+                                    </div>
+                                    <div class="text">
+                                        <h3>Jam Oprasional</h3>
+                                        <p>Senin-Sabtu: 09.00 - 05.00 (Minggu: Tutup)</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-details-style2-single">
+                                    <div class="icon">
+                                        <span class="icon-share-3"></span>
+                                    </div>
+                                    <div class="text">
+                                        <h3>Social Media</h3>
+                                        <p class="social-links">
+                                            <a href="#">Facebook</a>
+                                            <a href="#">Twitter</a>
+                                            <a href="#">Instagram</a>
+                                            <a href="#">Youtube</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
-                <!--Mulai Kotak Info Kontak Cepat-->
-                <div class="col-xl-3">
-                    <div class="quick-contact-info-single-box">
-                        <div class="icon">
-                            <span class="icon-phone"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Hubungi Kami</h3>
-                            <p>Hubungi kami untuk pertanyaan umum Anda.</p>
-                            <a href="tel:123456789">+62 815-641-5000</a>
-                        </div>
-                    </div>
-                </div>
-                <!--Akhir Kotak Info Kontak Cepat-->
-                <!--Mulai Kotak Info Kontak Cepat-->
-                <div class="col-xl-3">
-                    <div class="quick-contact-info-single-box">
-                        <div class="icon">
-                            <span class="icon-send-1"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Email</h3>
-                            <p>Kirimkan email Anda untuk pertanyaan umum.</p>
-                            <a href="mailto:yourmail@email.com">support@educamb.com</a>
-                        </div>
-                    </div>
-                </div>
-                <!--Akhir Kotak Info Kontak Cepat-->
             </div>
         </div>
     </section>
+    <!--End Contact Details Style2 Area-->
 
-    <!--End Quick Contact Info Area-->
 
-    <!--Start Contact Info Area-->
-    <section class="contact-info-area">
+
+
+
+    <!--Start Main Contact Form Area-->
+    <section class="main-contact-form-area">
         <div class="container">
-            <div class="row">
-
+            <div class="sec-title-style2 text-center" style="margin-top:-25px">
+                <h2>Kirimkan Pertanyaan Anda Kepada Kami</h2>
+            </div>
+            <div class="row margin0">
                 <div class="col-xl-6">
-                    <div class="contact-info-content">
-                        <h2>An Address for Better<br> Education!..</h2>
-                        <p>Trouble that are bound to ensue & equal blame belongs.</p>
-                        <h3>Educamb<br> 6500 NW Brook Park Drive<br> Jacksonville,<br>
-                            United States 32034.</h3>
-                        <div class="video-gallery-btns-box">
-                            <a class="video-popup" title="Video Gallery" href="https://www.youtube.com/watch?v=bO4RoQL9H8I">
-                                <span class="icon-play"></span>
-                            </a>
-                            <p>
-                                <a class="video-popup" title="Video Gallery"
-                                    href="https://www.youtube.com/watch?v=bO4RoQL9H8I">
-                                    360<span style="font-size: 22px;">&#176;</span> Campus Tour
-                                </a>
-                            </p>
-                        </div>
-                        <div class="icon-outer">
-                            <span class="icon-world"></span>
-                        </div>
+                    <div class="contact-form">
+                        <form id="contact-form" name="contact_form" class="default-form2"
+                            action="https://st.ourhtmldemo.com/new/educamb/assets/inc/sendmail.php" method="post">
+
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <div class="input-field-label">
+                                            <p>Nama</p>
+                                        </div>
+                                        <div class="input-box">
+                                            <input type="text" name="form_parent_name" id="formParentName"
+                                                placeholder="" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <div class="input-field-label">
+                                            <p>No Telepon</p>
+                                        </div>
+                                        <div class="input-box">
+                                            <input type="text" name="form_phone" value="" id="formPhone"
+                                                placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <div class="input-field-label">
+                                            <p>Email</p>
+                                        </div>
+                                        <div class="input-box">
+                                            <input type="email" name="form_email" id="formEmail" placeholder=""
+                                                required="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <div class="input-field-label">
+                                            <p>Tanggal Lahir</p>
+                                        </div>
+                                        <div class="input-box">
+                                            <input type="text" name="date" id="datepicker" placeholder="">
+                                            <div class="icon">
+                                                <span class="icon-date"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <div class="input-field-label">
+                                            <p>Jenis Kelamin</p>
+                                        </div>
+                                        <div class="input-box">
+                                            <div class="select-box">
+                                                <select class="wide">
+                                                    <option data-display="Laki-Laki">Laki-Laki</option>
+                                                    <option value="2">Perempuan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="form-group margintop">
+                                        <div class="input-field-label">
+                                            <p>Pesan Anda</p>
+                                        </div>
+                                        <div class="input-box">
+                                            <textarea name="form_message" id="formMessage" placeholder=""
+                                                required=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="button-box">
+                                        <input id="form_botcheck" name="form_botcheck" class="form-control"
+                                            type="hidden" value="">
+                                        <button class="btn-one" type="submit" data-loading-text="Please wait...">
+                                            <span class="txt">
+                                                Kirim
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
+
                 <div class="col-xl-6">
-                    <div class="contact-page-map-outer">
-                        <!--Map Canvas-->
-                        <div class="map-canvas" data-zoom="12" data-lat="-37.817085" data-lng="144.955631"
-                            data-type="roadmap" data-hue="#ffc400" data-title="Envato"
-                            data-icon-path="{{asset('assets/images/icon/map-marker-6.png')}}"
-                            data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
-                        </div>
+                    <div class="contact-form-img-box">
+                        <img src="assets/images/kontak.png" alt="">
                     </div>
                 </div>
 
             </div>
         </div>
     </section>
-    <!--End Contact Info Area-->
-
-    <!--Start Department Style1 Area-->
-    <section class="department-style1-area">
-        {{-- <div class="container">
-            <div class="sec-title text-center">
-                <h2>Contact By Department</h2>
-                <div class="sub-title">
-                    <p>How all this mistaken idea of denouncing pleasure and praising pain was born.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12 text-center">
-                    <div class="department-style1-inner">
-                        <div class="theme_carousel department-carousel owl-theme owl-carousel owl-dot-style1"
-                            data-options='{
-                            "loop": false,
-                            "margin": 30,
-                            "autoheight":true,
-                            "lazyload":true,
-                            "nav": false,
-                            "dots": true,
-                            "autoplay": true,
-                            "autoplayTimeout": 5000,
-                            "smartSpeed": 500,
-                            "navText": ["<span class=\"left icon-right-arrow-1\"></span>",
-                            "<span class=\"right icon-right-arrow-1\"></span>"],
-                            "responsive":{
-                            "0" :{ "items": "1" },
-                            "600" :{ "items" : "2" },
-                            "768" :{ "items" : "3" },
-                            "992":{ "items" : "4" },
-                            "1200":{ "items" : "5" }
-                        }
-                        }'>
-
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-id-card"></span>
-                                    </div>
-                                    <h3><a href="#">Admission</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-learning-1"></span>
-                                    </div>
-                                    <h3><a href="#">Examination</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-scholarship"></span>
-                                    </div>
-                                    <h3><a href="#">Finance Off</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-computer"></span>
-                                    </div>
-                                    <h3><a href="#">Media</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-library"></span>
-                                    </div>
-                                    <h3><a href="#">Library</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-id-card"></span>
-                                    </div>
-                                    <h3><a href="#">Admission</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-learning-1"></span>
-                                    </div>
-                                    <h3><a href="#">Examination</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-scholarship"></span>
-                                    </div>
-                                    <h3><a href="#">Finance Off</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-computer"></span>
-                                    </div>
-                                    <h3><a href="#">Media</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-library"></span>
-                                    </div>
-                                    <h3><a href="#">Library</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-id-card"></span>
-                                    </div>
-                                    <h3><a href="#">Admission</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-learning-1"></span>
-                                    </div>
-                                    <h3><a href="#">Examination</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-scholarship"></span>
-                                    </div>
-                                    <h3><a href="#">Finance Off</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-computer"></span>
-                                    </div>
-                                    <h3><a href="#">Media</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                            <!--Start Department Style1 Single-->
-                            <div class="department-style1-single">
-                                <div class="top-content">
-                                    <div class="icon">
-                                        <span class="icon-library"></span>
-                                    </div>
-                                    <h3><a href="#">Library</a></h3>
-                                </div>
-                                <div class="bottom-content">
-                                    <div class="phone">
-                                        <a href="tel:123456789">815-641-5000</a>
-                                    </div>
-                                    <a href="mailto:yourmail@email.com">“E-Mail Us!”</a>
-                                </div>
-                            </div>
-                            <!--End Department Style1 Single-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-    </section>
-    <!--End Department Style1 Area-->
-
-    <!--Start Staff Area-->
-    <section class="staff-area">
-        {{-- <div class="container">
-            <div class="row">
-                <!--Start Single Staff Box-->
-                <div class="col-xl-3 col-lg-6 col-md-6">
-                    <div class="single-staff-box">
-                        <div class="btns-box">
-                            <a class="btn-one" href="#">
-                                <span class="txt">
-                                    Office Staff
-                                </span>
-                                <i class="icon-right-arrow-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Staff Box-->
-                <!--Start Single Staff Box-->
-                <div class="col-xl-3 col-lg-6 col-md-6">
-                    <div class="single-staff-box">
-                        <div class="btns-box">
-                            <a class="btn-one" href="#">
-                                <span class="txt">
-                                    Teaching Staff
-                                </span>
-                                <i class="icon-right-arrow-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Staff Box-->
-                <!--Start Single Staff Box-->
-                <div class="col-xl-3 col-lg-6 col-md-6">
-                    <div class="single-staff-box">
-                        <div class="btns-box">
-                            <a class="btn-one" href="#">
-                                <span class="txt">
-                                    Security Guard
-                                </span>
-                                <i class="icon-right-arrow-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Staff Box-->
-                <!--Start Single Staff Box-->
-                <div class="col-xl-3 col-lg-6 col-md-6">
-                    <div class="single-staff-box">
-                        <div class="btns-box">
-                            <a class="btn-one" href="#">
-                                <span class="txt">
-                                    Accommodation
-                                </span>
-                                <i class="icon-right-arrow-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!--End Single Staff Box-->
-            </div>
-
-            <div class="row">
-                <div class="col-xl-12 text-center">
-                    <div class="bottom-text">
-                        <p>Contact office & Teaching staff during working hours.(Mon-Sat: 09.30 to 03.45) </p>
-                    </div>
-                </div>
-            </div>
-
-        </div> --}}
-    </section>
-
-
 @endsection

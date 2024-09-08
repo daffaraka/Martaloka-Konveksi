@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-red elevation-4" style="background-color: #901832">
+<aside class="main-sidebar sidebar-dark-red elevation-4" style="background-color: #1e1d1e">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <!-- <img src="home/assets/img/logo-menak.png" alt="" class="brand-image " style="opacity: .8"> -->

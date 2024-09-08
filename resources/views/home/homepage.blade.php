@@ -19,7 +19,7 @@
                                     <p>Konveksi kami menawarkan solusi pembuatan berbagai pakaian</p>
                                 </div>
                                 <div class="btns-box">
-                                    <a class="btn-one" href="about.html">
+                                    <a class="btn-one" href="{{route('home.createDesign')}}">
                                         <span class="txt">
                                             Pesan
                                         </span>
@@ -42,7 +42,7 @@
                                     <p>Mewujudkan Inspirasi Mode Andadengan Sentuhan Konveksi Profesional</p>
                                 </div>
                                 <div class="btns-box">
-                                    <a class="btn-one" href="about.html">
+                                    <a class="btn-one" href="{{route('home.createDesign')}}">
                                         <span class="txt">
                                             Pesan
                                         </span>
@@ -65,7 +65,7 @@
                                     <p>Tingkatkan Penampilan Anda dengan Pilihan yang Luar Biasa</p>
                                 </div>
                                 <div class="btns-box">
-                                    <a class="btn-one" href="about.html">
+                                    <a class="btn-one" href="{{route('home.createDesign')}}">
                                         <span class="txt">
                                             Pesan
                                         </span>
@@ -492,7 +492,7 @@
                                 <div class="sec-title-style3">
                                     <div class="sub-title">
                                     </div>
-                                    <h2><span>Kreasiakn Kaos Anda<br>di sini</span><br></h2>
+                                    <h2><span>Kreasikan Kaos Anda<br>di sini</span><br></h2>
                                 </div>
                                 <div class="btns-box">
                                     <a class="btn-one btn-one--style4" href="https://www.kittl.com/templates/t-shirts">
