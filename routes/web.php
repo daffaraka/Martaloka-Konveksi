@@ -6,8 +6,11 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\ProgressPembelianController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\TransaksiCustomDesignController;
+use App\Http\Controllers\TransaksiProdukController;
+use App\Models\TransaksiProduk;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,18 +41,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Transaksi pembelian
-    Route::get('/add-to-cart/{produk}', [BerandaController::class, 'addToCart'])->name('home.addToCart');
-    Route::get('keranjang', [BerandaController::class, 'keranjang'])->name('home.keranjang');
-    Route::post('/checkout', [BerandaController::class, 'checkout'])->name('home.checkout');
-    Route::get('transaksi', [BerandaController::class, 'transaksi'])->name('home.transaksi');
-    Route::get('/pembayaran-transaksi/{transaksi}', [BerandaController::class, 'formLengkapiTransaksi'])->name('home.formLengkapiTransaksi');
-    Route::post('/upload-bukti-transaksi/{transaksi}', [BerandaController::class, 'uploadBuktiTransaksi'])->name('home.uploadBuktiTransaksi');
+    Route::get('add-to-cart/{produk}', [TransaksiProdukController::class, 'addToCart'])->name('home.addToCart');
+    Route::get('keranjang', [TransaksiProdukController::class, 'keranjang'])->name('home.keranjang');
+    Route::post('checkout', [TransaksiProdukController::class, 'checkout'])->name('home.checkout');
+    Route::get('lengkapi-transaksi-pembelian/{transaksi}', [TransaksiProdukController::class, 'formLengkapiPembelian'])->name('home.formTransaksiPembelian');
+    Route::get('pembayaran-transaksi-pembelian/{transaksi}', [BerandaController::class, 'formLengkapiTransaksi'])->name('home.formLengkapiTransaksi');
+    Route::post('pembayaran-transaksi-pembelian/{transaksi}/store', [TransaksiProdukController::class, 'storeDataTransaksi'])->name('home.storeDataTransaksi');
+    Route::get('form-upload-transaksi-pembelian/{transaksi}', [TransaksiProdukController::class, 'formUploadBuktiTransaksiPembelian'])->name('home.formUploadBuktiTransaksiPembelian');
+    Route::post('upload-bukti-transaksi/{transaksi}/upload-bukti', [TransaksiProdukController::class, 'uploadBuktiTransaksi'])->name('home.uploadBuktiTransaksi');
 
 
-    // Transaksi pembelian
+    // Custom Design
+    Route::get('daftar-custom', [TransaksiCustomDesignController::class, 'daftarCustom'])->name('home.daftarCustom');
     Route::get('custom-design', [TransaksiCustomDesignController::class, 'createDesign'])->name('home.createDesign');
     Route::post('kirim-design', [TransaksiCustomDesignController::class, 'storeDesign'])->name('home.storeDesign');
-    Route::get('pembayaran-custom-design/{transaksiCustomDesign}', [TransaksiCustomDesignController::class, 'formPembayaranTransaksi'])->name('home.formPembayaranTransaksi');
+    Route::get('pembayaran-custom-design/{transaksiCustomDesign}', [TransaksiCustomDesignController::class, 'formPembayaranTransaksiCustom'])->name('home.formPembayaranTransaksiCustom');
     Route::post('pembayaran-custom-design/{transaksiCustomDesign}/upload-bukti', [TransaksiCustomDesignController::class, 'uploadBuktiCustomDesign'])->name('home.uploadBuktiCustomDesign');
     // Route::get('custom-design', [TransaksiCustomDesignController::class, 'createDesign'])->name('home.createDesign');
 
@@ -78,9 +84,21 @@ Route::middleware('auth')->group(function () {
         Route::post('transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
         Route::get('transaksi/show/{transaksi}', [TransaksiController::class, 'show'])->name('transaksi.show');
         Route::get('transaksi/terima/{transaksi}', [TransaksiController::class, 'dibayar'])->name('transaksi.dibayar');
-        Route::get('transaksi/batal/{transaksi}', [TransaksiController::class, 'batal'])->name('transaksi.batal');
+        Route::get('transaksi/tolak/{transaksi}', [TransaksiController::class, 'batal'])->name('transaksi.batal');
         Route::get('transaksi-produk/riwayat-transaksi', [TransaksiController::class, 'riwayatTransaksi'])->name('transaksi.riwayatTransaksi');
         Route::get('transaksi-custom-design/riwayat-transaksi', [TransaksiController::class, 'riwayatTransaksi'])->name('transaksi.riwayatCustomDesign');
+
+
+        // Kategori
+        Route::prefix('progress-pembelian')->controller(ProgressPembelianController::class)->group(function () {
+            Route::get('/', 'index')->name('progress-pembelian.index');
+            Route::get('/create/{transaksi}', 'create')->name('progress-pembelian.create');
+            Route::post('/store/{transaksi}', 'store')->name('progress-pembelian.store');
+            Route::get('/show/{progress_pembelian}', 'show')->name('progress-pembelian.show');
+            Route::get('/edit/{progress_pembelian}', 'edit')->name('progress-pembelian.edit');
+            Route::post('/update/{progress_pembelian}', 'update')->name('progress-pembelian.update');
+            Route::get('/destroy/{progress_pembelian}', 'destroy')->name('progress-pembelian.destroy');
+        });
 
         Route::resource('users', UserController::class);
     });

@@ -48,7 +48,8 @@
                     <div class="quick-link-box">
                         <div class="inner-title">
                             <span class="icon-launch"></span>
-                            <p>Akses</p>
+
+                            <li><a href="{{ route('register') }}">Register</a> </li>
                         </div>
                         <div class="link-box">
                             <ul>
@@ -116,18 +117,18 @@
                                     </li>
 
                                     <li class="{{ Request::is('profil/tentangkami') ? 'current' : '' }}"><a
-                                            href="{{route('home.tentang-kami')}}">Tentang Kami</a></li>
+                                            href="{{ route('home.tentang-kami') }}">Tentang Kami</a></li>
                                     <li class="blank-box"></li>
                                     <li class="{{ Request::is('informasi*') ? 'current' : '' }}"><a
-                                            href="{{route('home.kontak')}}">Kontak Kami</a>
-                                    <li class="# search-toggler"><a href="javascript:void(0);"><i
-                                                class="icon-zoom mr-2"></i> Pencarian</a></li>
-                                    @guest
-                                        <li class="{{ Request::is('pendaftaran*') ? 'current' : '' }}"><a
-                                                href="{{ route('register') }}">Pendaftaran</a></li>
-                                        </li>
+                                            href="{{ route('home.kontak') }}">Kontak Kami</a>
+                                    <li class="{{ Request::is('register*') ? 'current' : '' }}"><a
+                                            href="{{ route('register') }}">Register</a></li>
+                                    </li>
 
-                                    @endguest
+
+                                    <li class="{{ Request::is('register*') ? 'current' : '' }}"><a
+                                            href="{{ route('register') }}">Keranjang</a></li>
+                                    </li>
 
                                     @auth
                                         <li class="dropdown {{ Request::is('profil/*') ? 'current' : '' }}"><a
@@ -137,7 +138,9 @@
                                                 <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
                                                         href="{{ route('home.keranjang') }}"> Keranjang </a> </li>
                                                 <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
-                                                        href="{{ route('home.transaksi') }}"> Transaksi </a> </li>
+                                                        href="{{ route('home.keranjang') }}"> Transaksi </a> </li>
+                                                <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
+                                                        href="{{ route('home.keranjang') }}"> Custom Design </a> </li>
                                                 <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
                                                         href="{{ route('logout') }}"
                                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

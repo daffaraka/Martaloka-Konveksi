@@ -4,6 +4,8 @@
 /public/hot
 /public/storage
 /public/produk/*
+/public/bukti_pembayaran/*
+/public/progress_pembelian/*
 /storage/*.key
 /vendor
 .env

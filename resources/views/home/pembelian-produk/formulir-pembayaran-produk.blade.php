@@ -1,8 +1,6 @@
 @extends('home.home-layout')
-@section('title', 'Lengkapi Transaksi Anda')
+@section('title', 'Upload Bukti Pembayaran')
 @section('content')
-
-
 
     <section class="top-categories-area" style="padding: 30vh 0;">
         <div class="container">
@@ -42,11 +40,15 @@
                                 <div class="card-body">
                                     <div class="mb-2">
                                         <h5 class="card-title">Jumlah Pesanan</h5>
-                                        <p class="card-text">{{ $transaksi->total_pesanan }}</p>
+                                        <span class="btn btn-secondary rounded-0">{{ $transaksi->detailTransaksi->sum('qty') }}</span>
                                     </div>
                                     <div class="mb-2">
-                                        <h5 class="card-title">Kategori baju</h5>
-                                        {{-- <p class="card-text">{{ $transaksi->kategori->nama_kategori }}</p> --}}
+                                        <h5 class="card-title">Produk</h5>
+                                        @foreach ($transaksi->detailTransaksi as $produk)
+                                            <div class="row row-cols-4">
+                                                <img src="{{ asset('storage/' . $produk->produk->gambar_produk) }}" class="img-fluid" alt="{{ $produk->produk->nama_produk }}">
+                                            </div>
+                                        @endforeach
                                     </div>
                                     <div class="mb-2">
                                         <h5 class="card-title">Total Harga</h5>
@@ -72,11 +74,11 @@
 
             <div class="card mt-5">
                 <div class="card-body">
-                    <form action="{{ route('home.uploadBuktiCustomDesign', $transaksi->id) }}" method="POST"
+                    <form action="{{ route('home.uploadBuktiTransaksi', $transaksi->id) }}" method="POST"
                         enctype="multipart/form-data">
                         <div class="row">
 
-                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 px-2">
+                            {{-- <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 px-2">
                                 <div class="card">
                                     <div class="row">
                                         <div class="col-12  py-3">
@@ -128,7 +130,7 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                             <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 px-2">
@@ -138,8 +140,8 @@
                                         <h2 class="text-center">Unggah Bukti Pembayaran</h2>
 
                                         <div class="py-3">
-                                            <input type="file" name="bukti_bayar" id="bukti_bayar"
-                                                class="form-control" accept="image/*">
+                                            <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control"
+                                                accept="image/*">
                                             <img src="#" alt="Preview Uploaded Image" class="mt-5 d-none"
                                                 id="preview-bukti">
 
@@ -148,9 +150,9 @@
                                         <button class="btn-one btn-block mt-4" type="submit">Kirim Bukti</button>
                                     @else
                                         <h2 class="text-center">Pembayaran sedang diproses</h2>
-
-                                        <div class="px-3">
-                                            <label for="">Status sekarang : </label>
+                                        <hr>
+                                        <div class="px-3 mt-3">
+                                            <label for="">Status sekarang : </label> <br>
                                             <button class="btn-one" type="button">
                                                 {{ $transaksi->status_pembayaran }}</button>
 

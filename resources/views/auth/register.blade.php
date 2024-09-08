@@ -1,7 +1,7 @@
 <html lang="en">
 
 <head>
-    <title>Login Martaloka Konveksi </title>
+    <title>Daftar ke Martaloka Konveksi </title>
     <meta charset="utf-8" />
     <meta name="description"
         content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
@@ -215,8 +215,9 @@
         var hostUrl = "assets/";
     </script> --}}
     <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="{{asset('auth-views/assets/plugins/global/plugins.bundle.js')}} assets/plugins/global/plugins.bundle.js"></script>
-    <script src="{{asset('auth-views/assets/js/scripts.bundle.js')}} "></script>
+    <script src="{{ asset('auth-views/assets/plugins/global/plugins.bundle.js') }} assets/plugins/global/plugins.bundle.js">
+    </script>
+    <script src="{{ asset('auth-views/assets/js/scripts.bundle.js') }} "></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src=" assets/js/custom/authentication/sign-in/general.js"></script>

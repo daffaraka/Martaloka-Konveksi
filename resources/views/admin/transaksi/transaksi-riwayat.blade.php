@@ -21,13 +21,15 @@
                         <td>{{ $data->user->name }}</td>
                         <td>
                             @if ($data->status_pembayaran == 'Pending')
-                                <button class="btn btn-warning">Menunggu Pembayaran</button>
+                                <button class="btn btn-secondary">Menunggu Pembayaran</button>
                             @elseif($data->status_pembayaran == 'Dibayar')
                                 <button class="btn btn-success">Sudah Dibayar</button>
                             @elseif($data->status_pembayaran == 'Diterima')
                                 <button class="btn btn-primary">Diterima</button>
                             @elseif($data->status_pembayaran == 'Dibatalkan')
                                 <button class="btn btn-danger">Batal</button>
+                            @elseif($data->status_pembayaran == 'Selesai')
+                                <button class="btn btn-success">Selesai</button>
                             @else
                                 <button class="btn btn-info">Status Tidak Valid</button>
                             @endif
@@ -49,26 +51,37 @@
                                 class="btn btn-outline-info">Bukti pembayaran</a>
                         </td>
                         <td>
-                            @if ($data->status_pembayaran == 'Pending')
-                                <button class="btn btn-sm btn-warning">Belum ada bukti transfer</button>
-                            @elseif($data->status_pembayaran == 'Dibayar')
-                                <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-sm btn-success">Sudah
-                                    Dibayar</a>
-                            @elseif($data->status_pembayaran == 'Diterima')
-                                <a href="{{ route('transaksi.dibayar', $data->id) }}"
-                                    class="btn btn-block btn-outline-primary"> Terima
-                                    transaksi</a>
-                                <a href="{{ route('transaksi.batal', $data->id) }}"
-                                    class="btn btn-block btn-outline-danger">
-                                    Tolak
-                                    transaksi</a>
-                                <a href="" class="btn btn-block btn-warning"><i class="fa fa-phone"
-                                        aria-hidden="true"></i> Hubungi Pemesan</a>
-                            @elseif($data->status_pembayaran == 'Dibatalkan')
-                                <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-sm btn-danger">Batal</a>
-                            @else
-                                <button class="btn btn-sm btn-info">Status Tidak Valid</button>
-                            @endif
+                            @switch($data->status_pembayaran)
+                                @case('Pending')
+                                    <button class="btn btn-block btn-secondary">Belum ada bukti transfer</button>
+                                @break
+
+                                @case('Dibayar')
+                                    <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-block btn-success">Sudah
+                                        Dibayar</a>
+                                @break
+
+                                @case('Diterima')
+                                    <a href="{{ route('transaksi.dibayar', $data->id) }}" class="btn btn-block btn-primary">Terima
+                                        transaksi</a>
+                                    <a href="{{ route('transaksi.batal', $data->id) }}"
+                                        class="btn btn-block btn-outline-danger">Tolak transaksi</a>
+                                @break
+
+                                @case('Dibatalkan')
+                                    <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-block btn-danger">Batal</a>
+                                @break
+
+                                @case('Selesai')
+                                    <a class="btn btn-block btn-success">Selesai</a>
+                                @break
+
+                                @default
+                                    <button class="btn btn-block btn-info">Status Tidak Valid</button>
+                                @break
+                            @endswitch
+                            <a href="{{ $data->nomor_hp_pemesan }}" class="btn btn-block btn-outline-warning text-dark"><i
+                                    class="fa fa-phone" aria-hidden="true"></i> Hubungi Pemesan</a>
                         </td>
 
                     </tr>

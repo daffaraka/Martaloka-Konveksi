@@ -11,6 +11,14 @@ class Transaksi extends Model
 
     protected $fillable =
     [
+
+        'kategori_id',
+        'user_id',
+        'nama_pemesan',
+        'alamat_pemesan',
+        'email_pemesan',
+        'nomor_hp_pemesan',
+        'catatan',
         'user_id',
         'status_pembayaran',
         'total_harga',
@@ -26,5 +34,10 @@ class Transaksi extends Model
     public function detailTransaksi()
     {
         return $this->hasMany(TransaksiProduk::class, 'transaksi_id');
+    }
+
+    public function progress()
+    {
+        return $this->hasMany(ProgressPembelian::class);
     }
 }

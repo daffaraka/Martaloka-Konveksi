@@ -58,14 +58,6 @@ class BerandaController extends Controller
     }
 
 
-    public function keranjang()
-    {
-        $user_id = Auth::user()->id;
-        $keranjangs = Keranjang::with(['produk.kategori', 'user'])->where('status', 'Di Keranjang')->where('user_id', $user_id)->get();
-
-        // dd(($keranjangs));
-        return view('home.pembelian-produk.keranjang', compact('keranjangs'));
-    }
 
     public function transaksi()
     {
@@ -117,17 +109,34 @@ class BerandaController extends Controller
         }
 
 
-        return to_route('home.formLengkapiTransaksi', ['transaksi' => $transaksi]);
+        return to_route('home.formLengkapiPembelian', ['transaksi' => $transaksi]);
     }
 
 
-    public function formLengkapiTransaksi(Transaksi $transaksi)
+    public function formLengkapiPembelian(Transaksi $transaksi)
     {
         $transaksi =  $transaksi->with(['detailTransaksi.produk.kategori', 'user'])->where('id', $transaksi->id)->first();
 
-        return view('home.dalam-transaksi', compact('transaksi'));
+        return view('home.pembelian-produk.formulir-pembelian-produk', compact('transaksi'));
     }
 
+
+
+
+    public function formLengkapiTransaksi( Transaksi $transaksi)
+    {
+
+
+
+        return view('home.pembelian-produk.formulir-pembelian-produk',compact('transaksi'));
+
+
+    }
+
+    public function lengkapiTransaksiPembelian(Transaksi $transaksi)
+    {
+
+    }
 
     public function uploadBuktiTransaksi(Request $request, Transaksi $transaksi)
     {

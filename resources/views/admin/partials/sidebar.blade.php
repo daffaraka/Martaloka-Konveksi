@@ -35,7 +35,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item ">
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
                         <!-- <i class="nav-icon fas fa-tachometer-alt"></i>  -->
                         <p>
                             Dashboard
@@ -81,62 +81,72 @@
 
           </li> --}}
                 <li class="nav-item">
-                    <a href="{{ route('produk.index') }}" class="nav-link">
+                    <a href="{{ route('produk.index') }}" class="nav-link {{ Request::is('produk*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-shopping-bag"></i>
-                        <p>
-                            Produk
-                        </p>
-                    </a>
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kategori.index') }}">
-                        <i class="nav-icon fas  fa-bars"></i>
-                        <p>
-                            Kategori
-                            <!-- <i class="fas fa-angle-left right"></i> -->
-                        </p>
+                        <p>Produk</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.index') }}">
+                    <a href="{{ route('kategori.index') }}"
+                        class="nav-link {{ Request::is('kategori*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-bars"></i>
+                        <p>Kategori</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            User Manajemen
-                            <!-- <i class="fas fa-angle-left right"></i> -->
-                        </p>
+                        <p>User Manajemen</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('transaksi.index') }}">
+                    <a href="{{ route('transaksi.index') }}"
+                        class="nav-link {{ Request::is('transaksi') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cart-plus"></i>
-                        <p>
-                            Transaksi
-                        </p>
+                        <p>Transaksi</p>
                     </a>
                 </li>
 
-
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('transaksi.riwayatTransaksi') }}">
-                        <i class="nav-icon fas fa-bold"></i>
-                        <p>
-                            Riwayat Transaksi Produk
-                            <!-- <i class="fas fa-angle-left right"></i> -->
-                        </p>
+                    <a href="{{ route('transaksi.index') }}"
+                        class="nav-link {{ Request::is('transaksi/custom-design') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-paint-brush"></i>
+                        <p>Transaksi Custom Design</p>
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('transaksi.riwayatTransaksi') }}"
+                        class="nav-link {{ Request::is('transaksi/riwayat-produk') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-history"></i>
+                        <p>Riwayat Transaksi Produk</p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('transaksi.riwayatCustomDesign') }}">
-                        <i class="nav-icon fas fa-newspaper"></i>
-                        <p>
-                            Riwayat Pemesanan Custom Design
-                            <!-- <i class="fas fa-angle-left right"></i> -->
-                        </p>
+                    <a href="{{ route('transaksi.riwayatCustomDesign') }}"
+                        class="nav-link {{ Request::is('transaksi/riwayat-custom') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file-signature"></i>
+                        <p>Riwayat Transaksi Custom</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('progress-pembelian.index') }}"
+                        class="nav-link {{ Request::is('transaksi/progress-produk') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tasks"></i>
+                        <p>Progress Transaksi</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('progress-pembelian.index') }}"
+                        class="nav-link {{ Request::is('transaksi/progress-custom') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-project-diagram"></i>
+                        <p>Progress Custom Design</p>
                     </a>
                 </li>
 

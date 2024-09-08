@@ -34,23 +34,19 @@
                                         </div>
                                         <div class="flex-shrink-0 ms-2">
 
-                                            <form action="{{ route('home.uploadBuktiTransaksi', $transaksi->id) }}"
-                                                enctype="multipart/form-data" method="POST">
-                                                @csrf
+                                            @csrf
 
-                                                <div class="border p-3">
-                                                    <div class="form-group">
-                                                        <label for="bukti_pembayaran" class="fw-bold">Bukti
-                                                            Pembayaran</label>
-                                                        <input type="file" name="bukti_pembayaran" id="bukti_pembayaran"
-                                                            required class="form-control" accept="image/*">
-                                                    </div>
-
-                                                    <div class="d-gap mt-3">
-                                                        <button class="btn btn-primary w-100" type="submit">Upload</button>
-                                                    </div>
+                                            <div class="border p-3">
+                                                <div class="form-group">
+                                                    <label for="bukti_pembayaran" class="fw-bold">Status Pembayaran : <b>
+                                                            {{ $transaksi->status_pembayaran }} </b> </label>
                                                 </div>
-                                            </form>
+
+                                                <div class="d-gap mt-3">
+                                                    <a href="{{route('home.formTransaksiPembelian',$transaksi->id)}}" class="btn btn-primary w-100" type="submit">Lengkapi
+                                                        Pembayaran</a>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>

@@ -12,9 +12,11 @@ use App\Models\TransaksiCustomDesign;
 class TransaksiCustomDesignController extends Controller
 {
 
-    public function index()
+    public function daftarCustom()
     {
-        //
+        $data['custom'] = CustomDesign::where('user_id',Auth::user()->id)->get();
+
+        return view('home.custom-design.custom-index',$data);
     }
     public function createDesign()
     {
@@ -26,7 +28,7 @@ class TransaksiCustomDesignController extends Controller
     public function storeDesign(Request $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
 
         $harga_kategori = Kategori::find($request->kategori_id)->harga_kategori;
 
@@ -71,10 +73,10 @@ class TransaksiCustomDesignController extends Controller
             }
         }
 
-        return to_route('home.formPembayaranTransaksi', ['transaksiCustomDesign' => $transaksi]);
+        return to_route('home.formPembayaranTransaksiCustom', ['transaksiCustomDesign' => $transaksi]);
     }
 
-    public function formPembayaranTransaksi(TransaksiCustomDesign $transaksiCustomDesign)
+    public function formPembayaranTransaksiCustom(TransaksiCustomDesign $transaksiCustomDesign)
     {
 
         $transaksiCustomDesign = $transaksiCustomDesign->with(['sizes','designs','kategori'])->find($transaksiCustomDesign->id);

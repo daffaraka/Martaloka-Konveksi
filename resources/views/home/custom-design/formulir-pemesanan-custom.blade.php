@@ -51,11 +51,13 @@
 
                         <div class="co">
                             <h6 class="mb-2">Cowok</h6>
+                            <hr>
                             <div class="row ">
 
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-5">
+                                        <label for="" class="font-weight-bold">Uk S</label>
                                         <input id="my-input" class="form-control" type="number" name="co_s"
                                             value="0" required>
                                     </div>
@@ -63,6 +65,8 @@
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-5">
+                                        <label for="" class="font-weight-bold">Uk M</label>
+
                                         <input id="my-input" class="form-control" type="number" name="co_m"
                                             value="0" required>
                                     </div>
@@ -70,6 +74,8 @@
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-5">
+                                        <label for="" class="font-weight-bold">Uk L</label>
+
                                         <input id="my-input" class="form-control" type="number" name="co_l"
                                             value="0" required>
                                     </div>
@@ -77,6 +83,8 @@
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-5">
+                                        <label for="" class="font-weight-bold">Uk XL</label>
+
                                         <input id="my-input" class="form-control" type="number" name="co_xl"
                                             value="0" required>
                                     </div>
@@ -84,6 +92,8 @@
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-5">
+                                        <label for="" class="font-weight-bold">Uk XXL</label>
+
                                         <input id="my-input" class="form-control" type="number" name="co_xxl"
                                             value="0" required>
                                     </div>
@@ -97,39 +107,45 @@
 
                         <div class="ce">
                             <h6 class="mb-2">Cewek</h6>
+                            <hr>
                             <div class="row">
 
                                 <div class="col-2 mr-1">
 
-                                    <div class="form-group mb-5">
+                                     <div class="form-group mb-5">
+                                        <label for="" class="font-weight-bold">Uk S</label>
                                         <input id="my-input" class="form-control" type="number" name="ce_s"
                                             value="0" required>
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                    <div class="form-group mb-5">
+                                     <div class="form-group mb-5">
+                                        <label for="" class="font-weight-bold">Uk M</label>
                                         <input id="my-input" class="form-control" type="number" name="ce_m"
                                             value="0" required>
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                    <div class="form-group mb-5">
+                                     <div class="form-group mb-5">
+                                        <label for="" class="font-weight-bold">Uk L</label>
                                         <input id="my-input" class="form-control" type="number"
                                             name="ce_l"value="0" required>
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                    <div class="form-group mb-5">
+                                     <div class="form-group mb-5">
+                                        <label for="" class="font-weight-bold">Uk XL</label>
                                         <input id="my-input" class="form-control" type="number" name="ce_xl"
                                             value="0" required>
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                    <div class="form-group mb-5">
+                                     <div class="form-group mb-5">
+                                        <label for="" class="font-weight-bold">Uk XXL</label>
                                         <input id="my-input" class="form-control" type="number" name="ce_xxl"
                                             value="0" required>
                                     </div>
@@ -151,10 +167,12 @@
                     <div class="col-12 px-5 my-3">
                         <h3 class="mb-2">Gambar</h3>
                         <input type="file" name="gambar_custom_design[]" accept="image/*" class="image-input" />
-                        <img id="preview" src="#" alt="Preview Image" style="display:none; max-width: 200px; margin-top: 10px;" />
+                        <img id="preview" src="#" alt="Preview Image"
+                            style="display:none; max-width: 200px; margin-top: 10px;" />
 
                         <div id="newRowImage"></div>
-                        <button id="addRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Tambah Gambar</button>
+                        <button id="addRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Tambah
+                            Gambar</button>
                     </div>
 
                 </div>
