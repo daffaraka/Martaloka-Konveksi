@@ -1,30 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
 use App\Models\Produk;
+use App\Models\Kategori;
 use App\Models\Keranjang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Models\TransaksiProduk;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
-class TransaksiProdukController extends Controller
+
+class BerandaController extends Controller
 {
+
+    public function index()
+    {
+
+        $data['kategori'] = Kategori::with('produk')->get();
+        $data['products'] = Produk::with('kategori')->get();
+
+        // dd(Auth::user());
+        return view('home.homepage', $data);
+    }
+
+
+    public function kategori(Kategori $kategori)
+    {
+
+        return view('home.kategori', compact('kategori'));
+    }
 
     public function detailProduk(Produk $produk)
     {
 
         return view('home.detail-produk', compact('produk'));
-    }
-
-    public function keranjang()
-    {
-        $user_id = Auth::user()->id;
-        $keranjangs = Keranjang::with(['produk.kategori', 'user'])->where('status', 'Di Keranjang')->where('user_id', $user_id)->get();
-
-        // dd(($keranjangs));
-        return view('home.pembelian-produk.keranjang', compact('keranjangs'));
     }
 
 
@@ -48,6 +59,16 @@ class TransaksiProdukController extends Controller
         return to_route('home.keranjang');
     }
 
+
+
+    public function transaksi()
+    {
+        $user_id = Auth::user()->id;
+        $transaksis = Transaksi::with(['detailTransaksi.produk.kategori', 'user'])->where('status_pembayaran', 'Pending')->where('user_id', $user_id)->get();
+
+        // dd(($keranjangs));
+        return view('home.pembelian-produk.transaksi', compact('transaksis'));
+    }
 
 
     public function checkout(Request $request)
@@ -90,7 +111,7 @@ class TransaksiProdukController extends Controller
         }
 
 
-        return to_route('home.formLengkapiTransaksi', ['transaksi' => $transaksi]);
+        return to_route('home.formLengkapiPembelian', ['transaksi' => $transaksi]);
     }
 
 
@@ -102,36 +123,22 @@ class TransaksiProdukController extends Controller
     }
 
 
-    public function storeDataTransaksi(Request $request, Transaksi $transaksi)
+
+
+    public function formLengkapiTransaksi( Transaksi $transaksi)
     {
 
-        // dd($request->all());
-        $transaksi->update([
-            'user_id' => Auth::id(), // atau gunakan $request->user_id jika ada
-            'nama_pemesan' => $request->nama_pemesan,
-            'alamat_pemesan' => $request->alamat_pemesan,
-            'email_pemesan' => $request->Email_pemesan,
-            'nomor_hp_pemesan' => $request->nomor_hp_pemesan,
-            'catatan' => $request->catatan,
-            'status_pembayaran' => 'Pending', // Atur status default sebagai 'Pending'
-            'metode_bayar' => 'Bank Transfer', // Misalkan metode pembayaran default
-        ]);
 
 
+        return view('home.pembelian-produk.formulir-pembelian-produk',compact('transaksi'));
 
-        return to_route('home.formUploadBuktiTransaksiPembelian', ['transaksi' => $transaksi]);
+
     }
 
-
-
-    public function formUploadBuktiTransaksiPembelian(Transaksi $transaksi)
+    public function lengkapiTransaksiPembelian(Transaksi $transaksi)
     {
-        $transaksi =  $transaksi->with(['detailTransaksi.produk.kategori', 'user'])->where('id', $transaksi->id)->first();
 
-        return view('home.pembelian-produk.formulir-pembayaran-produk', compact('transaksi'));
     }
-
-
 
     public function uploadBuktiTransaksi(Request $request, Transaksi $transaksi)
     {
@@ -149,6 +156,6 @@ class TransaksiProdukController extends Controller
         $transaksi->save();
 
 
-        return redirect()->back();
+        return to_route('home.transaksi');
     }
 }

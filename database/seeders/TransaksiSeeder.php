@@ -18,8 +18,9 @@ class TransaksiSeeder extends Seeder
     {
         $produks = Produk::pluck('id')->toArray();
         $users = User::pluck('id')->toArray();
-        $statuses = ['Pending', 'Diterima', 'Dibayar', 'Dibatalkan'];
+        $statuses = ['Pending', 'Diterima', 'Dibayar', 'Dibatalkan','Selesai'];
         $metode = ['BNI', 'BCA', 'Mandiri'];
+        $size = ['S','M','L','XL','XXL'];
 
         for ($i = 0; $i < 10; $i++) {
             $total_harga = 0;
@@ -29,6 +30,7 @@ class TransaksiSeeder extends Seeder
                 'status_pembayaran' => $statuses[array_rand($statuses)],
                 'metode_bayar' => $metode[array_rand($metode)],
                 'total_harga' => 0, // Ini akan diperbarui setelah produk ditambahkan
+                'size' => $size[array_rand($size)],
             ]);
 
             // Membuat antara 1 hingga 5 produk untuk setiap transaksi

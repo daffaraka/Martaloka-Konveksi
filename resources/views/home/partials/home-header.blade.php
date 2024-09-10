@@ -73,7 +73,7 @@
     <!--End Header Top-->
 
     <!--Start Header-->
-    <div class="header {{Request::is('/') || Request::is('kontak') || Request::is('tentang-kami') ? '' : 'bg-dark'}}">
+    <div class="header {{ Request::is('/') || Request::is('kontak') || Request::is('tentang-kami') ? '' : 'bg-dark' }}">
         <div class="auto-container">
             <div class="outer-box">
                 <div class="header-left"></div>
@@ -121,9 +121,7 @@
                                     <li class="blank-box"></li>
                                     <li class="{{ Request::is('informasi*') ? 'current' : '' }}"><a
                                             href="{{ route('home.kontak') }}">Kontak Kami</a>
-                                    <li class="{{ Request::is('register*') ? 'current' : '' }}"><a
-                                            href="{{ route('register') }}">Register</a></li>
-                                    </li>
+                                    </li>x
 
 
                                     <li class="{{ Request::is('register*') ? 'current' : '' }}"><a

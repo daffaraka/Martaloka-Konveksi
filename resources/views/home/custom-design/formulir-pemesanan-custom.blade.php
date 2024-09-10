@@ -59,7 +59,7 @@
                                     <div class="form-group mb-5">
                                         <label for="" class="font-weight-bold">Uk S</label>
                                         <input id="my-input" class="form-control" type="number" name="co_s"
-                                            value="0" required>
+                                            value="0"  >
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
@@ -68,7 +68,7 @@
                                         <label for="" class="font-weight-bold">Uk M</label>
 
                                         <input id="my-input" class="form-control" type="number" name="co_m"
-                                            value="0" required>
+                                            value="0"  >
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
@@ -77,7 +77,7 @@
                                         <label for="" class="font-weight-bold">Uk L</label>
 
                                         <input id="my-input" class="form-control" type="number" name="co_l"
-                                            value="0" required>
+                                            value="0"  >
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
@@ -86,7 +86,7 @@
                                         <label for="" class="font-weight-bold">Uk XL</label>
 
                                         <input id="my-input" class="form-control" type="number" name="co_xl"
-                                            value="0" required>
+                                            value="0"  >
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
@@ -95,7 +95,7 @@
                                         <label for="" class="font-weight-bold">Uk XXL</label>
 
                                         <input id="my-input" class="form-control" type="number" name="co_xxl"
-                                            value="0" required>
+                                            value="0"  >
                                     </div>
                                 </div>
 
@@ -115,7 +115,7 @@
                                      <div class="form-group mb-5">
                                         <label for="" class="font-weight-bold">Uk S</label>
                                         <input id="my-input" class="form-control" type="number" name="ce_s"
-                                            value="0" required>
+                                            value="0"  >
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
@@ -123,7 +123,7 @@
                                      <div class="form-group mb-5">
                                         <label for="" class="font-weight-bold">Uk M</label>
                                         <input id="my-input" class="form-control" type="number" name="ce_m"
-                                            value="0" required>
+                                            value="0"  >
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
@@ -131,7 +131,7 @@
                                      <div class="form-group mb-5">
                                         <label for="" class="font-weight-bold">Uk L</label>
                                         <input id="my-input" class="form-control" type="number"
-                                            name="ce_l"value="0" required>
+                                            name="ce_l"value="0"  >
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
@@ -139,7 +139,7 @@
                                      <div class="form-group mb-5">
                                         <label for="" class="font-weight-bold">Uk XL</label>
                                         <input id="my-input" class="form-control" type="number" name="ce_xl"
-                                            value="0" required>
+                                            value="0"  >
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
@@ -147,7 +147,7 @@
                                      <div class="form-group mb-5">
                                         <label for="" class="font-weight-bold">Uk XXL</label>
                                         <input id="my-input" class="form-control" type="number" name="ce_xxl"
-                                            value="0" required>
+                                            value="0"  >
                                     </div>
                                 </div>
 

@@ -1,47 +1,50 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\ProgressPembelian;
-use App\Models\Transaksi;
+use App\Models\Produk;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use App\Http\Controllers\Controller;
 
-class ProgressPembelianController extends Controller
+class ProdukController extends Controller
 {
     public function index()
     {
 
-        $data['judul'] = 'Progres Transaksi Pembelian';
-        $data['transaksi'] = Transaksi::with('progress')->where('status_pembayaran', 'Diterima')->get();
+        $data['judul'] = 'Beranda Produk';
+        $data['produk'] = Produk::with('kategori')->get();
 
-        return view('admin.progress-pembelian.pembelian-index', $data);
+        return view('admin.produk.produk-index', $data);
     }
 
-    public function create(Transaksi $transaksi)
+    public function create()
     {
+        $kategori = Kategori::select('id','nama_kategori')->get();
 
-        $data['judul'] = 'Progres Transaksi Pembelian';
-        $data['transaksi'] = $transaksi;
-        return view('admin.progress-pembelian.pembelian-create', $data);
+        // dd(Auth::user());
+        return view('admin.produk.produk-create', compact('kategori'));
     }
 
 
-    public function store(Request $request, $transaksi)
+    public function store(Request $request)
     {
-        $file = $request->file('gambar_progress');
+        $file = $request->file('gambar_produk');
         $fileName = $file->getClientOriginalName();
         $time = now()->format('Y-m-d H-i-s');
         $fileSaved = $request->nama_produk . '-' . $time . $fileName;
-        $file->move('progress_pembelian', $fileSaved);
+        $file->move('produk', $fileSaved);
 
-        $progress = new ProgressPembelian();
-        $progress->nama_produk = $request->nama_produk;
-        $progress->kategori_id = $request->kategori_id;
-        $progress->deskripsi = $request->deskripsi;
-        $progress->harga_produk = $request->harga_produk;
-        $progress->stok = $request->stok;
-        $progress->gambar_produk = $fileSaved;
-        $progress->save();
+        $Produk = new Produk();
+        $Produk->nama_produk = $request->nama_produk;
+        $Produk->kategori_id = $request->kategori_id;
+        $Produk->deskripsi = $request->deskripsi;
+        $Produk->harga_produk = $request->harga_produk;
+        $Produk->stok = $request->stok;
+        $Produk->gambar_produk = $fileSaved;
+        $Produk->save();
 
 
         return redirect()->route('produk.index');
@@ -56,8 +59,8 @@ class ProgressPembelianController extends Controller
     public function edit($id)
     {
         $data['produk'] = Produk::find($id);
-        $data['kategori'] = Kategori::select('id', 'nama_kategori')->get();
-        return view('admin.progress-pembelian.pembelian-edit ', $data);
+        $data['kategori'] = Kategori::select('id','nama_kategori')->get();
+        return view('admin.produk.produk-edit ', $data);
     }
 
 

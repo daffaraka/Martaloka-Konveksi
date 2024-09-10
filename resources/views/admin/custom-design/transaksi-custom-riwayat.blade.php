@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('content')
     <div class="table-responsive mt-5 ">
-        <table class="table table-bordered shadow">
+        <table class="table table-striped table-bordered shadow">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -15,7 +15,7 @@
             </thead>
             <tbody>
 
-                @foreach ($transaksi as $data)
+                @foreach ($transaksiSelesai as $data)
                     <tr class="">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->user->name }}</td>
@@ -47,13 +47,8 @@
                         </td>
                         <td> Rp. {{ number_format($data->total_harga) }}</td>
                         <td>
-                            @if ($data->bukti_pembayaran == null)
-                                Belum ada
-                            @else
-                                <a href="{{ asset('bukti_Pembayaran/' . $data->bukti_pembayaran) }}" class="btn btn-info">
-                                    <i class="fa fa-image" aria-hidden="true"></i> Bukti pembayaran</a>
-                            @endif
-
+                            <a href="{{ asset('bukti_Pembayaran/' . $data->bukti_pembayaran) }}"
+                                class="btn btn-outline-info">Bukti pembayaran</a>
                         </td>
                         <td>
                             @switch($data->status_pembayaran)
@@ -74,7 +69,7 @@
                                 @break
 
                                 @case('Dibatalkan')
-                                    <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-block btn-light border border-1">Detail Transaksi</a>
+                                    <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-block btn-danger">Batal</a>
                                 @break
 
                                 @case('Selesai')
@@ -85,7 +80,7 @@
                                     <button class="btn btn-block btn-info">Status Tidak Valid</button>
                                 @break
                             @endswitch
-                            <a href="https:://wa.me/+62{{ $data->nomor_hp_pemesan ?? 85847728414}} " class="btn btn-block btn-outline-warning text-dark"><i
+                            <a href="{{ $data->nomor_hp_pemesan }}" class="btn btn-block btn-outline-warning text-dark"><i
                                     class="fa fa-phone" aria-hidden="true"></i> Hubungi Pemesan</a>
                         </td>
 

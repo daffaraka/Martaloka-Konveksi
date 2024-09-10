@@ -1,16 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\BerandaController;
+
+// Admin
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\ProgressPembelianController;
-use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\TransaksiCustomDesignController;
-use App\Http\Controllers\TransaksiProdukController;
-use App\Models\TransaksiProduk;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Frontend\BerandaController;
+use App\Http\Controllers\Admin\ProgressPembelianController;
+// use App\Http\Controllers\Admin\TransaksiController;
+
+// Frontend
+use App\Http\Controllers\Admin\TransaksiDashboardController;
+use App\Http\Controllers\Frontend\TransaksiProdukController;
+use App\Http\Controllers\Admin\TransaksiCustomDashboardController;
+use App\Http\Controllers\Frontend\TransaksiCustomDesignController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,14 +84,22 @@ Route::middleware('auth')->group(function () {
         Route::get('produk/destroy/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy');
 
         // Transaksi
-        Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-        Route::get('tansaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
-        Route::post('transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
-        Route::get('transaksi/show/{transaksi}', [TransaksiController::class, 'show'])->name('transaksi.show');
-        Route::get('transaksi/terima/{transaksi}', [TransaksiController::class, 'dibayar'])->name('transaksi.dibayar');
-        Route::get('transaksi/tolak/{transaksi}', [TransaksiController::class, 'batal'])->name('transaksi.batal');
-        Route::get('transaksi-produk/riwayat-transaksi', [TransaksiController::class, 'riwayatTransaksi'])->name('transaksi.riwayatTransaksi');
-        Route::get('transaksi-custom-design/riwayat-transaksi', [TransaksiController::class, 'riwayatTransaksi'])->name('transaksi.riwayatCustomDesign');
+        Route::get('transaksi', [TransaksiDashboardController::class, 'index'])->name('transaksi.index');
+        Route::get('tansaksi/create', [TransaksiDashboardController::class, 'create'])->name('transaksi.create');
+        Route::post('transaksi/store', [TransaksiDashboardController::class, 'store'])->name('transaksi.store');
+        Route::get('transaksi/show/{transaksi}', [TransaksiDashboardController::class, 'show'])->name('transaksi.show');
+        Route::get('transaksi/terima/{transaksi}', [TransaksiDashboardController::class, 'dibayar'])->name('transaksi.dibayar');
+        Route::get('transaksi/tolak/{transaksi}', [TransaksiDashboardController::class, 'batal'])->name('transaksi.batal');
+        Route::get('transaksi-produk/riwayat-transaksi', [TransaksiDashboardController::class, 'riwayatTransaksi'])->name('transaksi.riwayatTransaksi');
+
+
+        Route::get('transaksi-custom', [TransaksiCustomDashboardController::class, 'index'])->name('transaksiCustom.index');
+        Route::get('transaksi-custom/create', [TransaksiCustomDashboardController::class, 'create'])->name('transaksiCustom.create');
+        Route::post('transaksi-custom/store', [TransaksiCustomDashboardController::class, 'store'])->name('transaksiCustom.store');
+        Route::get('transaksi-custom/show/{transaksi}', [TransaksiCustomDashboardController::class, 'show'])->name('transaksiCustom.show');
+        Route::get('transaksi-custom/terima/{transaksi}', [TransaksiCustomDashboardController::class, 'dibayar'])->name('transaksiCustom.dibayar');
+        Route::get('transaksi-custom/tolak/{transaksi}', [TransaksiCustomDashboardController::class, 'batal'])->name('transaksiCustom.batal');
+        Route::get('transaksi-custom-produk/riwayat-transaksi', [TransaksiCustomDashboardController::class, 'riwayatTransaksi'])->name('transaksiCustom.riwayatTransaksi');
 
 
         // Kategori

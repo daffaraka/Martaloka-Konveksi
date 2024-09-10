@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
 use App\Models\Kategori;
 use App\Models\CustomDesign;
@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\SizeCustomDesign;
 use Illuminate\Support\Facades\Auth;
 use App\Models\TransaksiCustomDesign;
+use App\Http\Controllers\Controller;
+
 
 class TransaksiCustomDesignController extends Controller
 {
@@ -28,7 +30,6 @@ class TransaksiCustomDesignController extends Controller
     public function storeDesign(Request $request)
     {
 
-        dd($request->all());
 
         $harga_kategori = Kategori::find($request->kategori_id)->harga_kategori;
 

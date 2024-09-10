@@ -7,7 +7,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nama Pemesan</th>
                     <th scope="col">Status Transaksi</th>
-                    <th scope="col" class="w-25">Produk - Qty - Harga</th>
+                    <th scope="col">Total Pesanan</th>
                     <th scope="col">Total Harga</th>
                     <th scope="col">Bukti Pembayaran</th>
                     <th>Action</th>
@@ -35,15 +35,7 @@
                             @endif
                         </td>
                         <td>
-                            <ul class="list-unstyled">
-                                @foreach ($data->detailTransaksi as $detailTransaksi)
-                                    <li> <b>{{ $detailTransaksi->produk->nama_produk }} </b> <b>-</b>
-                                        <button class="btn btn-sm p-0 px-1 btn-info">{{ $detailTransaksi->qty }}</button>
-                                        <span> <b>-</b>
-                                            Rp.{{ number_format($detailTransaksi->produk->harga_produk) }}</span>
-                                    </li>
-                                @endforeach
-                            </ul>
+                            {{$data->total_pesanan}}
                         </td>
                         <td> Rp. {{ number_format($data->total_harga) }}</td>
                         <td>
@@ -62,19 +54,19 @@
                                 @break
 
                                 @case('Dibayar')
-                                    <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-block btn-success">Sudah
+                                    <a href="{{ route('transaksiCustom.show', $data->id) }}" class="btn btn-block btn-success">Sudah
                                         Dibayar</a>
                                 @break
 
                                 @case('Diterima')
-                                    <a href="{{ route('transaksi.dibayar', $data->id) }}" class="btn btn-block btn-primary">Terima
+                                    <a href="{{ route('transaksiCustom.dibayar', $data->id) }}" class="btn btn-block btn-primary">Terima
                                         transaksi</a>
-                                    <a href="{{ route('transaksi.batal', $data->id) }}"
+                                    <a href="{{ route('transaksiCustom.batal', $data->id) }}"
                                         class="btn btn-block btn-outline-danger">Tolak transaksi</a>
                                 @break
 
                                 @case('Dibatalkan')
-                                    <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-block btn-light border border-1">Detail Transaksi</a>
+                                    <a href="{{ route('transaksiCustom.show', $data->id) }}" class="btn btn-block btn-light border border-1">Detail Transaksi</a>
                                 @break
 
                                 @case('Selesai')

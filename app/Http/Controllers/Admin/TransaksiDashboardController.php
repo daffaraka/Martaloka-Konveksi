@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Transaksi;
 use App\Models\TransaksiCustomDesign;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 
-class TransaksiController extends Controller
+class TransaksiDashboardController extends Controller
 {
     public function index()
     {
@@ -47,7 +49,7 @@ class TransaksiController extends Controller
 
     public function riwayatTransaksi()
     {
-        $transaksiSelesai = Transaksi::with(['user','detailTransaksi.produk'])->where('status_pembayaran', 'Selesai')->get();
+        $transaksiSelesai = Transaksi::with(['user','detailTransaksi.produk'])->whereIn('status_pembayaran', ['Selesai','Dibatalkan'])->get();
 
         return view('admin.transaksi.transaksi-riwayat',compact('transaksiSelesai'));
     }
