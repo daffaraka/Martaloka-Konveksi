@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Progress Pembelian')
+@section('title', 'Progress custom')
 @section('content')
 
     <div class="table-responsive mt-5 ">
@@ -38,7 +38,7 @@
                         </td>
                         <td>
                             @if($data->progress->isNotEmpty() && isset($data->progress->first()->gambar_progress))
-                                <img src="{{ asset('progress_pembelian/' . $data->progress->first()->gambar_progress) }}" width="200" alt="">
+                                <img src="{{ asset('progress_custom/' . $data->progress->first()->gambar_progress) }}" width="200" alt="">
                             @else
                                 <span>Tidak ada gambar progress</span>
                             @endif
@@ -51,7 +51,7 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('progress-pembelian.create', ['transaksi' => $data]) }}"
+                            <a href="{{ route('progress-custom.create', ['transaksi' => $data]) }}"
                                 class="btn btn-info">Tambah progress</a>
                             {{-- <a href="{{ route('produk.destroy', $data->id) }}" class="btn btn-danger">Hapus</a> --}}
 

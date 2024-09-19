@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-body">
                     <form
-                        action="{{ route('progress-pembelian.update', ['transaksi' => $transaksi, 'progress' => $progress]) }}"
+                        action="{{ route('progress-custom.update', ['transaksi' => $transaksi, 'progress' => $progress]) }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">

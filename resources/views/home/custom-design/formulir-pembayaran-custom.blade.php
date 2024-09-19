@@ -174,7 +174,7 @@
 
                                         <div class="py-3">
                                             <input type="file" name="bukti_bayar" id="bukti_bayar"
-                                                class="form-control" accept="image/*">
+                                                class="form-control" accept="image/*" required>
                                             <img src="#" alt="Preview Uploaded Image" class="mt-5 d-none"
                                                 id="preview-bukti">
 
@@ -182,11 +182,25 @@
 
                                         <button class="btn-one btn-block mt-4" type="submit">Kirim Bukti</button>
                                     @else
-                                        <h2 class="text-center">Pembayaran sedang diproses</h2>
+                                        <h3 class="text-center mb-4">Pembayaran sedang diproses</h3>
 
                                         <div class="px-3">
-                                            <label for="">Status sekarang : </label>
-                                            <button class="btn-one" type="button"> {{$transaksiCustomDesign->status_pembayaran}}</button>
+                                            <label class="font-weight-bold mb-3">Status sekarang : </label> <br>
+
+                                            @foreach ($transaksiCustomDesign->progress as $index => $progress)
+                                                <li class="mb-3">
+                                                    <h6 class="font-weight-bold">{{ $progress->nama_progress }}
+                                                        {!! $index == 0 ? '<span class="badge badge-success"> Status terakhir </span>' : '' !!}</h6>
+
+                                                    {{ \Carbon\Carbon::parse($progress->created_at)->isoFormat('dddd, D MMMM Y H:mm:ss') }}
+                                                    <br>
+                                                    <a href="" class="btn btn-primary btn-sm ">Detail</a>
+                                                        <hr>
+                                                </li>
+                                            @endforeach
+                                            {{-- <button class="btn" type="button">
+                                                {{ $transaksiCustomDesign->status_pembayaran }}</button> --}}
+                                                 {{-- {{$transaksiCustomDesign->progress}} --}}
 
                                         </div>
                                     @endif

@@ -7,7 +7,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nama Pemesan</th>
                     <th scope="col">Status Transaksi</th>
-                    <th scope="col" class="w-25">Produk - Qty - Harga</th>
+                    <th scope="col">Total Pesanan</th>
                     <th scope="col">Total Harga</th>
                     <th scope="col">Bukti Pembayaran</th>
                     <th>Action</th>
@@ -35,7 +35,8 @@
                             @endif
                         </td>
                         <td>
-                            <ul class="list-unstyled">
+                            {{$data->total_pesanan}}
+                            {{-- <ul class="list-unstyled">
                                 @foreach ($data->detailTransaksi as $detailTransaksi)
                                     <li> <b>{{ $detailTransaksi->produk->nama_produk }} </b> <b>-</b>
                                         <button class="btn btn-sm p-0 px-1 btn-info">{{ $detailTransaksi->qty }}</button>
@@ -43,7 +44,7 @@
                                             Rp.{{ number_format($detailTransaksi->produk->harga_produk) }}</span>
                                     </li>
                                 @endforeach
-                            </ul>
+                            </ul> --}}
                         </td>
                         <td> Rp. {{ number_format($data->total_harga) }}</td>
                         <td>

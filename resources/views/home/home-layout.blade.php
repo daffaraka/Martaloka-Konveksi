@@ -19,8 +19,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&amp;display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom-animate.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/fancybox.min.css') }}">
@@ -72,7 +72,7 @@
 <body>
 
     <div class="boxed_wrapper ltr">
-        <div class="loader-wrap">
+        {{-- <div class="loader-wrap">
             <div class="preloader">
               <div class="preloader-close">X</div>
               <div id="handle-preloader" class="handle-preloader">
@@ -97,7 +97,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
 
         @include('home.partials.home-header')
 

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\ProgressPembelian;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use App\Models\ProgressPembelian;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 
 class ProgressPembelianController extends Controller
@@ -14,8 +15,11 @@ class ProgressPembelianController extends Controller
     {
 
         $data['judul'] = 'Progres Transaksi Pembelian';
-        $data['transaksi'] = Transaksi::with('progress')->where('status_pembayaran', 'Diterima')->get();
+        $data['transaksi'] = Transaksi::with(['progress' => function($progress){
+            $progress->latest();
+        }])->where('status_pembayaran', 'Diterima')->get();
 
+        // dd($data['transaksi']->);
         return view('admin.progress-pembelian.pembelian-index', $data);
     }
 
@@ -23,87 +27,90 @@ class ProgressPembelianController extends Controller
     {
 
         $data['judul'] = 'Progres Transaksi Pembelian';
-        $data['transaksi'] = $transaksi;
+        $data['transaksi'] = $transaksi->with(['progress' => function ($query) {
+            $query->latest();
+        }])->find($transaksi->id);
+
+        // dd($data);
         return view('admin.progress-pembelian.pembelian-create', $data);
     }
 
 
-    public function store(Request $request, $transaksi)
+    public function store(Request $request, Transaksi $transaksi)
     {
+
+        // dd($request->all(),$transaksi);
         $file = $request->file('gambar_progress');
         $fileName = $file->getClientOriginalName();
         $time = now()->format('Y-m-d H-i-s');
-        $fileSaved = $request->nama_produk . '-' . $time . $fileName;
+        $fileSaved = $request->nama_progress . '-' . $time . '-' . $fileName;
         $file->move('progress_pembelian', $fileSaved);
 
         $progress = new ProgressPembelian();
-        $progress->nama_produk = $request->nama_produk;
-        $progress->kategori_id = $request->kategori_id;
-        $progress->deskripsi = $request->deskripsi;
-        $progress->harga_produk = $request->harga_produk;
-        $progress->stok = $request->stok;
-        $progress->gambar_produk = $fileSaved;
+        $progress->nama_progress = $request->nama_progress;
+        $progress->deskripsi_progress = $request->deskripsi_progress;
+        $progress->gambar_progress = $fileSaved;
+        $progress->transaksi_id = $transaksi->id;
         $progress->save();
 
 
-        return redirect()->route('produk.index');
+        return redirect()->back();
     }
 
-    public function show(Produk $Produk)
+    public function show(Transaksi $transaksi, ProgressPembelian $progress,)
     {
-        //
+
+        $data['judul'] = 'Progres Transaksi Pembelian ' . $progress->nama_progress;
+        $data['transaksi'] = $transaksi->with('progress')->find($transaksi->id);
+        $data['progress'] = $progress;
+
+        // dd($progress_pembelian);
+        return view('admin.progress-pembelian.pembelian-show', $data);
     }
 
 
-    public function edit($id)
+    public function edit(Transaksi $transaksi,ProgressPembelian $progress)
     {
-        $data['produk'] = Produk::find($id);
-        $data['kategori'] = Kategori::select('id', 'nama_kategori')->get();
-        return view('admin.progress-pembelian.pembelian-edit ', $data);
+
+        $data['judul'] = 'Edit progress ' . $progress->nama_progress;
+        $data['progress'] = $progress;
+        $data['transaksi'] = $transaksi;
+        return view('admin.progress-pembelian.pembelian-edit', $data);
     }
 
 
-    public function update(Request $request, $id)
-
+    public function update(Request $request,Transaksi $transaksi, ProgressPembelian $progress)
     {
-        $Produk = Produk::find($id);
-
-
         $file = '';
         $time = now()->format('Y-m-d H-i-s');
 
-        if ($request->has('gambar_produk')) {
-            $file = $request->file('gambar_produk');
+        if ($request->has('gambar_progress')) {
+            $file = $request->file('gambar_progress');
             $fileName = $file->getClientOriginalName();
-            $fileSaved = $request->nama_produk . '-' . $time . $fileName;
-            if (File::exists('produk/' . $Produk->gambar_produk)) {
-                File::delete('produk/' . $Produk->gambar_produk);
-                $file->move('produk', $fileSaved);
+            $fileSaved = $request->nama_progress . '-' . $time . $fileName;
+            if (File::exists('progress_pembelian/' . $progress->gambar_progress)) {
+                File::delete('progress_pembelian/' . $progress->gambar_progress);
+                $file->move('progress_pembelian', $fileSaved);
             } else {
-                $file->move('produk', $fileSaved);
+                $file->move('progress_pembelian', $fileSaved);
             }
         } else {
-            $fileSaved = $Produk->gambar_produk;
+            $fileSaved = $progress->gambar_progress;
         }
 
 
 
+        $progress->nama_progress = $request->nama_progress;
+        $progress->deskripsi_progress = $request->deskripsi_progress;
+        $progress->gambar_progress = $fileSaved;
+        $progress->save();
 
-        $Produk->nama_produk = $request->nama_produk;
-        $Produk->kategori_id = $request->kategori_id;
-        $Produk->deskripsi = $request->deskripsi;
-        $Produk->harga_produk = $request->harga_produk;
-        $Produk->stok = $request->stok;
-        $Produk->gambar_produk = $fileSaved;
-        $Produk->save();
-
-        return redirect()->route('produk.index');
+        return redirect()->route('progress-pembelian.create', $progress->transaksi_id);
     }
 
-    public function destroy($id)
+    public function destroy(ProgressPembelian $progress)
     {
-        $Produk = Produk::find($id);
-        $Produk->delete();
+        $progress->delete();
 
         return redirect()->route('produk.index');
     }

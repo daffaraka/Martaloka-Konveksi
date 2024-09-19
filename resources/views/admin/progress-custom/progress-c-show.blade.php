@@ -1,9 +1,9 @@
 @extends('admin.layout')
 @section('content')
     <div class="row">
-        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
-            <img class="img-fluid" src="{{ asset('bukti_Pembayaran/' . $transaksi->bukti_pembayaran) }}"
-                alt="Bukti pembayaran {{ $transaksi->bukti_pembayaran }}">
+        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 px-4">
+            <img class="img-fluid" src="{{ asset('progress_custom/' . $progress->gambar_progress) }}"
+                alt=" {{ $progress->nama_progress }}">
 
             <div class="d-gap mt-5">
 
@@ -13,33 +13,28 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="">Nama Pemesan</label>
-                        <input type="text" class="form-control" value="{{ $transaksi->user->name }}" readonly>
+                        <label for="">Nama Progress</label>
+                        <input type="text" class="form-control" value="{{ $progress->nama_progress }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="">Status Pembayaran</label>
-                        <input type="text" class="form-control" value="{{ $transaksi->status_pembayaran }}" readonly>
+                        <label for="">Deskripsi Progress</label>
+                        <input type="text" class="form-control" value="{{ $progress->deskripsi_progress }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="">Total</label>
-                        <input type="text" class="form-control" value="Rp.{{ number_format($transaksi->total_harga) }}"
-                            readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Tanggal Teansaksi</label>
+                        <label for="">Tanggal Ditambahkan</label>
                         <input type="text" class="form-control"
-                            value="{{ $transaksi->created_at->isoFormat('dddd, D MMMM Y') }}" readonly>
+                            value="{{ $progress->created_at->isoFormat('dddd, D MMMM Y H:mm:ss') }}" readonly>
                     </div>
-                    <div class="form-group">
-                        <label for="">Deskripsi</label>
-                        <textarea name="" class="form-control" cols="30" rows="2" readonly>{{ $transaksi->deskripsi }}</textarea>
-                    </div>
+
+                    <a href="{{url()->previous() }} " class="btn btn-primary">Kembali</a>
                 </div>
+
+
             </div>
 
         </div>
 
-        <div class="col-12 card mt-4 px-3 py-5">
+        {{-- <div class="col-12 card mt-4 px-3 py-5">
             <div class="row row-cols-2">
                 <div class="col ">
                     <div class="card">
@@ -49,23 +44,18 @@
                             <ul>
                                 @foreach ($transaksi->progress as $index => $item)
                                     <li class="mb-3">
-                                        <h6 class="font-weight-bold">{{ $item->nama_progress }} {!! $index == 0 ? '<span class="badge badge-success"> Status terakhir </span>' : '' !!}</h6>
+                                        <h6 class="font-weight-bold">{{ $item->nama_progress }}   {!! $index == 0 ? '<span class="badge badge-success"> Status terakhir </span>' : '' !!}</h6>
 
                                         {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y H:mm:ss') }}
                                         <br>
-                                        <a href="{{ route('progress-pembelian.show', ['transaksi' => $transaksi, 'progress' => $item->id]) }}"
-                                            class="btn btn-primary btn-sm ">Detail</a>
-                                        <a href="{{ route('progress-pembelian.edit', ['transaksi' => $transaksi, 'progress' => $item->id]) }}"
-                                            class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="{{ route('progress-pembelian.destroy', ['transaksi' => $transaksi, 'progress' => $item->id]) }}"
-                                            class="btn btn-danger btn-sm btn-outline">Hapus</a>
+
 
                                     </li>
                                 @endforeach
 
                             </ul>
 
-
+                            <p class="card-text">Content</p>
                         </div>
                     </div>
 
@@ -100,6 +90,6 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
     </div>
 @endsection

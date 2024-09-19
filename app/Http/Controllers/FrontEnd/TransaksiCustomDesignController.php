@@ -16,9 +16,9 @@ class TransaksiCustomDesignController extends Controller
 
     public function daftarCustom()
     {
-        $data['custom'] = CustomDesign::where('user_id',Auth::user()->id)->get();
+        $data['custom'] = CustomDesign::where('user_id', Auth::user()->id)->get();
 
-        return view('home.custom-design.custom-index',$data);
+        return view('home.custom-design.custom-index', $data);
     }
     public function createDesign()
     {
@@ -55,11 +55,19 @@ class TransaksiCustomDesignController extends Controller
             'co_l' => $request->co_l,
             'co_xl' => $request->co_xl,
             'co_xxl' => $request->co_xxl,
+            'co_l1' => $request->co_l1,
+            'co_l2' => $request->co_l2,
+            'co_l3' => $request->co_l3,
+            'co_l4' => $request->co_l4,
             'ce_s' => $request->ce_s,
             'ce_m' => $request->ce_m,
             'ce_l' => $request->ce_l,
             'ce_xl' => $request->ce_xl,
             'ce_xxl' => $request->ce_xxl,
+            'ce_l1' => $request->co_l1,
+            'ce_l2' => $request->co_l2,
+            'ce_l3' => $request->co_l3,
+            'ce_l4' => $request->co_l4,
         ]);
 
         if ($request->hasFile('gambar_custom_design')) {
@@ -80,7 +88,9 @@ class TransaksiCustomDesignController extends Controller
     public function formPembayaranTransaksiCustom(TransaksiCustomDesign $transaksiCustomDesign)
     {
 
-        $transaksiCustomDesign = $transaksiCustomDesign->with(['sizes','designs','kategori'])->find($transaksiCustomDesign->id);
+        $transaksiCustomDesign = $transaksiCustomDesign->with(['sizes', 'designs', 'kategori', 'progress' => function ($progress) {
+            $progress->latest();
+        }])->find($transaksiCustomDesign->id);
 
         // dd($transaksiCustomDesign);
         return view('home.custom-design.formulir-pembayaran-custom', compact('transaksiCustomDesign'));
@@ -104,7 +114,6 @@ class TransaksiCustomDesignController extends Controller
         ]);
         // dd($transaksiCustomDesign);
 
-        return redirect()->back()->with('success','Transaksi Telah Diterima');
+        return redirect()->back()->with('success', 'Transaksi Telah Diterima');
     }
-
 }

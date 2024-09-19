@@ -118,7 +118,7 @@
                     </a>
                 </li>
 
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     <a href="{{ route('transaksi.riwayatTransaksi') }}"
                         class="nav-link {{ Request::is('transaksi/riwayat-produk') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-history"></i>
@@ -127,12 +127,12 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('transaksi.riwayatCustomDesign') }}"
+                    <a href="{{ route('transaksiCustom.riwayatTransaksi') }}"
                         class="nav-link {{ Request::is('transaksi/riwayat-custom') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-file-signature"></i>
                         <p>Riwayat Transaksi Custom</p>
                     </a>
-                </li> --}}
+                </li>
 
                 <li class="nav-item">
                     <a href="{{ route('progress-pembelian.index') }}"
@@ -143,7 +143,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('progress-pembelian.index') }}"
+                    <a href="{{ route('progress-custom.index') }}"
                         class="nav-link {{ Request::is('transaksi/progress-custom') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-project-diagram"></i>
                         <p>Progress Custom Design</p>

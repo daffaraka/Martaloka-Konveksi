@@ -49,15 +49,10 @@ class TransaksiCustomDashboardController extends Controller
 
     public function riwayatTransaksi()
     {
-        $transaksiSelesai = TransaksiCustomDesign::with(['user','detailTransaksi.produk'])->whereIn('status_pembayaran', ['Selesai','Dibatalkan'])->get();
+        $transaksiSelesai = TransaksiCustomDesign::with(['user','sizes','designs'])->whereIn('status_pembayaran', ['Selesai','Dibatalkan'])->get();
 
         return view('admin.custom-design.transaksi-custom-riwayat',compact('transaksiSelesai'));
     }
 
-    public function riwayatTransaksiCustom()
-    {
-        $transaksiSelesai = TransaksiCustomDesign::with(['user','detailTransaksi.produk'])->where('status_pembayaran', 'Selesai')->get();
 
-        return view('admin.custom-design.transaksi-custom-riwayat',compact('transaksiSelesai'));
-    }
 }

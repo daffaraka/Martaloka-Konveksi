@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
-            <img class="img-fluid" src="{{ asset('bukti_Pembayaran/' . $transaksi->bukti_pembayaran) }}"
+            <img class="img-fluid" src="{{ asset('custom/bukti-bayar/' . $transaksi->bukti_pembayaran) }}"
                 alt="Bukti pembayaran {{ $transaksi->bukti_pembayaran }}">
 
             <div class="d-gap mt-5">
@@ -53,11 +53,11 @@
 
                                         {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y H:mm:ss') }}
                                         <br>
-                                        <a href="{{ route('progress-pembelian.show', ['transaksi' => $transaksi, 'progress' => $item->id]) }}"
+                                        <a href="{{ route('progress-custom.show', ['transaksi' => $transaksi, 'progress' => $item->id]) }}"
                                             class="btn btn-primary btn-sm ">Detail</a>
-                                        <a href="{{ route('progress-pembelian.edit', ['transaksi' => $transaksi, 'progress' => $item->id]) }}"
+                                        <a href="{{ route('progress-custom.edit', ['transaksi' => $transaksi, 'progress' => $item->id]) }}"
                                             class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="{{ route('progress-pembelian.destroy', ['transaksi' => $transaksi, 'progress' => $item->id]) }}"
+                                        <a href="{{ route('progress-custom.destroy', ['transaksi' => $transaksi, 'progress' => $item->id]) }}"
                                             class="btn btn-danger btn-sm btn-outline">Hapus</a>
 
                                     </li>
@@ -73,7 +73,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('progress-pembelian.store', $transaksi) }}" method="post"
+                            <form action="{{ route('progress-custom.store', $transaksi) }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">

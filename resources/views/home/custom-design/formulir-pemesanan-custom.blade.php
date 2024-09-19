@@ -11,27 +11,32 @@
 
                 <div class="row mt-5">
                     <div class="col-6 px-5">
-                        <div class="form-group mb-5">
-                            <h6 class="mb-2" for="my-input">Nama</h6>
-                            <input id="my-input" class="form-control" type="text" name="nama_pemesan" required>
-                        </div>
-                        <div class="form-group mb-5">
-                            <h6 class="mb-2" for="my-input">Alamat</h6>
-                            <input id="my-input" class="form-control" type="text" name="alamat_pemesan" required>
-                        </div>
-                        <div class="form-group mb-5">
-                            <h6 class="mb-2" for="my-input">Email</h6>
-                            <input id="my-input" class="form-control" type="email" name="Email_pemesan" required>
-                        </div>
-                        <div class="form-group mb-5">
-                            <h6 class="mb-2" for="my-input">Nomor Telepon</h6>
-                            <input id="my-input" class="form-control" type="number" name="nomor_hp_pemesan" required>
-                        </div>
-                    </div>
-
-                    <div class="col-6 px-5">
                         <div class="form-group mb-4">
-                            <h6 class="mb-2" for="my-input">Jenis Pesanan</h6>
+                            <h6 class="mb-2" for=" ">Nama</h6>
+                            <input id=" " class="form-control" type="text" name="nama_pemesan" required>
+                            <label>Isikan sesuai nama lengkap anda</label>
+                        </div>
+                        <div class="form-group mb-4">
+                            <h6 class="mb-2" for=" ">Alamat</h6>
+                            <input id=" " class="form-control" type="text" name="alamat_pemesan" required>
+                            <label>Isikan sesuai alamat anda secara lengkap </label>
+
+                        </div>
+                        <div class="form-group mb-4">
+                            <h6 class="mb-2" for=" ">Email</h6>
+                            <input id=" " class="form-control" type="email" name="Email_pemesan" required>
+                            <label>Gunakan '@' , contoh : martaloka@gmail.com</label>
+
+                        </div>
+                        <div class="form-group mb-4">
+                            <h6 class="mb-2" for=" ">Nomor Telepon</h6>
+                            <input id=" " class="form-control" type="number" name="nomor_hp_pemesan" required>
+                            <label>Masukkan nomor telepon, contoh : 08123456789</label>
+
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <h6 class="mb-2" for=" ">Jenis Pesanan</h6>
                             <div class="select-box">
                                 <select class="wide float-none"
                                     style="height: 40px !important;line-height: 40px !important;" name="kategori_id">
@@ -44,10 +49,10 @@
 
 
                         </div>
-                        <div class="form-group mt-2 mb-5">
-                            <h6 class="mb-2" for="my-input">Total pesanan</h6>
-                            <input id="my-input" class="form-control" type="number" name="total_pesanan" required>
-                        </div>
+                    </div>
+
+                    <div class="col-6 px-5">
+
 
                         <div class="co">
                             <h6 class="mb-2">Cowok</h6>
@@ -56,48 +61,86 @@
 
                                 <div class="col-2 mr-1">
 
-                                    <div class="form-group mb-5">
+                                    <div class="form-group mb-4">
                                         <label for="" class="font-weight-bold">Uk S</label>
-                                        <input id="my-input" class="form-control" type="number" name="co_s"
-                                            value="0"  >
+                                        <input id="co_s" class="form-control" type="number" name="co_s"
+                                            value="0">
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                    <div class="form-group mb-5">
+                                    <div class="form-group mb-4">
                                         <label for="" class="font-weight-bold">Uk M</label>
 
-                                        <input id="my-input" class="form-control" type="number" name="co_m"
-                                            value="0"  >
+                                        <input id="co_m" class="form-control" type="number" name="co_m"
+                                            value="0">
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                    <div class="form-group mb-5">
+                                    <div class="form-group mb-4">
                                         <label for="" class="font-weight-bold">Uk L</label>
 
-                                        <input id="my-input" class="form-control" type="number" name="co_l"
-                                            value="0"  >
+                                        <input id="co_l" class="form-control" type="number" name="co_l"
+                                            value="0">
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                    <div class="form-group mb-5">
+                                    <div class="form-group mb-4">
                                         <label for="" class="font-weight-bold">Uk XL</label>
 
-                                        <input id="my-input" class="form-control" type="number" name="co_xl"
-                                            value="0"  >
+                                        <input id="co_xl" class="form-control" type="number" name="co_xl"
+                                            value="0">
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                    <div class="form-group mb-5">
+                                    <div class="form-group mb-4">
                                         <label for="" class="font-weight-bold">Uk XXL</label>
 
-                                        <input id="my-input" class="form-control" type="number" name="co_xxl"
-                                            value="0"  >
+                                        <input id="co_xxl" class="form-control" type="number" name="co_xxl"
+                                            value="0">
                                     </div>
                                 </div>
+                                <div class="col-2 mr-1">
+
+                                    <div class="form-group mb-4">
+                                        <label for="" class="font-weight-bold">Uk L1</label>
+
+                                        <input id="co_l1" class="form-control" type="number" name="co_l1"
+                                            value="0">
+                                    </div>
+                                </div>
+                                <div class="col-2 mr-1">
+
+                                    <div class="form-group mb-4">
+                                        <label for="" class="font-weight-bold">Uk L2</label>
+
+                                        <input id="co_l2" class="form-control" type="number" name="co_l2"
+                                            value="0">
+                                    </div>
+                                </div>
+
+                                <div class="col-2 mr-1">
+
+                                    <div class="form-group mb-4">
+                                        <label for="" class="font-weight-bold">Uk L3</label>
+
+                                        <input id="co_l3" class="form-control" type="number" name="co_l3"
+                                            value="0">
+                                    </div>
+                                </div>
+                                <div class="col-2 mr-1">
+
+                                    <div class="form-group mb-4">
+                                        <label for="" class="font-weight-bold">Uk L4</label>
+
+                                        <input id="co_l4" class="form-control" type="number" name="co_l4"
+                                            value="0">
+                                    </div>
+                                </div>
+
 
 
 
@@ -112,48 +155,93 @@
 
                                 <div class="col-2 mr-1">
 
-                                     <div class="form-group mb-5">
+                                    <div class="form-group mb-4">
                                         <label for="" class="font-weight-bold">Uk S</label>
-                                        <input id="my-input" class="form-control" type="number" name="ce_s"
-                                            value="0"  >
+                                        <input id="ce_s" class="form-control" type="number" name="ce_s"
+                                            value="0">
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                     <div class="form-group mb-5">
+                                    <div class="form-group mb-4">
                                         <label for="" class="font-weight-bold">Uk M</label>
-                                        <input id="my-input" class="form-control" type="number" name="ce_m"
-                                            value="0"  >
+                                        <input id="ce_m" class="form-control" type="number" name="ce_m"
+                                            value="0">
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                     <div class="form-group mb-5">
+                                    <div class="form-group mb-4">
                                         <label for="" class="font-weight-bold">Uk L</label>
-                                        <input id="my-input" class="form-control" type="number"
-                                            name="ce_l"value="0"  >
+                                        <input id="ce_l" class="form-control" type="number"
+                                            name="ce_l"value="0">
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                     <div class="form-group mb-5">
+                                    <div class="form-group mb-4">
                                         <label for="" class="font-weight-bold">Uk XL</label>
-                                        <input id="my-input" class="form-control" type="number" name="ce_xl"
-                                            value="0"  >
+                                        <input id="ce_xl" class="form-control" type="number" name="ce_xl"
+                                            value="0">
                                     </div>
                                 </div>
                                 <div class="col-2 mr-1">
 
-                                     <div class="form-group mb-5">
+                                    <div class="form-group mb-4">
                                         <label for="" class="font-weight-bold">Uk XXL</label>
-                                        <input id="my-input" class="form-control" type="number" name="ce_xxl"
-                                            value="0"  >
+                                        <input id="ce_xxl" class="form-control" type="number" name="ce_xxl"
+                                            value="0">
                                     </div>
                                 </div>
 
+                                <div class="col-2 mr-1">
+
+                                    <div class="form-group mb-4">
+                                        <label for="" class="font-weight-bold">Uk L1</label>
+
+                                        <input id="ce_l1" class="form-control" type="number" name="ce_l1"
+                                            value="0">
+                                    </div>
+                                </div>
+                                <div class="col-2 mr-1">
+
+                                    <div class="form-group mb-4">
+                                        <label for="" class="font-weight-bold">Uk L2</label>
+
+                                        <input id=" " class="form-control" type="number" name="ce_l2"
+                                            value="0">
+                                    </div>
+                                </div>
+
+                                <div class="col-2 mr-1">
+
+                                    <div class="form-group mb-4">
+                                        <label for="" class="font-weight-bold">Uk L3</label>
+
+                                        <input id=" " class="form-control" type="number" name="ce_l3"
+                                            value="0">
+                                    </div>
+                                </div>
+                                <div class="col-2 mr-1">
+
+                                    <div class="form-group mb-4">
+                                        <label for="" class="font-weight-bold">Uk L4</label>
+
+                                        <input id=" " class="form-control" type="number" name="ce_l4"
+                                            value="0">
+                                    </div>
+                                </div>
 
 
                             </div>
+                        </div>
+
+                        <div class="form-group mt-2 mb-4">
+                            <h6 class="mb-2" for=" ">Total pesanan</h6>
+                            <input id="total-pesanan" class="form-control" type="number" value="0"
+                                name="total_pesanan" required>
+                            <label>Total pesanan akan mengikuti total jumlah ukuran yang anda masukkan</label>
+
                         </div>
 
                     </div>
@@ -162,11 +250,17 @@
                     <div class="col-12 px-5 my-3">
                         <h3 class="mb-2">Catatan</h3>
                         <textarea name="catatan" id="" class="form-control" cols="120" rows="5"></textarea>
+                        <label>Isikan catatan tambahan untuk kami.</label>
+
                     </div>
 
                     <div class="col-12 px-5 my-3">
                         <h3 class="mb-2">Gambar</h3>
                         <input type="file" name="gambar_custom_design[]" accept="image/*" class="image-input" />
+
+                        <br>
+                        <label>Gambar maximal 2 MB </label>
+
                         <img id="preview" src="#" alt="Preview Image"
                             style="display:none; max-width: 200px; margin-top: 10px;" />
 

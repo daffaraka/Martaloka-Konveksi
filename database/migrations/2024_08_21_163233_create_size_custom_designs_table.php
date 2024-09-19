@@ -19,12 +19,19 @@ return new class extends Migration
             $table->integer('co_l')->nullable();
             $table->integer('co_xl')->nullable();
             $table->integer('co_xxl')->nullable();
+            $table->integer('co_l1')->nullable();
+            $table->integer('co_l2')->nullable();
+            $table->integer('co_l3')->nullable();
+            $table->integer('co_l4')->nullable();
             $table->integer('ce_s')->nullable();
             $table->integer('ce_m')->nullable();
             $table->integer('ce_l')->nullable();
             $table->integer('ce_xl')->nullable();
             $table->integer('ce_xxl')->nullable();
-
+            $table->integer('ce_l1')->nullable();
+            $table->integer('ce_l2')->nullable();
+            $table->integer('ce_l3')->nullable();
+            $table->integer('ce_l4')->nullable();
             $table->timestamps();
         });
     }

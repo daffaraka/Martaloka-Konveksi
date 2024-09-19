@@ -45,4 +45,9 @@ class TransaksiCustomDesign extends Model
     {
         return $this->hasMany(CustomDesign::class);
     }
+
+    public function progress()
+    {
+        return $this->hasMany(ProgressCustom::class,'custom_id');
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Admin\ProgressCustomController;
 use App\Http\Controllers\Frontend\BerandaController;
 use App\Http\Controllers\Admin\ProgressPembelianController;
 // use App\Http\Controllers\Admin\TransaksiController;
@@ -107,10 +108,21 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'index')->name('progress-pembelian.index');
             Route::get('/create/{transaksi}', 'create')->name('progress-pembelian.create');
             Route::post('/store/{transaksi}', 'store')->name('progress-pembelian.store');
-            Route::get('/show/{progress_pembelian}', 'show')->name('progress-pembelian.show');
-            Route::get('/edit/{progress_pembelian}', 'edit')->name('progress-pembelian.edit');
-            Route::post('/update/{progress_pembelian}', 'update')->name('progress-pembelian.update');
-            Route::get('/destroy/{progress_pembelian}', 'destroy')->name('progress-pembelian.destroy');
+            Route::get('/show/{transaksi}/{progress}', 'show')->name('progress-pembelian.show');
+            Route::get('/edit/{transaksi}/{progress}', 'edit')->name('progress-pembelian.edit');
+            Route::post('/update/{transaksi}/{progress}', 'update')->name('progress-pembelian.update');
+            Route::get('/destroy/{transaksi}/{progress}', 'destroy')->name('progress-pembelian.destroy');
+        });
+
+
+        Route::prefix('progress-custom')->controller(ProgressCustomController::class)->group(function () {
+            Route::get('/', 'index')->name('progress-custom.index');
+            Route::get('/create/{transaksi}', 'create')->name('progress-custom.create');
+            Route::post('/store/{transaksi}', 'store')->name('progress-custom.store');
+            Route::get('/show/{transaksi}/{progress}', 'show')->name('progress-custom.show');
+            Route::get('/edit/{transaksi}/{progress}', 'edit')->name('progress-custom.edit');
+            Route::post('/update/{transaksi}/{progress}', 'update')->name('progress-custom.update');
+            Route::get('/destroy/{transaksi}/{progress}', 'destroy')->name('progress-custom.destroy');
         });
 
         Route::resource('users', UserController::class);
