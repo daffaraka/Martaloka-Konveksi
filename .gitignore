@@ -7,7 +7,7 @@
 /public/bukti_pembayaran/*
 /public/progress_pembelian/*
 /public/progress_custom/*
-
+/public/custom_designs/*
 /storage/*.key
 /vendor
 .env

@@ -121,7 +121,7 @@
                                     <li class="blank-box"></li>
                                     <li class="{{ Request::is('informasi*') ? 'current' : '' }}"><a
                                             href="{{ route('home.kontak') }}">Kontak Kami</a>
-                                    </li>x
+                                    </li>
 
 
                                     <li class="{{ Request::is('register*') ? 'current' : '' }}"><a

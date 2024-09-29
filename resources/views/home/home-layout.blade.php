@@ -103,6 +103,7 @@
 
 
         <div>
+
             @yield('content')
         </div>
 

@@ -52,10 +52,6 @@
                                         <p class="card-text">Rp. {{ number_format($transaksiCustomDesign->total_harga) }}
                                         </p>
                                     </div>
-                                    <div class="mb-2">
-                                        <h5 class="card-title">Jumlah Pesanan</h5>
-                                        <p class="card-text">{{ $transaksiCustomDesign->total_pesanan }}</p>
-                                    </div>
 
                                     <div class="mb-2">
                                         <h5 class="card-title">Ukuran Cewek</h5>
@@ -65,14 +61,19 @@
                                             <span class="mx-1"> <b> M </b> :
                                                 {{ $transaksiCustomDesign->sizes->co_m }}</span>
                                             <span class="mx-1"> <b> L </b> :
-                                                {{ $transaksiCustomDesign->sizes->co_m }}</span>
+                                                {{ $transaksiCustomDesign->sizes->co_l }}</span>
                                             <span class="mx-1"> <b> XL </b> :
-                                                {{ $transaksiCustomDesign->sizes->co_m }}</span>
-                                            <span class="mx-1"> <b> XL </b> :
-                                                {{ $transaksiCustomDesign->sizes->co_m }}</span>
+                                                {{ $transaksiCustomDesign->sizes->co_xl }}</span>
                                             <span class="mx-1"> <b> XXL </b> :
-                                                {{ $transaksiCustomDesign->sizes->co_m }}</span>
-
+                                                {{ $transaksiCustomDesign->sizes->co_xxl }}</span>
+                                            <span class="mx-1"> <b> L1 </b> :
+                                                {{ $transaksiCustomDesign->sizes->co_l1 }}</span>
+                                            <span class="mx-1"> <b> L2 </b> :
+                                                {{ $transaksiCustomDesign->sizes->co_l2 }}</span>
+                                            <span class="mx-1"> <b> L3 </b> :
+                                                {{ $transaksiCustomDesign->sizes->co_l3 }}</span>
+                                            <span class="mx-1"> <b> L4 </b> :
+                                                {{ $transaksiCustomDesign->sizes->co_l4 }}</span>
                                     </div>
 
                                     <div class="mb-2">
@@ -83,14 +84,19 @@
                                             <span class="mx-1"> <b> M </b> :
                                                 {{ $transaksiCustomDesign->sizes->ce_m }}</span>
                                             <span class="mx-1"> <b> L </b> :
-                                                {{ $transaksiCustomDesign->sizes->ce_m }}</span>
+                                                {{ $transaksiCustomDesign->sizes->ce_l }}</span>
                                             <span class="mx-1"> <b> XL </b> :
-                                                {{ $transaksiCustomDesign->sizes->ce_m }}</span>
-                                            <span class="mx-1"> <b> XL </b> :
-                                                {{ $transaksiCustomDesign->sizes->ce_m }}</span>
+                                                {{ $transaksiCustomDesign->sizes->ce_xl }}</span>
                                             <span class="mx-1"> <b> XXL </b> :
-                                                {{ $transaksiCustomDesign->sizes->ce_m }}</span>
-
+                                                {{ $transaksiCustomDesign->sizes->ce_xxl }}</span>
+                                            <span class="mx-1"> <b> L1 </b> :
+                                                {{ $transaksiCustomDesign->sizes->ce_l1 }}</span>
+                                            <span class="mx-1"> <b> L2 </b> :
+                                                {{ $transaksiCustomDesign->sizes->ce_l2 }}</span>
+                                            <span class="mx-1"> <b> L3 </b> :
+                                                {{ $transaksiCustomDesign->sizes->ce_l3 }}</span>
+                                            <span class="mx-1"> <b> L4 </b> :
+                                                {{ $transaksiCustomDesign->sizes->ce_l4 }}</span>
                                     </div>
 
 
@@ -113,6 +119,7 @@
 
                             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 px-2">
                                 <div class="card">
+                                    @if ($transaksiCustomDesign->bukti_pembayaran == null)
                                     <div class="row">
                                         <div class="col-12  py-3">
                                             <h3 class="px-3">Pilih Metode pembayaran</h3>
@@ -162,6 +169,8 @@
                                         </div>
 
                                     </div>
+                                    @endif
+
                                 </div>
                             </div>
 
@@ -195,12 +204,12 @@
                                                     {{ \Carbon\Carbon::parse($progress->created_at)->isoFormat('dddd, D MMMM Y H:mm:ss') }}
                                                     <br>
                                                     <a href="" class="btn btn-primary btn-sm ">Detail</a>
-                                                        <hr>
+                                                    <hr>
                                                 </li>
                                             @endforeach
                                             {{-- <button class="btn" type="button">
                                                 {{ $transaksiCustomDesign->status_pembayaran }}</button> --}}
-                                                 {{-- {{$transaksiCustomDesign->progress}} --}}
+                                            {{-- {{$transaksiCustomDesign->progress}} --}}
 
                                         </div>
                                     @endif

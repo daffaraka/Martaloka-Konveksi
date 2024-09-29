@@ -10,6 +10,12 @@ class CustomDesign extends Model
 {
     use HasFactory;
 
+    protected $fillable =
+    [
+        'gambar_custom_design',
+        'transaksi_custom_design_id'
+    ];
+
     public function transaksiCustom()
     {
         return $this->belongsTo(TransaksiCustomDesign::class);

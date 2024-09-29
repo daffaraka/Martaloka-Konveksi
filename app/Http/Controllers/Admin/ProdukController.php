@@ -22,10 +22,11 @@ class ProdukController extends Controller
 
     public function create()
     {
-        $kategori = Kategori::select('id','nama_kategori')->get();
+        $data['judul'] = 'Tambah Produk';
+        $data['kategori'] = Kategori::select('id','nama_kategori')->get();
 
         // dd(Auth::user());
-        return view('admin.produk.produk-create', compact('kategori'));
+        return view('admin.produk.produk-create', $data);
     }
 
 

@@ -6,17 +6,18 @@ use App\Models\Kategori;
 use App\Models\CustomDesign;
 use Illuminate\Http\Request;
 use App\Models\SizeCustomDesign;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\TransaksiCustomDesign;
-use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Events\TransactionCommitted;
 
 class TransaksiCustomDesignController extends Controller
 {
 
     public function daftarCustom()
     {
-        $data['custom'] = CustomDesign::where('user_id', Auth::user()->id)->get();
+        $data['customs'] = TransaksiCustomDesign::where('user_id', Auth::user()->id)->get();
 
         return view('home.custom-design.custom-index', $data);
     }
@@ -29,6 +30,32 @@ class TransaksiCustomDesignController extends Controller
     }
     public function storeDesign(Request $request)
     {
+        // dd(is_array($request->file('gambar_custom_design')));
+
+
+        // dd($request->all());
+
+        $validator = Validator::make($request->all(), [
+            'nama_pemesan' => 'required',
+            'alamat_pemesan' => 'required',
+            'email_pemesan' => 'required',
+            'nomor_hp_pemesan' => 'required',
+            // 'catatan' => 'required',
+            'gambar_custom_design*' => 'required|mimes:jpg,jpeg,png,svg|max:2048',
+        ],[
+            'nama_pemesan.required' => 'Nama pemesan harus diisi',
+            'alamat_pemesan.required' => 'Alamat pemesan harus diisi',
+            'email_pemesan.required' => 'Email pemesan harus diisi',
+            'nomor_hp_pemesan.required' => 'Nomor HP pemesan harus diisi',
+            'gambar_custom_design*.required' => 'Anda harus melampirkan gambar',
+            'gambar_custom_design*.mimes' => 'File yang diupload harus berupa gambar (jpg, jpeg, png, svg)',
+            'gambar_custom_design*.max' => 'Gambar tidak boleh lebih dari 2MB',
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
 
         $harga_kategori = Kategori::find($request->kategori_id)->harga_kategori;
@@ -38,7 +65,7 @@ class TransaksiCustomDesignController extends Controller
             'user_id' => Auth::id(), // atau gunakan $request->user_id jika ada
             'nama_pemesan' => $request->nama_pemesan,
             'alamat_pemesan' => $request->alamat_pemesan,
-            'email_pemesan' => $request->Email_pemesan,
+            'email_pemesan' => $request->email_pemesan,
             'nomor_hp_pemesan' => $request->nomor_hp_pemesan,
             'catatan' => $request->catatan,
             'total_pesanan' => $request->total_pesanan,
@@ -70,16 +97,20 @@ class TransaksiCustomDesignController extends Controller
             'ce_l4' => $request->co_l4,
         ]);
 
-        if ($request->hasFile('gambar_custom_design')) {
-            foreach ($request->file('gambar_custom_design') as $index => $file) {
+        if ($request->has('gambar_custom_design')) {
+            if ($request->has('gambar_custom_design')) {
+                foreach ($request->file('gambar_custom_design') as $index => $file) {
 
-                $fileSavedName = $request->nama_pemesan . $index . '-' . $file->getClientOriginalName(); // Ambil nama file dari request->file
-                $path = $file->store('public/custom_designs/' . $fileSavedName); // Simpan file dan dapatkan path
-                CustomDesign::create([
-                    'transaksi_custom_design_id' => $transaksi->id,
-                    'gambar_custom_design' => $path,
-                ]);
+                    $fileSavedName = $request->nama_pemesan . '-'.$index . '-' . $file->getClientOriginalName();
+
+                    $path = $file->move('custom_designs/'.$request->nama_pemesan.'-'.now()->format('Y-m-d H-i-s'),$fileSavedName);
+                    CustomDesign::create([
+                        'transaksi_custom_design_id' => $transaksi->id,
+                        'gambar_custom_design' => $path,
+                    ]);
+                }
             }
+
         }
 
         return to_route('home.formPembayaranTransaksiCustom', ['transaksiCustomDesign' => $transaksi]);
@@ -104,7 +135,7 @@ class TransaksiCustomDesignController extends Controller
         $file = $request->file('bukti_bayar');
         $fileName = $file->getClientOriginalName();
         $fileSaved = $transaksiCustomDesign->user->name . '-' . $request->metode_bayar . '-' . $fileName;
-        $file->store('public/custom/bukti-bayar/' . $fileSaved);
+        $file->move('custom_designs/bukti-bayar/', $fileSaved);
 
 
         $transaksiCustomDesign->update([
@@ -116,4 +147,7 @@ class TransaksiCustomDesignController extends Controller
 
         return redirect()->back()->with('success', 'Transaksi Telah Diterima');
     }
+
+
+
 }

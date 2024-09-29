@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 use App\Models\TransaksiProduk;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-
+use App\Models\CustomDesign;
+use App\Models\TransaksiCustomDesign;
 
 class BerandaController extends Controller
 {
@@ -128,8 +129,6 @@ class BerandaController extends Controller
     public function formLengkapiTransaksi( Transaksi $transaksi)
     {
 
-
-
         return view('home.pembelian-produk.formulir-pembelian-produk',compact('transaksi'));
 
 
@@ -158,4 +157,7 @@ class BerandaController extends Controller
 
         return to_route('home.transaksi');
     }
+
+
+
 }

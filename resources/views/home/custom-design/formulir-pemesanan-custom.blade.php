@@ -5,8 +5,9 @@
 
     <section class="top-categories-area" style="padding: 30vh 0;">
         <div class="container">
+            @include('home.flash')
             <h2 class="text-center">Pemesanan Custom Desain</h2>
-            <form action="{{ route('home.storeDesign') }}" method="POST" class="d-block">
+            <form action="{{ route('home.storeDesign') }}" method="POST" class="d-block" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row mt-5">
@@ -24,7 +25,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <h6 class="mb-2" for=" ">Email</h6>
-                            <input id=" " class="form-control" type="email" name="Email_pemesan" required>
+                            <input id=" " class="form-control" type="email" name="email_pemesan" required>
                             <label>Gunakan '@' , contoh : martaloka@gmail.com</label>
 
                         </div>
@@ -254,6 +255,8 @@
 
                     </div>
 
+
+                    {{-- Gambar --}}
                     <div class="col-12 px-5 my-3">
                         <h3 class="mb-2">Gambar</h3>
                         <input type="file" name="gambar_custom_design[]" accept="image/*" class="image-input" />
@@ -267,6 +270,9 @@
                         <div id="newRowImage"></div>
                         <button id="addRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Tambah
                             Gambar</button>
+
+                        <button id="removeRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Kurangi
+                        </button>
                     </div>
 
                 </div>
@@ -282,6 +288,7 @@
 
     <script type="text/javascript">
         // Function to preview image
+        // Fungsi untuk preview gambar
         function previewImage(input, previewElement) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -296,32 +303,74 @@
             }
         }
 
-        // Apply preview functionality to all existing image inputs
+        // Terapkan preview ke semua input gambar yang sudah ada
         document.querySelectorAll('.image-input').forEach(function(input) {
             input.addEventListener('change', function() {
-                var preview = input.nextElementSibling;
+                var preview = input.parentNode.querySelector(
+                    'img'); // Mengambil img yang ada di dalam parent
                 previewImage(input, preview);
             });
         });
 
-        // Add new row and apply preview functionality
+
+        // Fungsi untuk menambahkan row baru
         document.getElementById('addRow').addEventListener('click', function() {
             var newInputRow = document.createElement('div');
+            newInputRow.classList.add('input-row'); // Tambahkan class untuk identifikasi row
             newInputRow.innerHTML = `
-                <div id="inputFormRow" class="mt-3">
-                    <input type="file" name="gambar_custom_design[]" accept="image/*" class="image-input" />
-                    <img src="#" alt="Preview Image" style="display:none; max-width: 200px; margin-top: 10px;" />
-                </div>
-            `;
-
+        <div id="inputFormRow" class="mt-3">
+            <input type="file" name="gambar_custom_design[]" accept="image/*" class="image-input" />
+            <img src="#" alt="Preview Image" style="display:none; max-width: 200px; margin-top: 10px;" />
+        </div>
+    `;
             document.getElementById('newRowImage').appendChild(newInputRow);
 
-            // Apply preview functionality to the new input
+            // Terapkan preview ke input baru
             var newInput = newInputRow.querySelector('.image-input');
-            var newPreview = newInput.nextElementSibling;
+            var newPreview = newInputRow.querySelector('img');
             newInput.addEventListener('change', function() {
                 previewImage(newInput, newPreview);
             });
+        });
+
+        // Fungsi untuk menghapus row terakhir
+        document.getElementById('removeRow').addEventListener('click', function() {
+            var newRowImage = document.getElementById('newRowImage');
+            var inputRows = newRowImage.getElementsByClassName('input-row');
+
+            // Periksa apakah ada row yang bisa dihapus
+            if (inputRows.length > 0) {
+                newRowImage.removeChild(inputRows[inputRows.length - 1]); // Hapus row terakhir
+            }
+        });
+
+
+        // Fungsi untuk menghitung total pesanan
+        function calculateTotal() {
+            let total = 0;
+
+            // Ambil semua input ukuran cowok
+            document.querySelectorAll('.co input[type="number"]').forEach(function(input) {
+                total += parseInt(input.value) || 0;
+            });
+
+            // Ambil semua input ukuran cewek
+            document.querySelectorAll('.ce input[type="number"]').forEach(function(input) {
+                total += parseInt(input.value) || 0;
+            });
+
+            // Set total pesanan ke input total-pesanan
+            document.getElementById('total-pesanan').value = total;
+        }
+
+        // Tambahkan event listener pada semua input ukuran cowok
+        document.querySelectorAll('.co input[type="number"]').forEach(function(input) {
+            input.addEventListener('input', calculateTotal);
+        });
+
+        // Tambahkan event listener pada semua input ukuran cewek
+        document.querySelectorAll('.ce input[type="number"]').forEach(function(input) {
+            input.addEventListener('input', calculateTotal);
         });
     </script>
 @endsection
