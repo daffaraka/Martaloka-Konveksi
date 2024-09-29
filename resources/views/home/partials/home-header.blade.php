@@ -133,13 +133,13 @@
                                                 href="#">{{ Auth::user()->name }}</a>
                                             <ul>
 
-                                                <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
+                                                <li class="{{ Request::is('keranjang') ? 'current' : '' }}"><a
                                                         href="{{ route('home.keranjang') }}"> Keranjang </a> </li>
-                                                <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
-                                                        href="{{ route('home.keranjang') }}"> Transaksi </a> </li>
-                                                <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
-                                                        href="{{ route('home.keranjang') }}"> Custom Design </a> </li>
-                                                <li class="{{ Request::is('profil/galeri') ? 'current' : '' }}"><a
+                                                <li class="{{ Request::is('daftar-transaksi-pembelian') ? 'current' : '' }}"><a
+                                                        href="{{ route('home.daftarTransaksiPembelian') }}"> Transaksi </a> </li>
+                                                <li class="{{ Request::is('daftar-custom') ? 'current' : '' }}"><a
+                                                        href="{{ route('home.daftarCustom') }}"> Custom Design </a> </li>
+                                                <li class=""><a
                                                         href="{{ route('logout') }}"
                                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                         Logout</a>

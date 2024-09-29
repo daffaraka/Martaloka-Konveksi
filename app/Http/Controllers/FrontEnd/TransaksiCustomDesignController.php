@@ -7,6 +7,7 @@ use App\Models\CustomDesign;
 use Illuminate\Http\Request;
 use App\Models\SizeCustomDesign;
 use App\Http\Controllers\Controller;
+use App\Models\ProgressCustom;
 use Illuminate\Support\Facades\Auth;
 use App\Models\TransaksiCustomDesign;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,7 @@ class TransaksiCustomDesignController extends Controller
 
     public function daftarCustom()
     {
-        $data['customs'] = TransaksiCustomDesign::where('user_id', Auth::user()->id)->get();
+        $data['customs'] = TransaksiCustomDesign::with(['progress','designs'])->where('user_id', Auth::user()->id)->get();
 
         return view('home.custom-design.custom-index', $data);
     }
@@ -61,6 +62,7 @@ class TransaksiCustomDesignController extends Controller
         $harga_kategori = Kategori::find($request->kategori_id)->harga_kategori;
 
         $transaksi = TransaksiCustomDesign::create([
+            'nama_custom' => $request->nama_custom,
             'kategori_id' => $request->kategori_id,
             'user_id' => Auth::id(), // atau gunakan $request->user_id jika ada
             'nama_pemesan' => $request->nama_pemesan,
@@ -149,5 +151,18 @@ class TransaksiCustomDesignController extends Controller
     }
 
 
+    public function detailProgressCustom(ProgressCustom $progress)
+    {
 
+        return view('home.custom-design.detail-progres', compact('progress'));
+    }
+
+
+
+    public function getProgress($progress)
+    {
+        $data = ProgressCustom::find($progress);
+
+        return response()->json($data);
+    }
 }

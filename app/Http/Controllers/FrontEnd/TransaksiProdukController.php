@@ -152,4 +152,18 @@ class TransaksiProdukController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function daftarTransaksiPembelian()
+    {
+        $data['judul'] = 'Daftar transaksi pembelian anda';
+
+        $data['transaksis'] = Transaksi::with(['detailTransaksi.produk', 'user'])->where('user_id', Auth::id())->get();
+        // dd($data['transaksis']);
+        return view('home.pembelian-produk.transaksi', $data);
+    }
+
+
+
+
 }

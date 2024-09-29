@@ -22,7 +22,7 @@ class CustomDesignSeeder extends Seeder
         $faker = Faker::create();
         $users = User::pluck('id')->toArray();
         $kategori = Kategori::pluck('id')->toArray();
-        $statuses = ['Pending', 'Diterima', 'Dibayar', 'Dibatalkan','Selesai'];
+        $statuses = ['Pending', 'Diterima', 'Dibayar', 'Dibatalkan', 'Selesai'];
         $metode = ['BNI', 'BCA', 'Mandiri'];
 
         for ($i = 0; $i < 10; $i++) {
@@ -32,6 +32,7 @@ class CustomDesignSeeder extends Seeder
             $total_pesanan = rand(1, 10); // Jumlah pesanan acak
 
             $transaksi = TransaksiCustomDesign::create([
+                'nama_custom' => 'Custom Design' . ' - ' . $faker->name,
                 'kategori_id' => $kategori_id,
                 'user_id' => $user_id,
                 'nama_pemesan' => $faker->name,

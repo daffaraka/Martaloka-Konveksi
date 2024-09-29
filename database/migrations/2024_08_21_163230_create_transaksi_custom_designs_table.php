@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaksi_custom_designs', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_custom');
             $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('nama_pemesan');

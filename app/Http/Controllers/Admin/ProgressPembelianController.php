@@ -20,7 +20,7 @@ class ProgressPembelianController extends Controller
         }])->where('status_pembayaran', 'Diterima')->get();
 
         // dd($data['transaksi']->);
-        return view('admin.progress-pembelian.pembelian-index', $data);
+        return view('admin.progress-pembelian.progress-p-index', $data);
     }
 
     public function create(Transaksi $transaksi)
@@ -32,7 +32,7 @@ class ProgressPembelianController extends Controller
         }])->find($transaksi->id);
 
         // dd($data);
-        return view('admin.progress-pembelian.pembelian-create', $data);
+        return view('admin.progress-pembelian.progress-p-create', $data);
     }
 
 
@@ -65,7 +65,7 @@ class ProgressPembelianController extends Controller
         $data['progress'] = $progress;
 
         // dd($progress_pembelian);
-        return view('admin.progress-pembelian.pembelian-show', $data);
+        return view('admin.progress-pembelian.progress-p-show', $data);
     }
 
 
@@ -75,7 +75,7 @@ class ProgressPembelianController extends Controller
         $data['judul'] = 'Edit progress ' . $progress->nama_progress;
         $data['progress'] = $progress;
         $data['transaksi'] = $transaksi;
-        return view('admin.progress-pembelian.pembelian-edit', $data);
+        return view('admin.progress-pembelian.progress-p-edit', $data);
     }
 
 

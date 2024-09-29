@@ -11,6 +11,7 @@ class TransaksiCustomDesign extends Model
 
     protected $fillable =
     [
+        'nama_custom',
         'kategori_id',
         'user_id',
         'nama_pemesan',

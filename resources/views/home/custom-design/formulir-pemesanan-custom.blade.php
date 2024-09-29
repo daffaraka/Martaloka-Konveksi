@@ -53,7 +53,11 @@
                     </div>
 
                     <div class="col-6 px-5">
-
+                        <div class="form-group mb-4">
+                            <h6 class="mb-2" for=" ">Nama Custom</h6>
+                            <input id=" " class="form-control" type="text" name="nama_custom" required>
+                            <label>Beri nama identitas custom</label>
+                        </div>
 
                         <div class="co">
                             <h6 class="mb-2">Cowok</h6>

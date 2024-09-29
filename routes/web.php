@@ -51,10 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::get('keranjang', [TransaksiProdukController::class, 'keranjang'])->name('home.keranjang');
     Route::post('checkout', [TransaksiProdukController::class, 'checkout'])->name('home.checkout');
     Route::get('lengkapi-transaksi-pembelian/{transaksi}', [TransaksiProdukController::class, 'formLengkapiPembelian'])->name('home.formTransaksiPembelian');
-    Route::get('pembayaran-transaksi-pembelian/{transaksi}', [BerandaController::class, 'formLengkapiTransaksi'])->name('home.formLengkapiTransaksi');
+    Route::get('daftar-transaksi-pembelian', [TransaksiProdukController::class, 'daftarTransaksiPembelian'])->name('home.daftarTransaksiPembelian');
     Route::post('pembayaran-transaksi-pembelian/{transaksi}/store', [TransaksiProdukController::class, 'storeDataTransaksi'])->name('home.storeDataTransaksi');
     Route::get('form-upload-transaksi-pembelian/{transaksi}', [TransaksiProdukController::class, 'formUploadBuktiTransaksiPembelian'])->name('home.formUploadBuktiTransaksiPembelian');
     Route::post('upload-bukti-transaksi/{transaksi}/upload-bukti', [TransaksiProdukController::class, 'uploadBuktiTransaksi'])->name('home.uploadBuktiTransaksi');
+    // Route::post('detail-progress/{progress}',[TransaksiProdukController::class,'getProgress'])->name('home.getProgress');
 
 
     // Custom Design
@@ -63,7 +64,11 @@ Route::middleware('auth')->group(function () {
     Route::post('kirim-design', [TransaksiCustomDesignController::class, 'storeDesign'])->name('home.storeDesign');
     Route::get('pembayaran-custom-design/{transaksiCustomDesign}', [TransaksiCustomDesignController::class, 'formPembayaranTransaksiCustom'])->name('home.formPembayaranTransaksiCustom');
     Route::post('pembayaran-custom-design/{transaksiCustomDesign}/upload-bukti', [TransaksiCustomDesignController::class, 'uploadBuktiCustomDesign'])->name('home.uploadBuktiCustomDesign');
+    Route::post('custom-design/progress/{progress}',[TransaksiCustomDesignController::class,'getProgress'])->name('home.detailProgressCustom');
     // Route::get('custom-design', [TransaksiCustomDesignController::class, 'createDesign'])->name('home.createDesign');
+
+
+
 
     // Dashboard Admin
     Route::prefix('dashboard')->group(function () {
@@ -127,6 +132,8 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('users', UserController::class);
     });
+
+
 });
 
 
