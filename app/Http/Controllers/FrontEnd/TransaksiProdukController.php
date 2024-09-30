@@ -29,8 +29,9 @@ class TransaksiProdukController extends Controller
     }
 
 
-    public function addToCart(Produk $Produk)
+    public function addToCart(Produk $Produk, Request $request)
     {
+        // dd($request->all());
         $keranjang = new Keranjang();
         $qty = 1;
         $user_id = Auth::user()->id;
@@ -43,6 +44,7 @@ class TransaksiProdukController extends Controller
             $keranjang->user_id = $user_id;
             $keranjang->qty = $qty;
             $keranjang->status = 'Di Keranjang';
+            $keranjang->size = $request->size;
             $keranjang->save();
         }
 
@@ -91,7 +93,7 @@ class TransaksiProdukController extends Controller
         }
 
 
-        return to_route('home.formLengkapiTransaksi', ['transaksi' => $transaksi]);
+        return to_route('home.formTransaksiPembelian', ['transaksi' => $transaksi]);
     }
 
 

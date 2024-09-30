@@ -47,11 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Transaksi pembelian
-    Route::get('add-to-cart/{produk}', [TransaksiProdukController::class, 'addToCart'])->name('home.addToCart');
+    Route::post('add-to-cart/{produk}', [TransaksiProdukController::class, 'addToCart'])->name('home.addToCart');
     Route::get('keranjang', [TransaksiProdukController::class, 'keranjang'])->name('home.keranjang');
     Route::post('checkout', [TransaksiProdukController::class, 'checkout'])->name('home.checkout');
-    Route::get('lengkapi-transaksi-pembelian/{transaksi}', [TransaksiProdukController::class, 'formLengkapiPembelian'])->name('home.formTransaksiPembelian');
     Route::get('daftar-transaksi-pembelian', [TransaksiProdukController::class, 'daftarTransaksiPembelian'])->name('home.daftarTransaksiPembelian');
+    Route::get('lengkapi-transaksi-pembelian/{transaksi}', [TransaksiProdukController::class, 'formLengkapiPembelian'])->name('home.formTransaksiPembelian');
     Route::post('pembayaran-transaksi-pembelian/{transaksi}/store', [TransaksiProdukController::class, 'storeDataTransaksi'])->name('home.storeDataTransaksi');
     Route::get('form-upload-transaksi-pembelian/{transaksi}', [TransaksiProdukController::class, 'formUploadBuktiTransaksiPembelian'])->name('home.formUploadBuktiTransaksiPembelian');
     Route::post('upload-bukti-transaksi/{transaksi}/upload-bukti', [TransaksiProdukController::class, 'uploadBuktiTransaksi'])->name('home.uploadBuktiTransaksi');
