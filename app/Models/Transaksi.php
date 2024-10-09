@@ -41,4 +41,9 @@ class Transaksi extends Model
     {
         return $this->hasMany(ProgressPembelian::class);
     }
+
+    public function cart()
+    {
+
+    }
 }

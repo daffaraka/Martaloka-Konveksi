@@ -21,8 +21,8 @@
 
                                             <div class="d-flex align-items-start border-bottom pb-3">
                                                 <div class="mr-5">
-                                                    <img src="https://www.bootdey.com/image/100x100/008B8B/000000"
-                                                        alt="" class="avatar-lg rounded">
+                                                    <img src="{{ asset('produk/' . $item->produk->gambar_produk) }}"
+                                                        alt="" class="rounded" style="max-width: 100px;">
                                                 </div>
                                                 <div class="flex-grow-1 align-self-center overflow-hidden">
                                                     <div>
@@ -31,7 +31,7 @@
                                                             <a href="#" class="text-dark">
                                                         </h5>
 
-                                                        <p class="mb-0 mt-1">Color : <span class="fw-medium">Gray</span></p>
+                                                        <p class="mb-0 mt-1">Size : <span class="fw-medium">{{$item->size}}</span></p>
                                                     </div>
                                                 </div>
                                                 <div class="flex-shrink-0 ms-2">
@@ -90,19 +90,19 @@
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 px-5 my-5 my-xxl-0 my-xl-0 my-lg-0">
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Nama</h6>
-                            <input id="my-input" class="form-control" type="text" name="nama_pemesan" required>
+                            <input id="my-input" class="form-control" type="text" name="nama_pemesan" required value="{{ Auth::user()->name }}">
                         </div>
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Alamat</h6>
-                            <input id="my-input" class="form-control" type="text" name="alamat_pemesan" required>
+                            <input id="my-input" class="form-control" type="text" name="alamat_pemesan" required value="{{ Auth::user()->alamat }}">
                         </div>
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Email</h6>
-                            <input id="my-input" class="form-control" type="email" name="Email_pemesan" required>
+                            <input id="my-input" class="form-control" type="email" name="Email_pemesan" required value="{{ Auth::user()->email }}">
                         </div>
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Nomor Telepon</h6>
-                            <input id="my-input" class="form-control" type="number" name="nomor_hp_pemesan" required>
+                            <input id="my-input" class="form-control" type="number" name="nomor_hp_pemesan" required value="{{ Auth::user()->nomor_hp }}">
                         </div>
 
 

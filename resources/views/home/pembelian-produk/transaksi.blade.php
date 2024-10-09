@@ -29,7 +29,7 @@
                                                 <h5 class="text-truncate font-size-18">NO-{{ $transaksi->id }}
                                                 </h5>
 
-                                                <p class="mb-0 mt-1">Color : <span class="fw-medium">Gray</span></p>
+                                                <p class="mb-0 mt-1">Size : <span class="fw-medium">{{$transaksi->size}}</span></p>
                                             </div>
                                         </div>
                                         <div class="flex-shrink-0 ms-2">

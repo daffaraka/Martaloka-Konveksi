@@ -17,41 +17,27 @@ class ProdukSeeder extends Seeder
 
         $kategori = Kategori::pluck('id')->toArray();
 
+        $gambarProduk = array_diff(scandir(public_path('sample-produk')), ['..', '.']);
         // Array produk yang akan diinsert
-        $produks = [
-            [
-                'nama_produk' => 'Baju Biru',
-                'deskripsi' => 'Baju yang dibuat dengan warna biru.',
-                'harga_produk' => 1500000,
-                'stok' => 10,
-                'gambar_produk' => 'baju_biru.jpg',
-            ],
-            [
-                'nama_produk' => 'Kaos ini itu',
-                'deskripsi' => 'Baju yang dibuat dengan warna mencolok.',
-                'harga_produk' => 1500000,
-                'stok' => 10,
-                'gambar_produk' => 'baju_Merah.jpg',
-            ],
-            [
-                'nama_produk' => 'Kaos Polos',
-                'deskripsi' => 'Baju yang dibuat dengan warna merah.',
-                'harga_produk' => 1500000,
-                'stok' => 10,
-                'gambar_produk' => 'baju_Merah.jpg',
-            ],
-        ];
-
-        $inserts = [];
+        $produks = [];
 
         // Pastikan setiap kategori memiliki minimal 1 produk
-        foreach ($kategori as $kategori_id) {
-            $produk = $produks[array_rand($produks)]; // Pilih produk secara acak
-            $produk['kategori_id'] = $kategori_id;
-            $produk['created_at'] = now();
-            $produk['updated_at'] = now();
-            $inserts[] = $produk;
+        foreach (range(1, 10) as $i) {
+            $produk = [
+                'nama_produk' => 'Produk ' . $i,
+                'deskripsi' => 'Deskripsi produk ' . $i,
+                'harga_produk' => rand(100, 999) * 1000,
+                'stok' => rand(1, 10),
+                'gambar_produk' => $gambarProduk[array_rand($gambarProduk)],
+                'kategori_id' => $kategori[array_rand($kategori)],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+
+            $produks[] = $produk;
         }
+
+        $inserts = $produks;
 
         // Insert produk yang sudah dikumpulkan ke dalam database
         DB::table('produks')->insert($inserts);

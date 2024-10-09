@@ -40,15 +40,22 @@
                                 <div class="card-body">
                                     <div class="mb-2">
                                         <h5 class="card-title">Jumlah Pesanan</h5>
-                                        <span class="btn btn-secondary rounded-0">{{ $transaksi->detailTransaksi->sum('qty') }}</span>
+                                        <span
+                                            class="btn btn-secondary rounded-0">{{ $transaksi->detailTransaksi->sum('qty') }}</span>
                                     </div>
                                     <div class="mb-2">
                                         <h5 class="card-title">Produk</h5>
-                                        @foreach ($transaksi->detailTransaksi as $produk)
-                                            <div class="row row-cols-4">
-                                                <img src="{{ asset('storage/' . $produk->produk->gambar_produk) }}" class="img-fluid" alt="{{ $produk->produk->nama_produk }}">
-                                            </div>
-                                        @endforeach
+                                        <div class="row row-cols-2">
+
+                                            @foreach ($transaksi->detailTransaksi as $produk)
+                                                <div class="col">
+                                                    <img src="{{ asset('produk/' . $produk->produk->gambar_produk) }}"
+                                                        style="max-height: 100px;" alt="{{ $produk->produk->nama_produk }}">
+
+                                                </div>
+                                            @endforeach
+                                        </div>
+
                                     </div>
                                     <div class="mb-2">
                                         <h5 class="card-title">Total Harga</h5>
@@ -140,8 +147,8 @@
                                         <h2 class="text-center">Unggah Bukti Pembayaran</h2>
 
                                         <div class="py-3">
-                                            <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control"
-                                                accept="image/*">
+                                            <input type="file" name="bukti_pembayaran" id="bukti_pembayaran"
+                                                class="form-control" accept="image/*">
                                             <img src="#" alt="Preview Uploaded Image" class="mt-5 d-none"
                                                 id="preview-bukti">
 
