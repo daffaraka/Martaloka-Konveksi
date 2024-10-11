@@ -1,17 +1,23 @@
 <aside class="main-sidebar sidebar-dark-red elevation-4" style="background-color: #1e1d1e">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-        <!-- <img src="home/assets/img/logo-menak.png" alt="" class="brand-image " style="opacity: .8"> -->
-        <span class="brand-text font-weight-light ml-2">Martaloka Konveksi</span>
+        <img src="{{ asset('auth-views/assets/media/logos/icon-logo.png') }}" alt="" class="brand-image"
+            style="width: 52px; height: auto;" style="opacity: .8">
+        <span class="brand-text font-weight-light ml-0">Martaloka Konveksi</span>
     </a>
+
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-
-            <div class="info">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+            <div class="image">
+                <img src="{{ asset('auth-views/assets/media/logos/user.jpg') }}" class="img-circle elevation-2"
+                    alt="User Image">
+            </div>
+            <div class="info pl-3">
                 <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                <span class="d-block" style="color: white;">Super Admin</span>
             </div>
         </div>
 
@@ -34,9 +40,10 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+                <li class="nav-header">INTRO</li>
                 <li class="nav-item ">
-                    <a href="#" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
-                        <!-- <i class="nav-icon fas fa-tachometer-alt"></i>  -->
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                             <i class="right "></i>
@@ -81,27 +88,32 @@
 
           </li> --}}
                 <li class="nav-item">
-                    <a href="{{ route('produk.index') }}" class="nav-link {{ Request::is('produk*') ? 'active' : '' }}">
+                    <a href="{{ route('beranda') }}"
+                        class="nav-link {{ request()->routeIs('beranda') ? 'menu-open active' : '' }}">
+                        <i class="nav-icon fas fa-globe"></i>
+                        <p>
+                            See Website
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header" style="margin-top: -20px;">MANAGE PRODUK</li>
+                <li class="nav-item">
+                    <a href="{{ route('produk.index') }}"
+                        class="nav-link {{ request()->routeIs('produk.index') ? 'menu-open active' : '' }}">
                         <i class="nav-icon fas fa-shopping-bag"></i>
                         <p>Produk</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('kategori.index') }}"
-                        class="nav-link {{ Request::is('kategori*') ? 'active' : '' }}">
+                    <a class="nav-link {{ request()->routeIs('kategori.index') ? 'menu-open active' : '' }}"
+                        href="{{ route('kategori.index') }}">
                         <i class="nav-icon fas fa-bars"></i>
                         <p>Kategori</p>
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>User Manajemen</p>
-                    </a>
-                </li>
-
+                <li class="nav-header" style="margin-top: -20px;">MANAGE TRANSAKSI</li>
                 <li class="nav-item">
                     <a href="{{ route('transaksi.index') }}"
                         class="nav-link {{ Request::is('transaksi') ? 'active' : '' }}">
@@ -110,8 +122,9 @@
                     </a>
                 </li>
 
+
                 <li class="nav-item">
-                    <a href="{{ route('transaksiCustom.index') }}"
+                    <a href="{{ route('transaksi.index') }}"
                         class="nav-link {{ Request::is('transaksi/custom-design') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-paint-brush"></i>
                         <p>Transaksi Custom Design</p>
@@ -143,14 +156,20 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('progress-custom.index') }}"
+                    <a href="{{ route('progress-pembelian.index') }}"
                         class="nav-link {{ Request::is('transaksi/progress-custom') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-project-diagram"></i>
                         <p>Progress Custom Design</p>
                     </a>
                 </li>
 
-
+                <li class="nav-header" style="margin-top: -20px;">MANAGE USER</li>
+                <li class="nav-item">
+                    <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>User Manajemen</p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
@@ -166,9 +185,6 @@
                         @csrf
                     </form>
                 </li>
-
-
-
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
