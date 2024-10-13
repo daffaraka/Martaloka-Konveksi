@@ -4,7 +4,6 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-
     </ul>
 
     <!-- Right navbar links -->
@@ -12,7 +11,7 @@
         <!-- Navbar Search -->
         <li class="nav-item">
 
-            <div class="navbar-search-block">
+            {{-- <div class="navbar-search-block">
                 <form class="form-inline">
                     <div class="input-group input-group-sm">
                         <input class="form-control form-control-navbar" type="search" placeholder="Search"
@@ -27,73 +26,11 @@
                         </div>
                     </div>
                 </form>
-            </div>
-        </li>
-
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-comments"></i>
-                <span class="badge badge-danger navbar-badge">3</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="home/assets/img/avaters/avatar1.png" alt="User Avatar"
-                            class="img-size-50 mr-3 img-circle">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Wayan Kenmal
-                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">Produknya pass!</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Jam yang Lalu</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="home/assets/img/avaters/avatar3.png" alt="User Avatar"
-                            class="img-size-50 img-circle mr-3">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Ahmad Tey
-                                <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">Tambah diskon lagii..</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Jam yang Lalu</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="home/assets/img/avaters/avatar2.png" alt="User Avatar"
-                            class="img-size-50 img-circle mr-3">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Gde Geo
-                                <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">Furniture di sini bagus</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 5 Jam yang Lalu</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">Lihat Semua Pesan</a>
-            </div>
+            </div> --}}
         </li>
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
+            <a class="nav-link mt-1 pb-0 mb-3 d-flex align-items-center" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
                 <span class="badge badge-warning navbar-badge">15</span>
             </a>
@@ -118,16 +55,35 @@
                 <a href="#" class="dropdown-item dropdown-footer">Lihat Semua Notifikasi</a>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                <i class="fas fa-expand-arrows-alt"></i>
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-user="{{ Auth::user()->name }}" href="#" role="button"
+                data-toggle="dropdown">
+                <div class="user-panel mt-0 pb-0 mb-2 d-flex align-items-center">
+                    <div class="info pr-3">
+                        <span class="d-block" style="color: black;"> 👋Hallo Selamat Datang,
+                            {{ Auth::user()->name }}</span>
+                    </div>
+                    <div class="image">
+                        <img src="{{ asset('auth-views/assets/media/logos/user.jpg') }}" class="img-circle elevation-2"
+                            alt="User Image">
+                    </div>
+                </div>
             </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a href="#" class="dropdown-item">
+                    <i class="fas fa-user mr-2"></i> Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#"
-                role="button">
-                <i class="fas fa-th-large"></i>
-            </a>
-        </li>
+
+
     </ul>
 </nav>
