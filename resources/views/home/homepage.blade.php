@@ -8,7 +8,7 @@
 
                     <!-- Slide -->
                     <div class="slide">
-                        <div class="image-layer" style="background-image:url({{ asset('assets/images/slider/1.jpg') }})">
+                        <div class="image-layer" style="background-image:url({{ asset('assets/images/slider/jahit.webp') }})">
                         </div>
                         <div class="auto-container">
                             <div class="content">
@@ -31,7 +31,7 @@
 
                     <!-- Slide -->
                     <div class="slide">
-                        <div class="image-layer" style="background-image:url({{ asset('assets/images/slider/4.jpg') }})">
+                        <div class="image-layer" style="background-image:url({{ asset('assets/images/slider/deret.jfif') }})">
                         </div>
                         <div class="auto-container">
                             <div class="content middle text-center">
@@ -54,7 +54,7 @@
 
                     <!-- Slide -->
                     <div class="slide">
-                        <div class="image-layer" style="background-image:url({{ asset('assets/images/slider/5.jpg') }})">
+                        <div class="image-layer" style="background-image:url({{ asset('assets/images/slider/sablon.png') }})">
                         </div>
                         <div class="auto-container">
                             <div class="content">
@@ -152,7 +152,7 @@
 
                     <div class="col-xl-4 col-lg-6">
                         <div class="departments-img-box"
-                            style="background-image: url({{ asset('assets/images/slider/olahraga.jpg') }}); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                            style="background-image: url({{ asset('assets/images/slider/polo.jpg') }}); background-size: cover; background-repeat: no-repeat; background-position: center;">
                         </div>
                     </div>
 
@@ -236,165 +236,7 @@
             </div>
         </section>
 
-
-
-
-        {{-- <section class="top-categories-area">
-            <div class="container">
-                <div class="sec-title-style3 text-center">
-                    <div class="sub-title">
-                    </div>
-                    <h2 style="margin-top: -55px;">Produk Kami</h2>
-                </div>
-            </div>
-            <div class="container top-categories-area__content">
-                <ul class="row">
-                    <!--Start Top Categories Single-->
-                    <li class="col-xl-4 col-lg-4 top-categories-single">
-                        <div class="top-categories-single__box">
-                            <div class="img-box">
-                                <div class="">
-                                    <img src="{{ asset('assets/images/slider/kaos.jpg') }}" alt="">
-                                </div>
-                                <div class="overlay-content">
-                                    <p>76 Courses</p>
-                                    <h3><a href="#">Baju Kaos</a></h3>
-                                    <div class="btns-box">
-                                        <a class="btn-one btn-one--style4" href="#">
-                                            <span class="txt">
-                                                <i class="icon-right-arrow-1"></i>
-                                                Pesan
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="col-xl-4 col-lg-4 top-categories-single">
-                        <div class="top-categories-single__box">
-                            <div class="img-box">
-                                <div class="">
-                                    <img src="{{ asset('assets/images/slider/polo.jpg') }}" alt="">
-                                </div>
-                                <div class="overlay-content">
-                                    <p>45 Courses</p>
-                                    <h3><a href="#">Baju Polo</a></h3>
-                                    <div class="btns-box">
-                                        <a class="btn-one btn-one--style4" href="#">
-                                            <span class="txt">
-                                                <i class="icon-right-arrow-1"></i>
-                                                Pesan
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <!--End Top Categories Single-->
-                    <!--Start Top Categories Single-->
-                    <li class="col-xl-4 col-lg-4 top-categories-single">
-                        <div class="top-categories-single__box">
-                            <div class="img-box">
-                                <div class="">
-                                    <img src="{{ asset('assets/images/slider/kemeja.jpg') }}" alt="">
-                                </div>
-                                <div class="overlay-content">
-                                    <p>26 Courses</p>
-                                    <h3><a href="#">Kemeja</a></h3>
-                                    <div class="btns-box">
-                                        <a class="btn-one btn-one--style4" href="#">
-                                            <span class="txt">
-                                                <i class="icon-right-arrow-1"></i>
-                                                Pesan
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <!--End Top Categories Single-->
-                </ul>
-
-                <ul class="row border-top-box">
-                    <!--Start Top Categories Single-->
-                    <li class="col-xl-4 col-lg-4 top-categories-single">
-                        <div class="top-categories-single__box">
-                            <div class="img-box">
-                                <div class="">
-                                    <img src="{{ asset('assets/images/slider/jaket.jpg') }}" alt="">
-                                </div>
-                                <div class="overlay-content">
-                                    <p>08 Courses</p>
-                                    <h3><a href="#">Jaket</a></h3>
-                                    <div class="btns-box">
-                                        <a class="btn-one btn-one--style4" href="#">
-                                            <span class="txt">
-                                                <i class="icon-right-arrow-1"></i>
-                                                Pesan
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <!--End Top Categories Single-->
-                    <!--Start Top Categories Single-->
-                    <li class="col-xl-4 col-lg-4 top-categories-single">
-                        <div class="top-categories-single__box">
-                            <div class="img-box">
-                                <div class="">
-                                    <img src="{{ asset('assets/images/slider/kerja.jpg') }}" alt="">
-                                </div>
-                                <div class="overlay-content">
-                                    <p>19 Courses</p>
-                                    <h3><a href="#">Baju Kerja</a></h3>
-                                    <div class="btns-box">
-                                        <a class="btn-one btn-one--style4" href="#">
-                                            <span class="txt">
-                                                <i class="icon-right-arrow-1"></i>
-                                                Pesan
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <!--End Top Categories Single-->
-                    <!--Start Top Categories Single-->
-                    <li class="col-xl-4 col-lg-4 top-categories-single">
-                        <div class="top-categories-single__box">
-                            <div class="img-box">
-                                <div class="">
-                                    <img src="{{ asset('assets/images/slider/olahraga.jpg') }}" alt="">
-                                </div>
-                                <div class="overlay-content">
-                                    <p>12 Courses</p>
-                                    <h3><a href="#">olahraga</a></h3>
-                                    <div class="btns-box">
-                                        <a class="btn-one btn-one--style4" href="#">
-                                            <span class="txt">
-                                                <i class="icon-right-arrow-1"></i>
-                                                Pesan
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <!--End Top Categories Single-->
-                </ul>
-            </div>
-        </section> --}}
-
-
-        <section class="academy-working-process-area">
+        {{-- <section class="academy-working-process-area">
             <div class="container">
                 <div class="sec-title-style3 text-center">
                     <div class="sub-title">
@@ -468,7 +310,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         <section class="academy-slogan-area">
             <div class="academy-slogan-middle-content">
@@ -495,10 +337,20 @@
                                     <h2><span>Kreasikan Kaos Anda<br>di sini</span><br></h2>
                                 </div>
                                 <div class="btns-box">
-                                    <a class="btn-one btn-one--style4" href="https://www.kittl.com/templates/t-shirts">
+                                    <!-- Tombol pertama -->
+                                    <a class="btn-one btn-one--style4" href="https://app.kittl.com/">
                                         <span class="txt">
                                             <i class="icon-right-arrow-1"></i>
                                             Disain
+                                        </span>
+                                    </a>
+                                </div>
+                                
+                                <div class="btns-box">
+                                    <a class="btn-one btn-one--style4 btn-wide" href="https://laporanta.tiiny.site/">
+                                        <span class="txt">
+                                            <i class="icon-right-arrow-1"></i>
+                                            Panduan Disain
                                         </span>
                                     </a>
                                 </div>
@@ -522,6 +374,15 @@
                                         <span class="txt">
                                             <i class="icon-right-arrow-1"></i>
                                             Pesan
+                                        </span>
+                                    </a>
+                                </div>
+                                
+                                <div class="btns-box">
+                                    <a class="btn-one btn-one--style4 btn-wide" href="https://example.com">
+                                        <span class="txt">
+                                            <i class="icon-right-arrow-1"></i>
+                                            Panduan Pemesanan
                                         </span>
                                     </a>
                                 </div>
