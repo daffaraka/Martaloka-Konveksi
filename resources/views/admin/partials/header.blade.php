@@ -29,7 +29,7 @@
             </div> --}}
         </li>
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
             <a class="nav-link mt-1 pb-0 mb-3 d-flex align-items-center" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
                 <span class="badge badge-warning navbar-badge">15</span>
@@ -54,7 +54,7 @@
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item dropdown-footer">Lihat Semua Notifikasi</a>
             </div>
-        </li>
+        </li> --}}
         <li class="nav-item dropdown">
             <a class="nav-link" data-user="{{ Auth::user()->name }}" href="#" role="button"
                 data-toggle="dropdown">
@@ -70,7 +70,7 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a href="#" class="dropdown-item">
+                <a href="{{ route('profile.edit') }}" class="dropdown-item">
                     <i class="fas fa-user mr-2"></i> Profile
                 </a>
                 <div class="dropdown-divider"></div>
