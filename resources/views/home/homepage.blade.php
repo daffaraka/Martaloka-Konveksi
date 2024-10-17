@@ -39,7 +39,7 @@
                                     <h2>Kualitas Tak Tertandingi Harga Terjangkau</h2>
                                 </div>
                                 <div class="text">
-                                    <p>Mewujudkan Inspirasi Mode Andadengan Sentuhan Konveksi Profesional</p>
+                                    <p>Mewujudkan Inspirasi Mode Anda Dengan Sentuhan Konveksi Profesional</p>
                                 </div>
                                 <div class="btns-box">
                                     <a class="btn-one" href="{{route('home.createDesign')}}">
@@ -165,10 +165,10 @@
                             <div class="">
                                 <h2>Kapasitas Besar</h2>
                                 <div class="text">
-                                    <p class="text-justify">Dengan kapasitas produksi yang besar, yaitu mencapai 2.000 pcs
+                                    <p class="text-justify">Dengan kapasitas produksi yang besar, yaitu mencapai 1000 pcs
                                         per
                                         bulan, Pabrik Kaos kami mampu memenuhi pesanan dalam jumlah besar untuk wilayah Bali
-                                        maupun luar Bali tanpa mengorbankan kualitas.</p>
+                                        tanpa mengorbankan kualitas.</p>
                                 </div>
                             </div>
                         </div>
@@ -338,10 +338,10 @@
                                 </div>
                                 <div class="btns-box">
                                     <!-- Tombol pertama -->
-                                    <a class="btn-one btn-one--style4" href="https://app.kittl.com/">
+                                    <a class="btn-one btn-one--style4" href="https://studio.morflax.com/clothing-mockups/create?element=t-shirt-man">
                                         <span class="txt">
                                             <i class="icon-right-arrow-1"></i>
-                                            Disain
+                                            Desain
                                         </span>
                                     </a>
                                 </div>
@@ -350,7 +350,7 @@
                                     <a class="btn-one btn-one--style4 btn-wide" href="https://laporanta.tiiny.site/">
                                         <span class="txt">
                                             <i class="icon-right-arrow-1"></i>
-                                            Panduan Disain
+                                            Panduan Desain
                                         </span>
                                     </a>
                                 </div>
@@ -367,7 +367,7 @@
                                 <div class="sec-title-style3">
                                     <div class="sub-title">
                                     </div>
-                                    <h2><span>Ayo Pesan jenis Pakean<br>Anda Sekarang</h2>
+                                    <h2><span>Ayo Pesan jenis Pakian<br>Anda Sekarang</h2>
                                 </div>
                                 <div class="btns-box">
                                     <a class="btn-one btn-one--style4" href="{{route('home.createDesign')}}">
