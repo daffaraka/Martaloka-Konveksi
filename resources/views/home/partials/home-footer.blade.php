@@ -63,16 +63,8 @@
                                             <span class="icon-right-arrow-2"></span>Facebook
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="icon-right-arrow-2"></span>Shopee
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="icon-right-arrow-2"></span>Tokopedia
-                                        </a>
-                                    </li>
+                                    
+                                    
 
 
                                 </ul>
@@ -109,7 +101,7 @@
             <div class="container">
                 <div class="bottom-inner">
                     <div class="copyright">
-                        <p>Copyright &copy; 2022 <a href="index.html">Educamb.</a> All Rights Reserved.</p>
+                        <p>Copyright &copy; 2024 Darma Adiyaksa & Wayan Merta</p>
                     </div>
                     <div class="footer-logo-style1">
                         <img style="height: 70px" src="{{ asset('assets/images/logoo2.png') }}" alt="Aska Logo"
@@ -117,9 +109,9 @@
                     </div>
                     <div class="footer-menu">
                         <ul>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Term Of Use</a></li>
-                            <li><a href="#">Support</a></li>
+                            <li><a href="#">Tentang Kami</a></li>
+                            <li><a href="#">Kategori</a></li>
+                            <li><a href="#">Kontak kami</a></li>
                         </ul>
                     </div>
                 </div>

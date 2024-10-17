@@ -367,7 +367,7 @@
                                 <div class="sec-title-style3">
                                     <div class="sub-title">
                                     </div>
-                                    <h2><span>Ayo Pesan jenis Pakian<br>Anda Sekarang</h2>
+                                    <h2><span>Ayo Pesan jenis Pakaian<br>Anda Sekarang</h2>
                                 </div>
                                 <div class="btns-box">
                                     <a class="btn-one btn-one--style4" href="{{route('home.createDesign')}}">
