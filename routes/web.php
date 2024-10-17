@@ -1,22 +1,24 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController;
 
 // Admin
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\ProgressCustomController;
-use App\Http\Controllers\Frontend\BerandaController;
 use App\Http\Controllers\Admin\ProgressPembelianController;
+use App\Http\Controllers\Admin\TransaksiCustomDashboardController;
+use App\Http\Controllers\Admin\TransaksiDashboardController;
+use App\Http\Controllers\Admin\UserController;
 // use App\Http\Controllers\Admin\TransaksiController;
 
 // Frontend
-use App\Http\Controllers\Admin\TransaksiDashboardController;
-use App\Http\Controllers\Frontend\TransaksiProdukController;
-use App\Http\Controllers\Admin\TransaksiCustomDashboardController;
+use App\Http\Controllers\Frontend\BerandaController;
 use App\Http\Controllers\Frontend\TransaksiCustomDesignController;
+use App\Http\Controllers\Frontend\TransaksiProdukController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -67,7 +69,7 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard Admin
     Route::prefix('dashboard')->group(function () {
-        Route::view('/', 'admin.layout')->name('dashboard');
+        Route::get('/',[DashboardController::class,'index'] )->name('dashboard');
 
         // Kategori
         Route::get('kategori', [KategoriController::class, 'index'])->name('kategori.index');

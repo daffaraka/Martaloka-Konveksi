@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('admin/dist/plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('admin/dist/plugins/summernote/summernote-bs4.min.css') }}">
+    <link rel="shortcut icon" href="{{ asset('auth-views/assets/media/logos/icon-logo.png') }}" />
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -54,7 +55,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v1</li>
+                                <li class="breadcrumb-item active">Dashboard</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->

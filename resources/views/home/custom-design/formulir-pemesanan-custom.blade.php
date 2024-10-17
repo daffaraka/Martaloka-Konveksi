@@ -261,24 +261,45 @@
 
 
                     {{-- Gambar --}}
+                    <div style="display: flex; align-items: flex-start; margin-bottom: 10px; margin-left: 50px;">
+                        <div class="single-partner-logo-box-style2" style="margin-right: 50px;">
+                            <a href="#">
+                                <img src="{{ asset('assets/images/sponsor/bajur.png') }}" alt="Awesome Image" class="small-image" style="width: 130px; height: auto;">
+                            </a>
+                        </div>
+                    
+                        <div class="single-partner-logo-box-style2" style="margin-right: 50px;">
+                            <a href="#">
+                                <img src="{{ asset('assets/images/sponsor/bajuk.png') }}" alt="Awesome Image" class="small-image" style="width: 130px; height: auto;">
+                            </a>
+                        </div>
+                       
+                    </div>
+                    <div style="margin-left: -360px; margin-top: 170px;">
+                        <span>Contoh Gambar Yang Diupload.</span>
+                    </div>
+                    
+                    
+                    
                     <div class="col-12 px-5 my-3">
                         <h3 class="mb-2">Gambar</h3>
+                        
                         <input type="file" name="gambar_custom_design[]" accept="image/*" class="image-input" />
-
                         <br>
-                        <label>Gambar maximal 2 MB </label>
-
-                        <img id="preview" src="#" alt="Preview Image"
-                            style="display:none; max-width: 200px; margin-top: 10px;" />
-
+                        <label>Gambar maksimal 2 MB</label>
+                    
+                        <img id="preview" src="#" alt="Preview Image" style="display:none; max-width: 200px; margin-top: 10px;" />
                         <div id="newRowImage"></div>
-                        <button id="addRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Tambah
-                            Gambar</button>
-
-                        <button id="removeRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Kurangi
-                        </button>
+                    
+                        <button id="addRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Tambah Gambar</button>
+                        <button id="removeRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Kurangi</button>
                     </div>
+                    
+                    
+                    
+                    
 
+                    
                 </div>
                 <div class="d-grid px-5">
                     <button class="btn-one w-100">Pesan</button>
@@ -288,6 +309,7 @@
 
         </div>
     </section>
+
 
 
     <script type="text/javascript">

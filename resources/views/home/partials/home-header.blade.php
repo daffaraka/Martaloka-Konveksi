@@ -47,29 +47,25 @@
                 <div class="header-top-right">
                     <div class="quick-link-box">
                         <div class="inner-title">
-
-
                             @guest
-                            <span class="icon-launch"></span>
-                                <li><a href="{{ route('register') }}">Register</a> </li>
-
+                                <span class="icon-launch"></span>
+                                <li><a href="{{ route('register') }}">Register</a></li>
                             @endguest
                         </div>
                         <div class="link-box">
                             <ul>
                                 @guest
-                                    <li class="#"><a href="{{ route('login') }}">
-                                            Login</a></li>
+                                    <li><a href="{{ route('login') }}">Login</a></li>
                                 @endguest
 
                                 @auth
                                     <li><a href="#"><i class="icon-account mr-2"></i>{{ Auth::user()->name }}</a></li>
-
                                 @endauth
                             </ul>
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
