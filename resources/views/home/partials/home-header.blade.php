@@ -47,9 +47,13 @@
                 <div class="header-top-right">
                     <div class="quick-link-box">
                         <div class="inner-title">
-                            <span class="icon-launch"></span>
 
-                            <li><a href="{{ route('register') }}">Register</a> </li>
+
+                            @guest
+                            <span class="icon-launch"></span>
+                                <li><a href="{{ route('register') }}">Register</a> </li>
+
+                            @endguest
                         </div>
                         <div class="link-box">
                             <ul>
@@ -100,6 +104,18 @@
                                     <li class="{{ Request::is('/') ? 'current' : '' }}">
                                         <a href="{{ route('beranda') }}">Beranda</a>
                                     </li>
+
+
+                                    <li class="{{ Request::is('profil/tentangkami') ? 'current' : '' }}"><a
+                                            href="{{ route('home.tentang-kami') }}">Tentang Kami</a></li>
+
+                                    <li class="{{ Request::is('register*') ? 'current' : '' }}"><a
+                                            href="#"></a></li>
+                                    </li>
+
+                                    <li class="blank-box"></li>
+
+
                                     <li class="dropdown {{ Request::is('profil/*') ? 'current' : '' }}"><a
                                             href="#">Kategori</a>
                                         <ul>
@@ -115,18 +131,18 @@
 
                                         </ul>
                                     </li>
-
-                                    <li class="{{ Request::is('profil/tentangkami') ? 'current' : '' }}"><a
-                                            href="{{ route('home.tentang-kami') }}">Tentang Kami</a></li>
-                                    <li class="blank-box"></li>
                                     <li class="{{ Request::is('informasi*') ? 'current' : '' }}"><a
                                             href="{{ route('home.kontak') }}">Kontak Kami</a>
                                     </li>
 
 
-                                    <li class="{{ Request::is('register*') ? 'current' : '' }}"><a
-                                            href="{{ route('register') }}">Keranjang</a></li>
-                                    </li>
+                                    @guest
+                                        <li class="{{ Request::is('informasi*') ? 'current' : '' }}"><a
+                                                href="{{ route('home.kontak') }}"> </a>
+                                        </li>
+
+                                    @endguest
+
 
                                     @auth
                                         <li class="dropdown {{ Request::is('profil/*') ? 'current' : '' }}"><a
@@ -135,12 +151,13 @@
 
                                                 <li class="{{ Request::is('keranjang') ? 'current' : '' }}"><a
                                                         href="{{ route('home.keranjang') }}"> Keranjang </a> </li>
-                                                <li class="{{ Request::is('daftar-transaksi-pembelian') ? 'current' : '' }}"><a
-                                                        href="{{ route('home.daftarTransaksiPembelian') }}"> Transaksi </a> </li>
+                                                <li
+                                                    class="{{ Request::is('daftar-transaksi-pembelian') ? 'current' : '' }}">
+                                                    <a href="{{ route('home.daftarTransaksiPembelian') }}"> Transaksi </a>
+                                                </li>
                                                 <li class="{{ Request::is('daftar-custom') ? 'current' : '' }}"><a
                                                         href="{{ route('home.daftarCustom') }}"> Custom Design </a> </li>
-                                                <li class=""><a
-                                                        href="{{ route('logout') }}"
+                                                <li class=""><a href="{{ route('logout') }}"
                                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                         Logout</a>
 

@@ -7,8 +7,8 @@ use App\Models\Keranjang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Models\TransaksiProduk;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiProdukController extends Controller
 {
@@ -57,13 +57,32 @@ class TransaksiProdukController extends Controller
     {
 
 
+        // dd($request->produk_id);
+        $productExist = Keranjang::with(['produk.kategori', 'user', 'produk' => function ($query) use ($request) {
+            $query->whereIn('id', array_keys($request->produk_id));
+        }])
+            ->where('status', 'Di Keranjang')
+            ->where('user_id', Auth::user()->id);
+
+        $productExistCheck = $productExist->get();
+
+
+        if ($productExistCheck->isNotEmpty()) {
+            foreach ($request->produk_id as $keyProduk => $productQty) {
+                $addedProduct =Keranjang::where('status', 'Di Keranjang')->where('produk_id', $keyProduk)->where('user_id', Auth::user()->id)->first();
+                $addedProduct->qty += $productQty;
+                $addedProduct->save();
+            }
+
+        }
+
+
         if ($request->has('id_')) {
-            $keranjangs = Keranjang::with(['produk.kategori', 'user'])->whereIn('id', $request->id_)->update(['status' => 'Dalam Transaksi']);
-            $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->whereIn('id', $request->id_)->get();
+            $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->whereIn('id', array_keys($request->produk_id))->get();
         } else {
-            $keranjangs = Keranjang::with(['produk.kategori', 'user'])->where('user_id', Auth::user()->id)->update(['status' => 'Dalam Transaksi']);
             $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->where('user_id', Auth::user()->id)->get();
         }
+
 
         $total_harga = 0;
 
@@ -80,7 +99,6 @@ class TransaksiProdukController extends Controller
         $transaksi->total_harga = $total_harga;
         $transaksi->save();
 
-        // dd($keranjangs[0]->produk->id);
 
 
         foreach ($newKeranjang as $cart) {
@@ -91,6 +109,7 @@ class TransaksiProdukController extends Controller
             $transaksiProduk->qty = $cart->qty;
             $transaksiProduk->save();
         }
+
 
 
         return to_route('home.formTransaksiPembelian', ['transaksi' => $transaksi]);
@@ -164,8 +183,4 @@ class TransaksiProdukController extends Controller
         // dd($data['transaksis']);
         return view('home.pembelian-produk.transaksi', $data);
     }
-
-
-
-
 }
