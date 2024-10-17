@@ -47,25 +47,25 @@
                 <div class="header-top-right">
                     <div class="quick-link-box">
                         <div class="inner-title">
-                            <span class="icon-launch"></span>
-
-                            <li><a href="{{ route('register') }}">Register</a> </li>
+                            @guest
+                                <span class="icon-launch"></span>
+                                <li><a href="{{ route('register') }}">Register</a></li>
+                            @endguest
                         </div>
                         <div class="link-box">
                             <ul>
                                 @guest
-                                    <li class="#"><a href="{{ route('login') }}">
-                                            Login</a></li>
+                                    <li><a href="{{ route('login') }}">Login</a></li>
                                 @endguest
 
                                 @auth
                                     <li><a href="#"><i class="icon-account mr-2"></i>{{ Auth::user()->name }}</a></li>
-
                                 @endauth
                             </ul>
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
@@ -135,12 +135,13 @@
 
                                                 <li class="{{ Request::is('keranjang') ? 'current' : '' }}"><a
                                                         href="{{ route('home.keranjang') }}"> Keranjang </a> </li>
-                                                <li class="{{ Request::is('daftar-transaksi-pembelian') ? 'current' : '' }}"><a
-                                                        href="{{ route('home.daftarTransaksiPembelian') }}"> Transaksi </a> </li>
+                                                <li
+                                                    class="{{ Request::is('daftar-transaksi-pembelian') ? 'current' : '' }}">
+                                                    <a href="{{ route('home.daftarTransaksiPembelian') }}"> Transaksi </a>
+                                                </li>
                                                 <li class="{{ Request::is('daftar-custom') ? 'current' : '' }}"><a
                                                         href="{{ route('home.daftarCustom') }}"> Custom Design </a> </li>
-                                                <li class=""><a
-                                                        href="{{ route('logout') }}"
+                                                <li class=""><a href="{{ route('logout') }}"
                                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                         Logout</a>
 
