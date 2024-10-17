@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <title>Login Martaloka Konveksi </title>
     <meta charset="utf-8" />
@@ -40,11 +41,12 @@
                     <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
                         <!--begin::Logo-->
                         <a href="/" class="py-9 mb-5">
-                            <img alt="Logo" src="{{asset('assets/images/logo1.png')}}" class="h-60px" />
+                            <img alt="Logo" src="{{ asset('assets/images/logo1.png') }}" class="h-60px" />
                         </a>
                         <!--end::Logo-->
                         <!--begin::Title-->
-                        <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Welcome to Martaloka Konveksi</h1>
+                        <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Welcome to Martaloka Konveksi
+                        </h1>
                         <!--end::Title-->
                         <!--begin::Description-->
                         <p class="fw-bold fs-2" style="color: #986923;">Discover Amazing Martaloka Konveksi
@@ -79,8 +81,8 @@
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <div class="text-gray-400 fw-bold fs-4">New Here?
-                                    <a href="{{route('register')}}"
-                                        class="link-primary fw-bolder">Create an Account</a>
+                                    <a href="{{ route('register') }}" class="link-primary fw-bolder">Create an
+                                        Account</a>
                                 </div>
                                 <!--end::Link-->
                             </div>
@@ -109,10 +111,10 @@
                                         for="password">Password</label>
                                     <!--end::Label-->
                                     <!--begin::Link-->
-                                    @if (Route::has('password.request'))
+                                    {{-- @if (Route::has('password.request'))
                                         <a href="{{ route('password.request') }}"
                                             class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
-                                    @endif
+                                    @endif --}}
                                     <!--end::Link-->
                                 </div>
                                 <!--end::Wrapper-->
@@ -138,7 +140,8 @@
                             <!--begin::Actions-->
                             <div class="text-center">
                                 <!--begin::Submit button-->
-                                <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5 mt-12">
+                                <button type="submit" id="kt_sign_in_submit"
+                                    class="btn btn-lg btn-primary w-100 mb-5 mt-12">
                                     <span class="indicator-label">Log in</span>
                                     <span class="indicator-progress">Please wait...
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -173,14 +176,14 @@
                 <!--begin::Footer-->
                 <div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
                     <!--begin::Links-->
-                    <div class="d-flex flex-center fw-bold fs-6">
+                    {{-- <div class="d-flex flex-center fw-bold fs-6">
                         <a href="https://keenthemes.com" class="text-muted text-hover-primary px-2"
                             target="_blank">About</a>
                         <a href="https://devs.keenthemes.com" class="text-muted text-hover-primary px-2"
                             target="_blank">Support</a>
                         <a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2"
                             target="_blank">Purchase</a>
-                    </div>
+                    </div> --}}
                     <!--end::Links-->
                 </div>
                 <!--end::Footer-->

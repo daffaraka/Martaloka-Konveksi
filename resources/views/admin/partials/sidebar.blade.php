@@ -1,9 +1,11 @@
 <aside class="main-sidebar sidebar-dark-red elevation-4" style="background-color: #1e1d1e">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-        <img src="{{ asset('auth-views/assets/media/logos/icon-logo.png') }}" alt="" class="brand-image"
-            style="width: 52px; height: auto;" style="opacity: .8">
-        <span class="brand-text font-weight-light ml-0">Martaloka Konveksi</span>
+        {{-- <img src="{{ asset('auth-views/assets/media/logos/icon-logo.png') }}" alt="" class="brand-image"
+            style="width: 52px; height: auto;" style="opacity: .8"> --}}
+        <div class="text-center">
+            <span class="brand-text font-weight-light ml-0">Martaloka Konveksi</span>
+        </div>
     </a>
 
 
@@ -17,7 +19,7 @@
             </div>
             <div class="info pl-3">
                 <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-                <span class="d-block" style="color: white;">Super Admin</span>
+                {{-- <span class="d-block" style="color: white;">Super Admin</span> --}}
             </div>
         </div>
 
@@ -116,7 +118,7 @@
                 <li class="nav-header" style="margin-top: -20px;">MANAGE TRANSAKSI</li>
                 <li class="nav-item">
                     <a href="{{ route('transaksi.index') }}"
-                        class="nav-link {{ Request::is('transaksi') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('transaksi.index') ? 'menu-open active' : '' }}">
                         <i class="nav-icon fas fa-cart-plus"></i>
                         <p>Transaksi</p>
                     </a>
@@ -124,8 +126,8 @@
 
 
                 <li class="nav-item">
-                    <a href="{{ route('transaksi.index') }}"
-                        class="nav-link {{ Request::is('transaksi/custom-design') ? 'active' : '' }}">
+                    <a href="{{ route('transaksiCustom.index') }}"
+                        class="nav-link {{ request()->routeIs('transaksiCustom.index') ? 'menu-open active' : '' }}">
                         <i class="nav-icon fas fa-paint-brush"></i>
                         <p>Transaksi Custom Design</p>
                     </a>
@@ -133,7 +135,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('transaksi.riwayatTransaksi') }}"
-                        class="nav-link {{ Request::is('transaksi/riwayat-produk') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('transaksi.riwayatTransaksi') ? 'menu-open active' : '' }}">
                         <i class="nav-icon fas fa-history"></i>
                         <p>Riwayat Transaksi Produk</p>
                     </a>
@@ -141,7 +143,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('transaksiCustom.riwayatTransaksi') }}"
-                        class="nav-link {{ Request::is('transaksi/riwayat-custom') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('transaksiCustom.riwayatTransaksi') ? 'menu-open active' : '' }}">
                         <i class="nav-icon fas fa-file-signature"></i>
                         <p>Riwayat Transaksi Custom</p>
                     </a>
