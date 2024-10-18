@@ -68,7 +68,7 @@
                                                         <p class="text-muted mb-2">Quantity</p>
                                                         <div class="d-inline-flex">
                                                             <input type="number" class="form-control w-25" name=""
-                                                                value="{{ $detailTransaksi->qty }}">
+                                                                value="{{ $detailTransaksi->qty }}" readonly>
                                                         </div>
                                                     </div>
                                                 </div>

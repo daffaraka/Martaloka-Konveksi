@@ -2,14 +2,40 @@
 @section('title', 'Detail produk')
 @section('content')
 
+    <style>
+        .nice-select {
+            padding-right: 100px !important;
+        }
+    </style>
     <div style="margin-top: 20vh;">
         <section class="events-details-page">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-8">
-                        <div class="events-details-content">
-                            <div class="events-details-content__img-box">
-                                <img src="{{ asset('produk/' . $produk->gambar_produk) }}" alt="">
+                    <div class="col-xl-8 bg-dark">
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ asset('produk/' . $produk->gambar_produk) }}"
+                                        style="height: 70vh; object-fit:contain;" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+
+                                    <img src="{{asset('assets/images/size-guide.jpeg')}}" style="height: 70vh; object-fit:contain;" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        {{-- <div class="events-details-content">
+                            <div class="events-details-content__img-box bg-dark">
+                                <img src="{{ asset('produk/' . $produk->gambar_produk) }}"
+                                    style="height: 60vh; object-fit:contain;" alt="">
                             </div>
                             <div class="events-details-content__text-box">
                                 <h3>Deskripsi Produk</h3>
@@ -19,7 +45,7 @@
                             </div>
 
 
-                        </div>
+                        </div> --}}
                     </div>
 
                     <!--Start Single Event Three-->
@@ -48,8 +74,9 @@
                                     <li>
                                         Size
 
-                                        <div class="w">
-                                            <select name="size" id="">
+                                        <div>
+                                            <select class="nice-select w-25" name="size"
+                                                style="padding-right:60px !important;">
                                                 <option value="S">S</option>
                                                 <option value="M">M</option>
                                                 <option value="L">L</option>
@@ -63,9 +90,9 @@
 
                                 </ul>
 
-                                <div class="btns-box mt-5">
-                                    <button type="submit" class="btn-one btn-one--style2" >
-                                        <span class="txt">Tambahkan Ke Keranjang</span>
+                                <div class="btns-box w-100" style="margin-top: 100px;">
+                                    <button type="submit" class="btn-one btn-one--style2 w-100 ">
+                                        <span class="txt d-inline">Tambahkan Ke Keranjang</span>
                                     </button>
                                 </div>
 
