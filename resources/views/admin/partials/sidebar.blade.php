@@ -151,7 +151,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('progress-pembelian.index') }}"
-                        class="nav-link {{ Request::is('transaksi/progress-produk') ? 'active' : '' }}">
+                        class="nav-link {{ request()->routeIs('progress-pembelian.index') ? 'menu-open active' : '' }}">
                         <i class="nav-icon fas fa-tasks"></i>
                         <p>Progress Transaksi</p>
                     </a>
@@ -167,7 +167,7 @@
 
                 <li class="nav-header" style="margin-top: -20px;">MANAGE USER</li>
                 <li class="nav-item">
-                    <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
+                    <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'menu-open active' : '' }}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>User Manajemen</p>
                     </a>
