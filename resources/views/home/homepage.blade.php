@@ -209,11 +209,11 @@
                             <div class="top-categories-single__box">
                                 <div class="img-box">
                                     <div class="">
-                                        <img src="{{ asset('produk/'.$produk->gambar_produk) }}" alt="">
+                                        <img src="{{ asset('produk/'.$produk->gambar_produk) }}" style="height: 300px; object-fit:cover;" alt="">
                                     </div>
                                     <div class="overlay-content">
                                         {{-- <p>76 Courses</p> --}}
-                                        <h3><a href="#">{{$produk->nama_produk}}</a></h3>
+                                        <h3 class="mt-3"><a href="#">{{$produk->nama_produk}}</a></h3>
                                         <div class="btns-box">
                                             <a class="btn-one btn-one--style4" href="{{ route('home.detail-produk',$produk->id) }}">
                                                 <span class="txt">
@@ -345,7 +345,7 @@
                                         </span>
                                     </a>
                                 </div>
-                                
+
                                 <div class="btns-box">
                                     <a class="btn-one btn-one--style4 btn-wide" href="https://laporanta.tiiny.site/">
                                         <span class="txt">
@@ -377,7 +377,7 @@
                                         </span>
                                     </a>
                                 </div>
-                                
+
                                 <div class="btns-box">
                                     <a class="btn-one btn-one--style4 btn-wide" href="https://example.com">
                                         <span class="txt">
