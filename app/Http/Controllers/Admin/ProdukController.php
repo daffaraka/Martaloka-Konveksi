@@ -11,13 +11,44 @@ use App\Http\Controllers\Controller;
 
 class ProdukController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-
-        $data['judul'] = 'Beranda Produk';
-        $data['produk'] = Produk::with('kategori')->get();
-
-        return view('admin.produk.produk-index', $data);
+        $filter = $request->filter;
+        $search = $request->search;
+    
+        // Atur pagination
+        $paginate = 5;
+    
+        // Query dasar untuk produk
+        $query = Produk::with('kategori');
+    
+        // Pencarian
+        if ($search) {
+            $query->where('nama_produk', 'like', '%' . $search . '%')
+                ->orWhereHas('kategori', function ($q) use ($search) {
+                    $q->where('nama_kategori', 'like', '%' . $search . '%');
+                })
+                ->orWhere('deskripsi', 'like', '%' . $search . '%')
+                ->orWhere('harga_produk', 'like', '%' . $search . '%')
+                ->orWhere('stok', 'like', '%' . $search . '%');
+        }
+    
+        // Filter kategori
+        if ($filter) {
+            $query->whereHas('kategori', function ($q) use ($filter) {
+                $q->where('nama_kategori', 'like', '%' . $filter . '%');
+            });
+        }
+    
+        $produks = $query->latest()->paginate($paginate);
+    
+        // Mengembalikan view beserta data
+        return view('admin.produk.produk-index', [
+            'judul' => 'Beranda Produk',
+            'produk' => $produks,
+            'filter' => $filter,
+            'search' => $search
+        ]);
     }
 
     public function create()
