@@ -51,6 +51,7 @@
                     <th scope="col" class="w-25">Produk - Qty - Harga</th>
                     <th scope="col">Total Harga</th>
                     <th scope="col">Bukti Pembayaran</th>
+                    <th scope="col">Kurir</th>
                     <th scope="col">No Resi</th>
                     <th>Action</th>
                 </tr>
@@ -95,7 +96,8 @@
                                     <i class="fa fa-image" aria-hidden="true"></i> Bukti pembayaran</a>
                             @endif
                         </td>
-                        <td>{{$data->no_resi}}</td>
+                        <td>{{$data->kurir ?? '-'}}</td>
+                        <td>{{$data->no_resi ?? '-'}}</td>
                         <td>
                             @switch($data->status_pembayaran)
                                 @case('Pending')
