@@ -81,7 +81,6 @@
                                 </div>
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </div>
@@ -96,12 +95,14 @@
                 <h2>Kirimkan Pertanyaan Anda Kepada Kami</h2>
             </div>
 
+            <!-- Success Message -->
             @if (session('message'))
                 <div class="alert alert-success text-center" role="alert" id="success-alert">
                     {{ session('message') }}
                 </div>
             @endif
 
+            <!-- Error Message -->
             @if ($errors->any())
                 <div class="alert alert-danger text-center" role="alert" id="error-alert">
                     <ul>
@@ -112,12 +113,11 @@
                 </div>
             @endif
 
-
             <div class="row margin0">
                 <!-- Form Kontak -->
                 <div class="col-md-6">
                     <div class="contact-form">
-                        <form action="{{ route('kontak.store') }}" method="POST">
+                        <form action="{{ route('kontak.store') }}" method="POST" onsubmit="return validateForm();">
                             @csrf <!-- Tambahkan csrf untuk keamanan -->
 
                             <div class="mb-2">
@@ -138,7 +138,7 @@
                                     value="{{ old('email') }}" placeholder="Masukkan Email Anda" required>
                             </div>
 
-                            <div class="row mb-3">
+                            <div class="row mb-2">
                                 <div class="col-6">
                                     <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                                     <select class="form-select" id="jenis_kelamin" name="jenis_kelamin" required>
@@ -160,8 +160,12 @@
                                     required>{{ old('pesan') }}</textarea>
                             </div>
 
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITEKEY') }}"></div>
+                            </div>
+
                             <!-- Action Buttons -->
-                            <button type="submit" class="btn btn-primary btn-lg">
+                            <button type="submit" class="btn btn-primary btn-lg mt-1">
                                 <i class="fas fa-paper-plane"></i> Kirim Pesan
                             </button>
                         </form>
@@ -173,14 +177,15 @@
                     <div class="border p-0 rounded mb-2" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31539.47482995904!2d114.9656228!3d-8.1986005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd1833c90527d25%3A0xe408eb660d1a80fb!2sJl.+Banteng,+Banjar,+Kec.+Banjar,+Kabupaten+Buleleng,+Bali+81152!5e0!3m2!1sid!2sid!4v1687055968281!5m2!1sid!2sid"
-                            width="100%" height="710" style="border:0;" allowfullscreen="" loading="lazy"
+                            width="100%" height="800" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
+
+    <!-- Hide Alerts After 5 seconds -->
     <script>
         setTimeout(function() {
             const successAlert = document.getElementById('success-alert');
@@ -194,5 +199,17 @@
         }, 5000); // 5000 ms = 5 detik
     </script>
 
-    <!--End Main Contact Form Area-->
+    <!-- reCAPTCHA validation -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function validateForm() {
+            var response = grecaptcha.getResponse();
+            if (response.length === 0) {
+                alert("Please check reCAPTCHA verification.");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
 @endsection

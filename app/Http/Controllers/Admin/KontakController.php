@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Kontak;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use ReCaptcha\ReCaptcha;
 
 class KontakController extends Controller
 {
@@ -47,6 +48,22 @@ class KontakController extends Controller
 
     public function store(Request $request)
     {
+
+ // Validasi input form
+ $recaptchaSecret = env('RECAPTCHA_SECRET');
+
+
+ if (empty($recaptchaSecret)) {
+     throw new \RuntimeException('No secret provided');
+ }
+ 
+ $recaptcha = new ReCaptcha($recaptchaSecret);
+ $response = $recaptcha->verify($request->input('g-recaptcha-response'));
+
+ if (!$response->isSuccess()) {
+     return back()->with('error', 'Verifikasi reCAPTCHA gagal. Silakan coba lagi.');
+ }
+
         // Validasi data
         $request->validate([
             'nama' => 'required|string|max:255',

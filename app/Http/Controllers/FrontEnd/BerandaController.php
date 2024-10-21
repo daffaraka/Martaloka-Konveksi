@@ -20,8 +20,8 @@ class BerandaController extends Controller
     {
 
         $data['kategori'] = Kategori::with('produk')->get();
-        $data['products'] = Produk::with('kategori')->get();
-
+        $data['products'] = Produk::with('kategori')->orderBy('created_at', 'desc')->take(3)->get();
+        
         // dd(Auth::user());
         return view('home.homepage', $data);
     }

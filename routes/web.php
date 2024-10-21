@@ -35,6 +35,7 @@ Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/kategori/{kategori:nama_kategori}', [BerandaController::class, 'kategori'])->name('home.kategori');
 Route::get('/detail-produk/{produk}', [BerandaController::class, 'detailProduk'])->name('home.detail-produk');
 Route::view('kontak', 'home.kontak')->name('home.kontak');
+Route::post('kontak/store', [KontakController::class, 'store'])->name('kontak.store');
 Route::view('tentang-kami', 'home.tentang-kami')->name('home.tentang-kami');
 
 
@@ -73,8 +74,6 @@ Route::middleware('auth')->group(function () {
 
         // Kontak Admin
         Route::get('kontak', [KontakController::class, 'index'])->name('kontak.index');
-        Route::get('kontak/create', [KontakController::class, 'create'])->name('kontak.create');
-        Route::post('kontak/store', [KontakController::class, 'store'])->name('kontak.store');
         Route::get('kontak/edit/{kontak}', [KontakController::class, 'edit'])->name('kontak.edit');
         Route::put('kontak/update/{kontak}', [KontakController::class, 'update'])->name('kontak.update');
         Route::get('kontak/destroy/{kontak}', [KontakController::class, 'destroy'])->name('kontak.destroy');
