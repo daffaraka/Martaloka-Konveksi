@@ -10,6 +10,8 @@
     <div style="margin-top: 20vh;">
         <section class="events-details-page">
             <div class="container">
+                @include('home.flash')
+
                 <div class="row">
                     <div class="col-xl-8 bg-dark">
                         <div id="carouselExample" class="carousel slide">
@@ -32,20 +34,6 @@
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             </button>
                         </div>
-                        {{-- <div class="events-details-content">
-                            <div class="events-details-content__img-box bg-dark">
-                                <img src="{{ asset('produk/' . $produk->gambar_produk) }}"
-                                    style="height: 60vh; object-fit:contain;" alt="">
-                            </div>
-                            <div class="events-details-content__text-box">
-                                <h3>Deskripsi Produk</h3>
-                                <p>{{ $produk->deskripsi }}
-                                </p>
-
-                            </div>
-
-
-                        </div> --}}
                     </div>
 
                     <!--Start Single Event Three-->

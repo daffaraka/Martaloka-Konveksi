@@ -29,24 +29,45 @@
                                                 <h5 class="text-truncate font-size-18">NO-{{ $transaksi->id }}
                                                 </h5>
 
-                                                <p class="mb-0 mt-1">Size : <span class="fw-medium">{{$transaksi->size}}</span></p>
+                                                <p class="mb-0 mt-1">Size : <span
+                                                        class="fw-medium">{{ $transaksi->size }}</span></p>
                                             </div>
                                         </div>
                                         <div class="flex-shrink-0 ms-2">
+                                            {{-- Jika sudah dibayar --}}
+                                            @if (in_array($transaksi->status_pembayaran, ['Dibayar', 'Dibatalkan', 'Selesai']))
+                                                <div class="border p-3">
+                                                    <div class="form-group">
+                                                        <label for="bukti_pembayaran" class="fw-bold">Status Pembayaran :
+                                                            <b>
+                                                                {{ $transaksi->status_pembayaran }} </b> </label>
+                                                    </div>
 
-                                            @csrf
-
-                                            <div class="border p-3">
-                                                <div class="form-group">
-                                                    <label for="bukti_pembayaran" class="fw-bold">Status Pembayaran : <b>
-                                                            {{ $transaksi->status_pembayaran }} </b> </label>
+                                                    <div class="d-gap mt-3">
+                                                        <a href="{{ route('home.formTransaksiPembelian', $transaksi->id) }}"
+                                                            class="btn btn-danger text-uppercase rounded-0 w-100" type="submit">Lihat progress</a>
+                                                    </div>
                                                 </div>
 
-                                                <div class="d-gap mt-3">
-                                                    <a href="{{route('home.formTransaksiPembelian',$transaksi->id)}}" class="btn btn-primary w-100" type="submit">Lengkapi
-                                                        Pembayaran</a>
+                                                {{-- Jika belum dibayar --}}
+                                            @else
+                                                <div class="border p-3">
+                                                    <div class="form-group">
+                                                        <label for="bukti_pembayaran" class="fw-bold">Status Pembayaran :
+                                                            <b>
+                                                                {{ $transaksi->status_pembayaran }} </b> </label>
+                                                    </div>
+
+                                                    <div class="d-gap mt-3">
+                                                        <a href="{{ route('home.formTransaksiPembelian', $transaksi->id) }}"
+                                                            class="btn btn-primary text-uppercase rounded-0 w-100" type="submit">Lengkapi
+                                                            Pembayaran</a>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @endif
+
+
+
                                         </div>
 
                                     </div>
@@ -88,9 +109,6 @@
                             </div>
 
                         </div>
-                        {{-- <div class="col-1 align-content-center d-flex justify-content-center">
-                                <input type="checkbox" name="id_[]" value="{{ $item->id }}" id="">
-                            </div> --}}
                     @endforeach
 
 

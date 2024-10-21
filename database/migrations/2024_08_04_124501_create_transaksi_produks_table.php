@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('transaksi_id');
             $table->bigInteger('total_price');
             $table->integer('qty');
-            $table->string('no_resi')->nullable();
+            $table->string('size')->nullable();
             $table->timestamps();
 
             $table->foreign('produk_id')->references('id')->on('produks')->onDelete('cascade')->onUpdate('cascade');

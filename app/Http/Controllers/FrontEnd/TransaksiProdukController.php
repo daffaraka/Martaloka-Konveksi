@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\TransaksiProduk;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TransaksiProdukController extends Controller
 {
@@ -31,9 +32,27 @@ class TransaksiProdukController extends Controller
 
     public function addToCart(Produk $Produk, Request $request)
     {
+
+        $failsStatus = [];
+
+
+        // Cek stok
+        if ($Produk->stok < $request->qty) {
+            $failsStatus = [
+                'nama_produk' => $Produk->nama_produk,
+                'stok_tersedia' => $Produk->stok,
+                'qty_dipesan' => $request->qty
+            ];
+        }
+
+
+        // Jika ada produk yang stoknya tidak mencukupi
+        if (!empty($failsStatus)) {
+            return redirect()->back()->with('errors', $failsStatus);
+        }
         // dd($request->all());
         $keranjang = new Keranjang();
-        $qty = 1;
+        $qty = $request->qty ?? 1;
         $user_id = Auth::user()->id;
         // dd($keranjang->where('user_id', $user_id)->where('produk_id', $Produk->id)->where('status', 'Di Keranjang')->exists());
         if ($keranjang->where('user_id', $user_id)->where('produk_id', $Produk->id)->where('status', 'Di Keranjang')->exists()) {
@@ -55,9 +74,19 @@ class TransaksiProdukController extends Controller
 
     public function checkout(Request $request)
     {
+        $total_harga = 0;
 
 
-        // dd($request->produk_id);
+        // if ($request->has('id_')) {
+        //     $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->whereIn('id', array_keys($request->produk_id))->get();
+        // } else {
+
+        //     $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->where('user_id', Auth::user()->id)->get();
+        // }
+
+
+
+        // Cek jika produk ada di transaksi
         $productExist = Keranjang::with(['produk.kategori', 'user', 'produk' => function ($query) use ($request) {
             $query->whereIn('id', array_keys($request->produk_id));
         }])
@@ -67,52 +96,60 @@ class TransaksiProdukController extends Controller
         $productExistCheck = $productExist->get();
 
 
-        if ($productExistCheck->isNotEmpty()) {
-            foreach ($request->produk_id as $keyProduk => $productQty) {
-                $addedProduct =Keranjang::where('status', 'Di Keranjang')->where('produk_id', $keyProduk)->where('user_id', Auth::user()->id)->first();
-                $addedProduct->qty += $productQty;
-                $addedProduct->save();
+
+        try {
+            DB::beginTransaction();
+
+            // Jika request punya yang di checkbox
+            if ($request->has('id_')) {
+                $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->whereIn('id', $request->id_)->where('user_id', Auth::user()->id)->get();
+            } else {
+                // Jika tidak
+                $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->where('user_id', Auth::user()->id)->get();
             }
 
+
+
+            // if ($productExistCheck->isNotEmpty()) {
+            //     foreach ($request->produk_id as $keyProduk => $productQty) {
+            //         $addedProduct = Keranjang::where('status', 'Di Keranjang')->where('produk_id', $keyProduk)->where('user_id', Auth::user()->id)->first();
+            //         $addedProduct->qty += $productQty;
+            //         $addedProduct->status = 'Dalam Transaksi';
+            //         $addedProduct->save();
+            //     }
+            // }
+
+
+
+            foreach ($newKeranjang as $item) {
+                $price = $item->qty * $item->produk->harga_produk;
+                $total_harga += $price;
+            }
+
+
+            $transaksi = new Transaksi();
+            $transaksi->user_id = Auth::user()->id;
+            $transaksi->status_pembayaran = 'Pending';
+            $transaksi->total_harga = $total_harga;
+            $transaksi->save();
+
+
+            foreach ($newKeranjang as $cart) {
+                $transaksiProduk = new TransaksiProduk();
+                $transaksiProduk->transaksi_id = $transaksi->id;
+                $transaksiProduk->produk_id = $cart->produk->id;
+                $transaksiProduk->total_price = $cart->produk->harga_produk * $cart->qty;
+                $transaksiProduk->qty = $cart->qty;
+                $transaksiProduk->size = $cart->size;
+                $transaksiProduk->save();
+            }
+
+            DB::commit();
+            return to_route('home.formTransaksiPembelian', ['transaksi' => $transaksi]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat melakukan checkout.');
         }
-
-
-        if ($request->has('id_')) {
-            $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->whereIn('id', array_keys($request->produk_id))->get();
-        } else {
-            $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->where('user_id', Auth::user()->id)->get();
-        }
-
-
-        $total_harga = 0;
-
-
-        foreach ($newKeranjang as $item) {
-            $price = $item->qty * $item->produk->harga_produk;
-            $total_harga += $price;
-        }
-
-
-        $transaksi = new Transaksi();
-        $transaksi->user_id = Auth::user()->id;
-        $transaksi->status_pembayaran = 'Pending';
-        $transaksi->total_harga = $total_harga;
-        $transaksi->save();
-
-
-
-        foreach ($newKeranjang as $cart) {
-            $transaksiProduk = new TransaksiProduk();
-            $transaksiProduk->transaksi_id = $transaksi->id;
-            $transaksiProduk->produk_id = $cart->produk->id;
-            $transaksiProduk->total_price = $cart->produk->harga_produk * $cart->qty;
-            $transaksiProduk->qty = $cart->qty;
-            $transaksiProduk->save();
-        }
-
-
-
-        return to_route('home.formTransaksiPembelian', ['transaksi' => $transaksi]);
     }
 
 
@@ -127,12 +164,11 @@ class TransaksiProdukController extends Controller
     public function storeDataTransaksi(Request $request, Transaksi $transaksi)
     {
 
-        // dd($request->all());
         $transaksi->update([
             'user_id' => Auth::id(), // atau gunakan $request->user_id jika ada
             'nama_pemesan' => $request->nama_pemesan,
             'alamat_pemesan' => $request->alamat_pemesan,
-            'email_pemesan' => $request->Email_pemesan,
+            'email_pemesan' => $request->email_pemesan,
             'nomor_hp_pemesan' => $request->nomor_hp_pemesan,
             'catatan' => $request->catatan,
             'status_pembayaran' => 'Pending', // Atur status default sebagai 'Pending'

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->enum('status_pembayaran', ['Pending', 'Diterima', 'Dibayar', 'Dibatalkan','Selesai']);
-            $table->string('size')->nullable();
             $table->string('nama_pemesan')->nullable();
             $table->string('alamat_pemesan')->nullable();
             $table->string('email_pemesan')->nullable();

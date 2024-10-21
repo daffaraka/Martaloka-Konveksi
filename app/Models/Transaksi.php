@@ -14,7 +14,6 @@ class Transaksi extends Model
 
         'kategori_id',
         'user_id',
-        'size',
         'nama_pemesan',
         'alamat_pemesan',
         'email_pemesan',

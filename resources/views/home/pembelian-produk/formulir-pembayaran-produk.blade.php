@@ -140,7 +140,7 @@
                             </div> --}}
 
 
-                            <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 px-2">
+                            <div class="col-12 px-2">
                                 <div class="card py-3">
                                     @if ($transaksi->bukti_pembayaran == null)
                                         @csrf
@@ -148,7 +148,7 @@
 
                                         <div class="py-3">
                                             <input type="file" name="bukti_pembayaran" id="bukti_pembayaran"
-                                                class="form-control" accept="image/*">
+                                                class="form-control" accept="image/*" required>
                                             <img src="#" alt="Preview Uploaded Image" class="mt-5 d-none"
                                                 id="preview-bukti">
 

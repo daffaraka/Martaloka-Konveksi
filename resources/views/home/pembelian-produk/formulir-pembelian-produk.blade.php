@@ -27,7 +27,7 @@
                                                 <div class="flex-grow-1 align-self-center overflow-hidden">
                                                     <div>
                                                         <h5 class="text-truncate font-size-18">
-                                                            {{ $item->produk->nama_produk }} {{ $item->produk->id }}
+                                                            {{ $item->produk->nama_produk }}
                                                             <a href="#" class="text-dark">
                                                         </h5>
 
@@ -98,7 +98,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Email</h6>
-                            <input id="my-input" class="form-control" type="email" name="Email_pemesan" required value="{{ Auth::user()->email }}">
+                            <input id="my-input" class="form-control" type="email" name="email_pemesan" required value="{{ Auth::user()->email }}">
                         </div>
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Nomor Telepon</h6>
@@ -132,8 +132,8 @@
 
                                             </div>
                                             <div class="ms-2">
-                                                <p class="mb-0">No.rek :7543216 <br>
-                                                    a.n Putu Suarbawa
+                                                <p class="mb-0">No.rek : <b> 7543216</b> <br>
+                                                    <b> a.n Putu Suarbawa</b>
                                                 </p>
                                             </div>
                                             <hr>
@@ -153,8 +153,8 @@
                                                 </label>
                                             </div>
                                             <div class="ms-2">
-                                                <p class="mb-0">No.rek :7543216 <br>
-                                                    a.n Putu Suarbawa
+                                                <p class="mb-0">No.rek : <b> 7543216 </b> <br>
+                                                    a.n <b>  Putu Suarbawa</b>
                                                 </p>
                                             </div>
                                             <hr>

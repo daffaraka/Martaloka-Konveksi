@@ -4,6 +4,7 @@
 
     <section class="top-categories-area">
         <div class="container" style="padding: 30vh 0;">
+            @include('home.flash')
             @if (count($keranjangs) == 0)
                 <h1 class="text-center">Tidak ada produk keranjang</h1>
             @else

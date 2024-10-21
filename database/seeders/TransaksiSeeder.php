@@ -30,15 +30,15 @@ class TransaksiSeeder extends Seeder
                 'status_pembayaran' => $statuses[array_rand($statuses)],
                 'metode_bayar' => $metode[array_rand($metode)],
                 'total_harga' => 0, // Ini akan diperbarui setelah produk ditambahkan
-                'size' => $size[array_rand($size)],
+
             ]);
 
-            // Membuat antara 1 hingga 5 produk untuk setiap transaksi
-            $jumlahProduk = rand(1, 5);
+            // Membuat antara 1 hingga 10 produk untuk setiap transaksi
+            $jumlahProduk = rand(1, 3);
 
             for ($j = 0; $j < $jumlahProduk; $j++) {
                 $produk_id = $produks[array_rand($produks)];
-                $qty = rand(1, 5);
+                $qty = rand(1, 10);
                 $harga_produk = Produk::find($produk_id)->harga_produk;
 
                 $total_price = $harga_produk * $qty;
@@ -49,6 +49,7 @@ class TransaksiSeeder extends Seeder
                     'produk_id' => $produk_id,
                     'total_price' => $total_price,
                     'qty' => $qty,
+                    'size' => $size[array_rand($size)],
                 ]);
             }
 

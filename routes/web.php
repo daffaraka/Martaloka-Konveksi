@@ -17,6 +17,7 @@ use App\Http\Controllers\Frontend\BerandaController;
 use App\Http\Controllers\Frontend\TransaksiCustomDesignController;
 use App\Http\Controllers\Frontend\TransaksiProdukController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -98,11 +99,12 @@ Route::middleware('auth')->group(function () {
         Route::get('tansaksi/create', [TransaksiDashboardController::class, 'create'])->name('transaksi.create');
         Route::post('transaksi/store', [TransaksiDashboardController::class, 'store'])->name('transaksi.store');
         Route::get('transaksi/show/{transaksi}', [TransaksiDashboardController::class, 'show'])->name('transaksi.show');
-        Route::get('transaksi/terima/{transaksi}', [TransaksiDashboardController::class, 'dibayar'])->name('transaksi.dibayar');
+        Route::post('transaksi/terima', [TransaksiDashboardController::class, 'terima'])->name('transaksi.terima');
         Route::get('transaksi/tolak/{transaksi}', [TransaksiDashboardController::class, 'batal'])->name('transaksi.batal');
         Route::get('transaksi-produk/riwayat-transaksi', [TransaksiDashboardController::class, 'riwayatTransaksi'])->name('transaksi.riwayatTransaksi');
 
 
+        // Custom
         Route::get('transaksi-custom', [TransaksiCustomDashboardController::class, 'index'])->name('transaksiCustom.index');
         Route::get('transaksi-custom/create', [TransaksiCustomDashboardController::class, 'create'])->name('transaksiCustom.create');
         Route::post('transaksi-custom/store', [TransaksiCustomDashboardController::class, 'store'])->name('transaksiCustom.store');
@@ -135,6 +137,9 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::resource('users', UserController::class);
+
+
+        Route::get('detail-produk/{id}',[ResponseController::class,'detailTransaksi'])->name('response.detailTransaksi');
     });
 
 
