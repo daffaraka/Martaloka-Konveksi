@@ -1,6 +1,47 @@
 @extends('admin.layout')
 @section('content')
-    <div class="table-responsive mt-5 ">
+    <!-- Form Pencarian dan Filter -->
+    <div class="row mt-4 mb-3">
+        <div class="col-md-5">
+            <form action="{{ route('transaksi.index') }}" method="GET">
+                <div class="input-group">
+                    <input name="search" type="text" value="{{ request('search') }}" class="form-control"
+                        placeholder="Cari berdasarkan nama pemesan..." aria-label="Search">
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fas fa-search"></i> Cari
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-3">
+            <form action="{{ route('transaksi.index') }}" method="GET">
+                <div class="input-group">
+                    <select name="filter" id="filter" class="form-select">
+                        <option value="">--Filter status pembayaran--</option>
+                        <option value="Selesai" {{ request('filter') == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                        <option value="Dibatalkan" {{ request('filter') == 'Dibatalkan' ? 'selected' : '' }}>Dibatalkan
+                        </option>
+                        <option value="Pending" {{ request('filter') == 'Pending' ? 'selected' : '' }}>Pending</option>
+                        <option value="Dibayar" {{ request('filter') == 'Dibayar' ? 'selected' : '' }}>Dibayar</option>
+                        <option value="Diterima" {{ request('filter') == 'Diterima' ? 'selected' : '' }}>Diterima</option>
+                    </select>
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fas fa-filter"></i> Filter
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-2 text-end">
+            <a href="{{ route('transaksi.index') }}" class="btn btn-warning">
+                <i class="fas fa-retweet"></i> Reset
+            </a>
+        </div>
+    </div>
+
+    <!-- Tabel Transaksi -->
+    <div class="table-responsive mt-4">
         <table class="table table-bordered shadow">
             <thead>
                 <tr>
@@ -14,9 +55,8 @@
                 </tr>
             </thead>
             <tbody>
-
                 @foreach ($transaksi as $data)
-                    <tr class="">
+                    <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->user->name }}</td>
                         <td>
@@ -37,7 +77,7 @@
                         <td>
                             <ul class="list-unstyled">
                                 @foreach ($data->detailTransaksi as $detailTransaksi)
-                                    <li> <b>{{ $detailTransaksi->produk->nama_produk }} </b> <b>-</b>
+                                    <li> <b>{{ $detailTransaksi->produk->nama_produk }}</b> <b>-</b>
                                         <button class="btn btn-sm p-0 px-1 btn-info">{{ $detailTransaksi->qty }}</button>
                                         <span> <b>-</b>
                                             Rp.{{ number_format($detailTransaksi->produk->harga_produk) }}</span>
@@ -53,7 +93,6 @@
                                 <a href="{{ asset('bukti_Pembayaran/' . $data->bukti_pembayaran) }}" class="btn btn-info">
                                     <i class="fa fa-image" aria-hidden="true"></i> Bukti pembayaran</a>
                             @endif
-
                         </td>
                         <td>
                             @switch($data->status_pembayaran)
@@ -74,7 +113,8 @@
                                 @break
 
                                 @case('Dibatalkan')
-                                    <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-block btn-light border border-1">Detail Transaksi</a>
+                                    <a href="{{ route('transaksi.show', $data->id) }}"
+                                        class="btn btn-block btn-light border border-1">Detail Transaksi</a>
                                 @break
 
                                 @case('Selesai')
@@ -85,15 +125,19 @@
                                     <button class="btn btn-block btn-info">Status Tidak Valid</button>
                                 @break
                             @endswitch
-                            <a href="https:://wa.me/+62{{ $data->nomor_hp_pemesan ?? 85847728414}} " class="btn btn-block btn-outline-warning text-dark"><i
-                                    class="fa fa-phone" aria-hidden="true"></i> Hubungi Pemesan</a>
+                            <a href="https://wa.me/+62{{ $data->nomor_hp_pemesan ?? 85847728414 }}"
+                                class="btn btn-block btn-outline-warning text-dark">
+                                <i class="fa fa-phone" aria-hidden="true"></i> Hubungi Pemesan
+                            </a>
                         </td>
-
                     </tr>
                 @endforeach
-
-
             </tbody>
         </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-end mt-3">
+        {{ $transaksi->links('pagination::bootstrap-5') }}
     </div>
 @endsection

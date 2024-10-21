@@ -35,7 +35,7 @@
                 </form>
             </div>
             <div class="col-md-5 text-end">
-                <a href="{{ route('produk.index') }}" class="btn btn-secondary">
+                <a href="{{ route('produk.index') }}" class="btn btn-warning">
                     <i class="fas fa-retweet"></i> Reset
                 </a>
             </div>

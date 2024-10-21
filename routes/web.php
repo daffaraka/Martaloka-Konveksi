@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\ProgressPembelianController;
 use App\Http\Controllers\Admin\TransaksiCustomDashboardController;
 use App\Http\Controllers\Admin\TransaksiDashboardController;
 use App\Http\Controllers\Admin\UserController;
-// use App\Http\Controllers\Admin\TransaksiController;
+use App\Http\Controllers\Admin\KontakController;
 
 // Frontend
 use App\Http\Controllers\Frontend\BerandaController;
@@ -70,6 +70,14 @@ Route::middleware('auth')->group(function () {
     // Dashboard Admin
     Route::prefix('dashboard')->group(function () {
         Route::get('/',[DashboardController::class,'index'] )->name('dashboard');
+
+        // Kontak Admin
+        Route::get('kontak', [KontakController::class, 'index'])->name('kontak.index');
+        Route::get('kontak/create', [KontakController::class, 'create'])->name('kontak.create');
+        Route::post('kontak/store', [KontakController::class, 'store'])->name('kontak.store');
+        Route::get('kontak/edit/{kontak}', [KontakController::class, 'edit'])->name('kontak.edit');
+        Route::put('kontak/update/{kontak}', [KontakController::class, 'update'])->name('kontak.update');
+        Route::get('kontak/destroy/{kontak}', [KontakController::class, 'destroy'])->name('kontak.destroy');
 
         // Kategori
         Route::get('kategori', [KategoriController::class, 'index'])->name('kategori.index');

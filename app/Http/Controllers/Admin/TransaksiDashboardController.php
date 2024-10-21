@@ -10,11 +10,36 @@ use Illuminate\Http\Request;
 
 class TransaksiDashboardController extends Controller
 {
-    public function index()
-    {
-        $transaksi = Transaksi::with(['user','detailTransaksi.produk'])->get();
-        return view('admin.transaksi.transaksi-index',compact('transaksi'));
+    public function index(Request $request)
+{
+    $filter = $request->filter; // Untuk filter status pembayaran
+    $search = $request->search; // Untuk pencarian berdasarkan user atau produk
+    $paginate = 10; // Tentukan jumlah item per halaman
+
+    // Query dasar untuk transaksi
+    $query = Transaksi::with(['user', 'detailTransaksi.produk']);
+
+    // Pencarian
+    if ($search) {
+        $query->whereHas('user', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%'); // Pencarian berdasarkan nama user
+        })
+        ->orWhereHas('detailTransaksi.produk', function ($q) use ($search) {
+            $q->where('nama_produk', 'like', '%' . $search . '%'); // Pencarian berdasarkan nama produk
+        });
     }
+
+    // Filter status pembayaran
+    if ($filter) {
+        $query->where('status_pembayaran', $filter); // Filter berdasarkan status pembayaran
+    }
+
+    // Pagination
+    $transaksi = $query->latest()->paginate($paginate);
+
+    return view('admin.transaksi.transaksi-index', compact('transaksi', 'filter', 'search'));
+}
+
 
     public function show(Transaksi $transaksi)
     {

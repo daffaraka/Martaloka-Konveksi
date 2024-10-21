@@ -11,12 +11,35 @@ class KategoriController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-        $kategoris = Kategori::all();
-        return view('admin.kategori.kategori-index', compact('kategoris'));
+        $filter = $request->filter;
+        $search = $request->search;
+    
+        // Query dasar untuk kategori
+        $query = Kategori::query();
+    
+        // Pencarian
+        if ($search) {
+            $query->where('nama_kategori', 'like', '%' . $search . '%');
+        }
+    
+        // Filter
+        if ($filter) {
+            $query->where('nama_kategori', 'like', '%' . $filter . '%');
+        }
+    
+        // Dapatkan hasil query
+        $kategoris = $query->latest()->get();
+    
+        // Mengembalikan view beserta data
+        return view('admin.kategori.kategori-index', [
+            'kategoris' => $kategoris,
+            'filter' => $filter,
+            'search' => $search
+        ]);
     }
+    
 
     /**
      * Show the form for creating a new resource.

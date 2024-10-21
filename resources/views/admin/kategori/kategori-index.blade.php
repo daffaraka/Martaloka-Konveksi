@@ -1,36 +1,80 @@
 @extends('admin.layout')
-@section('title','Kategori')
+@section('title', 'Kategori')
 @section('content')
-    <a href="{{route('kategori.create')}}" class="btn btn-primary">Tambah Kategori</a>
 
-    <div class="table-responsive mt-5 ">
+    <!-- Tombol Tambah Kategori -->
+    <a href="{{ route('kategori.create') }}" class="btn btn-info">
+        <i class="fas fa-plus-circle "></i> Tambah Kategori
+    </a>
+
+    <!-- Form Pencarian dan Filter -->
+    <div class="row mt-4 mb-3">
+        <div class="col-md-5">
+            <form action="{{ route('kategori.index') }}" method="GET">
+                <div class="input-group">
+                    <input name="search" type="text" value="{{ request('search') }}" class="form-control"
+                        placeholder="Cari kategori..." aria-label="Search">
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fas fa-search"></i> Cari
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-2">
+            <form action="{{ route('kategori.index') }}" method="GET">
+                <div class="input-group">
+                    <select name="filter" id="filter" class="form-select">
+                        <option value="">--Filter kategori--</option>
+                        @foreach ($kategoris as $kat)
+                            <option value="{{ $kat->nama_kategori }}"
+                                {{ request('filter') == $kat->nama_kategori ? 'selected' : '' }}>
+                                {{ $kat->nama_kategori }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fas fa-filter"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-5 text-end">
+            <a href="{{ route('kategori.index') }}" class="btn btn-warning">
+                <i class="fas fa-retweet"></i> Reset
+            </a>
+        </div>
+    </div>
+
+    <!-- Tabel Kategori -->
+    <div class="table-responsive mt-3">
         <table class="table table-striped table-bordered shadow">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col" style="width: 70px">#</th>
                     <th scope="col">Nama Kategori</th>
-
-                    <th>Action</th>
-
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-
                 @foreach ($kategoris as $data)
-                    <tr class="">
+                    <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->nama_kategori }}</td>
                         <td>
-                            <a href="{{route('kategori.edit',$data->id)}}" class="btn btn-info">Edit</a>
-                            <a href="{{route('kategori.destroy',$data->id)}}" class="btn btn-danger">Hapus</a>
+                            <a href="{{ route('kategori.edit', $data->id) }}" class="btn btn-primary">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="{{ route('kategori.destroy', $data->id) }}" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Hapus
+                            </a>
 
                         </td>
-
                     </tr>
                 @endforeach
-
-
             </tbody>
         </table>
     </div>
+
 @endsection

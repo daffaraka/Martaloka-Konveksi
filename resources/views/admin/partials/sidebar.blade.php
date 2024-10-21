@@ -167,9 +167,18 @@
 
                 <li class="nav-header" style="margin-top: -20px;">MANAGE USER</li>
                 <li class="nav-item">
-                    <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'menu-open active' : '' }}">
+                    <a href="{{ route('users.index') }}"
+                        class="nav-link {{ request()->routeIs('users.index') ? 'menu-open active' : '' }}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>User Manajemen</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('kontak.index') }}"
+                        class="nav-link {{ request()->routeIs('kontak.index') ? 'menu-open active' : '' }}">
+                        <i class="nav-icon fas fa-paper-plane"></i>
+                        <p>Kontak</p>
                     </a>
                 </li>
 
