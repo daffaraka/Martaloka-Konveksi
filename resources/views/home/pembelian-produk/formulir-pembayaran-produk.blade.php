@@ -156,14 +156,38 @@
 
                                         <button class="btn-one btn-block mt-4" type="submit">Kirim Bukti</button>
                                     @else
-                                        <h2 class="text-center">Pembayaran sedang diproses</h2>
+                                        <h2 class="text-center">Transaksi sedang diproses</h2>
                                         <hr>
-                                        <div class="px-3 mt-3">
-                                            <label for="">Status sekarang : </label> <br>
-                                            <button class="btn-one" type="button">
-                                                {{ $transaksi->status_pembayaran }}</button>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h3>Bukti Pembayaran</h3>
+                                                <div class="d-flex justify-content-center">
+                                                    <img src="{{ asset('bukti_Pembayaran/' . $transaksi->bukti_pembayaran) }}" style="max-height: 250px;" alt="">
 
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="px-3 mt-3">
+                                                    <button class="btn-one" type="button">
+                                                        {{ $transaksi->status_pembayaran }}</button>
+
+                                                    <div class="card mt-3">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Progress transaksi</h5>
+                                                            @foreach ($transaksi->progress as $index => $item)
+                                                            <li class="mb-3">
+                                                                <h6 class="font-weight-bold">{{ $item->nama_progress }} {!! $index == 0 ? '<span class="badge badge-success"> Status terakhir </span>' : '' !!}</h6>
+
+                                                                {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y H:mm:ss') }}
+                                                                <br>
+                                                            </li>
+                                                        @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+
                                     @endif
                                 </div>
                             </div>

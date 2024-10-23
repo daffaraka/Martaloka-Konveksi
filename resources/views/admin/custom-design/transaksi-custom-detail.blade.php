@@ -34,7 +34,7 @@
                             readonly>
                     </div>
                     <div class="form-group">
-                        <label for="">Tanggal Teansaksi</label>
+                        <label for="">Tanggal Transaksi</label>
                         <input type="text" class="form-control"
                             value="{{ $transaksi->created_at->isoFormat('dddd, D MMMM Y') }}" readonly>
                     </div>

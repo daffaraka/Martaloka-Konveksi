@@ -215,7 +215,7 @@ class TransaksiProdukController extends Controller
     {
         $data['judul'] = 'Daftar transaksi pembelian anda';
 
-        $data['transaksis'] = Transaksi::with(['detailTransaksi.produk', 'user'])->where('user_id', Auth::id())->get();
+        $data['transaksis'] = Transaksi::with(['detailTransaksi.produk', 'user','progress'])->where('user_id', Auth::id())->get();
         // dd($data['transaksis']);
         return view('home.pembelian-produk.transaksi', $data);
     }
