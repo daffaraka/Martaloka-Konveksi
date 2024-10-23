@@ -31,7 +31,8 @@
                                                             <a href="#" class="text-dark">
                                                         </h5>
 
-                                                        <p class="mb-0 mt-1">Size : <span class="fw-medium">{{$item->size}}</span></p>
+                                                        <p class="mb-0 mt-1">Size : <span
+                                                                class="fw-medium">{{ $item->size }}</span></p>
                                                     </div>
                                                 </div>
                                                 <div class="flex-shrink-0 ms-2">
@@ -87,78 +88,114 @@
                         </div>
 
                     </div>
+
+
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 px-5 my-5 my-xxl-0 my-xl-0 my-lg-0">
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Nama</h6>
-                            <input id="my-input" class="form-control" type="text" name="nama_pemesan" required value="{{ Auth::user()->name }}">
+                            <input id="my-input" class="form-control" type="text" name="nama_pemesan" required
+                                value="{{ Auth::user()->name }}"
+                                {{ $transaksi->status_pembayaran == 'Dalam Transaksi' ? '' : 'disabled' }}>
                         </div>
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Alamat</h6>
-                            <input id="my-input" class="form-control" type="text" name="alamat_pemesan" required value="{{ Auth::user()->alamat }}">
+                            <input id="my-input" class="form-control" type="text" name="alamat_pemesan" required
+                                value="{{ Auth::user()->alamat }}"
+                                {{ $transaksi->status_pembayaran == 'Dalam Transaksi' ? '' : 'disabled' }}>
                         </div>
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Email</h6>
-                            <input id="my-input" class="form-control" type="email" name="email_pemesan" required value="{{ Auth::user()->email }}">
+                            <input id="my-input" class="form-control" type="email" name="email_pemesan" required
+                                value="{{ Auth::user()->email }}"
+                                {{ $transaksi->status_pembayaran == 'Dalam Transaksi' ? '' : 'disabled' }}>
                         </div>
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Nomor Telepon</h6>
-                            <input id="my-input" class="form-control" type="number" name="nomor_hp_pemesan" required value="{{ Auth::user()->nomor_hp }}">
+                            <input id="my-input" class="form-control" type="number" name="nomor_hp_pemesan" required
+                                value="{{ Auth::user()->nomor_hp }}"
+                                {{ $transaksi->status_pembayaran == 'Dalam Transaksi' ? '' : 'disabled' }}>
                         </div>
 
 
                         <div class="form-group mb-3">
                             <h3 class="mb-2">Catatan</h3>
-                            <textarea name="catatan" id="" class="form-control" cols="120" rows="5"></textarea>
+                            <textarea name="catatan" id="" class="form-control" cols="120" rows="5"
+                                {{ $transaksi->status_pembayaran == 'Dalam Transaksi' ? '' : 'disabled' }}> {{ $transaksi->catatan ?? '' }}</textarea>
 
                         </div>
 
                         <div class="form-group mb-3">
+                            <h3 for="">Metode Pembayaran</h3>
                             <div class="card">
+
                                 <div class="row">
                                     <div class="col-12  py-3">
-                                        <h3 class="px-3">Pilih Metode pembayaran</h3>
-                                        <div class="px-5 py-3">
-                                            <div class="d-flex align-items-start">
-                                                <input type="radio" name="bank" id="bank_bni" value="BNI"
-                                                    class="mt-1 me-2">
-                                                <label for="bank_bni" class="d-flex align-items-start">
+
+                                        @if ($transaksi->status_pembayaran == 'Dalam Transaksi')
+                                            <h3 class="px-3">Pilih Metode pembayaran</h3>
+                                            <div class="px-5 py-3">
+                                                <div class="d-flex align-items-start">
+                                                    <input type="radio" name="metode_bayar" id="bank_bni"
+                                                        value="BNI" class="mt-1 me-2">
+                                                    <label for="bank_bni" class="d-flex align-items-start">
+                                                        <div>
+                                                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/BankNegaraIndonesia46-logo.svg/1200px-BankNegaraIndonesia46-logo.svg.png"
+                                                                class="img-fluid text-center ml-3" alt=""
+                                                                style="max-height: 50px;">
+                                                        </div>
+
+                                                    </label>
+
+                                                </div>
+                                                <div class="ms-2">
+                                                    <p class="mb-0">No.rek : <b> 7543216</b> <br>
+                                                        <b> a.n Putu Suarbawa</b>
+                                                    </p>
+                                                </div>
+                                                <hr>
+                                            </div>
+
+                                            <div class="px-5 py-3">
+                                                <div class="d-flex align-items-start">
+                                                    <input type="radio" name="metode_bayar" id="bank_bri"
+                                                        value="BRI" class="mt-1 me-2">
+                                                    <label for="bank_bri" class="d-flex align-items-start">
+                                                        <div>
+                                                            <img src="https://media.suara.com/pictures/970x544/2024/06/04/49528-logo-bri-logo-bank-bri.jpg"
+                                                                class="img-fluid text-center ml-3" alt=""
+                                                                style="max-height: 50px;">
+                                                        </div>
+
+                                                    </label>
+                                                </div>
+                                                <div class="ms-2">
+                                                    <p class="mb-0">No.rek : <b> 7543216 </b> <br>
+                                                        a.n <b> Putu Suarbawa</b>
+                                                    </p>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        @else
+                                            @switch($transaksi->metode_bayar)
+                                                @case('BNI')
                                                     <div>
                                                         <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/BankNegaraIndonesia46-logo.svg/1200px-BankNegaraIndonesia46-logo.svg.png"
                                                             class="img-fluid text-center ml-3" alt=""
                                                             style="max-height: 50px;">
                                                     </div>
+                                                @break
 
-                                                </label>
-
-                                            </div>
-                                            <div class="ms-2">
-                                                <p class="mb-0">No.rek : <b> 7543216</b> <br>
-                                                    <b> a.n Putu Suarbawa</b>
-                                                </p>
-                                            </div>
-                                            <hr>
-                                        </div>
-
-                                        <div class="px-5 py-3">
-                                            <div class="d-flex align-items-start">
-                                                <input type="radio" name="bank" id="bank_bri" value="BRI"
-                                                    class="mt-1 me-2">
-                                                <label for="bank_bri" class="d-flex align-items-start">
+                                                @case('BRI')
                                                     <div>
                                                         <img src="https://media.suara.com/pictures/970x544/2024/06/04/49528-logo-bri-logo-bank-bri.jpg"
                                                             class="img-fluid text-center ml-3" alt=""
                                                             style="max-height: 50px;">
                                                     </div>
+                                                @break
 
-                                                </label>
-                                            </div>
-                                            <div class="ms-2">
-                                                <p class="mb-0">No.rek : <b> 7543216 </b> <br>
-                                                    a.n <b>  Putu Suarbawa</b>
-                                                </p>
-                                            </div>
-                                            <hr>
-                                        </div>
+                                                @default
+                                            @endswitch
+                                        @endif
 
                                     </div>
 
@@ -173,8 +210,7 @@
 
 
 
-                </div>
-                <div class="d-grid px-5">
+                <div class="d-grid px-5 w-100">
                     <button class="btn-one w-100">Pesan</button>
 
                 </div>

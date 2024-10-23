@@ -63,15 +63,15 @@ Route::middleware('auth')->group(function () {
     Route::post('kirim-design', [TransaksiCustomDesignController::class, 'storeDesign'])->name('home.storeDesign');
     Route::get('pembayaran-custom-design/{transaksiCustomDesign}', [TransaksiCustomDesignController::class, 'formPembayaranTransaksiCustom'])->name('home.formPembayaranTransaksiCustom');
     Route::post('pembayaran-custom-design/{transaksiCustomDesign}/upload-bukti', [TransaksiCustomDesignController::class, 'uploadBuktiCustomDesign'])->name('home.uploadBuktiCustomDesign');
-    Route::post('custom-design/progress/{progress}',[TransaksiCustomDesignController::class,'getProgress'])->name('home.detailProgressCustom');
+    Route::post('custom-design/progress/{progress}', [TransaksiCustomDesignController::class, 'getProgress'])->name('home.detailProgressCustom');
     // Route::get('custom-design', [TransaksiCustomDesignController::class, 'createDesign'])->name('home.createDesign');
 
 
 
 
     // Dashboard Admin
-    Route::prefix('dashboard')->group(function () {
-        Route::get('/',[DashboardController::class,'index'] )->name('dashboard');
+    Route::group(['middleware' => 'isAdmin', 'prefix' => 'dashboard'], function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         // Kontak Admin
         Route::get('kontak', [KontakController::class, 'index'])->name('kontak.index');
@@ -139,11 +139,11 @@ Route::middleware('auth')->group(function () {
         Route::resource('users', UserController::class);
 
 
-        Route::get('detail-produk/{id}',[ResponseController::class,'detailTransaksi'])->name('response.detailTransaksi');
+        Route::get('detail-produk/{id}', [ResponseController::class, 'detailTransaksi'])->name('response.detailTransaksi');
     });
-
-
 });
+
+
 
 
 

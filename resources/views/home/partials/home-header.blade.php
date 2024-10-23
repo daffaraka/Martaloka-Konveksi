@@ -59,7 +59,7 @@
                                 @endguest
 
                                 @auth
-                                    <li><a href="#"><i class="icon-account mr-2"></i>{{ Auth::user()->name }}</a></li>
+                                    <li><a href="#"><i class="icon-account mr-2"></i>{{ Auth::user()->name }} </a></li>
                                 @endauth
                             </ul>
                         </div>

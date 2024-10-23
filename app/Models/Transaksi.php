@@ -24,7 +24,8 @@ class Transaksi extends Model
         'total_harga',
         'bukti_pembayaran',
         'no_resi',
-        'kurir'
+        'kurir',
+        'metode_bayar'
 
     ];
 

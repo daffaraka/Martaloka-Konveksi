@@ -18,7 +18,7 @@ class TransaksiSeeder extends Seeder
     {
         $produks = Produk::pluck('id')->toArray();
         $users = User::pluck('id')->toArray();
-        $statuses = ['Pending', 'Diterima', 'Dibayar', 'Dibatalkan','Selesai'];
+        $statuses = ['Dalam Transaksi', 'Belum Dibayar', 'Dibayar', 'Dibatalkan','Selesai'];
         $metode = ['BNI', 'BCA', 'Mandiri'];
         $size = ['S','M','L','XL','XXL'];
 

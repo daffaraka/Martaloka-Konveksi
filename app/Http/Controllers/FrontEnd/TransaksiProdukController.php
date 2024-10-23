@@ -129,7 +129,7 @@ class TransaksiProdukController extends Controller
 
             $transaksi = new Transaksi();
             $transaksi->user_id = Auth::user()->id;
-            $transaksi->status_pembayaran = 'Pending';
+            $transaksi->status_pembayaran = 'Dalam Transaksi';
             $transaksi->total_harga = $total_harga;
             $transaksi->save();
 
@@ -171,8 +171,8 @@ class TransaksiProdukController extends Controller
             'email_pemesan' => $request->email_pemesan,
             'nomor_hp_pemesan' => $request->nomor_hp_pemesan,
             'catatan' => $request->catatan,
-            'status_pembayaran' => 'Pending', // Atur status default sebagai 'Pending'
-            'metode_bayar' => 'Bank Transfer', // Misalkan metode pembayaran default
+            'status_pembayaran' => 'Dalam Transaksi', // Atur status default sebagai 'Dalam Transaksi'
+            'metode_bayar' => $request->metode_bayar, // Misalkan metode pembayaran default
         ]);
 
 
@@ -203,7 +203,7 @@ class TransaksiProdukController extends Controller
 
         $transaksi->with(['detailTransaksi.produk', 'user'])->where('id', $transaksi->id)->first();
         $transaksi->bukti_pembayaran = $fileSaved;
-        $transaksi->status_pembayaran = 'Diterima';
+        $transaksi->status_pembayaran = 'Dibayar';
         $transaksi->save();
 
 

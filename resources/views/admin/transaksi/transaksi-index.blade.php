@@ -22,9 +22,11 @@
                         <option value="Selesai" {{ request('filter') == 'Selesai' ? 'selected' : '' }}>Selesai</option>
                         <option value="Dibatalkan" {{ request('filter') == 'Dibatalkan' ? 'selected' : '' }}>Dibatalkan
                         </option>
-                        <option value="Pending" {{ request('filter') == 'Pending' ? 'selected' : '' }}>Pending</option>
+                        <option value="Pending" {{ request('filter') == 'Dalam Transaksi' ? 'selected' : '' }}>Pending
+                        </option>
                         <option value="Dibayar" {{ request('filter') == 'Dibayar' ? 'selected' : '' }}>Dibayar</option>
-                        <option value="Diterima" {{ request('filter') == 'Diterima' ? 'selected' : '' }}>Diterima</option>
+                        <option value="Diterima" {{ request('filter') == 'Belum Dibayar' ? 'selected' : '' }}>Diterima
+                        </option>
                     </select>
                     <button class="btn btn-secondary" type="submit">
                         <i class="fas fa-filter"></i> Filter
@@ -62,12 +64,12 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->user->name }}</td>
                         <td>
-                            @if ($data->status_pembayaran == 'Pending')
+                            @if ($data->status_pembayaran == 'Dalam Transaksi')
                                 <button class="btn btn-secondary">Menunggu Pembayaran</button>
                             @elseif($data->status_pembayaran == 'Dibayar')
                                 <button class="btn btn-success">Sudah Dibayar</button>
-                            @elseif($data->status_pembayaran == 'Diterima')
-                                <button class="btn btn-primary">Diterima</button>
+                            @elseif($data->status_pembayaran == 'Belum Dibayar')
+                                <button class="btn btn-warning">Belum Dibayar</button>
                             @elseif($data->status_pembayaran == 'Dibatalkan')
                                 <button class="btn btn-danger">Batal</button>
                             @elseif($data->status_pembayaran == 'Selesai')
@@ -92,27 +94,32 @@
                             @if ($data->bukti_pembayaran == null)
                                 Belum ada
                             @else
-                                <a href="{{ asset('bukti_Pembayaran/' . $data->bukti_pembayaran) }}" class="btn btn-info">
-                                    <i class="fa fa-image" aria-hidden="true"></i> Bukti pembayaran</a>
+                                <a href="{{ asset('bukti_Pembayaran/' . $data->bukti_pembayaran) }}"
+                                    class="btn btn-info btn-lg">
+                                    <i class="fa fa-image" aria-hidden="true"></i></a>
                             @endif
                         </td>
-                        <td>{{$data->kurir ?? '-'}}</td>
-                        <td>{{$data->no_resi ?? '-'}}</td>
+                        <td>{{ $data->kurir ?? '-' }}</td>
+                        <td>{{ $data->no_resi ?? '-' }}</td>
                         <td>
                             @switch($data->status_pembayaran)
-                                @case('Pending')
-                                    <button class="btn btn-block btn-secondary">Belum ada bukti transfer</button>
+                                @case('Dalam Transaksi')
+                                    <button class="btn btn-block btn-secondary">Menunggu menyelesaikan pesanan</button>
                                 @break
 
                                 @case('Dibayar')
-                                    <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-block btn-success">Sudah
-                                        Dibayar</a>
-                                @break
-
-                                @case('Diterima')
-                                    <button href="#" class="btn btn-block btn-primary" id="terimaTransaksi"
+                                    <a href="{{ route('transaksi.show', $data->id) }}"
+                                        class="btn btn-block btn-light border border-1">Detail Transaksi</a>
+                                    <button href="#" class="btn btn-block btn-success" id="terimaTransaksi"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                                         data-transaksi-id="{{ $data->id }}">Terima transaksi</button>
+                                @break
+
+                                @case('Belum Dibayar')
+                                    <a href="{{ route('transaksi.show', $data->id) }}"
+                                        class="btn btn-block btn-light border border-1">Detail Transaksi</a>
+
+                                    data-transaksi-id="{{ $data->id }}">Terima transaksi</button>
 
                                     <a href="{{ route('transaksi.batal', $data->id) }}"
                                         class="btn btn-block btn-outline-danger">Tolak transaksi</a>
@@ -124,6 +131,7 @@
                                 @break
 
                                 @case('Selesai')
+                                    <a href="">Lihat Progress</a>
                                     <a class="btn btn-block btn-success">Selesai</a>
                                 @break
 

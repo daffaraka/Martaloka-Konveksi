@@ -17,7 +17,7 @@ class ProgressPembelianController extends Controller
         $data['judul'] = 'Progres Transaksi Pembelian';
         $data['transaksi'] = Transaksi::with(['progress' => function($progress){
             $progress->latest();
-        }])->where('status_pembayaran', 'Diterima')->get();
+        }])->where('status_pembayaran', 'Selesai')->get();
 
         // dd($data['transaksi']->);
         return view('admin.progress-pembelian.progress-p-index', $data);
