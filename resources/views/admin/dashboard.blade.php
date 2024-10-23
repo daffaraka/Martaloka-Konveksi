@@ -1,5 +1,4 @@
 @extends('admin.layout')
-
 @section('content')
     <div class="row">
         <div class="col-lg-3 col-6">
@@ -17,7 +16,7 @@
         </div>
 
         <div class="col-lg-3 col-6">
-            <div class="small-box bg-secondary">
+            <div class="small-box bg-warning">
                 <div class="inner">
                     <h3>{{ $jumlah_pengguna }}</h3>
                     <p>Jumlah Pengguna</p>
@@ -58,64 +57,211 @@
             </div>
         </div>
     </div>
+    <form method="GET" action="{{ route('dashboard') }}" class="mb-4">
+        <div class="form-group">
+            <label for="year">Pilih Tahun:</label>
+            <select name="year" id="year" class="form-control" onchange="this.form.submit()">
+                @for ($i = 2024; $i <= now()->year + 5; $i++)
+                    <option value="{{ $i }}" {{ $selectedYear == $i ? 'selected' : '' }}>{{ $i }}
+                    </option>
+                @endfor
+            </select>
+        </div>
+    </form>
 
+    <!-- Grafik Transaksi -->
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-md-6">
             <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Grafik Jumlah Transaksi Bulanan ({{ $selectedYear }})</h3>
+                </div>
                 <div class="card-body">
-                    <h3>Data Penjualan Pie Chart</h3>
-                    <canvas id="chartPiePenjualan" style="height: 20vw; width:auto;"></canvas>
+                    <div class="chart-container" style="position: relative; height:300px;">
+                        <canvas id="barChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-md-6">
             <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Distribusi Transaksi ({{ $selectedYear }})</h3>
+                </div>
                 <div class="card-body">
-                    <h3>Data Penjualan Bar Chart</h3>
-                    <canvas id="chartBarPenjualan" style="height: 20vw; width:auto;"></canvas>
+                    <div class="chart-container" style="position: relative; height:300px;">
+                        <canvas id="pieChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+    <!-- Transaksi Terbaru -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Transaksi Terbaru</h3>
+                    <div class="card-tools">
+                        <a href="{{ route('transaksi.index') }}" class="btn btn-sm btn-primary">
+                            Lihat Semua
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <th>Nama Pemesan</th>
+                                    <th>Status</th>
+                                    <th>Total Harga</th>
+                                    <th>Produk</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($transaksi_terbaru as $transaksi)
+                                    <tr>
+                                        <td>{{ $transaksi->created_at->format('d M Y H:i') }}</td>
+                                        <td>{{ $transaksi->user->name }}</td>
+                                        <td>
+                                            @if ($transaksi->status_pembayaran == 'Pending')
+                                                <span class="badge bg-secondary">Menunggu Pembayaran</span>
+                                            @elseif($transaksi->status_pembayaran == 'Dibayar')
+                                                <span class="badge bg-success">Sudah Dibayar</span>
+                                            @elseif($transaksi->status_pembayaran == 'Diterima')
+                                                <span class="badge bg-primary">Diterima</span>
+                                            @elseif($transaksi->status_pembayaran == 'Dibatalkan')
+                                                <span class="badge bg-danger">Batal</span>
+                                            @elseif($transaksi->status_pembayaran == 'Selesai')
+                                                <span class="badge bg-success">Selesai</span>
+                                            @else
+                                                <span class="badge bg-info">Status Tidak Valid</span>
+                                            @endif
+                                        </td>
+                                        <td>Rp. {{ number_format($transaksi->total_harga) }}</td>
+                                        <td>
+                                            <ul class="list-unstyled m-0">
+                                                @foreach ($transaksi->detailTransaksi as $detail)
+                                                    <li>{{ $detail->produk->nama_produk }} ({{ $detail->qty }})</li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">Tidak ada transaksi terbaru</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @push('scripts')
+        <!-- Load jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-@section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Data untuk Pie Chart
-        var ctxPie = document.getElementById('chartPiePenjualan').getContext('2d');
-        var chartPiePenjualan = new Chart(ctxPie, {
-            type: 'pie',
-            data: {
-                labels: ['Produk 1', 'Produk 2', 'Produk 3'],
-                datasets: [{
-                    data: [700, 500, 300],
-                    backgroundColor: ['#f56954', '#00a65a', '#f39c12'],
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-            }
-        });
+        <!-- Load Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1"></script>
 
-        // Data untuk Bar Chart
-        var ctxBar = document.getElementById('chartBarPenjualan').getContext('2d');
-        var chartBarPenjualan = new Chart(ctxBar, {
-            type: 'bar',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: 'Penjualan',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    backgroundColor: 'rgba(60,141,188,0.9)',
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-            }
-        });
-    </script>
+        <script>
+            $(document).ready(function() {
+                // Data untuk grafik
+                const labels = @json($labels);
+                const produkData = @json($produkData);
+                const customData = @json($customData);
+                const totalProduk = @json($totalProduk);
+                const totalCustom = @json($totalCustom);
+
+                console.log("Initializing charts...");
+
+                // Mengecek apakah data sudah benar
+                console.log('Labels:', labels);
+                console.log('Produk Data:', produkData);
+                console.log('Custom Data:', customData);
+
+                // Bar Chart
+                const barCtx = document.getElementById('barChart').getContext('2d');
+                if (barCtx) {
+                    new Chart(barCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Transaksi Produk',
+                                data: produkData,
+                                backgroundColor: 'rgba(60, 141, 188, 0.7)',
+                                borderColor: 'rgba(60, 141, 188, 1)',
+                                borderWidth: 1
+                            }, {
+                                label: 'Transaksi Custom',
+                                data: customData,
+                                backgroundColor: 'rgba(40, 167, 69, 0.7)',
+                                borderColor: 'rgba(40, 167, 69, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        stepSize: 1
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    position: 'top'
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    console.error("Canvas element for barChart not found!");
+                }
+
+                // Pie Chart
+                const pieCtx = document.getElementById('pieChart').getContext('2d');
+                if (pieCtx) {
+                    new Chart(pieCtx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Transaksi Produk', 'Transaksi Custom'],
+                            datasets: [{
+                                data: [totalProduk, totalCustom],
+                                backgroundColor: [
+                                    'rgba(60, 141, 188, 0.7)',
+                                    'rgba(40, 167, 69, 0.7)'
+                                ],
+                                borderColor: [
+                                    'rgba(60, 141, 188, 1)',
+                                    'rgba(40, 167, 69, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'top'
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    console.error("Canvas element for pieChart not found!");
+                }
+            });
+        </script>
+    @endpush
 @endsection
