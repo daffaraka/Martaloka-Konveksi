@@ -34,6 +34,7 @@ class KategoriController extends Controller
     
         // Mengembalikan view beserta data
         return view('admin.kategori.kategori-index', [
+            'judul' => 'Beranda Kategori',
             'kategoris' => $kategoris,
             'filter' => $filter,
             'search' => $search

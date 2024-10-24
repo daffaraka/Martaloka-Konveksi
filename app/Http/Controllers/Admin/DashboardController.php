@@ -27,7 +27,7 @@ class DashboardController extends Controller
     // Tambahkan data transaksi terbaru
     $data['transaksi_terbaru'] = Transaksi::with(['user', 'detailTransaksi.produk'])
                                     ->latest()
-                                    ->take(5)
+                                    ->take(10)
                                     ->get();
 
     // Initialize arrays for regular transactions
