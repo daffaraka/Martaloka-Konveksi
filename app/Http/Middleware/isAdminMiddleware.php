@@ -15,10 +15,10 @@ class isAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->user()->role == 'is_admin') {
+        if (auth()->user()->role == 'admin') {
             return $next($request);
         } else {
-            return redirect()->route('home')->with('error', 'You do not have permission to access this page');
+            return redirect()->to('/')->with('error', 'You do not have permission to access this page');
         }
 
     }

@@ -44,8 +44,9 @@
                                                     </div>
 
                                                     <div class="d-gap mt-3">
-                                                        <a href="{{ route('home.formTransaksiPembelian', $transaksi->id) }}"
-                                                            class="btn btn-danger text-uppercase rounded-0 w-100" type="submit">Lihat progress</a>
+                                                        <a href="{{ route('home.formUploadBuktiTransaksiPembelian', $transaksi->id) }}"
+                                                            class="btn btn-success text-uppercase rounded-0 w-100"
+                                                            type="submit">Lihat progress</a>
                                                     </div>
                                                 </div>
 
@@ -60,7 +61,8 @@
 
                                                     <div class="d-gap mt-3">
                                                         <a href="{{ route('home.formTransaksiPembelian', $transaksi->id) }}"
-                                                            class="btn btn-primary text-uppercase rounded-0 w-100" type="submit">Lengkapi
+                                                            class="btn btn-primary text-uppercase rounded-0 w-100"
+                                                            type="submit">Lengkapi
                                                             Pembayaran</a>
                                                     </div>
                                                 </div>

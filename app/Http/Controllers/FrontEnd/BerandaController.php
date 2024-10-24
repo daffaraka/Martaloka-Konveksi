@@ -21,7 +21,7 @@ class BerandaController extends Controller
 
         $data['kategori'] = Kategori::with('produk')->get();
         $data['products'] = Produk::with('kategori')->orderBy('created_at', 'desc')->take(3)->get();
-        
+
         // dd(Auth::user());
         return view('home.homepage', $data);
     }
@@ -65,7 +65,7 @@ class BerandaController extends Controller
     public function transaksi()
     {
         $user_id = Auth::user()->id;
-        $transaksis = Transaksi::with(['detailTransaksi.produk.kategori', 'user'])->where('status_pembayaran', 'Pending')->where('user_id', $user_id)->get();
+        $transaksis = Transaksi::with(['detailTransaksi.produk.kategori', 'user'])->where('status_pembayaran', 'Dalam Transaksi')->where('user_id', $user_id)->get();
 
         // dd(($keranjangs));
         return view('home.pembelian-produk.transaksi', compact('transaksis'));
@@ -95,7 +95,7 @@ class BerandaController extends Controller
 
         $transaksi = new Transaksi();
         $transaksi->user_id = Auth::user()->id;
-        $transaksi->status_pembayaran = 'Pending';
+        $transaksi->status_pembayaran = 'Dalam Transaksi';
         $transaksi->total_harga = $total_harga;
         $transaksi->save();
 
@@ -151,7 +151,7 @@ class BerandaController extends Controller
 
         $transaksi->with(['detailTransaksi.produk', 'user'])->where('id', $transaksi->id)->first();
         $transaksi->bukti_pembayaran = $fileSaved;
-        $transaksi->status_pembayaran = 'Diterima';
+        $transaksi->status_pembayaran = 'Belum Dibayar';
         $transaksi->save();
 
 

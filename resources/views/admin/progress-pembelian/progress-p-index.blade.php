@@ -22,11 +22,11 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->user->name }}</td>
                         <td>
-                            @if ($data->status_pembayaran == 'Pending')
+                            @if ($data->status_pembayaran == 'Dalam Transaksi')
                                 <button class="btn btn-secondary">Menunggu Pembayaran</button>
                             @elseif($data->status_pembayaran == 'Dibayar')
                                 <button class="btn btn-success">Sudah Dibayar</button>
-                            @elseif($data->status_pembayaran == 'Diterima')
+                            @elseif($data->status_pembayaran == 'Belum Dibayar')
                                 <button class="btn btn-primary">Diterima</button>
                             @elseif($data->status_pembayaran == 'Dibatalkan')
                                 <button class="btn btn-danger">Batal</button>

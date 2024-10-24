@@ -72,7 +72,7 @@ class TransaksiCustomDesignController extends Controller
             'catatan' => $request->catatan,
             'total_pesanan' => $request->total_pesanan,
             'total_harga' => $request->total_pesanan * $harga_kategori,
-            'status_pembayaran' => 'Pending', // Atur status default sebagai 'Pending'
+            'status_pembayaran' => 'Dalam Transaksi', // Atur status default sebagai 'Dalam Transaksi'
             'metode_bayar' => 'Bank Transfer', // Misalkan metode pembayaran default
         ]);
 
@@ -141,7 +141,7 @@ class TransaksiCustomDesignController extends Controller
 
 
         $transaksiCustomDesign->update([
-            'status_pembayaran' => 'Diterima',
+            'status_pembayaran' => 'Belum Dibayar',
             'metode_bayar' => $request->bank,
             'bukti_pembayaran' => $fileSaved,
         ]);
