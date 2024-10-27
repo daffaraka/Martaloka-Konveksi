@@ -2,7 +2,6 @@
 @section('title', 'Edit produk')
 @section('content')
     <div class="px-3">
-        <h1>Edit produk baru</h1>
         <form action="{{ route('produk.update', $produk->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group mb-3">
@@ -21,7 +20,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="">Deskripsi</label>
-                <input id="" class="form-control" type="text" name="deskripsi" value="{{ $produk->deskripsi }}">
+                <textarea id="" class="form-control" name="deskripsi" rows="4">{{ $produk->deskripsi }}</textarea>
             </div>
             <div class="form-group mb-3">
                 <label for="">Harga Produk</label>

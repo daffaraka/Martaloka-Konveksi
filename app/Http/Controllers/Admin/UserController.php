@@ -14,8 +14,33 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $data = User::latest()->get();
-        return view('admin.users.user-index', compact('data'));
+        $search = $request->search;
+        $filter = $request->filter;
+        $paginate = 10;
+
+        $query = User::query();
+
+        // Search functionality
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                  ->orWhere('email', 'like', '%' . $search . '%')
+                  ->orWhere('role', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Filter by role
+        if ($filter) {
+            $query->where('role', $filter);
+        }
+        $data = $query->latest()->paginate($paginate);
+        
+        return view('admin.users.user-index', [
+            'judul' => 'Data User',
+            'data' => $data,
+            'search' => $search,
+            'filter' => $filter,
+        ]);
     }
 
     public function create()

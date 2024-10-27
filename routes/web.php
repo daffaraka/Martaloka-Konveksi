@@ -92,7 +92,8 @@ Route::middleware('auth')->group(function () {
         Route::post('produk/store', [ProdukController::class, 'store'])->name('produk.store');
         Route::get('produk/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit');
         Route::post('produk/update/{id}', [ProdukController::class, 'update'])->name('produk.update');
-        Route::get('produk/destroy/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy');
+        Route::delete('admin/produk/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy');
+
 
         // Transaksi
         Route::get('transaksi', [TransaksiDashboardController::class, 'index'])->name('transaksi.index');

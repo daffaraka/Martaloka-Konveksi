@@ -80,7 +80,8 @@
                             <h5 class="card-title">Kategori Tersedia</h5>
                             <ul class="">
                                 @foreach ($dropdown_kategori as $kategori_list)
-                                    <li><a href="{{route('home.kategori', $kategori_list->nama_kategori)}}" data-id="{{ $kategori_list->id }}">
+                                    <li><a href="{{ route('home.kategori', $kategori_list->nama_kategori) }}"
+                                            data-id="{{ $kategori_list->id }}">
                                             {{ $kategori_list->nama_kategori }}</a>
                                     </li>
                                 @endforeach

@@ -97,6 +97,57 @@
             </div>
         </div>
     </div>
+
+    <!-- Grafik Pendapatan -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Grafik Pendapatan Bulanan ({{ $selectedYear }})</h3>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height:400px;">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="info-box" style="border: 0.5px solid #1d98b4; background-color: transparent;">
+                                <div class="info-box-content text-center py-2">
+                                    <span class="info-box-text">Total Pendapatan Transaksi Produk</span>
+                                    <span class="info-box-number">
+                                        Rp. {{ number_format($totalRevenue) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-box" style="border: 0.5px solid #00ffb7; background-color: transparent;">
+                                <div class="info-box-content text-center py-2">
+                                    <span class="info-box-text">Total Pendapatan Transaksi Custom</span>
+                                    <span class="info-box-number">
+                                        Rp. {{ number_format($totalCustomRevenue) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-box" style="border: 0.5px solid #fa0808; background-color: transparent;">
+                                <div class="info-box-content text-center py-2">
+                                    <span class="info-box-text">Total Pendapatan Keseluruhan</span>
+                                    <span class="info-box-number">
+                                        Rp. {{ number_format($totalRevenue + $totalCustomRevenue) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Transaksi Terbaru -->
     <div class="row mt-4">
         <div class="col-12">
@@ -162,6 +213,7 @@
             </div>
         </div>
     </div>
+
     @push('scripts')
         <!-- Load jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -262,6 +314,93 @@
                     console.error("Canvas element for pieChart not found!");
                 }
             });
+
+            // Add this after your existing chart initializations
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            if (revenueCtx) {
+                new Chart(revenueCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: @json($labels),
+                        datasets: [{
+                            label: 'Pendapatan Produk',
+                            data: @json($revenueData),
+                            backgroundColor: 'rgba(60, 141, 188, 0.7)',
+                            borderColor: 'rgba(60, 141, 188, 1)',
+                            borderWidth: 1,
+                            borderRadius: 0, // Menghilangkan lengkungan
+                            pointStyle: 'rect' // Mengubah bentuk point menjadi kotak
+                        }, {
+                            label: 'Pendapatan Custom',
+                            data: @json($customRevenueData),
+                            backgroundColor: 'rgba(40, 167, 69, 0.7)',
+                            borderColor: 'rgba(40, 167, 69, 1)',
+                            borderWidth: 1,
+                            borderRadius: 0, // Menghilangkan lengkungan
+                            pointStyle: 'rect' // Mengubah bentuk point menjadi kotak
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return new Intl.NumberFormat('id-ID', {
+                                            style: 'currency',
+                                            currency: 'IDR',
+                                            minimumFractionDigits: 0,
+                                            maximumFractionDigits: 0
+                                        }).format(value);
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    padding: 20,
+                                    usePointStyle: true,
+                                    pointStyle: 'rect' // Mengubah bentuk legend menjadi kotak
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        label += new Intl.NumberFormat('id-ID', {
+                                            style: 'currency',
+                                            currency: 'IDR',
+                                            minimumFractionDigits: 0,
+                                            maximumFractionDigits: 0
+                                        }).format(context.raw);
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        interaction: {
+                            intersect: false,
+                            mode: 'index'
+                        },
+                        barPercentage: 0.8, // Mengatur lebar bar
+                        categoryPercentage: 0.9 // Mengatur jarak antar grup bar
+                    }
+                });
+            } else {
+                console.error("Canvas element for revenueChart not found!");
+            }
         </script>
     @endpush
 @endsection

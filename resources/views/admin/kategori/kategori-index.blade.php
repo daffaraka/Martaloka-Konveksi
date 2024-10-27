@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Tombol Tambah Kategori -->
-    <a href="{{ route('kategori.create') }}" class="btn btn-info">
+    <a href="{{ route('kategori.create') }}" class="btn btn-success btn-sm">
         <i class="fas fa-plus-circle "></i> Tambah Kategori
     </a>
 

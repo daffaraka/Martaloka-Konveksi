@@ -10,7 +10,7 @@
                 @csrf
                 <div class="form-group mb-3">
                     <label for="">Nama Produk</label>
-                    <input id="" class="form-control" type="text" name="nama_produk">F
+                    <input id="" class="form-control" type="text" name="nama_produk">
                 </div>
                 <div class="form-group mb-3">
                     <label for="">Kategori</label>
