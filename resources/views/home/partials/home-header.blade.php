@@ -80,8 +80,9 @@
                 <div class="header-middle">
                     <div class="main-logo-box">
                         <a href="{{ route('beranda') }}">
-                            <img style="height: 70px" src="{{ asset('assets/images/logoo2.png') }}" alt="Aska Logo"
-                                title="">
+                            <img style="height: 85px; max-width: 67%; object-fit: contain;"
+                                src="{{ asset('assets/images/logoo2.png') }}" alt="Aska Logo" title="Aska Logo">
+
                         </a>
                     </div>
                     <div class="nav-outer style1 clearfix">
@@ -105,8 +106,8 @@
                                     <li class="{{ Request::is('profil/tentangkami') ? 'current' : '' }}"><a
                                             href="{{ route('home.tentang-kami') }}">Tentang Kami</a></li>
 
-                                    <li class="{{ Request::is('register*') ? 'current' : '' }}"><a
-                                            href="#"></a></li>
+                                    <li class="{{ Request::is('register*') ? 'current' : '' }}"><a href="#"></a>
+                                    </li>
                                     </li>
 
                                     <li class="blank-box"></li>

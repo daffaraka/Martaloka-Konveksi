@@ -158,7 +158,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('progress-custom.index') }}"
+                    <a href="{{ route('progress-pembelian.index') }}"
                         class="nav-link {{ Request::is('transaksi/progress-custom') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-project-diagram"></i>
                         <p>Progress Custom Design</p>
@@ -182,7 +182,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
@@ -195,7 +195,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                </li>
+                </li> --}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

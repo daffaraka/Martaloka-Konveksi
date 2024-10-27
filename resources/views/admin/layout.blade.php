@@ -36,6 +36,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -115,6 +117,40 @@
         <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.btn-delete').click(function(e) {
+                    e.preventDefault();
+                    var formId = $(this).data('id');
+                    var form = $('#delete-form-' + formId);
+
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // Hide success message after 3 seconds
+                setTimeout(function() {
+                    $('.alert-success').fadeOut('slow');
+                }, 3000); // 3000 ms = 3 seconds
+            });
+        </script>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @stack('scripts')

@@ -36,14 +36,15 @@
                             @endif
                         </td>
                         <td>
-                            {{$data->total_pesanan}}
+                            {{ $data->total_pesanan }}
                         </td>
                         <td> Rp. {{ number_format($data->total_harga) }}</td>
                         <td>
                             @if ($data->bukti_pembayaran == null)
                                 Belum ada
                             @else
-                                <a href="{{ asset('custom_designs/bukti-bayar/' . $data->bukti_pembayaran) }}" class="btn btn-info">
+                                <a href="{{ asset('custom_designs/bukti-bayar/' . $data->bukti_pembayaran) }}"
+                                    class="btn btn-info">
                                     <i class="fa fa-image" aria-hidden="true"></i> Bukti pembayaran</a>
                             @endif
 
@@ -61,14 +62,16 @@
                                 @break
 
                                 @case('Belum Dibayar')
-                                    <a href="{{ route('transaksiCustom.dibayar', $data->id) }}" class="btn btn-block btn-primary">Terima
+                                    <a href="{{ route('transaksiCustom.dibayar', $data->id) }}"
+                                        class="btn btn-block btn-primary">Terima
                                         transaksi</a>
                                     <a href="{{ route('transaksiCustom.batal', $data->id) }}"
                                         class="btn btn-block btn-outline-danger">Tolak transaksi</a>
                                 @break
 
                                 @case('Dibatalkan')
-                                    <a href="{{ route('transaksiCustom.show', $data->id) }}" class="btn btn-block btn-light border border-1">Detail Transaksi</a>
+                                    <a href="{{ route('transaksiCustom.show', $data->id) }}"
+                                        class="btn btn-block btn-light border border-1">Detail Transaksi</a>
                                 @break
 
                                 @case('Selesai')
@@ -79,8 +82,9 @@
                                     <button class="btn btn-block btn-info">Status Tidak Valid</button>
                                 @break
                             @endswitch
-                            <a href="https://wa.me/+62{{ $data->nomor_hp_pemesan ?? '85847728414'}} " class="btn btn-block btn-outline-warning text-dark"><i
-                                    class="fa fa-phone" aria-hidden="true"></i> Hubungi Pemesan</a>
+                            <a href="https://wa.me/+62{{ $data->nomor_hp_pemesan ?? '85847728414' }} "
+                                class="btn btn-block btn-outline-warning text-dark"><i class="fa fa-phone"
+                                    aria-hidden="true"></i> Hubungi Pemesan</a>
                         </td>
 
                     </tr>

@@ -37,7 +37,13 @@ class TransaksiDashboardController extends Controller
         // Pagination
         $transaksi = $query->latest()->paginate($paginate);
 
-        return view('admin.transaksi.transaksi-index', compact('transaksi', 'filter', 'search'));
+        return view('admin.transaksi.transaksi-index', [
+            'judul' => 'Data Transaksi',
+            'transaksi' => $transaksi,
+            'filter' => $filter,
+            'search' => $search,
+        ]);
+        
     }
 
 

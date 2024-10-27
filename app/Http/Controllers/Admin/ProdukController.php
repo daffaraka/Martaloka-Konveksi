@@ -44,7 +44,7 @@ class ProdukController extends Controller
     
         // Mengembalikan view beserta data
         return view('admin.produk.produk-index', [
-            'judul' => 'Beranda Produk',
+            'judul' => 'Daftar Produk',
             'produk' => $produks,
             'filter' => $filter,
             'search' => $search
@@ -79,7 +79,7 @@ class ProdukController extends Controller
         $Produk->save();
 
 
-        return redirect()->route('produk.index');
+        return redirect()->route('produk.index')->with('success', 'Data berhasil Di Tambahkan');
     }
 
     public function show(Produk $Produk)
@@ -90,6 +90,7 @@ class ProdukController extends Controller
 
     public function edit($id)
     {
+        $data['judul'] = 'Edit Data Produk';
         $data['produk'] = Produk::find($id);
         $data['kategori'] = Kategori::select('id','nama_kategori')->get();
         return view('admin.produk.produk-edit ', $data);
@@ -134,10 +135,10 @@ class ProdukController extends Controller
     }
 
     public function destroy($id)
-    {
-        $Produk = Produk::find($id);
-        $Produk->delete();
+{
+    $produk = Produk::findOrFail($id);
+    $produk->delete();
 
-        return redirect()->route('produk.index');
-    }
+    return redirect()->route('produk.index')->with('success', 'Data berhasil dihapus');
+}
 }
