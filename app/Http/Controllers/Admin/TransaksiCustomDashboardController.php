@@ -11,7 +11,7 @@ class TransaksiCustomDashboardController extends Controller
 {
     public function index()
     {
-        $data['transaksi'] = TransaksiCustomDesign::with(['user','sizes','designs'])->latest()->paginate(10);
+        $data['transaksi'] = TransaksiCustomDesign::with(['user','sizes','designs'])->latest()->get();
         $data['judul'] = 'Daftar Custom Design';
         return view('admin.custom-design.transaksi-custom-index',$data);
     }

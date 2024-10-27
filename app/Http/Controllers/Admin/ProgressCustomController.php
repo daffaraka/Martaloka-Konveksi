@@ -16,7 +16,7 @@ class ProgressCustomController extends Controller
         $data['judul'] = 'Progres Transaksi Custom';
         $data['transaksi'] = TransaksiCustomDesign::with(['progress' => function($progress){
             $progress->latest();
-        }])->where('status_pembayaran', 'Belum Dibayar')->get();
+        }])->where('status_pembayaran', 'Selesai')->get();
 
         // dd($data['TransaksiCustomDesign']->);
         return view('admin.progress-custom.progress-c-index', $data);

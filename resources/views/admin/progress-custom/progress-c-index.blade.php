@@ -11,6 +11,7 @@
                     <th scope="col">Status Transaksi</th>
                     <th scope="col">Gambar Progress Terakhir</th>
                     <th scope="col">progress Terakhir</th>
+                    <th>Tanggal</th>
                     <th>Action</th>
 
                 </tr>
@@ -50,6 +51,8 @@
                                 <span class="btn btn-sm btn-secondary">Progress belum tersedia</span>
                             @endif
                         </td>
+                        <td>{{ $data->created_at }}</td>
+
                         <td>
                             <a href="{{ route('progress-custom.create', ['transaksi' => $data]) }}"
                                 class="btn btn-info">Tambah progress</a>

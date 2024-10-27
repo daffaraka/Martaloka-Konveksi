@@ -67,7 +67,7 @@
                             @if ($data->status_pembayaran == 'Dalam Transaksi')
                                 <button class="btn btn-secondary">Menunggu Pembayaran</button>
                             @elseif($data->status_pembayaran == 'Dibayar')
-                                <button class="btn btn-success">Sudah Dibayar</button>
+                                <button class="btn btn-info">Sudah Dibayar</button>
                             @elseif($data->status_pembayaran == 'Belum Dibayar')
                                 <button class="btn btn-warning">Belum Dibayar</button>
                             @elseif($data->status_pembayaran == 'Dibatalkan')
@@ -110,7 +110,7 @@
                                 @case('Dibayar')
                                     <a href="{{ route('transaksi.show', $data->id) }}"
                                         class="btn btn-block btn-light border border-1">Detail Transaksi</a>
-                                    <button href="#" class="btn btn-block btn-success" id="terimaTransaksi"
+                                    <button href="#" class="btn btn-block btn-info" id="terimaTransaksi"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                                         data-transaksi-id="{{ $data->id }}">Terima transaksi</button>
                                 @break
@@ -131,7 +131,7 @@
                                 @break
 
                                 @case('Selesai')
-                                    <a href="">Lihat Progress</a>
+                                    {{-- <a href="">Lihat Progress</a> --}}
                                     <a class="btn btn-block btn-success">Selesai</a>
                                 @break
 

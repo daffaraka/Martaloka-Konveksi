@@ -44,6 +44,18 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
+                        <strong>Alamat:</strong>
+                        <input type="text" name="alamat" value="{{ $user->alamat }}" placeholder="Alamat" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Nomor HP:</strong>
+                        <input type="text" name="nomor_hp" value="{{ $user->nomor_hp }}" placeholder="Nomor HP" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
                         <strong>Password:</strong>
                         <input type="password" name="password" placeholder="Password" class="form-control">
                     </div>

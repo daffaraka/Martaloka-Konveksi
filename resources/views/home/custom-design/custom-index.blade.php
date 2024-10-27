@@ -22,7 +22,7 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-4">
-                                                    <img src="{{ asset('custom_designs/bukti-bayar/' . $item->designs->first()->gambar_custom_design ) }}"
+                                                    <img src="{{ asset('custom_design/' . $item->designs->first()->gambar_custom_design ) }}"
                                                         alt="{{ $item->bukti_bayar }}" class="img-fluid">
                                                 </div>
 
@@ -62,7 +62,6 @@
 
 
                     </div>
-                    <button class="btn btn-block btn-one mt-5" type="submit">CHECKOUT</button>
                 </form>
             @endif
 

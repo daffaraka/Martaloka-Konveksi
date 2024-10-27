@@ -34,6 +34,19 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
+                        <strong>Alamat:</strong>
+                        <input type="text" name="alamat" placeholder="Alamat" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Nomor HP:</strong>
+                        <input type="text" name="nomor_hp" placeholder="Nomor HP" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
                         <strong>Email:</strong>
                         <input type="text" name="email" placeholder="Email" class="form-control">
                     </div>

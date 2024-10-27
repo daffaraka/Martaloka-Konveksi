@@ -4,14 +4,14 @@
 
 
     <section class="top-categories-area" style="padding: 30vh 0;">
-        <div class="container">
+        <div class="container-fluid container-xxl container-xl container-lg container-md">
             @include('home.flash')
             <h2 class="text-center">Pemesanan Custom Desain</h2>
             <form action="{{ route('home.storeDesign') }}" method="POST" class="d-block" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row mt-5">
-                    <div class="col-6 px-5">
+                    <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 px-xxl-5 px-xl-5 px-lg-5">
                         <div class="form-group mb-4">
                             <h6 class="mb-2" for=" ">Nama</h6>
                             <input id=" " class="form-control" type="text" name="nama_pemesan" required>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    <div class="col-6 px-5">
+                    <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 px-xxl-5 px-xl-5 px-lg-5">
                         <div class="form-group mb-4">
                             <h6 class="mb-2" for=" ">Nama Custom</h6>
                             <input id=" " class="form-control" type="text" name="nama_custom" required>
@@ -252,7 +252,7 @@
                     </div>
 
 
-                    <div class="col-12 px-5 my-3">
+                    <div class="col-12 px-xxl-5 px-xl-5 px-lg-5 my-3">
                         <h3 class="mb-2">Catatan</h3>
                         <textarea name="catatan" id="" class="form-control" cols="120" rows="5"></textarea>
                         <label>Isikan catatan tambahan untuk kami.</label>
@@ -260,46 +260,50 @@
                     </div>
 
 
-                    {{-- Gambar --}}
-                    <div style="display: flex; align-items: flex-start; margin-bottom: 10px; margin-left: 50px;">
-                        <div class="single-partner-logo-box-style2" style="margin-right: 50px;">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/sponsor/bajur.png') }}" alt="Awesome Image" class="small-image" style="width: 130px; height: auto;">
-                            </a>
-                        </div>
-                    
-                        <div class="single-partner-logo-box-style2" style="margin-right: 50px;">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/sponsor/bajuk.png') }}" alt="Awesome Image" class="small-image" style="width: 130px; height: auto;">
-                            </a>
-                        </div>
-                       
-                    </div>
-                    <div style="margin-left: -360px; margin-top: 170px;">
-                        <span>Contoh Gambar Yang Diupload.</span>
-                    </div>
-                    
-                    
-                    
-                    <div class="col-12 px-5 my-3">
-                        <h3 class="mb-2">Gambar</h3>
-                        
-                        <input type="file" name="gambar_custom_design[]" accept="image/*" class="image-input" />
-                        <br>
-                        <label>Gambar maksimal 2 MB</label>
-                    
-                        <img id="preview" src="#" alt="Preview Image" style="display:none; max-width: 200px; margin-top: 10px;" />
-                        <div id="newRowImage"></div>
-                    
-                        <button id="addRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Tambah Gambar</button>
-                        <button id="removeRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Kurangi</button>
-                    </div>
-                    
-                    
-                    
-                    
+                    <div class="col-12 px-xxl-5 px-xl-5 px-lg-5 my-3">
+                        <div style="display: flex; align-items: flex-start; margin-bottom: 10px; margin-left: 50px;">
+                            <div class="single-partner-logo-box-style2">
+                                <a href="#">
+                                    <img src="{{ asset('assets/images/sponsor/bajur.png') }}" alt="Awesome Image" class="small-image" style="width: 130px; height: auto;">
+                                </a>
+                            </div>
 
-                    
+                            <div class="single-partner-logo-box-style2">
+                                <a href="#">
+                                    <img src="{{ asset('assets/images/sponsor/bajuk.png') }}" alt="Awesome Image" class="small-image" style="width: 130px; height: auto;">
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div style="margin-left: -360px; margin-top: 170px;">
+                            <span>Contoh Gambar Yang Diupload.</span>
+                        </div>
+
+
+
+                        <div class="col-12 px-xxl-5 px-xl-5 px-lg-5 my-3">
+                            <h3 class="mb-2">Gambar</h3>
+
+                            <input type="file" name="gambar_custom_design[]" accept="image/*" class="image-input" />
+                            <br>
+                            <label>Gambar maksimal 2 MB</label>
+
+                            <img id="preview" src="#" alt="Preview Image" style="display:none; max-width: 200px; margin-top: 10px;" />
+                            <div id="newRowImage"></div>
+
+                            <button id="addRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Tambah Gambar</button>
+                            <button id="removeRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Kurangi</button>
+                        </div>
+                    </div>
+                    {{-- Gambar --}}
+
+
+
+
+
+
+
                 </div>
                 <div class="d-grid px-5">
                     <button class="btn-one w-100">Pesan</button>

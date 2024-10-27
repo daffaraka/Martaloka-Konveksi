@@ -30,6 +30,8 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
+            'alamat' => 'required|string|max:255',
+            'nomor_hp' => 'required|string|max:15',
             // 'roles' => 'required'
         ]);
 

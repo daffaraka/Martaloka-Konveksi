@@ -70,17 +70,33 @@
         ul li a:hover:before {
             transform: perspective(400px) scaleX(1.0);
         }
+
+        .top-categories-area {
+            padding: 30vh 0;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .kategori-list {
+                display: none;
+            }
+
+
+            .top-categories-area {
+                padding: 15vh 0;
+            }
+        }
     </style>
-    <section class="top-categories-area" style="padding: 30vh 0;">
+    <section class="top-categories-area">
         <div class="container">
             <div class="row">
-                <div class="col-xxl-3 col-xl-3 col-lg-3">
+                <div class="col-xxl-3 col-xl-3 col-lg-3 kategori-list">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Kategori Tersedia</h5>
                             <ul class="">
                                 @foreach ($dropdown_kategori as $kategori_list)
-                                    <li><a href="{{route('home.kategori', $kategori_list->nama_kategori)}}" data-id="{{ $kategori_list->id }}">
+                                    <li><a href="{{ route('home.kategori', $kategori_list->nama_kategori) }}"
+                                            data-id="{{ $kategori_list->id }}">
                                             {{ $kategori_list->nama_kategori }}</a>
                                     </li>
                                 @endforeach
@@ -92,15 +108,16 @@
                 <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-12 col-sm-12">
                     <div class="row rows-col-3">
                         @foreach ($kategori->produk as $produk)
-                            <li class="col top-categories-single">
+                            <li class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 top-categories-single py-0">
                                 <div class="top-categories-single__box">
                                     <div class="img-box">
                                         <div class="">
-                                            <img src="{{ asset('produk/' . $produk->gambar_produk) }}" alt="">
+                                            <img src="{{ asset('produk/' . $produk->gambar_produk) }}"
+                                                style="height: 200px; object-fit:cover;" alt="">
                                         </div>
                                         <div class="overlay-content border">
                                             {{-- <p>76 Courses</p> --}}
-                                            <h3 class="mt-3"><a href="#">{{ $produk->nama_produk }}</a></h3>
+                                            <h3 class="mt-2"><a href="#">{{ $produk->nama_produk }}</a></h3>
                                             <div class="btns-box">
                                                 <a class="btn-one btn-one--style4"
                                                     href="{{ route('home.detail-produk', $produk->id) }}">

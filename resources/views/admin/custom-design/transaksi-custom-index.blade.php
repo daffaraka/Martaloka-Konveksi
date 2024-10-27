@@ -10,6 +10,7 @@
                     <th scope="col">Total Pesanan</th>
                     <th scope="col">Total Harga</th>
                     <th scope="col">Bukti Pembayaran</th>
+                    <th>Tanggal Pesan</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -47,6 +48,7 @@
                             @endif
 
                         </td>
+                        <td>{{ $data->created_at }}</td>
                         <td>
                             @switch($data->status_pembayaran)
                                 @case('Dalam Transaksi')
