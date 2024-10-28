@@ -38,7 +38,7 @@ class KontakController extends Controller
     
         // Return the view with data
         return view('admin.kontak.kontak-index', [
-            'judul' => 'Beranda Kontak',
+            'judul' => 'Daftar Kontak',
             'kontaks' => $kontaks,
             'search' => $search,
             'filter' => $filter

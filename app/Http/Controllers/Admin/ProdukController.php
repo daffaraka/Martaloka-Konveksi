@@ -17,7 +17,7 @@ class ProdukController extends Controller
         $search = $request->search;
     
         // Atur pagination
-        $paginate = 5;
+        $paginate = 10;
     
         // Query dasar untuk produk
         $query = Produk::with('kategori');
@@ -79,7 +79,7 @@ class ProdukController extends Controller
         $Produk->save();
 
 
-        return redirect()->route('produk.index')->with('success', 'Data berhasil Di Tambahkan');
+        return redirect()->route('produk.index')->with('success', 'Data produk berhasil Di Tambahkan');
     }
 
     public function show(Produk $Produk)
@@ -131,7 +131,7 @@ class ProdukController extends Controller
         $Produk->gambar_produk = $fileSaved;
         $Produk->save();
 
-        return redirect()->route('produk.index');
+        return redirect()->route('produk.index')->with('success', 'Data produk berhasil diupdate');
     }
 
     public function destroy($id)
@@ -139,6 +139,6 @@ class ProdukController extends Controller
     $produk = Produk::findOrFail($id);
     $produk->delete();
 
-    return redirect()->route('produk.index')->with('success', 'Data berhasil dihapus');
+    return redirect()->route('produk.index')->with('success', 'Data produk berhasil dihapus');
 }
 }

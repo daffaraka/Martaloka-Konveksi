@@ -48,7 +48,9 @@ class KategoriController extends Controller
     public function create()
     {
 
-        return view('admin.kategori.kategori-create');
+        return view('admin.kategori.kategori-create',[
+            'judul' => 'Tambah Kategori',
+        ]);
     }
 
     /**
@@ -76,7 +78,10 @@ class KategoriController extends Controller
         // $kategori = Kategori::find($kategori);
 
 
-        return view('admin.kategori.kategori-edit', compact('kategori'));
+        return view('admin.kategori.kategori-edit', [
+            'judul' => 'Edit Kategori',
+            'kategori' => $kategori,
+        ]);
     }
 
     /**

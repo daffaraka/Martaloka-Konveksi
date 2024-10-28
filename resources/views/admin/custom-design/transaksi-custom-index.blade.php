@@ -1,6 +1,52 @@
 @extends('admin.layout')
 @section('content')
-    <div class="table-responsive mt-5 ">
+    <!-- Form Pencarian dan Filter -->
+
+    <div class="table-responsive mt-2 ">
+        <div class="row mt-4 mb-3">
+            <div class="col-md-5">
+                <form action="{{ route('transaksiCustom.index') }}" method="GET">
+                    <div class="input-group">
+                        <input name="search" type="text" value="{{ request('search') }}" class="form-control"
+                            placeholder="Cari berdasarkan nama pemesan..." aria-label="Search">
+                        <button class="btn btn-secondary" type="submit">
+                            <i class="fas fa-search"></i> Cari
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-mb-3">
+                <form action="{{ route('transaksiCustom.index') }}" method="GET">
+                    <div class="input-group">
+                        <select name="filter" id="filter" class="form-select"
+                            style="border: 1px solid #ccc; box-shadow: none;">
+                            <option value="">--Filter status pembayaran--</option>
+                            <option value="Selesai" {{ request('filter') == 'Selesai' ? 'selected' : '' }}
+                                style="color: green;">Selesai</option>
+                            <option value="Dibatalkan" {{ request('filter') == 'Dibatalkan' ? 'selected' : '' }}
+                                style="color: red;">Dibatalkan</option>
+                            <option value="Dalam Transaksi" {{ request('filter') == 'Dalam Transaksi' ? 'selected' : '' }}
+                                style="color: gray;">Menunggu Pembayaran</option>
+                            <option value="Dibayar" {{ request('filter') == 'Dibayar' ? 'selected' : '' }}
+                                style="color: green;">Dibayar</option>
+                            <option value="Belum Dibayar" {{ request('filter') == 'Belum Dibayar' ? 'selected' : '' }}
+                                style="color: blue;">Diterima</option>
+                        </select>
+                        <button class="btn btn-secondary" type="submit">
+                            <i class="fas fa-filter"></i> Filter
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="col-md-2 text-end">
+                <a href="{{ route('transaksiCustom.index') }}" class="btn btn-warning">
+                    <i class="fas fa-retweet"></i> Reset
+                </a>
+            </div>
+        </div>
         <table class="table table-bordered shadow">
             <thead>
                 <tr>
@@ -57,7 +103,8 @@
                                 @break
 
                                 @case('Dibayar')
-                                    <a href="{{ route('transaksiCustom.show', $data->id) }}" class="btn btn-block btn-success">Sudah
+                                    <a href="{{ route('transaksiCustom.show', $data->id) }}"
+                                        class="btn btn-block btn-success">Sudah
                                         Dibayar</a>
                                 @break
 
@@ -90,8 +137,11 @@
                     </tr>
                 @endforeach
 
-
             </tbody>
         </table>
+    </div>
+    <!-- Pagination -->
+    <div class="d-flex justify-content-end mt-3">
+        {{ $transaksi->links('pagination::bootstrap-5') }}
     </div>
 @endsection

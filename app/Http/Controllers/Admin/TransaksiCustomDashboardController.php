@@ -9,12 +9,40 @@ use Illuminate\Http\Request;
 
 class TransaksiCustomDashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['transaksi'] = TransaksiCustomDesign::with(['user','sizes','designs'])->latest()->paginate(10);
-        $data['judul'] = 'Daftar Transaksi Custom Design';
-        return view('admin.custom-design.transaksi-custom-index',$data);
+
+        $filter = $request->filter; // Filter berdasarkan status pembayaran
+        $search = $request->search; // Pencarian berdasarkan nama user
+        $paginate = 10; // Jumlah item per halaman
+    
+        // Query dasar untuk transaksi custom
+        $query = TransaksiCustomDesign::with(['user', 'sizes', 'designs']);
+    
+
+
+       // Pencarian berdasarkan nama user
+    if ($search) {
+        $query->whereHas('user', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%');
+        });
     }
+
+    // Filter status pembayaran
+    if ($filter) {
+        $query->where('status_pembayaran', $filter);
+    }
+
+    // Pagination
+    $transaksi = $query->latest()->paginate($paginate);
+
+    return view('admin.custom-design.transaksi-custom-index', [
+        'judul' => 'Daftar Transaksi Custom Design',
+        'transaksi' => $transaksi,
+        'filter' => $filter,
+        'search' => $search,
+    ]);
+}
 
     public function show(TransaksiCustomDesign $transaksi)
     {
@@ -51,7 +79,10 @@ class TransaksiCustomDashboardController extends Controller
     {
         $transaksiSelesai = TransaksiCustomDesign::with(['user','sizes','designs'])->whereIn('status_pembayaran', ['Selesai','Dibatalkan'])->get();
 
-        return view('admin.custom-design.transaksi-custom-riwayat',compact('transaksiSelesai'));
+        return view('admin.custom-design.transaksi-custom-riwayat', [
+            'judul' => 'Riwayat Transaksi Custom',
+            'transaksiSelesai' => $transaksiSelesai
+        ]);
     }
 
 
