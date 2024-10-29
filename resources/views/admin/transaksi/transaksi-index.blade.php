@@ -118,9 +118,6 @@
                                 @case('Belum Dibayar')
                                     <a href="{{ route('transaksi.show', $data->id) }}"
                                         class="btn btn-block btn-light border border-1">Detail Transaksi</a>
-
-                                    data-transaksi-id="{{ $data->id }}">Terima transaksi</button>
-
                                     <a href="{{ route('transaksi.batal', $data->id) }}"
                                         class="btn btn-block btn-outline-danger">Tolak transaksi</a>
                                 @break
@@ -131,7 +128,7 @@
                                 @break
 
                                 @case('Selesai')
-                                    {{-- <a href="">Lihat Progress</a> --}}
+                                    {{-- <a href="{{ route('progress-pembelian.show', $data->id) }}">Lihat Progress</a> --}}
                                     <a class="btn btn-block btn-success">Selesai</a>
                                 @break
 

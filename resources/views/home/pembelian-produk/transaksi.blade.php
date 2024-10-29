@@ -2,8 +2,22 @@
 @section('title', 'Transaksi')
 @section('content')
 
+    <style>
+        #box-container {
+            padding: 30vh 0;
+
+        }
+
+        @media only screen and (max-width: 768px) {
+            #box-container {
+                padding: 10vh 0;
+
+            }
+        }
+    </style>
+
     <section class="top-categories-area">
-        <div class="container" style="padding: 30vh 0;">
+        <div class="container" id="box-container">
             @if (count($transaksis) == 0)
                 <h1 class="text-center">Tidak ada transaksi</h1>
             @else
