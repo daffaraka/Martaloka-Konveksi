@@ -38,7 +38,7 @@ class TransaksiDashboardController extends Controller
         $transaksi = $query->latest()->paginate($paginate);
 
         return view('admin.transaksi.transaksi-index', [
-            'judul' => 'Data Transaksi',
+            'judul' => 'Data Transaksi Produk',
             'transaksi' => $transaksi,
             'filter' => $filter,
             'search' => $search,
@@ -87,7 +87,11 @@ class TransaksiDashboardController extends Controller
     {
         $transaksiSelesai = Transaksi::with(['user', 'detailTransaksi.produk'])->whereIn('status_pembayaran', ['Selesai', 'Dibatalkan'])->get();
 
-        return view('admin.transaksi.transaksi-riwayat', compact('transaksiSelesai'));
+        return view('admin.transaksi.transaksi-riwayat', [
+            'judul' => 'Riwayat Transaksi Produk',
+            'transaksiSelesai' => $transaksiSelesai
+        ]);
+        
     }
 
     public function riwayatTransaksiCustom()

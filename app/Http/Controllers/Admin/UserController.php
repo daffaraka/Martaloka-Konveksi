@@ -46,7 +46,9 @@ class UserController extends Controller
     public function create()
     {
 
-        return view('admin.users.user-create');
+        return view('admin.users.user-create',[
+            'judul' => 'Tambah Data User',
+        ]);
     }
 
     public function store(Request $request)
@@ -82,7 +84,10 @@ class UserController extends Controller
         // $roles = Role::pluck('name','name')->all();
         // $userRole = $user->roles->pluck('name','name')->all();
 
-        return view('admin.users.user-edit', compact('user'));
+        return view('admin.users.user-edit', [
+            'judul' => 'Edit Data User',
+            'user' => $user, // Menambahkan user ke array
+        ]);
     }
 
 

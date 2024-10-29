@@ -1,12 +1,12 @@
 @extends('admin.layout')
-@section('title','Edit kategori')
+@section('title', 'Edit kategori')
 @section('content')
-    <h1>Edit kategori baru</h1>
-    <form action="{{ route('kategori.update',$kategori) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('kategori.update', $kategori) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group mb-3">
             <label for="">Nama Kategori</label>
-            <input id="" class="form-control" type="text" name="nama_kategori" value="{{$kategori->nama_kategori}}">
+            <input id="" class="form-control" type="text" name="nama_kategori"
+                value="{{ $kategori->nama_kategori }}">
         </div>
 
         <button type="submit" class="btn btn-primary">

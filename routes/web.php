@@ -85,7 +85,7 @@ Route::middleware('auth')->group(function () {
         Route::post('kategori/store', [KategoriController::class, 'store'])->name('kategori.store');
         Route::get('kategori/edit/{kategori}', [KategoriController::class, 'edit'])->name('kategori.edit');
         Route::post('kategori/update/{kategori}', [KategoriController::class, 'update'])->name('kategori.update');
-        Route::get('kategori/destroy/{kategori}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+        Route::delete('kategori/destroy/{kategori}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
         // Produk
         Route::get('produk', [ProdukController::class, 'index'])->name('produk.index');
         Route::get('produk/create', [ProdukController::class, 'create'])->name('produk.create');

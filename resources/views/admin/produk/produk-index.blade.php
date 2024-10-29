@@ -19,10 +19,11 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-2">
+            <div class="col-mb-3">
                 <form action="{{ route('produk.index') }}" method="GET">
                     <div class="input-group">
-                        <select name="filter" id="filter" class="form-select">
+                        <select name="filter" id="filter" class="form-select"
+                            style="border: 1px solid #ccc; box-shadow: none;">
                             <option value="">--Filter kategori--</option>
                             <option value="polo" {{ request('filter') == 'polo' ? 'selected' : '' }}>Polo</option>
                             <option value="kemeja" {{ request('filter') == 'kemeja' ? 'selected' : '' }}>Kemeja</option>
@@ -42,9 +43,16 @@
         </div>
 
         @if (session('success'))
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success bg-success text-white border-0 shadow-sm" role="alert">
                 {{ session('success') }}
             </div>
+
+            <style>
+                .alert-success {
+                    background-color: # d3e7d4 !important;
+                    opacity: 0.8;
+                }
+            </style>
         @endif
 
         <table class="table table-striped table-bordered shadow">
@@ -81,7 +89,6 @@
                             <a href="{{ route('produk.edit', $data->id) }}" class="btn btn-primary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <!-- Replace the delete button link with a form -->
                             <form action="{{ route('produk.destroy', $data->id) }}" method="POST" style="display: inline;"
                                 id="delete-form-{{ $data->id }}">
                                 @csrf
@@ -90,9 +97,6 @@
                                     <i class="fas fa-trash"></i> Hapus
                                 </button>
                             </form>
-
-
-
                         </td>
                     </tr>
                 @endforeach

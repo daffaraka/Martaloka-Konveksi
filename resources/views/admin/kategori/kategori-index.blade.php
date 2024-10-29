@@ -21,10 +21,11 @@
             </form>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-mb-2">
             <form action="{{ route('kategori.index') }}" method="GET">
                 <div class="input-group">
-                    <select name="filter" id="filter" class="form-select">
+                    <select name="filter" id="filter" class="form-select"
+                        style="border: 1px solid #ccc; box-shadow: none;">
                         <option value="">--Filter kategori--</option>
                         @foreach ($kategoris as $kat)
                             <option value="{{ $kat->nama_kategori }}"
@@ -47,6 +48,19 @@
         </div>
     </div>
 
+    @if (session('success'))
+        <div class="alert alert-success bg-success text-white border-0 shadow-sm" role="alert">
+            {{ session('success') }}
+        </div>
+
+        <style>
+            .alert-success {
+                background-color: # d3e7d4 !important;
+                opacity: 0.8;
+            }
+        </style>
+    @endif
+
     <!-- Tabel Kategori -->
     <div class="table-responsive mt-3">
         <table class="table table-striped table-bordered shadow">
@@ -66,9 +80,17 @@
                             <a href="{{ route('kategori.edit', $data->id) }}" class="btn btn-primary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <a href="{{ route('kategori.destroy', $data->id) }}" class="btn btn-danger">
+                            {{-- <a href="{{ route('kategori.destroy', $data->id) }}" class="btn btn-danger">
                                 <i class="fas fa-trash"></i> Hapus
-                            </a>
+                            </a> --}}
+                            <form action="{{ route('kategori.destroy', $data->id) }}" method="POST"
+                                style="display: inline;" id="delete-form-{{ $data->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-danger btn-delete" data-id="{{ $data->id }}">
+                                    <i class="fas fa-trash"></i> Hapus
+                                </button>
+                            </form>
 
                         </td>
                     </tr>

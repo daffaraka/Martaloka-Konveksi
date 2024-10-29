@@ -1,49 +1,50 @@
 @extends('admin.layout')
 @section('content')
-    <!-- Form Pencarian dan Filter -->
-    <div class="row mt-4 mb-3">
-        <div class="col-md-5">
-            <form action="{{ route('transaksi.index') }}" method="GET">
-                <div class="input-group">
-                    <input name="search" type="text" value="{{ request('search') }}" class="form-control"
-                        placeholder="Cari berdasarkan nama pemesan..." aria-label="Search">
-                    <button class="btn btn-secondary" type="submit">
-                        <i class="fas fa-search"></i> Cari
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <div class="col-md-3">
-            <form action="{{ route('transaksi.index') }}" method="GET">
-                <div class="input-group">
-                    <select name="filter" id="filter" class="form-select">
-                        <option value="">--Filter status pembayaran--</option>
-                        <option value="Selesai" {{ request('filter') == 'Selesai' ? 'selected' : '' }}>Selesai</option>
-                        <option value="Dibatalkan" {{ request('filter') == 'Dibatalkan' ? 'selected' : '' }}>Dibatalkan
-                        </option>
-                        <option value="Pending" {{ request('filter') == 'Dalam Transaksi' ? 'selected' : '' }}>Pending
-                        </option>
-                        <option value="Dibayar" {{ request('filter') == 'Dibayar' ? 'selected' : '' }}>Dibayar</option>
-                        <option value="Diterima" {{ request('filter') == 'Belum Dibayar' ? 'selected' : '' }}>Diterima
-                        </option>
-                    </select>
-                    <button class="btn btn-secondary" type="submit">
-                        <i class="fas fa-filter"></i> Filter
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <div class="col-md-2 text-end">
-            <a href="{{ route('transaksi.index') }}" class="btn btn-warning">
-                <i class="fas fa-retweet"></i> Reset
-            </a>
-        </div>
-    </div>
-
     <!-- Tabel Transaksi -->
-    <div class="table-responsive mt-4">
+    <div class="table-responsive mt-2">
+        <!-- Form Pencarian dan Filter -->
+        <div class="row mt-4 mb-8">
+            <div class="col-md-5">
+                <form action="{{ route('transaksi.index') }}" method="GET">
+                    <div class="input-group">
+                        <input name="search" type="text" value="{{ request('search') }}" class="form-control"
+                            placeholder="Cari berdasarkan nama pemesan..." aria-label="Search">
+                        <button class="btn btn-secondary" type="submit">
+                            <i class="fas fa-search"></i> Cari
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-mb-3">
+                <form action="{{ route('transaksi.index') }}" method="GET">
+                    <div class="input-group">
+                        <select name="filter" id="filter" class="form-select"
+                            style="border: 1px solid #ccc; box-shadow: none;">
+                            <option value="">--Filter status pembayaran--</option>
+                            <option value="Selesai" {{ request('filter') == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                            <option value="Dibatalkan" {{ request('filter') == 'Dibatalkan' ? 'selected' : '' }}>Dibatalkan
+                            </option>
+                            <option value="Pending" {{ request('filter') == 'Dalam Transaksi' ? 'selected' : '' }}>Pending
+                            </option>
+                            <option value="Dibayar" {{ request('filter') == 'Dibayar' ? 'selected' : '' }}>Dibayar</option>
+                            <option value="Diterima" {{ request('filter') == 'Belum Dibayar' ? 'selected' : '' }}>Diterima
+                            </option>
+                        </select>
+                        <button class="btn btn-secondary" type="submit">
+                            <i class="fas fa-filter"></i> Filter
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-2 text-end">
+                <a href="{{ route('transaksi.index') }}" class="btn btn-warning">
+                    <i class="fas fa-retweet"></i> Reset
+                </a>
+            </div>
+        </div>
+
         <table class="table table-bordered shadow">
             <thead>
                 <tr>

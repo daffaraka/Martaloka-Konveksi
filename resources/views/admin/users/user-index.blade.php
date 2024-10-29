@@ -27,10 +27,11 @@
                         </form>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-mb-2">
                         <form action="{{ route('users.index') }}" method="GET">
                             <div class="input-group">
-                                <select name="filter" class="form-select">
+                                <select name="filter" id="filter" class="form-select"
+                                    style="border: 1px solid #ccc; box-shadow: none;">
                                     <option value="">-- Filter Role --</option>
                                     <option value="admin" {{ request('filter') == 'admin' ? 'selected' : '' }}>Admin
                                     </option>
@@ -50,6 +51,19 @@
                         </a>
                     </div>
                 </div>
+
+                @if (session('success'))
+                    <div class="alert alert-success bg-success text-white border-0 shadow-sm" role="alert">
+                        {{ session('success') }}
+                    </div>
+
+                    <style>
+                        .alert-success {
+                            background-color: # d3e7d4 !important;
+                            opacity: 0.8;
+                        }
+                    </style>
+                @endif
 
                 <!-- Table Section -->
                 <div class="table-responsive">
@@ -83,13 +97,18 @@
                                     <td>{{ $user->created_at->isoFormat('D MMMM Y') }}</td>
                                     <td>
                                         <div class="d-flex gap-1 justify-content-center">
-                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">
+                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <button type="button" class="btn btn-danger btn-sm btn-delete"
-                                                data-id="{{ $user->id }}" data-name="{{ $user->name }}">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                            <form action="users/{{ $user->id }}" method="POST" style="display:inline"
+                                                id="delete-form-{{ $user->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-danger btn-delete"
+                                                    data-id="{{ $user->id }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
 
                                         </div>
                                     </td>
@@ -120,50 +139,4 @@
             </div>
         </div>
     </div>
-
-    <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Konfirmasi Hapus</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Apakah anda yakin ingin menghapus user <strong id="delete-user-name"></strong>?</p>
-                    <p class="text-muted mb-0">Aksi ini tidak dapat dibatalkan.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <form id="delete-form" action="" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Hapus</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
-
-@push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Delete confirmation
-            const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-            const deleteForm = document.getElementById('delete-form');
-            const deleteUserName = document.getElementById('delete-user-name');
-
-            document.querySelectorAll('.btn-delete').forEach(button => {
-                button.addEventListener('click', function() {
-                    const userId = this.dataset.id;
-                    const userName = this.dataset.name;
-
-                    deleteForm.action = `{{ route('users.index') }}/${userId}`;
-                    deleteUserName.textContent = userName;
-                    deleteModal.show();
-                });
-            });
-        });
-    </script>
-@endpush
