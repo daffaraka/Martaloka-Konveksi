@@ -202,7 +202,7 @@
         </div>
     </section>
 
-    <section class="blog-page-two">
+    {{-- <section class="blog-page-two">
         <div class="container" style="margin-top: 20vh;">
             <div class="row">
 
@@ -293,5 +293,5 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection
