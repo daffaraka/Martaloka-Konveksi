@@ -54,8 +54,7 @@
                     <th scope="col" class="w-25">Produk - Qty - Harga</th>
                     <th scope="col">Total Harga</th>
                     <th scope="col">Bukti Pembayaran</th>
-                    <th scope="col">Kurir</th>
-                    <th scope="col">No Resi</th>
+                    <th>Delivery</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -100,8 +99,9 @@
                                     <i class="fa fa-image" aria-hidden="true"></i></a>
                             @endif
                         </td>
-                        <td>{{ $data->kurir ?? '-' }}</td>
-                        <td>{{ $data->no_resi ?? '-' }}</td>
+                        <td>
+                            {{ $data->delivery }}
+                        </td>
                         <td>
                             @switch($data->status_pembayaran)
                                 @case('Dalam Transaksi')
@@ -110,22 +110,23 @@
 
                                 @case('Dibayar')
                                     <a href="{{ route('transaksi.show', $data->id) }}"
-                                        class="btn btn-block btn-light border border-1">Detail Transaksi</a>
+                                        class="btn btn-block btn-light border border-5">Detail Transaksi</a>
                                     <button href="#" class="btn btn-block btn-info" id="terimaTransaksi"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                                         data-transaksi-id="{{ $data->id }}">Terima transaksi</button>
+                                        <a href="{{ route('transaksi.batal', $data->id) }}"
+                                            class="btn btn-block btn-danger">Tolak transaksi</a>
                                 @break
 
                                 @case('Belum Dibayar')
                                     <a href="{{ route('transaksi.show', $data->id) }}"
-                                        class="btn btn-block btn-light border border-1">Detail Transaksi</a>
-                                    <a href="{{ route('transaksi.batal', $data->id) }}"
-                                        class="btn btn-block btn-outline-danger">Tolak transaksi</a>
+                                        class="btn btn-block btn-light border border-2">Detail Transaksi</a>
+
                                 @break
 
                                 @case('Dibatalkan')
                                     <a href="{{ route('transaksi.show', $data->id) }}"
-                                        class="btn btn-block btn-light border border-1">Detail Transaksi</a>
+                                        class="btn btn-block btn-light border border-2">Detail Transaksi</a>
                                 @break
 
                                 @case('Selesai')

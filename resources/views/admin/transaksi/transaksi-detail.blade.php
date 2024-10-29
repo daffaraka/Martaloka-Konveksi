@@ -38,9 +38,10 @@
                         <input type="text" class="form-control"
                             value="{{ $transaksi->created_at->isoFormat('dddd, D MMMM Y') }}" readonly>
                     </div>
+
                     <div class="form-group">
-                        <label for="">Nama Pemesan</label>
-                        <input type="text" class="form-control" value="{{ $transaksi->user->name }}" readonly>
+                        <label for="">Delivery</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->delivery }}" readonly>
                     </div>
                 </div>
             </div>

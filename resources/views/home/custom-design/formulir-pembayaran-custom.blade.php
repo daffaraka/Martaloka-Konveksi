@@ -28,10 +28,14 @@
                                     </div>
 
                                     <div class="mb-2">
-                                        <h5 class="card-title">Nama Pemesan</h5>
+                                        <h5 class="card-title">Nomor Pemesan</h5>
                                         <p class="card-text">{{ $transaksiCustomDesign->nomor_hp_pemesan }}</p>
                                     </div>
 
+                                    <div class="mb-2">
+                                        <h5 class="card-title">Delivery</h5>
+                                        <p class="card-text">{{ $transaksiCustomDesign->delivery }}</p>
+                                    </div>
 
                                 </div>
                             </div>

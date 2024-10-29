@@ -7,7 +7,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Selesaikan Pembayaran</h5>
+                    <h5 class="card-title mx-2">Selesaikan Pembayaran</h5>
                     <div class="row">
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 px-2">
                             <div class="card">
@@ -27,7 +27,7 @@
                                     </div>
 
                                     <div class="mb-2">
-                                        <h5 class="card-title">Nama Pemesan</h5>
+                                        <h5 class="card-title">Nomor Handphone</h5>
                                         <p class="card-text">{{ $transaksi->nomor_hp_pemesan }}</p>
                                     </div>
 
@@ -62,11 +62,6 @@
                                         <p class="card-text">Rp. {{ number_format($transaksi->total_harga) }}
                                         </p>
                                     </div>
-                                    <div class="mb-2">
-                                        <h5 class="card-title">Jumlah Pesanan</h5>
-                                        <p class="card-text">{{ $transaksi->total_pesanan }}</p>
-                                    </div>
-
 
 
                                 </div>
@@ -156,17 +151,17 @@
 
                                         <button class="btn-one btn-block mt-4" type="submit">Kirim Bukti</button>
                                     @else
-                                        <h2 class="text-center">Transaksi sedang diproses</h2>
+                                        <p class="text-center fs-5">Transaksi sedang diproses</p>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-6">
-                                                <h3>Bukti Pembayaran</h3>
+                                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                <p class="fs-1 fw-bold text-lg-left text-xxl-left text-xl-left text-sm-center">Bukti Pembayaran</p>
                                                 <div class="d-flex justify-content-center">
                                                     <img src="{{ asset('bukti_Pembayaran/' . $transaksi->bukti_pembayaran) }}" style="max-height: 250px;" alt="">
 
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 mt-sm-5">
                                                 <div class="px-3 mt-3">
                                                     <button class="btn-one" type="button">
                                                         {{ $transaksi->status_pembayaran }}</button>

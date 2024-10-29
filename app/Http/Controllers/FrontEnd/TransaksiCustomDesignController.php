@@ -64,7 +64,7 @@ class TransaksiCustomDesignController extends Controller
         $transaksi = TransaksiCustomDesign::create([
             'nama_custom' => $request->nama_custom,
             'kategori_id' => $request->kategori_id,
-            'user_id' => Auth::id(), // atau gunakan $request->user_id jika ada
+            'user_id' => Auth::id(),
             'nama_pemesan' => $request->nama_pemesan,
             'alamat_pemesan' => $request->alamat_pemesan,
             'email_pemesan' => $request->email_pemesan,
@@ -72,8 +72,9 @@ class TransaksiCustomDesignController extends Controller
             'catatan' => $request->catatan,
             'total_pesanan' => $request->total_pesanan,
             'total_harga' => $request->total_pesanan * $harga_kategori,
-            'status_pembayaran' => 'Dalam Transaksi', // Atur status default sebagai 'Dalam Transaksi'
-            'metode_bayar' => 'Bank Transfer', // Misalkan metode pembayaran default
+            'status_pembayaran' => 'Dalam Transaksi',
+            'metode_bayar' => 'Bank Transfer',
+            'delivery' =>  $request->delivery
         ]);
 
         // Menyimpan data ukuran ke tabel size_custom_designs

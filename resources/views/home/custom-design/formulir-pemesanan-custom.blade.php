@@ -3,6 +3,22 @@
 @section('content')
 
 
+<style>
+    .nice-select {
+        line-height: unset !important;
+        height: auto;
+        padding: 10px;
+        margin-bottom: 16px;
+
+    }
+    .nice-select .list {
+        width: 100% !important;
+
+    }
+</style>
+
+
+
     <section class="top-categories-area" style="padding: 30vh 0;">
         <div class="container-fluid container-xxl container-xl container-lg container-md">
             @include('home.flash')
@@ -14,24 +30,24 @@
                     <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 px-xxl-5 px-xl-5 px-lg-5">
                         <div class="form-group mb-4">
                             <h6 class="mb-2" for=" ">Nama</h6>
-                            <input id=" " class="form-control" type="text" name="nama_pemesan" required>
+                            <input id=" " class="form-control" type="text" name="nama_pemesan" required value="{{ Auth::user()->name }}">
                             <label>Isikan sesuai nama lengkap anda</label>
                         </div>
                         <div class="form-group mb-4">
                             <h6 class="mb-2" for=" ">Alamat</h6>
-                            <input id=" " class="form-control" type="text" name="alamat_pemesan" required>
+                            <input id=" " class="form-control" type="text" name="alamat_pemesan" required value="{{ Auth::user()->alamat }}">
                             <label>Isikan sesuai alamat anda secara lengkap </label>
 
                         </div>
                         <div class="form-group mb-4">
                             <h6 class="mb-2" for=" ">Email</h6>
-                            <input id=" " class="form-control" type="email" name="email_pemesan" required>
+                            <input id=" " class="form-control" type="email" name="email_pemesan" required value="{{ Auth::user()->email }}">
                             <label>Gunakan '@' , contoh : martaloka@gmail.com</label>
 
                         </div>
                         <div class="form-group mb-4">
                             <h6 class="mb-2" for=" ">Nomor Telepon</h6>
-                            <input id=" " class="form-control" type="number" name="nomor_hp_pemesan" required>
+                            <input id=" " class="form-control" type="number" name="nomor_hp_pemesan" required value="{{ Auth::user()->nomor_hp }}">
                             <label>Masukkan nomor telepon, contoh : 08123456789</label>
 
                         </div>
@@ -49,6 +65,14 @@
                             </div>
 
 
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <h6 class="mb-2" for="delivery">Delivery</h6>
+                            <select class="form-control w-100" id="delivery" name="delivery" required>
+                                <option value="Diantar">Diantar</option>
+                                <option value="Ambil di Tempat">Ambil di Tempat</option>
+                            </select>
                         </div>
                     </div>
 

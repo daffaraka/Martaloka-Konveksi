@@ -164,6 +164,7 @@ class TransaksiProdukController extends Controller
     public function storeDataTransaksi(Request $request, Transaksi $transaksi)
     {
 
+        // dd($request->all());
         $transaksi->update([
             'user_id' => Auth::id(), // atau gunakan $request->user_id jika ada
             'nama_pemesan' => $request->nama_pemesan,
@@ -173,6 +174,7 @@ class TransaksiProdukController extends Controller
             'catatan' => $request->catatan,
             'status_pembayaran' => 'Dalam Transaksi', // Atur status default sebagai 'Dalam Transaksi'
             'metode_bayar' => $request->metode_bayar, // Misalkan metode pembayaran default
+            'delivery' => $request->delivery
         ]);
 
 

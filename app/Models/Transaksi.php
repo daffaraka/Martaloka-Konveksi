@@ -25,8 +25,8 @@ class Transaksi extends Model
         'bukti_pembayaran',
         'no_resi',
         'kurir',
-        'metode_bayar'
-
+        'metode_bayar',
+        'delivery'
     ];
 
     public function user()

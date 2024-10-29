@@ -26,6 +26,9 @@ return new class extends Migration
             $table->integer('total_harga')->nullable();
             $table->string('metode_bayar')->nullable();
             $table->string('bukti_pembayaran')->nullable();
+            $table->enum('delivery',['Diantar','Ambil Di tempat'])->nullable();
+            $table->text('no_resi')->nullable();
+            $table->string('kurir')->nullable();
             $table->timestamps();
         });
     }

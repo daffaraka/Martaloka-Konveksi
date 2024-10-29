@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('bukti_pembayaran')->nullable();
             $table->dateTime('tgl_bayar')->nullable();
             $table->dateTime('tgl_kadaluarsa')->nullable();
+            $table->enum('delivery',['Diantar','Ambil Di tempat'])->nullable();
             $table->text('no_resi')->nullable();
             $table->string('kurir')->nullable();
             $table->timestamps();

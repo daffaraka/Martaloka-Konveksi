@@ -2,6 +2,19 @@
 @section('title', 'Lengkapi Transaksi Pembelian Anda')
 @section('content')
 
+    <style>
+        .nice-select {
+            line-height: unset !important;
+            height: auto;
+            padding: 10px;
+            margin-bottom: 16px;
+
+        }
+        .nice-select .list {
+            width: 100% !important;
+
+        }
+    </style>
 
     <section class="top-categories-area" style="padding: 30vh 0;">
         <div class="container">
@@ -110,6 +123,14 @@
                                 {{ $transaksi->status_pembayaran == 'Dalam Transaksi' ? '' : 'disabled' }}>
                         </div>
                         <div class="form-group mb-3">
+                            <h6 class="mb-2" for="delivery">Delivery</h6>
+                            <select class="form-control w-100" id="delivery" name="delivery" required>
+                                <option value="Diantar">Diantar</option>
+                                <option value="Ambil di Tempat">Ambil di Tempat</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Nomor Telepon</h6>
                             <input id="my-input" class="form-control" type="number" name="nomor_hp_pemesan" required
                                 value="{{ Auth::user()->nomor_hp }}"
@@ -210,10 +231,10 @@
 
 
 
-                <div class="d-grid px-5 w-100">
-                    <button class="btn-one w-100">Pesan</button>
+                    <div class="d-grid px-5 w-100">
+                        <button class="btn-one w-100">Pesan</button>
 
-                </div>
+                    </div>
             </form>
 
         </div>
