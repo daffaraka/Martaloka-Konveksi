@@ -112,7 +112,20 @@
                                     type="email" name="email" :value="old('email')" required autocomplete="username" />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                             </div>
-
+                            <!-- Alamat -->
+                            <div class="fv-row mb-7">
+                                <x-input-label for="alamat" :value="__('Alamat')" />
+                                <x-text-input id="alamat" class="form-control form-control-lg form-control-solid"
+                                    type="text" name="alamat" :value="old('alamat')" required autocomplete="off" />
+                                <x-input-error :messages="$errors->get('alamat')" class="mt-2" />
+                            </div>
+                            <!-- Nomor HP -->
+                            <div class="fv-row mb-7">
+                                <x-input-label for="nomor_hp" :value="__('Nomor HP')" />
+                                <x-text-input id="nomor_hp" class="form-control form-control-lg form-control-solid"
+                                    type="text" name="nomor_hp" :value="old('nomor_hp')" required autocomplete="off" />
+                                <x-input-error :messages="$errors->get('nomor_hp')" class="mt-2" />
+                            </div>
                             <!-- Password -->
                             <div class="mb-10 fv-row" data-kt-password-meter="true">
                                 <!--begin::Wrapper-->
