@@ -158,7 +158,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('progress-pembelian.index') }}"
+                    <a href="{{ route('progress-custom.index') }}"
                         class="nav-link {{ Request::is('transaksi/progress-custom') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-project-diagram"></i>
                         <p>Progress Custom Design</p>
