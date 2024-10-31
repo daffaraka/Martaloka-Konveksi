@@ -142,7 +142,7 @@ class TransaksiCustomDesignController extends Controller
 
 
         $transaksiCustomDesign->update([
-            'status_pembayaran' => 'Belum Dibayar',
+            'status_pembayaran' => 'Dibayar',
             'metode_bayar' => $request->bank,
             'bukti_pembayaran' => $fileSaved,
         ]);

@@ -175,11 +175,11 @@
                                         </div>
                                     @else
                                         <div class="p-3">
-                                            <h4 class="text-left">Pembayaran sedang diproses</h4>
+                                            <h4 class="text-left mb-3">Pembayaran sedang diproses</h4>
                                             <div class="card">
                                                 <div class="card-body">
 
-                                                    <p>Anda membayar dengan menggunakan BNI</p>
+                                                    <p>Anda membayar dengan menggunakan {{$transaksiCustomDesign->metode_bayar}}</p>
                                                 </div>
                                             </div>
 
@@ -275,8 +275,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
@@ -318,10 +317,15 @@
                             // Isi data yang diterima ke dalam modal
                             document.getElementById('nama_progress').value = data.nama_progress;
                             document.getElementById('deskripsi_proses').value = data.deskripsi_progress;
-                            document.getElementById('waktu_progress').value = data
-                                .created_at;
-                            document.getElementById('gambar_proses').src = data
-                                .gambar_proses; // Sesuaikan path gambar
+                            document.getElementById('waktu_progress').value = new Intl.DateTimeFormat('id-ID', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: '2-digit',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit'
+                            }).format(new Date(data.created_at));
+                            document.getElementById('gambar_proses').src = `/progress_custom/${data.gambar_progress}`;
 
                             // Tampilkan modal setelah data diisi
 

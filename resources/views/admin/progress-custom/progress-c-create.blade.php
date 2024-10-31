@@ -2,8 +2,8 @@
 @section('content')
     <div class="row">
         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
-            <img class="img-fluid" src="{{ asset('custom/bukti-bayar/' . $transaksi->bukti_pembayaran) }}"
-                alt="Bukti pembayaran {{ $transaksi->bukti_pembayaran }}">
+            <img class="img-fluid" src="{{ asset($transaksi->designs->first()->gambar_custom_design) }}"
+                alt="{{$transaksi->designs->first()->gambar_custom_design}}">
 
             <div class="d-gap mt-5">
 

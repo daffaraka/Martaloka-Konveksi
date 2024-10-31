@@ -95,30 +95,17 @@ class TransaksiProdukController extends Controller
 
         $productExistCheck = $productExist->get();
 
-
+        if ($request->has('id_')) {
+            $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->whereIn('id', $request->id_)->where('user_id', Auth::user()->id)->get();
+        } else {
+            // Jika tidak
+            $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->where('user_id', Auth::user()->id)->get();
+        }
 
         try {
             DB::beginTransaction();
 
             // Jika request punya yang di checkbox
-            if ($request->has('id_')) {
-                $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->whereIn('id', $request->id_)->where('user_id', Auth::user()->id)->get();
-            } else {
-                // Jika tidak
-                $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->where('user_id', Auth::user()->id)->get();
-            }
-
-
-
-            // if ($productExistCheck->isNotEmpty()) {
-            //     foreach ($request->produk_id as $keyProduk => $productQty) {
-            //         $addedProduct = Keranjang::where('status', 'Di Keranjang')->where('produk_id', $keyProduk)->where('user_id', Auth::user()->id)->first();
-            //         $addedProduct->qty += $productQty;
-            //         $addedProduct->status = 'Dalam Transaksi';
-            //         $addedProduct->save();
-            //     }
-            // }
-
 
 
             foreach ($newKeranjang as $item) {
@@ -143,6 +130,8 @@ class TransaksiProdukController extends Controller
                 $transaksiProduk->size = $cart->size;
                 $transaksiProduk->save();
             }
+
+            // $newKeranjang->update(['status' => 'Dalam Transaksi']);
 
             DB::commit();
             return to_route('home.formTransaksiPembelian', ['transaksi' => $transaksi]);

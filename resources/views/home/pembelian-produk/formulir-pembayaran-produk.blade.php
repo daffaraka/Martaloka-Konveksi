@@ -155,28 +155,41 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                                <p class="fs-1 fw-bold text-lg-left text-xxl-left text-xl-left text-sm-center">Bukti Pembayaran</p>
+                                                <p
+                                                    class="fs-1 fw-bold text-lg-left text-xxl-left text-xl-left text-sm-center">
+                                                    Bukti Pembayaran</p>
                                                 <div class="d-flex justify-content-center">
-                                                    <img src="{{ asset('bukti_Pembayaran/' . $transaksi->bukti_pembayaran) }}" style="max-height: 250px;" alt="">
+                                                    <img src="{{ asset('bukti_Pembayaran/' . $transaksi->bukti_pembayaran) }}"
+                                                        style="max-height: 250px;" alt="">
 
                                                 </div>
                                             </div>
-                                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 mt-sm-5">
+                                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 mt-lg-4 mt-sm-5">
                                                 <div class="px-3 mt-3">
                                                     <button class="btn-one" type="button">
                                                         {{ $transaksi->status_pembayaran }}</button>
 
                                                     <div class="card mt-3">
                                                         <div class="card-body">
-                                                            <h5 class="card-title">Progress transaksi</h5>
-                                                            @foreach ($transaksi->progress as $index => $item)
-                                                            <li class="mb-3">
-                                                                <h6 class="font-weight-bold">{{ $item->nama_progress }} {!! $index == 0 ? '<span class="badge badge-success"> Status terakhir </span>' : '' !!}</h6>
 
-                                                                {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y H:mm:ss') }}
-                                                                <br>
-                                                            </li>
-                                                        @endforeach
+                                                            <h5 class="card-title">Progress transaksi</h5>
+                                                            @if (empty($transaksi->progres))
+                                                                <p class="text-left">Belum ada progress transaksi</p>
+                                                            @else
+                                                                @foreach ($transaksi->progress as $index => $item)
+                                                                    <li class="mb-3">
+                                                                        <h6 class="font-weight-bold">
+                                                                            {{ $item->nama_progress }}
+                                                                            {!! $index == 0 ? '<span class="badge badge-success"> Status terakhir </span>' : '' !!}</h6>
+
+                                                                        {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y H:mm:ss') }}
+                                                                        <br>
+                                                                    </li>
+                                                                @endforeach
+                                                            @endif
+
+
+
                                                         </div>
                                                     </div>
                                                 </div>

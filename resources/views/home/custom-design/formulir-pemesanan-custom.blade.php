@@ -70,8 +70,8 @@
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="delivery">Delivery</h6>
                             <select class="form-control w-100" id="delivery" name="delivery" required>
-                                <option value="Diantar">Diantar</option>
-                                <option value="Ambil di Tempat">Ambil di Tempat</option>
+                                <option value="Diantar ke Tempat Pemesan">Diantar ke Tempat Pemesan</option>
+                                <option value="Ambil di Martaloka">Ambil di Martaloka</option>
                             </select>
                         </div>
                     </div>
