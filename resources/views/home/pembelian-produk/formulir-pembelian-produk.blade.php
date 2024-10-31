@@ -203,7 +203,7 @@
                                                         value="OVO" class="mt-1 me-2">
                                                     <label for="ovo" class="d-flex align-items-start">
                                                         <div>
-                                                            <img src="https://cdn.kibrispdr.org/data/ovo-logo-vector-1.png"
+                                                            <img src="https://blogpictures.99.co/cara-menggunakan-ovo.jpg"
                                                                 class="img-fluid text-center ml-3" alt=""
                                                                 style="max-height: 50px;">
                                                         </div>
@@ -225,7 +225,7 @@
                                                         value="DANA" class="mt-1 me-2">
                                                     <label for="dana" class="d-flex align-items-start">
                                                         <div>
-                                                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/94/Dana_%28payment_method%29_logo.svg/1200px-Dana_%28payment_method%29_logo.svg.png"
+                                                            <img src="https://cdn.antaranews.com/cache/1200x800/2022/04/25/dana.jpg"
                                                                 class="img-fluid text-center ml-3" alt=""
                                                                 style="max-height: 50px;">
                                                         </div>
