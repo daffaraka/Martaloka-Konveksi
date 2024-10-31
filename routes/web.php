@@ -11,12 +11,13 @@ use App\Http\Controllers\Admin\TransaksiCustomDashboardController;
 use App\Http\Controllers\Admin\TransaksiDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\KontakController;
+use App\Http\Controllers\ProfileController;
 
 // Frontend
 use App\Http\Controllers\Frontend\BerandaController;
 use App\Http\Controllers\Frontend\TransaksiCustomDesignController;
 use App\Http\Controllers\Frontend\TransaksiProdukController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileuserController;
 use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,7 @@ Route::get('/detail-produk/{produk}', [BerandaController::class, 'detailProduk']
 Route::view('kontak', 'home.kontak')->name('home.kontak');
 Route::post('kontak/store', [KontakController::class, 'store'])->name('kontak.store');
 Route::view('tentang-kami', 'home.tentang-kami')->name('home.tentang-kami');
+
 
 
 Route::middleware('auth')->group(function () {
@@ -66,7 +68,10 @@ Route::middleware('auth')->group(function () {
     Route::post('custom-design/progress/{progress}', [TransaksiCustomDesignController::class, 'getProgress'])->name('home.detailProgressCustom');
     // Route::get('custom-design', [TransaksiCustomDesignController::class, 'createDesign'])->name('home.createDesign');
 
-
+    // Halaman Update Profile
+    Route::get('profileuser', [ProfileuserController::class, 'edit'])->name('profileuser.edit');
+    Route::patch('profileuser', [ProfileuserController::class, 'update'])->name('profileuser.update');
+    Route::delete('profileuser', [ProfileuserController::class, 'destroy'])->name('profileuser.destroy');
 
 
     // Dashboard Admin

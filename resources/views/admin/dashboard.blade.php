@@ -22,7 +22,7 @@
                     <p>Jumlah Pengguna</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-person"></i>
+                    <i class="ion ion-android-person-add"></i>
                 </div>
                 <a href="{{ route('users.index') }}" class="small-box-footer">More info <i
                         class="fas fa-arrow-circle-right"></i></a>
@@ -36,7 +36,7 @@
                     <p>Transaksi Produk</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
+                    <i class="ion ion-android-cart"></i>
                 </div>
                 <a href="{{ route('transaksi.index') }}" class="small-box-footer">More info <i
                         class="fas fa-arrow-circle-right"></i></a>
@@ -50,7 +50,7 @@
                     <p>Transaksi Costum Design</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
+                    <i class="ion ion-android-cart"></i>
                 </div>
                 <a href="{{ route('transaksiCustom.index') }}" class="small-box-footer">More info <i
                         class="fas fa-arrow-circle-right"></i></a>
