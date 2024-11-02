@@ -73,6 +73,9 @@
                             <a href="{{ route('kontak.destroy', $data->id) }}" class="btn btn-danger">
                                 <i class="fas fa-trash"></i> Hapus
                             </a>
+                            <a href="https://wa.me/+62{{ $data->telepon ?? 85847728414 }}" class="btn btn-warning">
+                                <i class="fa fa-phone" aria-hidden="true"></i> Hubungi
+                            </a>
 
                         </td>
                     </tr>

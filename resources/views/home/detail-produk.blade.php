@@ -130,7 +130,7 @@
                     </div>
 
                     <!--Start Single Event Three-->
-                    <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="col-xl-4 col-lg-6 col-md-7">
                         <form action="{{ route('home.addToCart', $produk->id) }}" method="POST">
                             @csrf
                             <div class="events-details-info-box">

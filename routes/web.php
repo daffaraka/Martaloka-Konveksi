@@ -77,6 +77,9 @@ Route::middleware('auth')->group(function () {
     // Dashboard Admin
     Route::group(['middleware' => 'isAdmin', 'prefix' => 'dashboard'], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/export/pdf', [DashboardController::class, 'exportPDF'])->name('export.pdf');
+        Route::get('/export/excel', [DashboardController::class, 'exportExcel'])->name('export.excel');
 
         // Kontak Admin
         Route::get('kontak', [KontakController::class, 'index'])->name('kontak.index');
@@ -108,6 +111,11 @@ Route::middleware('auth')->group(function () {
         Route::post('transaksi/terima', [TransaksiDashboardController::class, 'terima'])->name('transaksi.terima');
         Route::get('transaksi/tolak/{transaksi}', [TransaksiDashboardController::class, 'batal'])->name('transaksi.batal');
         Route::get('transaksi-produk/riwayat-transaksi', [TransaksiDashboardController::class, 'riwayatTransaksi'])->name('transaksi.riwayatTransaksi');
+        Route::delete('/transaksi/{transaksi}', [TransaksiDashboardController::class, 'destroy'])->name('transaksi.destroy');
+
+        Route::get('admin/transaksi/export-pdf', [TransaksiDashboardController::class, 'exportPdf'])->name('transaksi.exportPdf');
+        Route::get('admin/transaksi/export-excel', [TransaksiDashboardController::class, 'exportExcel'])->name('transaksi.exportExcel');
+
 
 
         // Custom
