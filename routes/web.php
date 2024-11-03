@@ -109,7 +109,7 @@ Route::middleware('auth')->group(function () {
         Route::post('transaksi/store', [TransaksiDashboardController::class, 'store'])->name('transaksi.store');
         Route::get('transaksi/show/{transaksi}', [TransaksiDashboardController::class, 'show'])->name('transaksi.show');
         Route::post('transaksi/terima', [TransaksiDashboardController::class, 'terima'])->name('transaksi.terima');
-        Route::get('transaksi/tolak/{transaksi}', [TransaksiDashboardController::class, 'batal'])->name('transaksi.batal');
+        Route::post('transaksi/tolak', [TransaksiDashboardController::class, 'tolak'])->name('transaksi.tolak');
         Route::get('transaksi-produk/riwayat-transaksi', [TransaksiDashboardController::class, 'riwayatTransaksi'])->name('transaksi.riwayatTransaksi');
         Route::delete('/transaksi/{transaksi}', [TransaksiDashboardController::class, 'destroy'])->name('transaksi.destroy');
 
@@ -123,8 +123,8 @@ Route::middleware('auth')->group(function () {
         Route::get('transaksi-custom/create', [TransaksiCustomDashboardController::class, 'create'])->name('transaksiCustom.create');
         Route::post('transaksi-custom/store', [TransaksiCustomDashboardController::class, 'store'])->name('transaksiCustom.store');
         Route::get('transaksi-custom/show/{transaksi}', [TransaksiCustomDashboardController::class, 'show'])->name('transaksiCustom.show');
-        Route::get('transaksi-custom/terima/{transaksi}', [TransaksiCustomDashboardController::class, 'dibayar'])->name('transaksiCustom.dibayar');
-        Route::get('transaksi-custom/tolak/{transaksi}', [TransaksiCustomDashboardController::class, 'batal'])->name('transaksiCustom.batal');
+        Route::post('transaksi-custom/terima', [TransaksiCustomDashboardController::class, 'terima'])->name('transaksiCustom.terima');
+        Route::post('transaksi-custom/tolak', [TransaksiCustomDashboardController::class, 'tolak'])->name('transaksiCustom.tolak');
         Route::get('transaksi-custom-produk/riwayat-transaksi', [TransaksiCustomDashboardController::class, 'riwayatTransaksi'])->name('transaksiCustom.riwayatTransaksi');
 
 
@@ -154,6 +154,8 @@ Route::middleware('auth')->group(function () {
 
 
         Route::get('detail-produk/{id}', [ResponseController::class, 'detailTransaksi'])->name('response.detailTransaksi');
+        Route::get('detail-custom/{id}', [ResponseController::class, 'detailCustom'])->name('response.detailCustom');
+
     });
 });
 

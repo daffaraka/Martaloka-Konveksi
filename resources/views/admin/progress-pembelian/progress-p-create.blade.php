@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Deskripsi</label>
-                        <textarea name="" class="form-control" cols="30" rows="2" readonly>{{ $transaksi->deskripsi }}</textarea>
+                        <textarea name="" class="form-control" cols="30" rows="2" readonly>{{ $transaksi->catatan }}</textarea>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Deskripsi Progress</label>
-                                    <textarea rows="3" cols="30" name="deskripsi_progress" class="form-control"> </textarea>
+                                    <textarea rows="3" cols="30" name="deskripsi_progress" class="form-control">  </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Gambar Progress</label>

@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="flex-shrink-0 ms-2">
                                             {{-- Jika sudah dibayar --}}
-                                            @if (in_array($transaksi->status_pembayaran, ['Dibayar', 'Dibatalkan', 'Selesai']))
+                                            @if (in_array($transaksi->status_pembayaran, ['Dibayar', 'Ditolak', 'Selesai']))
                                                 <div class="border p-3">
                                                     <div class="form-group">
                                                         <label for="bukti_pembayaran" class="fw-bold">Status Pembayaran :

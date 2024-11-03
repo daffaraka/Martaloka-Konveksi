@@ -29,7 +29,7 @@
                                 <button class="btn btn-success">Sudah Dibayar</button>
                             @elseif($data->status_pembayaran == 'Belum Dibayar')
                                 <button class="btn btn-primary">Diterima</button>
-                            @elseif($data->status_pembayaran == 'Dibatalkan')
+                            @elseif($data->status_pembayaran == 'Ditolak')
                                 <button class="btn btn-danger">Batal</button>
                             @elseif($data->status_pembayaran == 'Selesai')
                                 <button class="btn btn-success">Selesai</button>

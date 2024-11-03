@@ -26,7 +26,9 @@ class TransaksiCustomDesign extends Model
         'bukti_pembayaran',
         'no_resi',
         'kurir',
-        'delivery'
+        'delivery',
+        'keterangan_tambahan'
+
     ];
 
     public function user()

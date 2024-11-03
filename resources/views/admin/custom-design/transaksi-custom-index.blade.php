@@ -24,8 +24,8 @@
                             <option value="">--Filter status pembayaran--</option>
                             <option value="Selesai" {{ request('filter') == 'Selesai' ? 'selected' : '' }}
                                 style="color: green;">Selesai</option>
-                            <option value="Dibatalkan" {{ request('filter') == 'Dibatalkan' ? 'selected' : '' }}
-                                style="color: red;">Dibatalkan</option>
+                            <option value="Ditolak" {{ request('filter') == 'Ditolak' ? 'selected' : '' }}
+                                style="color: red;">Ditolak</option>
                             <option value="Dalam Transaksi" {{ request('filter') == 'Dalam Transaksi' ? 'selected' : '' }}
                                 style="color: gray;">Menunggu Pembayaran</option>
                             <option value="Dibayar" {{ request('filter') == 'Dibayar' ? 'selected' : '' }}
@@ -52,6 +52,8 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nama Pemesan</th>
+                    <th scope="col">Judul Custom</th>
+                    <th scope="col">Gambar Custom</th>
                     <th scope="col">Status Transaksi</th>
                     <th scope="col">Total Pesanan</th>
                     <th scope="col">Total Harga</th>
@@ -66,14 +68,26 @@
                     <tr class="">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->user->name }}</td>
+                        <td>{{ $data->nama_custom }}</td>
+                        <td>
+                            <ul class="px-3">
+                                @foreach ($data->designs as $design)
+                                    <li> <a href="{{ asset($design->gambar_custom_design) }}" download
+                                            class="btn btn-dark">
+                                            <i class="fas fa-download"></i>
+                                        </a></li>
+                                @endforeach
+                            </ul>
+
+                        </td>
                         <td>
                             @if ($data->status_pembayaran == 'Dalam Transaksi')
                                 <button class="btn btn-secondary">Menunggu Pembayaran</button>
                             @elseif($data->status_pembayaran == 'Dibayar')
-                                <button class="btn btn-success">Sudah Dibayar</button>
+                                <button class="btn btn-info"> Dibayar</button>
                             @elseif($data->status_pembayaran == 'Belum Dibayar')
                                 <button class="btn btn-primary">Diterima</button>
-                            @elseif($data->status_pembayaran == 'Dibatalkan')
+                            @elseif($data->status_pembayaran == 'Ditolak')
                                 <button class="btn btn-danger">Batal</button>
                             @elseif($data->status_pembayaran == 'Selesai')
                                 <button class="btn btn-success">Selesai</button>
@@ -91,7 +105,7 @@
                             @else
                                 <a href="{{ asset('custom_designs/bukti-bayar/' . $data->bukti_pembayaran) }}"
                                     class="btn btn-info">
-                                    <i class="fa fa-image" aria-hidden="true"></i> Bukti pembayaran</a>
+                                    <i class="fa fa-image" aria-hidden="true"></i> </a>
                             @endif
 
                         </td>
@@ -103,20 +117,20 @@
                                 @break
 
                                 @case('Dibayar')
-                                    <a href="{{ route('transaksiCustom.show', $data->id) }}"
-                                        class="btn btn-block btn-success">Sudah
-                                        Dibayar</a>
+                                <button href="#" class="btn btn-block btn-info" id="terimaTransaksi"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                data-transaksi-id="{{ $data->id }}">Terima transaksi</button>
+                                    <button href="#" class="btn btn-block btn-danger" id="tolakTransaksi"
+                                        data-bs-toggle="modal" data-bs-target="#tolakModal"
+                                        data-transaksi-id="{{ $data->id }}">Tolak
+                                        transaksi</button>
                                 @break
 
                                 @case('Belum Dibayar')
-                                    <a href="{{ route('transaksiCustom.dibayar', $data->id) }}"
-                                        class="btn btn-block btn-primary">Terima
-                                        transaksi</a>
-                                    <a href="{{ route('transaksiCustom.batal', $data->id) }}"
-                                        class="btn btn-block btn-outline-danger">Tolak transaksi</a>
                                 @break
 
-                                @case('Dibatalkan')
+                                @case('Ditolak')
+                                    <a class="btn btn-block btn-outline-danger">Tolak transaksi</a>
                                     <a href="{{ route('transaksiCustom.show', $data->id) }}"
                                         class="btn btn-block btn-light border border-1">Detail Transaksi</a>
                                 @break
@@ -129,6 +143,8 @@
                                     <button class="btn btn-block btn-info">Status Tidak Valid</button>
                                 @break
                             @endswitch
+                            <a href="{{ route('transaksiCustom.show', $data->id) }}"
+                                class="btn btn-block btn-light border border-1">Detail Transaksi</a>
                             <a href="https://wa.me/+62{{ $data->nomor_hp_pemesan ?? '85847728414' }} "
                                 class="btn btn-block btn-outline-warning text-dark"><i class="fa fa-phone"
                                     aria-hidden="true"></i> Hubungi Pemesan</a>
@@ -144,4 +160,138 @@
     <div class="d-flex justify-content-end mt-3">
         {{ $transaksi->links('pagination::bootstrap-5') }}
     </div>
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5" id="exampleModalLabel">Tambahkan Nomor Resi</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('transaksiCustom.terima') }}" method="POST">
+                        @csrf
+
+                        <input type="hidden" name="id" id="id" value="">
+                        <div class="mb-3">
+                            <label for="">Nama Pemesan</label>
+                            <input type="text" class="form-control" value="" id="nama_pemesan" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Status Transaksi</label>
+                            <input type="text" class="form-control" value="" id="status_pembayaran" readonly>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="kurir" class="form-label">Kurir</label>
+                            <select class="form-control" aria-label="Default select example" id="kurir"
+                                name="kurir" required>
+                                <option selected>Pilih Kurir</option>
+                                <option value="jne">JNE</option>
+                                <option value="jnt">J&T</option>
+                                <option value="sicepat">Sicepat</option>
+                                <option value="anteraja">AnterAja</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nomor_resi" class="form-label">Nomor Resi</label>
+                            <input type="text" class="form-control" id="no_resi" name="no_resi" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan
+                                Perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tolakModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form action="{{ route('transaksiCustom.tolak') }}" method="POST">
+                        @csrf
+
+                        <input type="hidden" name="id" id="tolak_id" value="">
+                        <div class="mb-3">
+                            <label for="">Nama Pemesan</label>
+                            <input type="text" class="form-control" value="" id="tolak_nama_pemesan" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Status Transaksi</label>
+                            <input type="text" class="form-control" value="" id="tolak_status_pembayaran"
+                                readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Keterangan Ditolak</label>
+                            <input type="text" class="form-control" name="keterangan_tambahan" value=""
+                                id="tolak_keterangan_tambahan">
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan
+                                Perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#terimaTransaksi').on('click', function() {
+            var transaksiId = $(this).data('transaksi-id');
+
+            // Lakukan AJAX request untuk mendapatkan detail transaksi
+            $.ajax({
+                url: '{{ route('response.detailCustom', ':id') }}'.replace(
+                    ':id',
+                    transaksiId),
+                method: 'GET',
+                success: function(response) {
+                    // Isi nilai input pada modal
+                    $('#id').val(transaksiId);
+                    $('#nama_pemesan').val(response.nama_pemesan);
+                    // Tambahkan pengisian nilai untuk input lainnya sesuai kebutuhan
+                    $('#status_pembayaran').val(response.status_pembayaran);
+                    // ...
+                }
+            });
+        });
+
+
+        $('#tolakTransaksi').on('click', function() {
+            var transaksiId = $(this).data('transaksi-id');
+
+            // Lakukan AJAX request untuk mendapatkan detail transaksi
+            $.ajax({
+                url: '{{ route('response.detailCustom', ':id') }}'.replace(
+                    ':id',
+                    transaksiId),
+                method: 'GET',
+                success: function(response) {
+                    $('#tolak_id').val(transaksiId);
+                    $('#tolak_nama_pemesan').val(response.nama_pemesan);
+                    $('#tolak_status_pembayaran').val(response.status_pembayaran);
+                    // ...
+                }
+            });
+        });
+    });
+</script>

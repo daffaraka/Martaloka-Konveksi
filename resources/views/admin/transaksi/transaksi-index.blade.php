@@ -34,7 +34,7 @@
                             style="border: 1px solid #ccc; box-shadow: none;">
                             <option value="">--Filter status pembayaran--</option>
                             <option value="Selesai" {{ request('filter') == 'Selesai' ? 'selected' : '' }}>Selesai</option>
-                            <option value="Dibatalkan" {{ request('filter') == 'Dibatalkan' ? 'selected' : '' }}>Dibatalkan
+                            <option value="Ditolak" {{ request('filter') == 'Ditolak' ? 'selected' : '' }}>Ditolak
                             </option>
                             <option value="Dalam Transaksi" {{ request('filter') == 'Dalam Transaksi' ? 'selected' : '' }}>
                                 Pending</option>
@@ -96,7 +96,7 @@
                                 <button class="btn btn-info">Sudah Dibayar</button>
                             @elseif($data->status_pembayaran == 'Belum Dibayar')
                                 <button class="btn btn-warning">Belum Dibayar</button>
-                            @elseif($data->status_pembayaran == 'Dibatalkan')
+                            @elseif($data->status_pembayaran == 'Ditolak')
                                 <button class="btn btn-danger">Batal</button>
                             @elseif($data->status_pembayaran == 'Selesai')
                                 <button class="btn btn-success">Selesai</button>
@@ -135,21 +135,16 @@
                                 @break
 
                                 @case('Dibayar')
-                                    <a href="{{ route('transaksi.show', $data->id) }}"
-                                        class="btn btn-block btn-light border border-5">Detail Transaksi</a>
                                     <button href="#" class="btn btn-block btn-info" id="terimaTransaksi"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                                         data-transaksi-id="{{ $data->id }}">Terima transaksi</button>
-                                    <a href="{{ route('transaksi.batal', $data->id) }}" class="btn btn-block btn-danger">Tolak
-                                        transaksi</a>
+                                    <button href="#" class="btn btn-block btn-danger" id="tolakTransaksi"
+                                        data-bs-toggle="modal" data-bs-target="#tolakModal"
+                                        data-transaksi-id="{{ $data->id }}">Tolak
+                                        transaksi</button>
                                 @break
 
-                                @case('Belum Dibayar')
-                                    <a href="{{ route('transaksi.show', $data->id) }}"
-                                        class="btn btn-block btn-light border border-2">Detail Transaksi</a>
-                                @break
-
-                                @case('Dibatalkan')
+                                @case('Ditolak')
                                     <a href="{{ route('transaksi.show', $data->id) }}"
                                         class="btn btn-block btn-light border border-2">Detail Transaksi</a>
                                 @break
@@ -162,7 +157,10 @@
                                 @default
                                     <button class="btn btn-block btn-info">Status Tidak Valid</button>
                                 @break
+
                             @endswitch
+                            <a href="{{ route('transaksi.show', $data->id) }}"
+                                class="btn btn-block btn-light border border-5">Detail Transaksi</a>
                             <a href="https://wa.me/+62{{ $data->nomor_hp_pemesan ?? 85847728414 }}"
                                 class="btn btn-block btn-outline-warning text-dark">
                                 <i class="fa fa-phone" aria-hidden="true"></i> Hubungi Pemesan
@@ -219,22 +217,56 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                            <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan Perubahan</button>
                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tolakModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form action="{{ route('transaksi.tolak') }}" method="POST">
+                        @csrf
+
+                        <input type="hidden" name="id" id="tolak_id" value="">
+                        <div class="mb-3">
+                            <label for="">Nama Pemesan</label>
+                            <input type="text" class="form-control" value="" id="tolak_nama_pemesan" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Status Transaksi</label>
+                            <input type="text" class="form-control" value="" id="tolak_status_pembayaran"
+                                readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Keterangan Ditolak</label>
+                            <input type="text" class="form-control" name="keterangan_tambahan" value=""
+                                id="tolak_keterangan_tambahan">
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan Perubahan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 <!-- Include Required Scripts -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 
 <script>
     $(document).ready(function() {
@@ -324,19 +356,15 @@
             window.location.href =
                 `{{ route('transaksi.index') }}?search=${searchValue}&filter=${filterValue}&date_range=${dateRange}`;
         });
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-    $(document).ready(function() {
+
+
         $('#terimaTransaksi').on('click', function() {
             var transaksiId = $(this).data('transaksi-id');
 
             // Lakukan AJAX request untuk mendapatkan detail transaksi
             $.ajax({
-                url: '{{ route('response.detailTransaksi', ':id') }}'.replace(':id',
+                url: '{{ route('response.detailTransaksi', ':id') }}'.replace(
+                    ':id',
                     transaksiId),
                 method: 'GET',
                 success: function(response) {
@@ -345,6 +373,25 @@
                     $('#nama_pemesan').val(response.nama_pemesan);
                     // Tambahkan pengisian nilai untuk input lainnya sesuai kebutuhan
                     $('#status_pembayaran').val(response.status_pembayaran);
+                    // ...
+                }
+            });
+        });
+
+
+        $('#tolakTransaksi').on('click', function() {
+            var transaksiId = $(this).data('transaksi-id');
+
+            // Lakukan AJAX request untuk mendapatkan detail transaksi
+            $.ajax({
+                url: '{{ route('response.detailTransaksi', ':id') }}'.replace(
+                    ':id',
+                    transaksiId),
+                method: 'GET',
+                success: function(response) {
+                    $('#tolak_id').val(transaksiId);
+                    $('#tolak_nama_pemesan').val(response.nama_pemesan);
+                    $('#tolak_status_pembayaran').val(response.status_pembayaran);
                     // ...
                 }
             });

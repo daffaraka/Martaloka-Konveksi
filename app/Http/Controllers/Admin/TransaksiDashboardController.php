@@ -33,9 +33,9 @@ class TransaksiDashboardController extends Controller
             $query->whereHas('user', function ($q) use ($search) {
                 $q->where('name', 'like', '%' . $search . '%');
             })
-            ->orWhereHas('detailTransaksi.produk', function ($q) use ($search) {
-                $q->where('nama_produk', 'like', '%' . $search . '%');
-            });
+                ->orWhereHas('detailTransaksi.produk', function ($q) use ($search) {
+                    $q->where('nama_produk', 'like', '%' . $search . '%');
+                });
         }
 
         // Filter status pembayaran
@@ -49,7 +49,7 @@ class TransaksiDashboardController extends Controller
             if (count($dates) == 2) {
                 $startDate = Carbon::createFromFormat('Y-m-d', trim($dates[0]));
                 $endDate = Carbon::createFromFormat('Y-m-d', trim($dates[1]));
-                
+
                 $query->whereBetween('created_at', [
                     $startDate->startOfDay(),
                     $endDate->endOfDay()
@@ -70,100 +70,100 @@ class TransaksiDashboardController extends Controller
     }
 
     public function exportPdf(Request $request)
-{
-    $filter = $request->filter; // Filter status pembayaran
-    $search = $request->search; // Pencarian berdasarkan user atau produk
-    $dateRange = $request->date_range; // Range tanggal dari daterangepicker
+    {
+        $filter = $request->filter; // Filter status pembayaran
+        $search = $request->search; // Pencarian berdasarkan user atau produk
+        $dateRange = $request->date_range; // Range tanggal dari daterangepicker
 
-    // Query dasar untuk transaksi
-    $query = Transaksi::with(['user', 'detailTransaksi.produk']);
+        // Query dasar untuk transaksi
+        $query = Transaksi::with(['user', 'detailTransaksi.produk']);
 
-    // Pencarian
-    if ($search) {
-        $query->whereHas('user', function ($q) use ($search) {
-            $q->where('name', 'like', '%' . $search . '%');
-        })
-        ->orWhereHas('detailTransaksi.produk', function ($q) use ($search) {
-            $q->where('nama_produk', 'like', '%' . $search . '%');
-        });
-    }
-
-    // Filter status pembayaran
-    if ($filter) {
-        $query->where('status_pembayaran', $filter);
-    }
-
-    // Filter berdasarkan tanggal
-    if ($dateRange) {
-        $dates = explode(' - ', $dateRange);
-        if (count($dates) == 2) {
-            $startDate = Carbon::createFromFormat('Y-m-d', trim($dates[0]));
-            $endDate = Carbon::createFromFormat('Y-m-d', trim($dates[1]));
-
-            $query->whereBetween('created_at', [
-                $startDate->startOfDay(),
-                $endDate->endOfDay()
-            ]);
+        // Pencarian
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            })
+                ->orWhereHas('detailTransaksi.produk', function ($q) use ($search) {
+                    $q->where('nama_produk', 'like', '%' . $search . '%');
+                });
         }
-    }
 
-    // Mengambil data berdasarkan query yang telah difilter
-    $transaksi = $query->get();
-
-    // Membuat PDF
-    $pdf = PDF::loadView('admin.transaksi.pdf', [
-        'transaksi' => $transaksi,
-        'filter' => $filter,
-        'search' => $search,
-        'dateRange' => $dateRange
-    ]);
-
-    return $pdf->download('data-transaksi.pdf');
-}
-
-   public function exportExcel(Request $request)
-{
-    $filter = $request->filter; // Filter status pembayaran
-    $search = $request->search; // Pencarian berdasarkan user atau produk
-    $dateRange = $request->date_range; // Range tanggal dari daterangepicker
-
-    // Query dasar untuk transaksi
-    $query = Transaksi::with(['user', 'detailTransaksi.produk']);
-
-    // Pencarian
-    if ($search) {
-        $query->whereHas('user', function ($q) use ($search) {
-            $q->where('name', 'like', '%' . $search . '%');
-        })
-        ->orWhereHas('detailTransaksi.produk', function ($q) use ($search) {
-            $q->where('nama_produk', 'like', '%' . $search . '%');
-        });
-    }
-
-    // Filter status pembayaran
-    if ($filter) {
-        $query->where('status_pembayaran', $filter);
-    }
-
-    // Filter berdasarkan tanggal
-    if ($dateRange) {
-        $dates = explode(' - ', $dateRange);
-        if (count($dates) == 2) {
-            $startDate = Carbon::createFromFormat('Y-m-d', trim($dates[0]));
-            $endDate = Carbon::createFromFormat('Y-m-d', trim($dates[1]));
-
-            $query->whereBetween('created_at', [
-                $startDate->startOfDay(),
-                $endDate->endOfDay()
-            ]);
+        // Filter status pembayaran
+        if ($filter) {
+            $query->where('status_pembayaran', $filter);
         }
+
+        // Filter berdasarkan tanggal
+        if ($dateRange) {
+            $dates = explode(' - ', $dateRange);
+            if (count($dates) == 2) {
+                $startDate = Carbon::createFromFormat('Y-m-d', trim($dates[0]));
+                $endDate = Carbon::createFromFormat('Y-m-d', trim($dates[1]));
+
+                $query->whereBetween('created_at', [
+                    $startDate->startOfDay(),
+                    $endDate->endOfDay()
+                ]);
+            }
+        }
+
+        // Mengambil data berdasarkan query yang telah difilter
+        $transaksi = $query->get();
+
+        // Membuat PDF
+        $pdf = PDF::loadView('admin.transaksi.pdf', [
+            'transaksi' => $transaksi,
+            'filter' => $filter,
+            'search' => $search,
+            'dateRange' => $dateRange
+        ]);
+
+        return $pdf->download('data-transaksi.pdf');
     }
 
-    // Mengambil data berdasarkan query yang telah difilter
-    $transaksi = $query->get();
+    public function exportExcel(Request $request)
+    {
+        $filter = $request->filter; // Filter status pembayaran
+        $search = $request->search; // Pencarian berdasarkan user atau produk
+        $dateRange = $request->date_range; // Range tanggal dari daterangepicker
 
-    return Excel::download(new TransaksiExport($transaksi), 'data-transaksi.xlsx');
-}
+        // Query dasar untuk transaksi
+        $query = Transaksi::with(['user', 'detailTransaksi.produk']);
+
+        // Pencarian
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            })
+                ->orWhereHas('detailTransaksi.produk', function ($q) use ($search) {
+                    $q->where('nama_produk', 'like', '%' . $search . '%');
+                });
+        }
+
+        // Filter status pembayaran
+        if ($filter) {
+            $query->where('status_pembayaran', $filter);
+        }
+
+        // Filter berdasarkan tanggal
+        if ($dateRange) {
+            $dates = explode(' - ', $dateRange);
+            if (count($dates) == 2) {
+                $startDate = Carbon::createFromFormat('Y-m-d', trim($dates[0]));
+                $endDate = Carbon::createFromFormat('Y-m-d', trim($dates[1]));
+
+                $query->whereBetween('created_at', [
+                    $startDate->startOfDay(),
+                    $endDate->endOfDay()
+                ]);
+            }
+        }
+
+        // Mengambil data berdasarkan query yang telah difilter
+        $transaksi = $query->get();
+
+        return Excel::download(new TransaksiExport($transaksi), 'data-transaksi.xlsx');
+    }
 
 
 
@@ -189,10 +189,15 @@ class TransaksiDashboardController extends Controller
         return redirect()->back()->with('success', 'Transaksi Telah Diterima');
     }
 
-    public function batal(Transaksi $transaksi)
+    public function tolak(Transaksi $transaksi, Request $request)
     {
-        // dd($transaksi);
-        $transaksi->update(['status_pembayaran' => 'Dibatalkan']);
+        $transaksi = Transaksi::find($request->id);
+        $transaksi->update(
+            [
+                'status_pembayaran' => 'Ditolak',
+                'keterangan_tambahan' => $request->keterangan_tambahan
+            ]
+        );
         return redirect()->back()->with('success', 'Transaksi Telah Diterima');
     }
 
@@ -206,13 +211,12 @@ class TransaksiDashboardController extends Controller
 
     public function riwayatTransaksi()
     {
-        $transaksiSelesai = Transaksi::with(['user', 'detailTransaksi.produk'])->whereIn('status_pembayaran', ['Selesai', 'Dibatalkan'])->get();
+        $transaksiSelesai = Transaksi::with(['user', 'detailTransaksi.produk'])->whereIn('status_pembayaran', ['Selesai', 'Ditolak'])->get();
 
         return view('admin.transaksi.transaksi-riwayat', [
             'judul' => 'Riwayat Transaksi Produk',
             'transaksiSelesai' => $transaksiSelesai
         ]);
-        
     }
 
     public function riwayatTransaksiCustom()

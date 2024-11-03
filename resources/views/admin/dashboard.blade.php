@@ -184,7 +184,7 @@
                                                 <span class="badge bg-success">Sudah Dibayar</span>
                                             @elseif($transaksi->status_pembayaran == 'Diterima')
                                                 <span class="badge bg-primary">Diterima</span>
-                                            @elseif($transaksi->status_pembayaran == 'Dibatalkan')
+                                            @elseif($transaksi->status_pembayaran == 'Ditolak')
                                                 <span class="badge bg-danger">Batal</span>
                                             @elseif($transaksi->status_pembayaran == 'Selesai')
                                                 <span class="badge bg-success">Selesai</span>
