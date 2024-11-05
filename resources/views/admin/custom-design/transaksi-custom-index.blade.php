@@ -59,6 +59,7 @@
                     <th scope="col">Total Harga</th>
                     <th scope="col">Bukti Pembayaran</th>
                     <th>Tanggal Pesan</th>
+                    <th>Delivery</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -111,31 +112,35 @@
                         </td>
                         <td>{{ $data->created_at }}</td>
                         <td>
+                            @if ($data->delivery == 'Diantar Ke Tempat Pemesan')
+                                <button class="btn btn-light shadow border">Diantar Ke Tempat Pemesan</button>
+                            @else
+                                <button class="btn btn-dark">Ambil Di Martaloka</button>
+                            @endif
+                        </td>
+                        <td>
                             @switch($data->status_pembayaran)
                                 @case('Dalam Transaksi')
-                                    <button class="btn btn-block btn-secondary">Belum ada bukti transfer</button>
+                                    <button class="btn btn-block btn-secondary">Menunggu menyelesaikan pesanan</button>
                                 @break
 
                                 @case('Dibayar')
-                                <button href="#" class="btn btn-block btn-info" id="terimaTransaksi"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                data-transaksi-id="{{ $data->id }}">Terima transaksi</button>
+                                    <button href="#" class="btn btn-block btn-info" id="terimaTransaksi"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        data-transaksi-id="{{ $data->id }}">Terima transaksi</button>
                                     <button href="#" class="btn btn-block btn-danger" id="tolakTransaksi"
                                         data-bs-toggle="modal" data-bs-target="#tolakModal"
                                         data-transaksi-id="{{ $data->id }}">Tolak
                                         transaksi</button>
                                 @break
 
-                                @case('Belum Dibayar')
-                                @break
-
                                 @case('Ditolak')
-                                    <a class="btn btn-block btn-outline-danger">Tolak transaksi</a>
-                                    <a href="{{ route('transaksiCustom.show', $data->id) }}"
-                                        class="btn btn-block btn-light border border-1">Detail Transaksi</a>
+                                    <a href="{{ route('transaksi.show',  $data->id) }}"
+                                        class="btn btn-block btn-light border border-2">Detail Transaksi</a>
                                 @break
 
                                 @case('Selesai')
+                                    {{-- <a href="{{ route('progress-pembelian.show', $data->id) }}">Lihat Progress</a> --}}
                                     <a class="btn btn-block btn-success">Selesai</a>
                                 @break
 
@@ -185,21 +190,36 @@
                         </div>
 
 
-                        <div class="mb-3">
-                            <label for="kurir" class="form-label">Kurir</label>
-                            <select class="form-control" aria-label="Default select example" id="kurir"
-                                name="kurir" required>
-                                <option selected>Pilih Kurir</option>
-                                <option value="jne">JNE</option>
-                                <option value="jnt">J&T</option>
-                                <option value="sicepat">Sicepat</option>
-                                <option value="anteraja">AnterAja</option>
-                            </select>
+
+
+                        <div class="kirim" id="kirim">
+                            <div class="mb-3">
+                                <label for="kurir" class="form-label">Kurir</label>
+                                <select class="form-control" aria-label="Default select example" id="kurir"
+                                    name="kurir">
+                                    <option selected>Pilih Kurir</option>
+                                    <option value="jne">JNE</option>
+                                    <option value="jnt">J&T</option>
+                                    <option value="sicepat">Sicepat</option>
+                                    <option value="anteraja">AnterAja</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nomor_resi" class="form-label">Nomor Resi</label>
+                                <input type="text" class="form-control" id="no_resi" name="no_resi">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="nomor_resi" class="form-label">Nomor Resi</label>
-                            <input type="text" class="form-control" id="no_resi" name="no_resi" required>
+
+                        <div class="pick-up" id="pick-up">
+
+                            <div class="mb-3">
+                                <label for="nomor_resi" class="form-label">Tujuan Antar</label>
+                                <input type="text" class="form-control" id="tujuan_antar" name="tujuan_antar">
+                            </div>
                         </div>
+
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan
@@ -268,9 +288,16 @@
                     // Isi nilai input pada modal
                     $('#id').val(transaksiId);
                     $('#nama_pemesan').val(response.nama_pemesan);
-                    // Tambahkan pengisian nilai untuk input lainnya sesuai kebutuhan
                     $('#status_pembayaran').val(response.status_pembayaran);
-                    // ...
+
+                    if (response.delivery_option === 'Diantar Ke Tempat Pemesan') {
+                        $('#kirim').show();
+                        $('#pick-up').hide();
+                    } else {
+                        $('#delivery_option').val('Ambil Di Martaloka');
+                        $('#kirim').hide();
+                        $('#pick-up').show();
+                    }
                 }
             });
         });

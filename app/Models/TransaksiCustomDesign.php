@@ -27,7 +27,8 @@ class TransaksiCustomDesign extends Model
         'no_resi',
         'kurir',
         'delivery',
-        'keterangan_tambahan'
+        'keterangan_tambahan',
+        'tujuan_antar'
 
     ];
 

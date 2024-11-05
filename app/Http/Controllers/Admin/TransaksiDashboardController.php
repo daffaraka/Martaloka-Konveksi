@@ -184,7 +184,8 @@ class TransaksiDashboardController extends Controller
         $transaksi->update([
             'kurir' => $request->kurir,
             'no_resi' => $request->no_resi,
-            'status_pembayaran' => 'Selesai'
+            'status_pembayaran' => 'Terima',
+            'tujuan_antar' => $request->tujuan_antar
         ]);
         return redirect()->back()->with('success', 'Transaksi Telah Diterima');
     }
@@ -198,6 +199,12 @@ class TransaksiDashboardController extends Controller
                 'keterangan_tambahan' => $request->keterangan_tambahan
             ]
         );
+        return redirect()->back()->with('success', 'Transaksi Telah Diterima');
+    }
+
+    public function selesaikan(TransaksiCustomDesign $transaksi)
+    {
+        $transaksi->update(['status_pembayaran' => 'Selesai']);
         return redirect()->back()->with('success', 'Transaksi Telah Diterima');
     }
 

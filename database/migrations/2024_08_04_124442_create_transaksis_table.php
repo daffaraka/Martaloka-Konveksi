@@ -28,6 +28,7 @@ return new class extends Migration
             $table->enum('delivery',['Diantar Ke Tempat Pemesan','Ambil Di Martaloka'])->nullable();
             $table->text('no_resi')->nullable();
             $table->string('kurir')->nullable();
+            $table->string('tujuan_antar')->nullable();
             $table->string('keterangan_tambahan')->nullable();
             $table->timestamps();
         });

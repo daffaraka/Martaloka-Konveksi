@@ -54,15 +54,23 @@ class TransaksiCustomDashboardController extends Controller
     }
 
 
-    public function dibayar(TransaksiCustomDesign $transaksi)
+    public function terima(Request $request)
     {
-        $transaksi->update(['status_pembayaran' => 'Selesai']);
+        $transaksi = TransaksiCustomDesign::find($request->id);
+
+        $transaksi->update([
+            'kurir' => $request->kurir,
+            'no_resi' => $request->no_resi,
+            'status_pembayaran' => 'Terima',
+            'tujuan_antar' => $request->tujuan_antar
+        ]);
         return redirect()->back()->with('success', 'Transaksi Telah Diterima');
     }
 
-    public function tolak(TransaksiCustomDesign $transaksi)
+    public function tolak(Request $request)
     {
-        // dd($transaksi);
+        $transaksi = TransaksiCustomDesign::find($request->id);
+
         $transaksi->update([
             'status_pembayaran' => 'Ditolak',
             'keterangan_tambahan' => $request->keterangan_tambahan
@@ -70,9 +78,17 @@ class TransaksiCustomDashboardController extends Controller
         return redirect()->back()->with('success', 'Transaksi Telah Diterima');
     }
 
+    public function selesaikan(Request $request)
+    {
+        $transaksi = TransaksiCustomDesign::find($request->id);
+
+        $transaksi->update(['status_pembayaran' => 'Selesai']);
+        return redirect()->back()->with('success', 'Transaksi Telah Diterima');
+    }
 
     public function destroy(TransaksiCustomDesign $transaksi)
     {
+
         $transaksi->delete();
         return redirect()->back()->with('success', 'Transaksi Telah dihapus');
     }

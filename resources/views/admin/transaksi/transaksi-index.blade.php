@@ -125,9 +125,15 @@
                                     <i class="fa fa-image" aria-hidden="true"></i></a>
                             @endif
                         </td>
+
                         <td>
-                            {{ $data->delivery }}
+                            @if ($data->delivery == 'Diantar Ke Tempat Pemesan')
+                                <button class="btn btn-light shadow border">Diantar Ke Tempat Pemesan</button>
+                            @else
+                                <button class="btn btn-dark">Ambil Di Martaloka</button>
+                            @endif
                         </td>
+
                         <td>
                             @switch($data->status_pembayaran)
                                 @case('Dalam Transaksi')
@@ -157,7 +163,6 @@
                                 @default
                                     <button class="btn btn-block btn-info">Status Tidak Valid</button>
                                 @break
-
                             @endswitch
                             <a href="{{ route('transaksi.show', $data->id) }}"
                                 class="btn btn-block btn-light border border-5">Detail Transaksi</a>
@@ -200,24 +205,37 @@
                         </div>
 
 
-                        <div class="mb-3">
-                            <label for="kurir" class="form-label">Kurir</label>
-                            <select class="form-control" aria-label="Default select example" id="kurir"
-                                name="kurir" required>
-                                <option selected>Pilih Kurir</option>
-                                <option value="jne">JNE</option>
-                                <option value="jnt">J&T</option>
-                                <option value="sicepat">Sicepat</option>
-                                <option value="anteraja">AnterAja</option>
-                            </select>
+                        <div class="kirim" id="kirim">
+                            <div class="mb-3">
+                                <label for="kurir" class="form-label">Kurir</label>
+                                <select class="form-control" aria-label="Default select example" id="kurir"
+                                    name="kurir" required>
+                                    <option selected>Pilih Kurir</option>
+                                    <option value="jne">JNE</option>
+                                    <option value="jnt">J&T</option>
+                                    <option value="sicepat">Sicepat</option>
+                                    <option value="anteraja">AnterAja</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nomor_resi" class="form-label">Nomor Resi</label>
+                                <input type="text" class="form-control" id="no_resi" name="no_resi">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="nomor_resi" class="form-label">Nomor Resi</label>
-                            <input type="text" class="form-control" id="no_resi" name="no_resi" required>
+
+                        <div class="pick-up" id="pick-up">
+
+                            <div class="mb-3">
+                                <label for="nomor_resi" class="form-label">Tujuan Antar</label>
+                                <input type="text" class="form-control" id="tujuan_antar" name="tujuan_antar">
+                            </div>
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan Perubahan</button>
+                            <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan
+                                Perubahan</button>
                         </div>
                     </form>
                 </div>
@@ -251,7 +269,8 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan Perubahan</button>
+                            <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan
+                                Perubahan</button>
                         </div>
                     </form>
                 </div>
@@ -373,7 +392,14 @@
                     $('#nama_pemesan').val(response.nama_pemesan);
                     // Tambahkan pengisian nilai untuk input lainnya sesuai kebutuhan
                     $('#status_pembayaran').val(response.status_pembayaran);
-                    // ...
+                    if (response.delivery_option === 'Diantar Ke Tempat Pemesan') {
+                        $('#kirim').show();
+                        $('#pick-up').hide();
+                    } else {
+                        $('#delivery_option').val('Ambil Di Martaloka');
+                        $('#kirim').hide();
+                        $('#pick-up').show();
+                    }
                 }
             });
         });

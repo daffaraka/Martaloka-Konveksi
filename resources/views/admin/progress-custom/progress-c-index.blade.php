@@ -7,9 +7,10 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Transaksi</th>
-                    <th scope="col">Status Transaksi</th>
+                    <th scope="col">Judul Custom</th>
+                    <th scope="col">Gambar Custom</th>
                     <th scope="col">Gambar Progress Terakhir</th>
+                    <th scope="col">Status Transaksi</th>
                     <th scope="col">progress Terakhir</th>
                     <th>Tanggal</th>
                     <th>Action</th>
@@ -22,6 +23,18 @@
                     <tr class="">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->user->name }}</td>
+                        <td>{{ $data->nama_custom }}</td>
+                        <td>
+                            <ul class="px-3">
+                                @foreach ($data->designs as $design)
+                                    <li> <a href="{{ asset($design->gambar_custom_design) }}" download
+                                            class="btn btn-dark">
+                                            <i class="fas fa-download"></i>
+                                        </a></li>
+                                @endforeach
+                            </ul>
+
+                        </td>
                         <td>
                             @if ($data->status_pembayaran == 'Dalam Transaksi')
                                 <button class="btn btn-secondary">Menunggu Pembayaran</button>

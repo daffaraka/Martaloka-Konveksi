@@ -105,6 +105,11 @@ class TransaksiProdukController extends Controller
         try {
             DB::beginTransaction();
 
+
+            $newKeranjang->each(function($item) {
+                $item->status = 'Dalam Transaksi';
+                $item->save();
+            });
             // Jika request punya yang di checkbox
 
 
