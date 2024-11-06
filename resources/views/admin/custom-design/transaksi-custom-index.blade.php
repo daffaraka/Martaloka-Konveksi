@@ -3,9 +3,20 @@
     <!-- Form Pencarian dan Filter -->
 
     <div class="table-responsive mt-2 ">
+        <div class="mb-3">
+            <a href="{{ route('transaksiCustum.exportPdf', ['search' => request('search'), 'filter' => request('filter'), 'date_range' => request('date_range')]) }}"
+                class="btn btn-danger btn-sm me-2">
+                <i class="fas fa-file-pdf"></i> Ekspor ke PDF
+            </a>
+            <a href="{{ route('transaksiCustom.exportExcel', ['search' => request('search'), 'filter' => request('filter'), 'date_range' => request('date_range')]) }}"
+                class="btn btn-success btn-sm">
+                <i class="fas fa-file-excel"></i> Ekspor ke Excel
+            </a>
+        </div>
         <div class="row mt-4 mb-3">
-            <div class="col-md-5">
-                <form action="{{ route('transaksiCustom.index') }}" method="GET">
+            <!-- Pencarian -->
+            <div class="col-md-4">
+                <form action="{{ route('transaksiCustom.index') }}" method="GET" id="searchForm">
                     <div class="input-group">
                         <input name="search" type="text" value="{{ request('search') }}" class="form-control"
                             placeholder="Cari berdasarkan nama pemesan..." aria-label="Search">
@@ -15,23 +26,33 @@
                     </div>
                 </form>
             </div>
-
-            <div class="col-mb-3">
-                <form action="{{ route('transaksiCustom.index') }}" method="GET">
+            <!-- Filter Status -->
+            <div class="col-md-3">
+                <form action="{{ route('transaksiCustom.index') }}" method="GET" id="statusForm">
                     <div class="input-group">
                         <select name="filter" id="filter" class="form-select"
                             style="border: 1px solid #ccc; box-shadow: none;">
                             <option value="">--Filter status pembayaran--</option>
                             <option value="Selesai" {{ request('filter') == 'Selesai' ? 'selected' : '' }}
-                                style="color: green;">Selesai</option>
+                                style="color: green;">
+                                Selesai
+                            </option>
                             <option value="Ditolak" {{ request('filter') == 'Ditolak' ? 'selected' : '' }}
-                                style="color: red;">Ditolak</option>
+                                style="color: red;">
+                                Ditolak
+                            </option>
                             <option value="Dalam Transaksi" {{ request('filter') == 'Dalam Transaksi' ? 'selected' : '' }}
-                                style="color: gray;">Menunggu Pembayaran</option>
+                                style="color: gray;">
+                                Menunggu Pembayaran
+                            </option>
                             <option value="Dibayar" {{ request('filter') == 'Dibayar' ? 'selected' : '' }}
-                                style="color: green;">Dibayar</option>
+                                style="color: green;">
+                                Dibayar
+                            </option>
                             <option value="Belum Dibayar" {{ request('filter') == 'Belum Dibayar' ? 'selected' : '' }}
-                                style="color: blue;">Diterima</option>
+                                style="color: blue;">
+                                Diterima
+                            </option>
                         </select>
                         <button class="btn btn-secondary" type="submit">
                             <i class="fas fa-filter"></i> Filter
@@ -40,13 +61,27 @@
                 </form>
             </div>
 
+            <!-- Rentang Tanggal -->
+            <div class="col-md-3">
+                <form action="{{ route('transaksiCustom.index') }}" method="GET" id="dateForm">
+                    <div class="input-group">
+                        <input type="text" name="date_range" id="date_range" class="form-control"
+                            value="{{ request('date_range') }}" placeholder="Pilih Tanggal">
+                        <button class="btn btn-secondary" type="submit">
+                            <i class="fas fa-calendar"></i> Filter
+                        </button>
+                    </div>
+                </form>
+            </div>
 
+            <!-- Tombol Reset -->
             <div class="col-md-2 text-end">
                 <a href="{{ route('transaksiCustom.index') }}" class="btn btn-warning">
                     <i class="fas fa-retweet"></i> Reset
                 </a>
             </div>
         </div>
+
         <table class="table table-bordered shadow">
             <thead>
                 <tr>
@@ -135,7 +170,7 @@
                                 @break
 
                                 @case('Ditolak')
-                                    <a href="{{ route('transaksi.show',  $data->id) }}"
+                                    <a href="{{ route('transaksi.show', $data->id) }}"
                                         class="btn btn-block btn-light border border-2">Detail Transaksi</a>
                                 @break
 
@@ -267,7 +302,9 @@
     </div>
 @endsection
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -275,6 +312,63 @@
 
 <script>
     $(document).ready(function() {
+        // Inisialisasi DateRangePicker
+        $('#date_range').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                format: 'YYYY-MM-DD',
+                separator: ' - ',
+                applyLabel: 'Pilih',
+                cancelLabel: 'Batal',
+                fromLabel: 'Dari',
+                toLabel: 'Sampai',
+                customRangeLabel: 'Pilih Rentang',
+                weekLabel: 'M',
+                daysOfWeek: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
+                monthNames: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                    'September', 'Oktober', 'November', 'Desember'
+                ],
+                firstDay: 1
+            },
+            ranges: {
+                'Hari Ini': [moment(), moment()],
+                'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                '7 Hari Terakhir': [moment().subtract(6, 'days'), moment()],
+                '30 Hari Terakhir': [moment().subtract(29, 'days'), moment()],
+                'Bulan Ini': [moment().startOf('month'), moment().endOf('month')],
+                'Bulan Lalu': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
+                    'month').endOf('month')],
+                'Tahun Ini': [moment().startOf('year'), moment().endOf('year')],
+                'Tahun Lalu': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1,
+                    'year').endOf('year')]
+            },
+            showDropdowns: true,
+            minYear: 2020,
+            maxYear: parseInt(moment().format('YYYY')),
+            opens: 'right'
+        });
+
+        // Menangani pemilihan rentang tanggal
+        $('#date_range').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format(
+                'YYYY-MM-DD'));
+        });
+
+        $('#date_range').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+
+        // Pengiriman form
+        $('#dateForm').on('submit', function(e) {
+            e.preventDefault();
+            const searchValue = $('input[name="search"]').val();
+            const filterValue = $('#filter').val();
+            const dateRange = $('#date_range').val();
+
+            window.location.href =
+                `{{ route('transaksiCustom.index') }}?search=${searchValue}&filter=${filterValue}&date_range=${dateRange}`;
+        });
+
         $('#terimaTransaksi').on('click', function() {
             var transaksiId = $(this).data('transaksi-id');
 
@@ -290,7 +384,8 @@
                     $('#nama_pemesan').val(response.nama_pemesan);
                     $('#status_pembayaran').val(response.status_pembayaran);
 
-                    if (response.delivery_option === 'Diantar Ke Tempat Pemesan') {
+                    if (response.delivery_option ===
+                        'Diantar Ke Tempat Pemesan') {
                         $('#kirim').show();
                         $('#pick-up').hide();
                     } else {
@@ -315,7 +410,8 @@
                 success: function(response) {
                     $('#tolak_id').val(transaksiId);
                     $('#tolak_nama_pemesan').val(response.nama_pemesan);
-                    $('#tolak_status_pembayaran').val(response.status_pembayaran);
+                    $('#tolak_status_pembayaran').val(response
+                        .status_pembayaran);
                     // ...
                 }
             });

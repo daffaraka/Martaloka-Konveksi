@@ -7,6 +7,12 @@ use App\Models\CustomDesign;
 use App\Models\TransaksiCustomDesign;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
+use App\Models\TransaksiCustomExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\PDF; 
+
 class TransaksiCustomDashboardController extends Controller
 {
     public function index(Request $request)
@@ -14,11 +20,11 @@ class TransaksiCustomDashboardController extends Controller
 
         $filter = $request->filter; // Filter berdasarkan status pembayaran
         $search = $request->search; // Pencarian berdasarkan nama user
-        $paginate = 10; // Jumlah item per halaman
+        $dateRange = $request->date_range; 
+        $paginate = 10; 
 
         // Query dasar untuk transaksi custom
         $query = TransaksiCustomDesign::with(['user', 'sizes', 'designs']);
-
 
 
         // Pencarian berdasarkan nama user
@@ -33,6 +39,20 @@ class TransaksiCustomDashboardController extends Controller
             $query->where('status_pembayaran', $filter);
         }
 
+         // Filter berdasarkan rentang tanggal
+         if ($dateRange) {
+            $dates = explode(' - ', $dateRange);
+            if (count($dates) == 2) {
+                $startDate = Carbon::createFromFormat('Y-m-d', trim($dates[0]));
+                $endDate = Carbon::createFromFormat('Y-m-d', trim($dates[1]));
+                
+                $query->whereBetween('created_at', [
+                    $startDate->startOfDay(),
+                    $endDate->endOfDay()
+                ]);
+            }
+        }
+
         // Pagination
         $transaksi = $query->latest()->paginate($paginate);
 
@@ -41,8 +61,89 @@ class TransaksiCustomDashboardController extends Controller
             'transaksi' => $transaksi,
             'filter' => $filter,
             'search' => $search,
+            'dateRange' => $dateRange
         ]);
     }
+
+    public function exportPdf(Request $request)
+    {
+        $filter = $request->filter;
+        $search = $request->search;
+        $dateRange = $request->date_range;
+
+        $query = TransaksiCustomDesign::with(['user', 'sizes', 'designs']);
+
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($filter) {
+            $query->where('status_pembayaran', $filter);
+        }
+
+        if ($dateRange) {
+            $dates = explode(' - ', $dateRange);
+            if (count($dates) == 2) {
+                $startDate = Carbon::createFromFormat('Y-m-d', trim($dates[0]));
+                $endDate = Carbon::createFromFormat('Y-m-d', trim($dates[1]));
+
+                $query->whereBetween('created_at', [
+                    $startDate->startOfDay(),
+                    $endDate->endOfDay()
+                ]);
+            }
+        }
+
+        $transaksi = $query->get();
+
+        $pdf = PDF::loadView('admin.custom-design.pdf', [
+            'transaksi' => $transaksi,
+            'filter' => $filter,
+            'search' => $search,
+            'dateRange' => $dateRange
+        ]);
+
+        return $pdf->download('data-transaksi-custom.pdf');
+    }
+
+    public function exportExcel(Request $request)
+    {
+        $filter = $request->filter;
+        $search = $request->search;
+        $dateRange = $request->date_range;
+
+        $query = TransaksiCustomDesign::with(['user', 'sizes', 'designs']);
+
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($filter) {
+            $query->where('status_pembayaran', $filter);
+        }
+
+        if ($dateRange) {
+            $dates = explode(' - ', $dateRange);
+            if (count($dates) == 2) {
+                $startDate = Carbon::createFromFormat('Y-m-d', trim($dates[0]));
+                $endDate = Carbon::createFromFormat('Y-m-d', trim($dates[1]));
+
+                $query->whereBetween('created_at', [
+                    $startDate->startOfDay(),
+                    $endDate->endOfDay()
+                ]);
+            }
+        }
+
+        $transaksi = $query->get();
+
+        return Excel::download(new TransaksiCustomExport($transaksi), 'data-transaksi-custom.xlsx');
+    }
+
 
     public function show(TransaksiCustomDesign $transaksi)
     {

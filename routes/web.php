@@ -127,6 +127,9 @@ Route::middleware('auth')->group(function () {
         Route::post('transaksi-custom/tolak', [TransaksiCustomDashboardController::class, 'tolak'])->name('transaksiCustom.tolak');
         Route::get('transaksi-custom-produk/riwayat-transaksi', [TransaksiCustomDashboardController::class, 'riwayatTransaksi'])->name('transaksiCustom.riwayatTransaksi');
 
+        Route::get('admin/transaksi-custom/export-pdf', [TransaksiCustomDashboardController::class, 'exportPdf'])->name('transaksiCustum.exportPdf');
+        Route::get('admin/transaksi-custom/export-excel', [TransaksiCustomDashboardController::class, 'exportExcel'])->name('transaksiCustom.exportExcel');
+
 
         // Kategori
         Route::prefix('progress-pembelian')->controller(ProgressPembelianController::class)->group(function () {
