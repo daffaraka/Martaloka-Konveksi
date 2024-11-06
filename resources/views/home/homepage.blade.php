@@ -340,34 +340,106 @@
                                     </div>
                                     <h2><span>Kreasikan Kaos Anda<br>di sini</span><br></h2>
                                 </div>
-                                <div class="btns-box">
-                                    <!-- Tombol untuk menampilkan video -->
-                                    <a class="btn-one btn-one--style4" href="#" onclick="showVideo(event)">
-                                        <span class="txt">
-                                            <i class="icon-right-arrow-1"></i>
-                                            Desain
-                                        </span>
-                                    </a>
-                                </div>
+                                <!DOCTYPE html>
+                                <html lang="en">
 
-                                <!-- Container untuk video -->
-                                <div id="videoContainer"
-                                    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000;">
-                                    <div style="position: relative; width: 80%; max-width: 800px; margin: 50px auto;">
-                                        <!-- Tombol close -->
-                                        <button onclick="closeVideo()"
-                                            style="position: absolute; right: -40px; top: -40px; background: none; border: none; color: white; font-size: 24px; cursor: pointer;">✕</button>
-                                        <!-- YouTube iframe -->
-                                        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                                            <iframe id="youtubeVideo"
-                                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                                                src="" title="YouTube video player" frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen>
-                                            </iframe>
-                                        </div>
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                    <title>Video Before Redirect</title>
+                                    <style>
+                                        /* Style tombol */
+                                        .btns-box {
+                                            padding: 20px;
+                                        }
+
+                                        .btn-one {
+                                            position: relative;
+                                            display: inline-block;
+                                            padding: 12px 30px;
+                                            background: transparent;
+                                            color: #333;
+                                            text-decoration: none;
+                                            border: 2px solid #333;
+                                            border-radius: 5px;
+                                            overflow: hidden;
+                                            transition: all 0.3s ease;
+                                            z-index: 1;
+                                        }
+
+                                        .btn-one--style4 {
+                                            background: #fff;
+                                        }
+
+                                        .btn-one--style4:hover {
+                                            color: #fff;
+                                            background: #333;
+                                        }
+
+                                        .txt {
+                                            position: relative;
+                                            display: flex;
+                                            align-items: center;
+                                            gap: 8px;
+                                        }
+
+                                        /* Video Fullscreen Style */
+                                        .video-container {
+                                            display: none;
+                                            position: fixed;
+                                            top: 0;
+                                            left: 0;
+                                            width: 100%;
+                                            height: 100%;
+                                            background-color: black;
+                                            z-index: 9999;
+                                        }
+
+                                        video {
+                                            width: 100%;
+                                            height: 100%;
+                                        }
+                                    </style>
+                                </head>
+
+                                <body>
+                                    <div class="btns-box">
+                                        <a class="btn-one btn-one--style4" href="#"
+                                            onclick="showAndPlayVideo(event)">
+                                            <span class="txt">
+                                                <i class="icon-right-arrow-1"></i>
+                                                Desain
+                                            </span>
+                                        </a>
                                     </div>
-                                </div>
+
+                                    <!-- Container video fullscreen -->
+                                    <div id="videoContainer" class="video-container">
+                                        <!-- Tempat untuk menaruh video asset -->
+                                        <video id="assetVideo" src="assets/vidio/vidio2.mp4" autoplay></video>
+                                    </div>
+
+                                    <script>
+                                        // Fungsi untuk menampilkan dan memutar video
+                                        function showAndPlayVideo(event) {
+                                            event.preventDefault();
+                                            const videoContainer = document.getElementById("videoContainer");
+                                            const assetVideo = document.getElementById("assetVideo");
+
+                                            videoContainer.style.display = "block"; // Tampilkan video
+                                            assetVideo.play(); // Putar video
+
+                                            // Redirect setelah video selesai
+                                            assetVideo.onended = function() {
+                                                window.location.href = 'https://studio.morflax.com/clothing-mockups/create?element=t-shirt-man';
+                                            };
+                                        }
+                                    </script>
+                                </body>
+
+                                </html>
+
+
                                 <div class="btns-box">
                                     <a class="btn-one btn-one--style4 btn-wide" href="https://laporanta.tiiny.site/">
                                         <span class="txt">
@@ -479,58 +551,3 @@
 
     </div>
 @endsection
-<script>
-    // ID video YouTube (ekstrak dari URL)
-    const videoId = 'bLreeqoUUTI';
-    const designUrl = 'https://studio.morflax.com/clothing-mockups/create?element=t-shirt-man';
-    let player;
-
-    // Function untuk menampilkan video
-    function showVideo(event) {
-        event.preventDefault();
-        const videoContainer = document.getElementById('videoContainer');
-        const iframe = document.getElementById('youtubeVideo');
-
-        // Set source video dengan autoplay
-        iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1`;
-        videoContainer.style.display = 'block';
-
-        // Load YouTube API
-        if (!window.YT) {
-            const tag = document.createElement('script');
-            tag.src = 'https://www.youtube.com/iframe_api';
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        }
-    }
-
-    // Function yang dipanggil ketika YouTube API siap
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('youtubeVideo', {
-            events: {
-                'onStateChange': onPlayerStateChange
-            }
-        });
-    }
-
-    // Function yang dipanggil ketika status video berubah
-    function onPlayerStateChange(event) {
-        // Ketika video selesai (status = 0)
-        if (event.data === 0) {
-            setTimeout(() => {
-                window.location.href = designUrl;
-            }, 1000); // Tunggu 1 detik sebelum redirect
-        }
-    }
-
-    // Function untuk menutup video
-    function closeVideo() {
-        const videoContainer = document.getElementById('videoContainer');
-        const iframe = document.getElementById('youtubeVideo');
-        iframe.src = ''; // Hentikan video
-        videoContainer.style.display = 'none';
-    }
-</script>
-
-<!-- Load YouTube API -->
-<script src="https://www.youtube.com/iframe_api"></script>
