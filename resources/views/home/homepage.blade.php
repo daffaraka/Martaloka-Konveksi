@@ -327,6 +327,7 @@
                     </a>
                 </div>
             </div>
+        
             <div class="auto-container">
                 <div class="row">
                     <div class="col-xl-6">
@@ -339,6 +340,7 @@
                                     <h2><span>Kreasikan Kaos Anda<br>di sini</span><br></h2>
                                 </div>
                                 <div class="btns-box">
+                                    <!-- Tombol Desain untuk menampilkan video -->
                                     <a class="btn-one btn-one--style4" href="#" onclick="showAndPlayVideo(event)">
                                         <span class="txt">
                                             <i class="icon-right-arrow-1"></i>
@@ -357,7 +359,7 @@
                             </div>
                         </div>
                     </div>
-
+        
                     <div class="col-xl-6">
                         <div class="academy-slogan-content-one academy-slogan-content-one--style2">
                             <div class="academy-slogan-content-one__bg"
@@ -365,7 +367,7 @@
                             <div class="academy-slogan-content-one__inner text-center">
                                 <div class="sec-title-style3">
                                     <div class="sub-title"></div>
-                                    <h2><span>Ayo Pesan jenis Pakaian<br>Anda Sekarang</h2>
+                                    <h2><span>Ayo Pesan jenis Pakaian<br>Anda Sekarang</span><br></h2>
                                 </div>
                                 <div class="btns-box">
                                     <a class="btn-one btn-one--style4" href="{{ route('home.createDesign') }}">
@@ -388,62 +390,72 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Video Container -->
+        
+            <!-- Video Container (disembunyikan di awal) -->
             <div id="videoContainer" class="video-container">
                 <button class="close-video" onclick="closeVideo()">×</button>
-                <video id="assetVideo" src="assets/vidio/vidio_desain.mp4"></video>
-                <div class="video-controls">
-                    <button class="video-back-btn" onclick="backToPage()">Back</button>
-                    <button class="video-next-btn" onclick="skipToStudio()">Next</button>
+                <div class="video-wrapper">
+                    <video id="assetVideo" src="assets/vidio/vidio_desain.mp4" id="videoElement" controls>
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <button class="video-back-btn" onclick="backToPage()">Back</button>
+                        <button class="video-next-btn" onclick="skipToStudio()">Next</button>
+                        <span id="videoDuration"></span>
+                    </div>
                 </div>
             </div>
         </section>
-
+        
         <style>
             /* Video Container Style */
             .video-container {
-                display: none;
+                display: none; /* Video tersembunyi di awal */
                 position: fixed;
-                top: 60px;
-                /* Adjust this to match navbar height */
+                top: 0;
                 left: 0;
                 width: 100%;
-                height: calc(100% - 60px);
-                /* Adjust for navbar height */
+                height: 100vh;
                 background-color: rgba(0, 0, 0, 0.9);
                 z-index: 999999;
+                align-items: center;
+                justify-content: center;
             }
-
+        
+            .video-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 80%; /* Kontrol lebar maksimal video */
+                max-width: 700px;
+            }
+        
             .video-container video {
                 width: 100%;
-                height: 100%;
+                height: auto;
                 object-fit: contain;
             }
-
-            /* Close button and controls */
-            .close-video,
-            .video-controls {
-                position: fixed;
-                color: white;
-                z-index: 1000000;
-            }
-
+        
+            /* Tombol tutup dan kontrol video */
             .close-video {
+                position: absolute;
                 top: 20px;
                 right: 20px;
                 font-size: 24px;
+                color: white;
                 cursor: pointer;
+                z-index: 1000000;
             }
-
+        
             .video-controls {
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
+                margin-top: 15px;
                 display: flex;
+                justify-content: center;
                 gap: 20px;
+                width: 100%; /* Full width to center the buttons */
             }
-
+        
             .video-back-btn,
             .video-next-btn {
                 background: #ffffff;
@@ -453,35 +465,58 @@
                 font-size: 16px;
                 cursor: pointer;
             }
+        
+            #videoDuration {
+                color: white;
+                font-size: 16px;
+                margin-left: 20px;
+            }
         </style>
-
+        
         <script>
             function showAndPlayVideo(event) {
                 event.preventDefault();
-                document.body.style.overflow = 'hidden';
-                document.getElementById("videoContainer").style.display = "block";
+                document.body.style.overflow = 'hidden';  // Mencegah scrolling saat video tampil
+                document.getElementById("videoContainer").style.display = "flex";  // Tampilkan video
                 document.getElementById("assetVideo").play();
+                updateVideoDuration(); // Update durasi video saat dimulai
             }
-
+        
             function closeVideo() {
-                document.body.style.overflow = 'auto';
-                document.getElementById("videoContainer").style.display = "none";
+                document.body.style.overflow = 'auto';  // Kembalikan kemampuan scrolling
+                document.getElementById("videoContainer").style.display = "none";  // Sembunyikan video
                 document.getElementById("assetVideo").pause();
+                document.getElementById("assetVideo").currentTime = 0;  // Reset video ke awal
             }
-
+        
             function backToPage() {
                 closeVideo();
             }
-
+        
             function skipToStudio() {
-                window.location.href = 'https://studio.morflax.com/clothing-mockups/create?element=t-shirt-man';
+                document.getElementById("assetVideo").pause();
+                setTimeout(() => {
+                    window.location.href = 'https://studio.morflax.com/clothing-mockups/create?element=t-shirt-man';
+                }, 500);  // Delay untuk memastikan video berhenti sebelum navigasi
+            }
+        
+            // Update durasi video saat metadata dimuat
+            function updateVideoDuration() {
+                const videoElement = document.getElementById("assetVideo");
+                const videoDurationElement = document.getElementById("videoDuration");
+                videoElement.onloadedmetadata = function() {
+                    const duration = formatTime(videoElement.duration);
+                    videoDurationElement.innerHTML = `Duration: ${duration}`;
+                };
+            }
+        
+            // Format waktu menjadi mm:ss
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = Math.floor(seconds % 60);
+                return `${minutes}:${remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds}`;
             }
         </script>
-
-
-
-
-
 
         <section class="partner-style2-area">
             <div class="container">
