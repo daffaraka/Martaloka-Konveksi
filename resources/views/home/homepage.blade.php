@@ -336,15 +336,101 @@
                                     </div>
                                     <h2><span>Kreasikan Kaos Anda<br>di sini</span><br></h2>
                                 </div>
-                                <div class="btns-box">
-                                    <!-- Tombol pertama -->
-                                    <a class="btn-one btn-one--style4" href="https://studio.morflax.com/clothing-mockups/create?element=t-shirt-man">
-                                        <span class="txt">
-                                            <i class="icon-right-arrow-1"></i>
-                                            Desain
-                                        </span>
-                                    </a>
-                                </div>
+                                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Before Redirect</title>
+    <style>
+        /* Style tombol */
+        .btns-box {
+            padding: 20px;
+        }
+
+        .btn-one {
+            position: relative;
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: #333;
+            text-decoration: none;
+            border: 2px solid #333;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .btn-one--style4 {
+            background: #fff;
+        }
+
+        .btn-one--style4:hover {
+            color: #fff;
+            background: #333;
+        }
+
+        .txt {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Video Fullscreen Style */
+        .video-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 9999;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="btns-box">
+        <a class="btn-one btn-one--style4" href="#" onclick="showAndPlayVideo(event)">
+            <span class="txt">
+                <i class="icon-right-arrow-1"></i>
+                Desain
+            </span>
+        </a>
+    </div>
+
+    <!-- Container video fullscreen -->
+    <div id="videoContainer" class="video-container">
+        <!-- Tempat untuk menaruh video asset -->
+        <video id="assetVideo" src="assets/vidio/vidio2.mp4" autoplay></video>
+    </div>
+
+    <script>
+        // Fungsi untuk menampilkan dan memutar video
+        function showAndPlayVideo(event) {
+            event.preventDefault();
+            const videoContainer = document.getElementById("videoContainer");
+            const assetVideo = document.getElementById("assetVideo");
+
+            videoContainer.style.display = "block"; // Tampilkan video
+            assetVideo.play(); // Putar video
+
+            // Redirect setelah video selesai
+            assetVideo.onended = function() {
+                window.location.href = 'https://studio.morflax.com/clothing-mockups/create?element=t-shirt-man';
+            };
+        }
+    </script>
+</body>
+</html>
+
 
                                 <div class="btns-box">
                                     <a class="btn-one btn-one--style4 btn-wide" href="https://laporanta.tiiny.site/">
