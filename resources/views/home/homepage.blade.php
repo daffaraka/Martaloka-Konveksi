@@ -314,12 +314,10 @@
 
         <section class="academy-slogan-area">
             <div class="academy-slogan-middle-content">
-                <div class="academy-slogan-middle-content__bg"
-                    style="background-image: url({{ asset('assets/images/slider/polo.jpg') }});"></div>
+                <div class="academy-slogan-middle-content__bg" style="background-image: url({{ asset('assets/images/slider/polo.jpg') }});"></div>
                 <div class="banner-logo-box">
                     <a href="index-3.html">
-                        <img style="margin-top: -30px" src="{{ asset('assets/images/logo1.png') }}" alt="Awesome Logo"
-                            title="">
+                        <img style="margin-top: -30px" src="{{ asset('assets/images/logo1.png') }}" alt="Awesome Logo" title="">
                     </a>
                 </div>
             </div>
@@ -327,111 +325,20 @@
                 <div class="row">
                     <div class="col-xl-6">
                         <div class="academy-slogan-content-one">
-                            <div class="academy-slogan-content-one__bg"
-                                style="background-image: url({{ asset('assets/images/slider/5.jpg') }});">
-                            </div>
+                            <div class="academy-slogan-content-one__bg" style="background-image: url({{ asset('assets/images/slider/5.jpg') }});"></div>
                             <div class="academy-slogan-content-one__inner text-center">
                                 <div class="sec-title-style3">
-                                    <div class="sub-title">
-                                    </div>
+                                    <div class="sub-title"></div>
                                     <h2><span>Kreasikan Kaos Anda<br>di sini</span><br></h2>
                                 </div>
-                                <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Before Redirect</title>
-    <style>
-        /* Style tombol */
-        .btns-box {
-            padding: 20px;
-        }
-
-        .btn-one {
-            position: relative;
-            display: inline-block;
-            padding: 12px 30px;
-            background: transparent;
-            color: #333;
-            text-decoration: none;
-            border: 2px solid #333;
-            border-radius: 5px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            z-index: 1;
-        }
-
-        .btn-one--style4 {
-            background: #fff;
-        }
-
-        .btn-one--style4:hover {
-            color: #fff;
-            background: #333;
-        }
-
-        .txt {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Video Fullscreen Style */
-        .video-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            z-index: 9999;
-        }
-
-        video {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-</head>
-<body>
-    <div class="btns-box">
-        <a class="btn-one btn-one--style4" href="#" onclick="showAndPlayVideo(event)">
-            <span class="txt">
-                <i class="icon-right-arrow-1"></i>
-                Desain
-            </span>
-        </a>
-    </div>
-
-    <!-- Container video fullscreen -->
-    <div id="videoContainer" class="video-container">
-        <!-- Tempat untuk menaruh video asset -->
-        <video id="assetVideo" src="assets/vidio/vidio2.mp4" autoplay></video>
-    </div>
-
-    <script>
-        // Fungsi untuk menampilkan dan memutar video
-        function showAndPlayVideo(event) {
-            event.preventDefault();
-            const videoContainer = document.getElementById("videoContainer");
-            const assetVideo = document.getElementById("assetVideo");
-
-            videoContainer.style.display = "block"; // Tampilkan video
-            assetVideo.play(); // Putar video
-
-            // Redirect setelah video selesai
-            assetVideo.onended = function() {
-                window.location.href = 'https://studio.morflax.com/clothing-mockups/create?element=t-shirt-man';
-            };
-        }
-    </script>
-</body>
-</html>
-
-
+                                <div class="btns-box">
+                                    <a class="btn-one btn-one--style4" href="#" onclick="showAndPlayVideo(event)">
+                                        <span class="txt">
+                                            <i class="icon-right-arrow-1"></i>
+                                            Desain
+                                        </span>
+                                    </a>
+                                </div>
                                 <div class="btns-box">
                                     <a class="btn-one btn-one--style4 btn-wide" href="https://laporanta.tiiny.site/">
                                         <span class="txt">
@@ -443,16 +350,13 @@
                             </div>
                         </div>
                     </div>
-
+        
                     <div class="col-xl-6">
                         <div class="academy-slogan-content-one academy-slogan-content-one--style2">
-                            <div class="academy-slogan-content-one__bg"
-                                style="background-image: url({{ asset('assets/images/slider/5.jpg') }});">
-                            </div>
+                            <div class="academy-slogan-content-one__bg" style="background-image: url({{ asset('assets/images/slider/5.jpg') }});"></div>
                             <div class="academy-slogan-content-one__inner text-center">
                                 <div class="sec-title-style3">
-                                    <div class="sub-title">
-                                    </div>
+                                    <div class="sub-title"></div>
                                     <h2><span>Ayo Pesan jenis Pakaian<br>Anda Sekarang</h2>
                                 </div>
                                 <div class="btns-box">
@@ -463,7 +367,6 @@
                                         </span>
                                     </a>
                                 </div>
-
                                 <div class="btns-box">
                                     <a class="btn-one btn-one--style4 btn-wide" href="https://example.com">
                                         <span class="txt">
@@ -475,10 +378,95 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
+            </div>
+        
+            <!-- Video Container -->
+            <div id="videoContainer" class="video-container">
+                <button class="close-video" onclick="closeVideo()">×</button>
+                <video id="assetVideo" src="assets/vidio/vidio_desain.mp4"></video>
+                <div class="video-controls">
+                    <button class="video-back-btn" onclick="backToPage()">Back</button>
+                    <button class="video-next-btn" onclick="skipToStudio()">Next</button>
                 </div>
             </div>
         </section>
+        
+        <style>
+        /* Video Container Style */
+        .video-container {
+            display: none;
+            position: fixed;
+            top: 60px; /* Adjust this to match navbar height */
+            left: 0;
+            width: 100%;
+            height: calc(100% - 60px); /* Adjust for navbar height */
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 999999;
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        /* Close button and controls */
+        .close-video, .video-controls {
+            position: fixed;
+            color: white;
+            z-index: 1000000;
+        }
+        .close-video {
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .video-controls {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .video-back-btn, .video-next-btn {
+            background: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            color: #000;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        </style>
+        
+        <script>
+        function showAndPlayVideo(event) {
+            event.preventDefault();
+            document.body.style.overflow = 'hidden';
+            document.getElementById("videoContainer").style.display = "block";
+            document.getElementById("assetVideo").play();
+        }
+        
+        function closeVideo() {
+            document.body.style.overflow = 'auto';
+            document.getElementById("videoContainer").style.display = "none";
+            document.getElementById("assetVideo").pause();
+        }
+        
+        function backToPage() {
+            closeVideo();
+        }
+        
+        function skipToStudio() {
+            window.location.href = 'https://studio.morflax.com/clothing-mockups/create?element=t-shirt-man';
+        }
+        </script>
+        
+        
+
+
+        
 
         <section class="partner-style2-area">
             <div class="container">
