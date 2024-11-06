@@ -109,19 +109,19 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="detailModalLabel">Detail Produk</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                            style="border: none; background: none; font-size: 1.5rem; font-weight: bold;">×</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <img id="detail-gambar" src="" class="img-fluid rounded" alt="Gambar Produk">
+                                <img id="detail-gambar" src="" class="img-fluid rounded" alt="Gambar Produk"
+                                    style="max-width: 400px; max-height: 400px; object-fit: contain;">
                             </div>
                             <div class="col-md-6">
-                                <table class="table">
+                                <table class="table table-bordered table-striped">
                                     <tr>
                                         <th style="width: 150px;">Nama Produk</th>
-                                        <td><span id="detail-nama"></span></td>
+                                        <td><span id="detail-nama" class="font-weight-bold"></span></td>
                                     </tr>
                                     <tr>
                                         <th>Kategori</th>
@@ -137,7 +137,7 @@
                                     </tr>
                                     <tr>
                                         <th>Deskripsi</th>
-                                        <td><span id="detail-deskripsi"></span></td>
+                                        <td><span id="detail-deskripsi" class="detail-description"></span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -159,9 +159,16 @@
     <style>
         /* Batasi ukuran gambar dalam modal */
         #detail-gambar {
-            max-width: 400p%;
-            max-height: 400px;
+            max-width: 200p%;
+            max-height: 300px;
             object-fit: contain;
+        }
+
+        .detail-description {
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 150px;
+            overflow: auto;
         }
     </style>
 @endsection

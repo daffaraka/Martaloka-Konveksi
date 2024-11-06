@@ -26,7 +26,7 @@
                                 <button class="btn btn-success">Sudah Dibayar</button>
                             @elseif($data->status_pembayaran == 'Belum Dibayar')
                                 <button class="btn btn-primary">Diterima</button>
-                            @elseif($data->status_pembayaran == 'Dibatalkan')
+                            @elseif($data->status_pembayaran == 'Ditolak')
                                 <button class="btn btn-danger">Batal</button>
                             @elseif($data->status_pembayaran == 'Selesai')
                                 <button class="btn btn-success">Selesai</button>
@@ -69,7 +69,7 @@
                                         class="btn btn-block btn-outline-danger">Tolak transaksi</a>
                                 @break
 
-                                @case('Dibatalkan')
+                                @case('Ditolak')
                                     <a href="{{ route('transaksi.show', $data->id) }}" class="btn btn-block btn-danger">Batal</a>
                                 @break
 

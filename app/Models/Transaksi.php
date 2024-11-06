@@ -26,7 +26,9 @@ class Transaksi extends Model
         'no_resi',
         'kurir',
         'metode_bayar',
-        'delivery'
+        'delivery',
+        'keterangan_tambahan',
+        'tujuan_antar'
     ];
 
     public function user()

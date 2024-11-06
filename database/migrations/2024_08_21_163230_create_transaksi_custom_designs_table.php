@@ -16,19 +16,21 @@ return new class extends Migration
             $table->string('nama_custom');
             $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->enum('status_pembayaran', ['Dalam Transaksi', 'Belum Dibayar', 'Dibayar', 'Diterima', 'Selesai', 'Ditolak', 'Dibatalkan']);
             $table->string('nama_pemesan');
             $table->string('alamat_pemesan');
             $table->string('email_pemesan');
             $table->string('nomor_hp_pemesan');
             $table->string('catatan')->nullable();
             $table->integer('total_pesanan');
-            $table->enum('status_pembayaran', ['Dalam Transaksi', 'Belum Dibayar', 'Dibayar','Diterima', 'Selesai','Dibatalkan']);
             $table->integer('total_harga')->nullable();
             $table->string('metode_bayar')->nullable();
             $table->string('bukti_pembayaran')->nullable();
-            $table->enum('delivery',['Diantar','Ambil Di tempat'])->nullable();
+            $table->enum('delivery', ['Diantar Ke Tempat Pemesan', 'Ambil Di Martaloka'])->nullable();
             $table->text('no_resi')->nullable();
             $table->string('kurir')->nullable();
+            $table->string('tujuan_antar')->nullable();
+            $table->string('keterangan_tambahan')->nullable();
             $table->timestamps();
         });
     }

@@ -127,59 +127,100 @@
                                         <div class="row">
                                             <div class="col-12  py-3">
                                                 <h3 class="px-3">Pilih Metode pembayaran</h3>
-                                                <div class="px-5">
+                                                <div class="px-5 py-3">
                                                     <div class="d-flex align-items-start">
-                                                        <input type="radio" name="bank" id="bank_bni" value="BNI"
-                                                            class="mt-1 me-2">
+                                                        <input type="radio" name="metode_bayar" id="bank_bni"
+                                                            value="BNI" class="mt-1 me-2">
                                                         <label for="bank_bni" class="d-flex align-items-start">
                                                             <div>
                                                                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/BankNegaraIndonesia46-logo.svg/1200px-BankNegaraIndonesia46-logo.svg.png"
-                                                                    class="img-fluid text-center" alt=""
-                                                                    style="max-width: 150px;">
+                                                                    class="img-fluid text-center ml-3" alt=""
+                                                                    style="max-height: 50px;">
                                                             </div>
 
                                                         </label>
 
                                                     </div>
                                                     <div class="ms-2">
-                                                        <p class="mb-0">No.rek :7543216 <br>
-                                                            a.n Putu Suarbawa
+                                                        <p class="mb-0">No.rek : <b> 7543216</b> <br>
+                                                            <b> a.n Putu Suarbawa</b>
                                                         </p>
                                                     </div>
                                                     <hr>
                                                 </div>
 
-                                                <div class="px-5">
+                                                <div class="px-5 py-3">
                                                     <div class="d-flex align-items-start">
-                                                        <input type="radio" name="bank" id="bank_bri" value="BRI"
-                                                            class="mt-1 me-2">
+                                                        <input type="radio" name="metode_bayar" id="bank_bri"
+                                                            value="BRI" class="mt-1 me-2">
                                                         <label for="bank_bri" class="d-flex align-items-start">
                                                             <div>
                                                                 <img src="https://media.suara.com/pictures/970x544/2024/06/04/49528-logo-bri-logo-bank-bri.jpg"
-                                                                    class="img-fluid text-center" alt=""
-                                                                    style="max-width: 150px;">
+                                                                    class="img-fluid text-center ml-3" alt=""
+                                                                    style="max-height: 50px;">
                                                             </div>
 
                                                         </label>
                                                     </div>
                                                     <div class="ms-2">
-                                                        <p class="mb-0">No.rek :7543216 <br>
-                                                            a.n Putu Suarbawa
+                                                        <p class="mb-0">No.rek : <b> 7543216 </b> <br>
+                                                            a.n <b> Putu Suarbawa</b>
                                                         </p>
                                                     </div>
                                                     <hr>
                                                 </div>
 
+                                                <div class="px-5 py-3">
+                                                    <div class="d-flex align-items-start">
+                                                        <input type="radio" name="metode_bayar" id="ovo"
+                                                            value="OVO" class="mt-1 me-2">
+                                                        <label for="ovo" class="d-flex align-items-start">
+                                                            <div>
+                                                                <img src="https://blogpictures.99.co/cara-menggunakan-ovo.jpg"
+                                                                    class="img-fluid text-center ml-3" alt=""
+                                                                    style="max-height: 50px;">
+                                                            </div>
+
+                                                        </label>
+
+                                                    </div>
+                                                    <div class="ms-2">
+                                                        <p class="mb-0">OVO : <b> 085100000000</b> <br>
+                                                            <b> a.n Putu Suarbawa</b>
+                                                        </p>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+
+                                                <div class="px-5 py-3">
+                                                    <div class="d-flex align-items-start">
+                                                        <input type="radio" name="metode_bayar" id="dana"
+                                                            value="DANA" class="mt-1 me-2">
+                                                        <label for="dana" class="d-flex align-items-start">
+                                                            <div>
+                                                                <img src="https://cdn.antaranews.com/cache/1200x800/2022/04/25/dana.jpg"
+                                                                    class="img-fluid text-center ml-3" alt=""
+                                                                    style="max-height: 50px;">
+                                                            </div>
+
+                                                        </label>
+                                                    </div>
+                                                    <div class="ms-2">
+                                                        <p class="mb-0">Dana : <b> 085100000000</b> <br>
+                                                            <b> a.n Putu Suarbawa</b>
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>
                                     @else
                                         <div class="p-3">
-                                            <h4 class="text-left">Pembayaran sedang diproses</h4>
+                                            <h4 class="text-left mb-3">Pembayaran sedang diproses</h4>
                                             <div class="card">
                                                 <div class="card-body">
 
-                                                    <p>Anda membayar dengan menggunakan BNI</p>
+                                                    <p>Anda membayar dengan menggunakan {{$transaksiCustomDesign->metode_bayar}}</p>
                                                 </div>
                                             </div>
 
@@ -275,8 +316,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
@@ -318,10 +358,15 @@
                             // Isi data yang diterima ke dalam modal
                             document.getElementById('nama_progress').value = data.nama_progress;
                             document.getElementById('deskripsi_proses').value = data.deskripsi_progress;
-                            document.getElementById('waktu_progress').value = data
-                                .created_at;
-                            document.getElementById('gambar_proses').src = data
-                                .gambar_proses; // Sesuaikan path gambar
+                            document.getElementById('waktu_progress').value = new Intl.DateTimeFormat('id-ID', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: '2-digit',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit'
+                            }).format(new Date(data.created_at));
+                            document.getElementById('gambar_proses').src = `/progress_custom/${data.gambar_progress}`;
 
                             // Tampilkan modal setelah data diisi
 

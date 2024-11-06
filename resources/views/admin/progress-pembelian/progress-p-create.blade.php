@@ -1,15 +1,62 @@
 @extends('admin.layout')
 @section('content')
     <div class="row">
-        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
-            <img class="img-fluid" src="{{ asset('bukti_Pembayaran/' . $transaksi->bukti_pembayaran) }}"
-                alt="Bukti pembayaran {{ $transaksi->bukti_pembayaran }}">
+        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12">
+            <div class="row row-cols-2">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="font-weight-bold d-inline">Bukti Pembayaran</h5>
+                            <div class="d-flex justify-content-center">
+                                <img class="img-fluid" style="max-height: 400px; object-fit:fill;"
+                                    src="{{ asset('bukti_Pembayaran/' . $transaksi->bukti_pembayaran) }}"
+                                    alt="Bukti pembayaran {{ $transaksi->bukti_pembayaran }}">
+                            </div>
 
-            <div class="d-gap mt-5">
+                        </div>
 
+                    </div>
+
+
+
+                </div>
+                <div class="col">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold">Rincian Transaksi</h5> <br>
+                            <hr>
+                            <div class="row">
+                                @foreach ($transaksi->detailTransaksi as $detailTransaksi)
+                                    <div class="col-4 px-2">
+                                        <div class="border d-flex justify-content-center mb-1">
+                                            <img class="img-fluid" style="height: 100px; object-fit: contain;"
+                                                src="{{ asset('produk/' . $detailTransaksi->produk->gambar_produk) }}"
+                                                alt=" {{ $detailTransaksi->produk->gambar_produk }}">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-8">
+                                        <h6 class="font-weight-bold">{{ $detailTransaksi->produk->nama_produk }}</h6>
+                                        <span>{{ $detailTransaksi->qty }} Item</span> <br>
+                                        <span>
+                                            Rp.{{ number_format($detailTransaksi->produk->harga_produk) }}</span>
+                                    </div>
+                                @endforeach
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
+
+
+
+
         </div>
-        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
@@ -32,7 +79,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Deskripsi</label>
-                        <textarea name="" class="form-control" cols="30" rows="2" readonly>{{ $transaksi->deskripsi }}</textarea>
+                        <textarea name="" class="form-control" cols="30" rows="2" readonly>{{ $transaksi->catatan }}</textarea>
                     </div>
                 </div>
             </div>
@@ -49,7 +96,8 @@
                             <ul>
                                 @foreach ($transaksi->progress as $index => $item)
                                     <li class="mb-3">
-                                        <h6 class="font-weight-bold">{{ $item->nama_progress }} {!! $index == 0 ? '<span class="badge badge-success"> Status terakhir </span>' : '' !!}</h6>
+                                        <h6 class="font-weight-bold">{{ $item->nama_progress }} {!! $index == 0 ? '<span class="badge badge-success"> Status terakhir </span>' : '' !!}
+                                        </h6>
 
                                         {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y H:mm:ss') }}
                                         <br>
@@ -82,7 +130,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Deskripsi Progress</label>
-                                    <textarea rows="3" cols="30" name="deskripsi_progress" class="form-control"> </textarea>
+                                    <textarea rows="3" cols="30" name="deskripsi_progress" class="form-control">  </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Gambar Progress</label>

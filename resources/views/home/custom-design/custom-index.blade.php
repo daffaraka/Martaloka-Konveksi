@@ -15,20 +15,20 @@
 
 
                         @foreach ($customs as $item)
-                                <div class="col-xxl-4 col-xl-4 col-lg-4 col-6 p-3">
-                                    <a href="{{ route('home.formPembayaranTransaksiCustom', $item->id) }}" class="text-dark">
+                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-6 p-3">
+                                <a href="{{ route('home.formPembayaranTransaksiCustom', $item->id) }}" class="text-dark">
 
                                     <div class="card border shadow-none my-2">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-4">
-                                                    <img src="{{ asset('custom_design/' . $item->designs->first()->gambar_custom_design ) }}"
+                                                    <img src="{{ asset($item->designs->first()->gambar_custom_design) }}"
                                                         alt="{{ $item->bukti_bayar }}" class="img-fluid">
                                                 </div>
 
 
-                                                <div class="col-8">
-                                                    <h3>{{$item->status_pembayaran ?? 'Belum ada status'}}</h3>
+                                                <div class="col-8 pl-3">
+                                                    <h3>{{ $item->status_pembayaran ?? 'Belum ada status' }}</h3>
 
                                                     <div class="flex-grow-1 align-self-center overflow-hidden">
                                                         <div>
@@ -40,7 +40,8 @@
                                                         </div>
 
                                                         <div>
-                                                            Total pesanan : <span class="font-weight-bold"> {{$item->total_pesanan ?? 0}}</span>
+                                                            Total pesanan : <span class="font-weight-bold">
+                                                                {{ $item->total_pesanan ?? 0 }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -55,7 +56,7 @@
                                     </div>
                                 </a>
 
-                                </div>
+                            </div>
                         @endforeach
 
 

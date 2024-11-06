@@ -125,8 +125,8 @@
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="delivery">Delivery</h6>
                             <select class="form-control w-100" id="delivery" name="delivery" required>
-                                <option value="Diantar">Diantar</option>
-                                <option value="Ambil di Tempat">Ambil di Tempat</option>
+                                <option value="Diantar ke Tempat Pemesan">Diantar ke Tempat Pemesan</option>
+                                <option value="Ambil di Martaloka">Ambil di Martaloka</option>
                             </select>
                         </div>
 
@@ -195,6 +195,48 @@
                                                     </p>
                                                 </div>
                                                 <hr>
+                                            </div>
+
+                                            <div class="px-5 py-3">
+                                                <div class="d-flex align-items-start">
+                                                    <input type="radio" name="metode_bayar" id="ovo"
+                                                        value="OVO" class="mt-1 me-2">
+                                                    <label for="ovo" class="d-flex align-items-start">
+                                                        <div>
+                                                            <img src="https://blogpictures.99.co/cara-menggunakan-ovo.jpg"
+                                                                class="img-fluid text-center ml-3" alt=""
+                                                                style="max-height: 50px;">
+                                                        </div>
+
+                                                    </label>
+
+                                                </div>
+                                                <div class="ms-2">
+                                                    <p class="mb-0">OVO : <b> 085100000000</b> <br>
+                                                        <b> a.n Putu Suarbawa</b>
+                                                    </p>
+                                                </div>
+                                                <hr>
+                                            </div>
+
+                                            <div class="px-5 py-3">
+                                                <div class="d-flex align-items-start">
+                                                    <input type="radio" name="metode_bayar" id="dana"
+                                                        value="DANA" class="mt-1 me-2">
+                                                    <label for="dana" class="d-flex align-items-start">
+                                                        <div>
+                                                            <img src="https://cdn.antaranews.com/cache/1200x800/2022/04/25/dana.jpg"
+                                                                class="img-fluid text-center ml-3" alt=""
+                                                                style="max-height: 50px;">
+                                                        </div>
+
+                                                    </label>
+                                                </div>
+                                                <div class="ms-2">
+                                                    <p class="mb-0">Dana : <b> 085100000000</b> <br>
+                                                        <b> a.n Putu Suarbawa</b>
+                                                    </p>
+                                                </div>
                                             </div>
                                         @else
                                             @switch($transaksi->metode_bayar)

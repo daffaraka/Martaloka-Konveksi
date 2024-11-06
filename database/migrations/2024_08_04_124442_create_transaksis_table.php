@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->enum('status_pembayaran', ['Dalam Transaksi', 'Belum Dibayar', 'Dibayar','Diterima', 'Selesai','Dibatalkan']);
+            $table->enum('status_pembayaran', ['Dalam Transaksi', 'Belum Dibayar', 'Dibayar','Diterima', 'Selesai','Ditolak','Dibatalkan']);
             $table->string('nama_pemesan')->nullable();
             $table->string('alamat_pemesan')->nullable();
             $table->string('email_pemesan')->nullable();
@@ -25,9 +25,11 @@ return new class extends Migration
             $table->string('bukti_pembayaran')->nullable();
             $table->dateTime('tgl_bayar')->nullable();
             $table->dateTime('tgl_kadaluarsa')->nullable();
-            $table->enum('delivery',['Diantar','Ambil Di tempat'])->nullable();
+            $table->enum('delivery',['Diantar Ke Tempat Pemesan','Ambil Di Martaloka'])->nullable();
             $table->text('no_resi')->nullable();
             $table->string('kurir')->nullable();
+            $table->string('tujuan_antar')->nullable();
+            $table->string('keterangan_tambahan')->nullable();
             $table->timestamps();
         });
     }

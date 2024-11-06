@@ -29,17 +29,34 @@ class DashboardController extends Controller
                                         ->take(5)
                                         ->get();
 
-        // Get regular transactions with revenue
-        $regularTransactions = Transaksi::whereBetween('created_at', [$startDate, $endDate])
+        // Get regular transactions with revenue (only completed transactions)
+        $regularTransactions = Transaksi::where('status_pembayaran', 'Selesai')
+            ->whereBetween('created_at', [$startDate, $endDate])
             ->selectRaw('SUM(total_harga) as revenue, COUNT(*) as count, DATE_FORMAT(created_at, "%b %Y") as month, YEAR(created_at) as year, MONTH(created_at) as month_num')
             ->groupBy('year', 'month_num', 'month')
             ->orderBy('year')
             ->orderBy('month_num')
             ->get();
 
-        // Get custom transactions with revenue
-        $customTransactions = TransaksiCustomDesign::whereBetween('created_at', [$startDate, $endDate])
+        // Get custom transactions with revenue (only completed transactions)
+        $customTransactions = TransaksiCustomDesign::where('status_pembayaran', 'Selesai')
+            ->whereBetween('created_at', [$startDate, $endDate])
             ->selectRaw('SUM(total_harga) as revenue, COUNT(*) as count, DATE_FORMAT(created_at, "%b %Y") as month, YEAR(created_at) as year, MONTH(created_at) as month_num')
+            ->groupBy('year', 'month_num', 'month')
+            ->orderBy('year')
+            ->orderBy('month_num')
+            ->get();
+
+        // Get all transactions for transaction count (regardless of status)
+        $allRegularTransactions = Transaksi::whereBetween('created_at', [$startDate, $endDate])
+            ->selectRaw('COUNT(*) as count, DATE_FORMAT(created_at, "%b %Y") as month, YEAR(created_at) as year, MONTH(created_at) as month_num')
+            ->groupBy('year', 'month_num', 'month')
+            ->orderBy('year')
+            ->orderBy('month_num')
+            ->get();
+
+        $allCustomTransactions = TransaksiCustomDesign::whereBetween('created_at', [$startDate, $endDate])
+            ->selectRaw('COUNT(*) as count, DATE_FORMAT(created_at, "%b %Y") as month, YEAR(created_at) as year, MONTH(created_at) as month_num')
             ->groupBy('year', 'month_num', 'month')
             ->orderBy('year')
             ->orderBy('month_num')
@@ -53,23 +70,32 @@ class DashboardController extends Controller
             $period[$key] = 0;
         }
 
-        // Prepare data arrays for transactions count
+        // Prepare data arrays
         $transactionsPeriod = $period;
         $customTransactionsPeriod = $period;
         $revenuePeriod = $period;
         $customRevenuePeriod = $period;
 
-        // Fill regular transaction data
-        foreach ($regularTransactions as $transaction) {
+        // Fill regular transaction count data (all transactions)
+        foreach ($allRegularTransactions as $transaction) {
             $month = Carbon::parse($transaction->month)->format('M');
             $transactionsPeriod[$month] = $transaction->count;
+        }
+
+        // Fill custom transaction count data (all transactions)
+        foreach ($allCustomTransactions as $transaction) {
+            $month = Carbon::parse($transaction->month)->format('M');
+            $customTransactionsPeriod[$month] = $transaction->count;
+        }
+
+        // Fill revenue data (only completed transactions)
+        foreach ($regularTransactions as $transaction) {
+            $month = Carbon::parse($transaction->month)->format('M');
             $revenuePeriod[$month] = $transaction->revenue;
         }
 
-        // Fill custom transaction data
         foreach ($customTransactions as $transaction) {
             $month = Carbon::parse($transaction->month)->format('M');
-            $customTransactionsPeriod[$month] = $transaction->count;
             $customRevenuePeriod[$month] = $transaction->revenue;
         }
 
@@ -83,8 +109,15 @@ class DashboardController extends Controller
         // Calculate totals
         $data['totalProduk'] = array_sum($data['produkData']);
         $data['totalCustom'] = array_sum($data['customData']);
-        $data['totalRevenue'] = array_sum($data['revenueData']);
-        $data['totalCustomRevenue'] = array_sum($data['customRevenueData']);
+        
+        // Calculate total revenue (only from completed transactions)
+        $data['totalRevenue'] = Transaksi::where('status_pembayaran', 'Selesai')
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->sum('total_harga');
+            
+        $data['totalCustomRevenue'] = TransaksiCustomDesign::where('status_pembayaran', 'Selesai')
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->sum('total_harga');
 
         $data['selectedYear'] = $year;
 
