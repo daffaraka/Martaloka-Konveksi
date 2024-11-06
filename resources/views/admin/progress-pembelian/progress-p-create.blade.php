@@ -51,10 +51,6 @@
 
                 </div>
             </div>
-
-
-
-
         </div>
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <div class="card">

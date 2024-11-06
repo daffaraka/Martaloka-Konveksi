@@ -88,21 +88,40 @@
                 @foreach ($transaksi as $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->user->name }}</td>
+                        <td>{{ $data->nama_pemesan }}</td>
                         <td>
-                            @if ($data->status_pembayaran == 'Dalam Transaksi')
-                                <button class="btn btn-secondary">Menunggu Pembayaran</button>
-                            @elseif($data->status_pembayaran == 'Dibayar')
-                                <button class="btn btn-info">Sudah Dibayar</button>
-                            @elseif($data->status_pembayaran == 'Belum Dibayar')
-                                <button class="btn btn-warning">Belum Dibayar</button>
-                            @elseif($data->status_pembayaran == 'Ditolak')
-                                <button class="btn btn-danger">Batal</button>
-                            @elseif($data->status_pembayaran == 'Selesai')
-                                <button class="btn btn-success">Selesai</button>
-                            @else
-                                <button class="btn btn-info">Status Tidak Valid</button>
-                            @endif
+                            @switch($data->status_pembayaran)
+                                @case('Dalam Transaksi')
+                                    <button class="btn btn-secondary">Menunggu Pembayaran</button>
+                                @break
+
+                                @case('Dibayar')
+                                    <button class="btn btn-info">Sudah Dibayar</button>
+                                @break
+
+                                @case('Belum Dibayar')
+                                    <button class="btn btn-warning">Belum Dibayar</button>
+                                @break
+
+                                @case('Ditolak')
+                                    <button class="btn btn-danger">Ditolak</button>
+                                @break
+
+                                @case('Dibatalkan')
+                                    <button class="btn btn-outline-danger">Dibatalkan</button>
+                                @break
+
+                                @case('Selesai')
+                                    <button class="btn btn-success">Selesai</button>
+                                @break
+
+                                @case('Diterima')
+                                    <button class="btn btn-primary">Diterima</button>
+                                @break
+
+                                @default
+                                    <button class="btn btn-outline-secondary">Status Tidak Valid</button>
+                            @endswitch
                         </td>
                         <td>
                             <ul class="list-unstyled">
@@ -141,7 +160,7 @@
                                 @break
 
                                 @case('Dibayar')
-                                    <button href="#" class="btn btn-block btn-info" id="terimaTransaksi"
+                                    <button href="#" class="btn btn-block btn-info terimaTransaksi"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                                         data-transaksi-id="{{ $data->id }}">Terima transaksi</button>
                                     <button href="#" class="btn btn-block btn-danger" id="tolakTransaksi"
@@ -149,19 +168,9 @@
                                         data-transaksi-id="{{ $data->id }}">Tolak
                                         transaksi</button>
                                 @break
-
-                                @case('Ditolak')
-                                    <a href="{{ route('transaksi.show', $data->id) }}"
-                                        class="btn btn-block btn-light border border-2">Detail Transaksi</a>
-                                @break
-
-                                @case('Selesai')
-                                    {{-- <a href="{{ route('progress-pembelian.show', $data->id) }}">Lihat Progress</a> --}}
-                                    <a class="btn btn-block btn-success">Selesai</a>
-                                @break
-
-                                @default
-                                    <button class="btn btn-block btn-info">Status Tidak Valid</button>
+                                @case('Diterima')
+                                    <a href="{{ route('transaksi.selesaikan', $data->id) }}"
+                                        class="btn btn-block btn-success">Selesaikan Transaksi</a>
                                 @break
                             @endswitch
                             <a href="{{ route('transaksi.show', $data->id) }}"
@@ -205,7 +214,7 @@
                         </div>
 
 
-                        <div class="kirim" id="kirim">
+                        <div class="kirim d-none" id="kirim">
                             <div class="mb-3">
                                 <label for="kurir" class="form-label">Kurir</label>
                                 <select class="form-control" aria-label="Default select example" id="kurir"
@@ -222,14 +231,23 @@
                                 <label for="nomor_resi" class="form-label">Nomor Resi</label>
                                 <input type="text" class="form-control" id="no_resi" name="no_resi">
                             </div>
-                        </div>
-
-                        <div class="pick-up" id="pick-up">
-
                             <div class="mb-3">
-                                <label for="nomor_resi" class="form-label">Tujuan Antar</label>
+                                <label for="tujuan_antar" class="form-label">Tujuan Antar</label>
                                 <input type="text" class="form-control" id="tujuan_antar" name="tujuan_antar">
                             </div>
+                        </div>
+
+                        <div class="pick-up d-none" id="pick-up">
+
+                            <div class="mb-3">
+                                <label  class="form-label">Alamat Martaloka Konveksi</label>
+                                <textarea class="form-control" name="" id="" cols="30" rows="3" readonly></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label  class="form-label">Tanggal dan Jam Ambil</label>
+                                <input type="date" class="form-control" id="tgl_antar" name="tgl_antar">
+                            </div>
+
                         </div>
 
                         <div class="modal-footer">
@@ -377,31 +395,42 @@
         });
 
 
-        $('#terimaTransaksi').on('click', function() {
+        // Fungsi untuk menangani klik tombol "Terima Transaksi"
+        $('.terimaTransaksi').on('click', function() {
             var transaksiId = $(this).data('transaksi-id');
 
             // Lakukan AJAX request untuk mendapatkan detail transaksi
             $.ajax({
-                url: '{{ route('response.detailTransaksi', ':id') }}'.replace(
-                    ':id',
+                url: '{{ route('response.detailTransaksi', ':id') }}'.replace(':id',
                     transaksiId),
                 method: 'GET',
                 success: function(response) {
                     // Isi nilai input pada modal
                     $('#id').val(transaksiId);
                     $('#nama_pemesan').val(response.nama_pemesan);
-                    // Tambahkan pengisian nilai untuk input lainnya sesuai kebutuhan
                     $('#status_pembayaran').val(response.status_pembayaran);
-                    if (response.delivery_option === 'Diantar Ke Tempat Pemesan') {
-                        $('#kirim').show();
-                        $('#pick-up').hide();
+
+                    if (response.delivery === 'Diantar Ke Tempat Pemesan') {
+                        $('#kirim').removeClass('d-none');
+                        $('#pick-up').addClass('d-none');
                     } else {
-                        $('#delivery_option').val('Ambil Di Martaloka');
-                        $('#kirim').hide();
-                        $('#pick-up').show();
+                        $('#pick-up').removeClass('d-none');
+                        $('#kirim').addClass('d-none');
                     }
                 }
             });
+        });
+
+        // Menghapus data saat modal ditutup
+        $('#exampleModal').on('hidden.bs.modal', function() {
+            $('#id').val('');
+            $('#nama_pemesan').val('');
+            $('#status_pembayaran').val('');
+            $('#kurir').val('Pilih Kurir');
+            $('#no_resi').val('');
+            $('#tujuan_antar').val('');
+            $('#kirim').addClass('d-none');
+            $('#pick-up').addClass('d-none');
         });
 
 

@@ -28,13 +28,15 @@ class Transaksi extends Model
         'metode_bayar',
         'delivery',
         'keterangan_tambahan',
-        'tujuan_antar'
+        'tujuan_antar',
+        'tanggal_ambil'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
 
     public function detailTransaksi()
     {

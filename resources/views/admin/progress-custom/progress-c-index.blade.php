@@ -7,10 +7,11 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th>Nama Pemesan</th>
                     <th scope="col">Judul Custom</th>
                     <th scope="col">Gambar Custom</th>
-                    <th scope="col">Gambar Progress Terakhir</th>
                     <th scope="col">Status Transaksi</th>
+                    <th scope="col">Gambar Progress Terakhir</th>
                     <th scope="col">progress Terakhir</th>
                     <th>Tanggal</th>
                     <th>Action</th>

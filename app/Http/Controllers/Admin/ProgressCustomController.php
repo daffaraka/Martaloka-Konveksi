@@ -26,7 +26,7 @@ class ProgressCustomController extends Controller
     {
 
         $data['judul'] = 'Progres Transaksi Custom';
-        $data['transaksi'] = $transaksi->with(['progress' => function ($query) {
+        $data['transaksi'] = $transaksi->with(['designs','progress' => function ($query) {
             $query->latest();
         }])->find($transaksi->id);
 

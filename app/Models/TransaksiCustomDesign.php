@@ -28,7 +28,8 @@ class TransaksiCustomDesign extends Model
         'kurir',
         'delivery',
         'keterangan_tambahan',
-        'tujuan_antar'
+        'tujuan_antar',
+        'tanggal_ambil'
 
     ];
 

@@ -1,7 +1,12 @@
 @extends('admin.layout')
 @section('content')
     <!-- Form Pencarian dan Filter -->
-
+    <style>
+        #kirim,
+        #pick-up {
+            display: none;
+        }
+    </style>
     <div class="table-responsive mt-2 ">
         <div class="mb-3">
             <a href="{{ route('transaksiCustum.exportPdf', ['search' => request('search'), 'filter' => request('filter'), 'date_range' => request('date_range')]) }}"
@@ -108,28 +113,47 @@
                         <td>
                             <ul class="px-3">
                                 @foreach ($data->designs as $design)
-                                    <li> <a href="{{ asset($design->gambar_custom_design) }}" download
+                                    <li class="my-1"> <a href="{{ asset($design->gambar_custom_design) }}" download
                                             class="btn btn-dark">
                                             <i class="fas fa-download"></i>
-                                        </a></li>
+                                        </a></lic>
                                 @endforeach
                             </ul>
 
                         </td>
                         <td>
-                            @if ($data->status_pembayaran == 'Dalam Transaksi')
-                                <button class="btn btn-secondary">Menunggu Pembayaran</button>
-                            @elseif($data->status_pembayaran == 'Dibayar')
-                                <button class="btn btn-info"> Dibayar</button>
-                            @elseif($data->status_pembayaran == 'Belum Dibayar')
-                                <button class="btn btn-primary">Diterima</button>
-                            @elseif($data->status_pembayaran == 'Ditolak')
-                                <button class="btn btn-danger">Batal</button>
-                            @elseif($data->status_pembayaran == 'Selesai')
-                                <button class="btn btn-success">Selesai</button>
-                            @else
-                                <button class="btn btn-info">Status Tidak Valid</button>
-                            @endif
+                            @switch($data->status_pembayaran)
+                                @case('Dalam Transaksi')
+                                    <button class="btn btn-secondary">Menunggu Pembayaran</button>
+                                @break
+
+                                @case('Dibayar')
+                                    <button class="btn btn-info">Sudah Dibayar</button>
+                                @break
+
+                                @case('Belum Dibayar')
+                                    <button class="btn btn-warning">Belum Dibayar</button>
+                                @break
+
+                                @case('Ditolak')
+                                    <button class="btn btn-danger">Ditolak</button>
+                                @break
+
+                                @case('Dibatalkan')
+                                    <button class="btn btn-outline-danger">Dibatalkan</button>
+                                @break
+
+                                @case('Selesai')
+                                    <button class="btn btn-success">Selesai</button>
+                                @break
+
+                                @case('Diterima')
+                                    <button class="btn btn-primary">Diterima</button>
+                                @break
+
+                                @default
+                                    <button class="btn btn-outline-secondary">Status Tidak Valid</button>
+                            @endswitch
                         </td>
                         <td>
                             {{ $data->total_pesanan }}
@@ -160,146 +184,146 @@
                                 @break
 
                                 @case('Dibayar')
-                                    <button href="#" class="btn btn-block btn-info" id="terimaTransaksi"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                        data-transaksi-id="{{ $data->id }}">Terima transaksi</button>
+                                    <button href="#" class="btn btn-block btn-info terimaTransaksi" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" data-transaksi-id="{{ $data->id }}">Terima
+                                        transaksi</button>
                                     <button href="#" class="btn btn-block btn-danger" id="tolakTransaksi"
                                         data-bs-toggle="modal" data-bs-target="#tolakModal"
                                         data-transaksi-id="{{ $data->id }}">Tolak
                                         transaksi</button>
+                                        @break
+                                @case('Diterima')
+                                    <a href="{{ route('transaksiCustom.selesaikan', $data->id) }}"
+                                        class="btn btn-block btn-success">Selesaikan Transaksi</a>
                                 @break
 
-                                @case('Ditolak')
-                                    <a href="{{ route('transaksi.show', $data->id) }}"
-                                        class="btn btn-block btn-light border border-2">Detail Transaksi</a>
-                                @break
 
-                                @case('Selesai')
-                                    {{-- <a href="{{ route('progress-pembelian.show', $data->id) }}">Lihat Progress</a> --}}
-                                    <a class="btn btn-block btn-success">Selesai</a>
-                                @break
+                            @break
+                        @endswitch
+                        <a href="{{ route('transaksiCustom.show', $data->id) }}"
+                            class="btn btn-block btn-light border border-1">Detail Transaksi</a>
+                        <a href="https://wa.me/+62{{ $data->nomor_hp_pemesan ?? '85847728414' }} "
+                            class="btn btn-block btn-outline-warning text-dark"><i class="fa fa-phone"
+                                aria-hidden="true"></i> Hubungi Pemesan</a>
+                    </td>
 
-                                @default
-                                    <button class="btn btn-block btn-info">Status Tidak Valid</button>
-                                @break
-                            @endswitch
-                            <a href="{{ route('transaksiCustom.show', $data->id) }}"
-                                class="btn btn-block btn-light border border-1">Detail Transaksi</a>
-                            <a href="https://wa.me/+62{{ $data->nomor_hp_pemesan ?? '85847728414' }} "
-                                class="btn btn-block btn-outline-warning text-dark"><i class="fa fa-phone"
-                                    aria-hidden="true"></i> Hubungi Pemesan</a>
-                        </td>
+                </tr>
+            @endforeach
 
-                    </tr>
-                @endforeach
-
-            </tbody>
-        </table>
-    </div>
-    <!-- Pagination -->
-    <div class="d-flex justify-content-end mt-3">
-        {{ $transaksi->links('pagination::bootstrap-5') }}
-    </div>
+        </tbody>
+    </table>
+</div>
+<!-- Pagination -->
+<div class="d-flex justify-content-end mt-3">
+    {{ $transaksi->links('pagination::bootstrap-5') }}
+</div>
 
 
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="exampleModalLabel">Tambahkan Nomor Resi</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('transaksiCustom.terima') }}" method="POST">
-                        @csrf
 
-                        <input type="hidden" name="id" id="id" value="">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title fs-5" id="exampleModalLabel">Tambahkan Nomor Resi</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('transaksiCustom.terima') }}" method="POST">
+                    @csrf
+
+                    <input type="hidden" name="id" id="id" value="">
+                    <div class="mb-3">
+                        <label for="">Nama Pemesan</label>
+                        <input type="text" class="form-control" value="" id="nama_pemesan" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Status Transaksi</label>
+                        <input type="text" class="form-control" value="" id="status_pembayaran" readonly>
+                    </div>
+
+
+                    <div class="kirim d-none" id="cek">
                         <div class="mb-3">
-                            <label for="">Nama Pemesan</label>
-                            <input type="text" class="form-control" value="" id="nama_pemesan" readonly>
+                            <label for="kurir" class="form-label">Kurir</label>
+                            <select class="form-control" aria-label="Default select example" id="kurir"
+                                name="kurir" required>
+                                <option selected>Pilih Kurir</option>
+                                <option value="jne">JNE</option>
+                                <option value="jnt">J&T</option>
+                                <option value="sicepat">Sicepat</option>
+                                <option value="anteraja">AnterAja</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nomor_resi" class="form-label">Nomor Resi</label>
+                            <input type="text" class="form-control" id="no_resi" name="no_resi">
                         </div>
                         <div class="mb-3">
-                            <label for="">Status Transaksi</label>
-                            <input type="text" class="form-control" value="" id="status_pembayaran" readonly>
+                            <label for="tujuan_antar" class="form-label">Tujuan Antar</label>
+                            <input type="text" class="form-control" id="tujuan_antar" name="tujuan_antar">
+                        </div>
+                    </div>
+
+                    <div class="pick-up d-none" id="pick">
+
+                        <div class="mb-3">
+                            <label class="form-label">Alamat Martaloka Konveksi</label>
+                            <textarea name="" class="form-control" id="" cols="30" rows="3" readonly></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tanggal dan Jam Ambil</label>
+                            <input type="datetime" class="form-control" id="tgl_antar" name="tgl_antar">
                         </div>
 
+                    </div>
 
-
-
-                        <div class="kirim" id="kirim">
-                            <div class="mb-3">
-                                <label for="kurir" class="form-label">Kurir</label>
-                                <select class="form-control" aria-label="Default select example" id="kurir"
-                                    name="kurir">
-                                    <option selected>Pilih Kurir</option>
-                                    <option value="jne">JNE</option>
-                                    <option value="jnt">J&T</option>
-                                    <option value="sicepat">Sicepat</option>
-                                    <option value="anteraja">AnterAja</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="nomor_resi" class="form-label">Nomor Resi</label>
-                                <input type="text" class="form-control" id="no_resi" name="no_resi">
-                            </div>
-                        </div>
-
-                        <div class="pick-up" id="pick-up">
-
-                            <div class="mb-3">
-                                <label for="nomor_resi" class="form-label">Tujuan Antar</label>
-                                <input type="text" class="form-control" id="tujuan_antar" name="tujuan_antar">
-                            </div>
-                        </div>
-
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan
-                                Perubahan</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan
+                            Perubahan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="modal fade" id="tolakModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <form action="{{ route('transaksiCustom.tolak') }}" method="POST">
-                        @csrf
+<div class="modal fade" id="tolakModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="{{ route('transaksiCustom.tolak') }}" method="POST">
+                    @csrf
 
-                        <input type="hidden" name="id" id="tolak_id" value="">
-                        <div class="mb-3">
-                            <label for="">Nama Pemesan</label>
-                            <input type="text" class="form-control" value="" id="tolak_nama_pemesan" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Status Transaksi</label>
-                            <input type="text" class="form-control" value="" id="tolak_status_pembayaran"
-                                readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Keterangan Ditolak</label>
-                            <input type="text" class="form-control" name="keterangan_tambahan" value=""
-                                id="tolak_keterangan_tambahan">
-                        </div>
+                    <input type="hidden" name="id" id="tolak_id" value="">
+                    <div class="mb-3">
+                        <label for="">Nama Pemesan</label>
+                        <input type="text" class="form-control" value="" id="tolak_nama_pemesan" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Status Transaksi</label>
+                        <input type="text" class="form-control" value="" id="tolak_status_pembayaran"
+                            readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Keterangan Ditolak</label>
+                        <input type="text" class="form-control" name="keterangan_tambahan" value=""
+                            id="tolak_keterangan_tambahan">
+                    </div>
 
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan
-                                Perubahan</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" onclick="preventDefault()" class="btn btn-primary">Simpan
+                            Perubahan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
@@ -369,7 +393,7 @@
                 `{{ route('transaksiCustom.index') }}?search=${searchValue}&filter=${filterValue}&date_range=${dateRange}`;
         });
 
-        $('#terimaTransaksi').on('click', function() {
+        $('.terimaTransaksi').on('click', function() {
             var transaksiId = $(this).data('transaksi-id');
 
             // Lakukan AJAX request untuk mendapatkan detail transaksi
@@ -384,17 +408,26 @@
                     $('#nama_pemesan').val(response.nama_pemesan);
                     $('#status_pembayaran').val(response.status_pembayaran);
 
-                    if (response.delivery_option ===
-                        'Diantar Ke Tempat Pemesan') {
-                        $('#kirim').show();
-                        $('#pick-up').hide();
+                    if (response.delivery == 'Diantar Ke Tempat Pemesan') {
+                        $('#cek').removeClass('d-none');
+                        $('#pick').addClass('d-none');
                     } else {
-                        $('#delivery_option').val('Ambil Di Martaloka');
-                        $('#kirim').hide();
-                        $('#pick-up').show();
+                        $('#pick').removeClass('d-none');
+                        $('#cek').addClass('d-none');
                     }
                 }
             });
+        });
+
+        $('#exampleModal').on('hidden.bs.modal', function() {
+            $('#id').val('');
+            $('#nama_pemesan').val('');
+            $('#status_pembayaran').val('');
+            $('#kurir').val('Pilih Kurir');
+            $('#no_resi').val('');
+            $('#tujuan_antar').val('');
+            $('#kirim').addClass('d-none');
+            $('#pick-up').addClass('d-none');
         });
 
 

@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 use App\Models\TransaksiCustomExport;
 use Maatwebsite\Excel\Facades\Excel;
-use Barryvdh\DomPDF\Facade\PDF; 
+use Barryvdh\DomPDF\Facade\PDF;
 
 class TransaksiCustomDashboardController extends Controller
 {
@@ -20,8 +20,8 @@ class TransaksiCustomDashboardController extends Controller
 
         $filter = $request->filter; // Filter berdasarkan status pembayaran
         $search = $request->search; // Pencarian berdasarkan nama user
-        $dateRange = $request->date_range; 
-        $paginate = 10; 
+        $dateRange = $request->date_range;
+        $paginate = 10;
 
         // Query dasar untuk transaksi custom
         $query = TransaksiCustomDesign::with(['user', 'sizes', 'designs']);
@@ -45,7 +45,7 @@ class TransaksiCustomDashboardController extends Controller
             if (count($dates) == 2) {
                 $startDate = Carbon::createFromFormat('Y-m-d', trim($dates[0]));
                 $endDate = Carbon::createFromFormat('Y-m-d', trim($dates[1]));
-                
+
                 $query->whereBetween('created_at', [
                     $startDate->startOfDay(),
                     $endDate->endOfDay()
@@ -160,10 +160,11 @@ class TransaksiCustomDashboardController extends Controller
         $transaksi = TransaksiCustomDesign::find($request->id);
 
         $transaksi->update([
-            'kurir' => $request->kurir,
-            'no_resi' => $request->no_resi,
-            'status_pembayaran' => 'Terima',
-            'tujuan_antar' => $request->tujuan_antar
+            'kurir' => $request->kurir ?? null,
+            'no_resi' => $request->no_resi ?? null,
+            'tujuan_antar' => $request->tujuan_antar ?? null,
+            'tanggal_ambil' => $request->tanggal_ambil ?? null,
+            'status_pembayaran' => 'Diterima',
         ]);
         return redirect()->back()->with('success', 'Transaksi Telah Diterima');
     }
@@ -179,12 +180,11 @@ class TransaksiCustomDashboardController extends Controller
         return redirect()->back()->with('success', 'Transaksi Telah Diterima');
     }
 
-    public function selesaikan(Request $request)
+    public function selesaikan(TransaksiCustomDesign $transaksi)
     {
-        $transaksi = TransaksiCustomDesign::find($request->id);
 
         $transaksi->update(['status_pembayaran' => 'Selesai']);
-        return redirect()->back()->with('success', 'Transaksi Telah Diterima');
+        return redirect()->back()->with('success', 'Transaksi Telah Selesai');
     }
 
     public function destroy(TransaksiCustomDesign $transaksi)

@@ -30,6 +30,7 @@ return new class extends Migration
             $table->text('no_resi')->nullable();
             $table->string('kurir')->nullable();
             $table->string('tujuan_antar')->nullable();
+            $table->dateTime('tanggal_ambil')->nullable();
             $table->string('keterangan_tambahan')->nullable();
             $table->timestamps();
         });

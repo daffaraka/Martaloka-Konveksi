@@ -1,15 +1,58 @@
 @extends('admin.layout')
 @section('content')
     <div class="row">
-        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
-            <img class="img-fluid" src="{{ asset($transaksi->designs->first()->gambar_custom_design) }}"
-                alt="{{$transaksi->designs->first()->gambar_custom_design}}">
+        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12">
+            <div class="row row-cols-2">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="font-weight-bold d-inline">Bukti Pembayaran</h5>
+                            <div class="d-flex justify-content-center">
+                                <img class="img-fluid" style="max-height: 400px; object-fit:fill;"
+                                    src="{{ asset('bukti_Pembayaran/' . $transaksi->bukti_pembayaran) }}"
+                                    alt="Bukti pembayaran {{ $transaksi->bukti_pembayaran }}">
+                            </div>
 
-            <div class="d-gap mt-5">
+                        </div>
 
+                    </div>
+
+
+
+                </div>
+                <div class="col">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold">Rincian Custom Desiggn</h5> <br>
+                            <hr>
+                            <div class="row">
+                                @foreach ($transaksi->designs as $design)
+                                    <div class="col-4 px-2">
+                                        <div class="border d-flex justify-content-center mb-1">
+                                            <img class="img-fluid" style="height: 100px; object-fit: contain;"
+                                                src="{{ asset($design->designs) }}"
+                                                alt=" {{ $design->designs }}">
+                                        </div>
+
+                                    </div>
+                                    {{-- <div class="col-8">
+                                        <h6 class="font-weight-bold">{{ $design->produk->nama_produk }}</h6>
+                                        <span>{{ $design->qty }} Item</span> <br>
+                                        <span>
+                                            Rp.{{ number_format($design->produk->harga_produk) }}</span>
+                                    </div> --}}
+                                @endforeach
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
         </div>
-        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">

@@ -110,6 +110,7 @@ Route::middleware('auth')->group(function () {
         Route::get('transaksi/show/{transaksi}', [TransaksiDashboardController::class, 'show'])->name('transaksi.show');
         Route::post('transaksi/terima', [TransaksiDashboardController::class, 'terima'])->name('transaksi.terima');
         Route::post('transaksi/tolak', [TransaksiDashboardController::class, 'tolak'])->name('transaksi.tolak');
+        Route::get('transaksi/selesaikan/{transaksi}', [TransaksiDashboardController::class, 'selesaikan'])->name('transaksi.selesaikan');
         Route::get('transaksi-produk/riwayat-transaksi', [TransaksiDashboardController::class, 'riwayatTransaksi'])->name('transaksi.riwayatTransaksi');
         Route::delete('/transaksi/{transaksi}', [TransaksiDashboardController::class, 'destroy'])->name('transaksi.destroy');
 
@@ -125,8 +126,8 @@ Route::middleware('auth')->group(function () {
         Route::get('transaksi-custom/show/{transaksi}', [TransaksiCustomDashboardController::class, 'show'])->name('transaksiCustom.show');
         Route::post('transaksi-custom/terima', [TransaksiCustomDashboardController::class, 'terima'])->name('transaksiCustom.terima');
         Route::post('transaksi-custom/tolak', [TransaksiCustomDashboardController::class, 'tolak'])->name('transaksiCustom.tolak');
+        Route::get('transaksi-custom/selesaikan/{transaksi}', [TransaksiCustomDashboardController::class, 'selesaikan'])->name('transaksiCustom.selesaikan');
         Route::get('transaksi-custom-produk/riwayat-transaksi', [TransaksiCustomDashboardController::class, 'riwayatTransaksi'])->name('transaksiCustom.riwayatTransaksi');
-
         Route::get('admin/transaksi-custom/export-pdf', [TransaksiCustomDashboardController::class, 'exportPdf'])->name('transaksiCustum.exportPdf');
         Route::get('admin/transaksi-custom/export-excel', [TransaksiCustomDashboardController::class, 'exportExcel'])->name('transaksiCustom.exportExcel');
 
