@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('nomor_hp_pemesan')->nullable();
             $table->string('catatan')->nullable();
             $table->integer('total_harga');
-            $table->string('metode_bayar')->nullable();
+            $table->string('metode_pembayaran')->nullable();
             $table->string('bukti_pembayaran')->nullable();
             $table->dateTime('tgl_bayar')->nullable();
             $table->dateTime('tgl_kadaluarsa')->nullable();

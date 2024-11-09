@@ -129,7 +129,7 @@
                                                 <h3 class="px-3">Pilih Metode pembayaran</h3>
                                                 <div class="px-5 py-3">
                                                     <div class="d-flex align-items-start">
-                                                        <input type="radio" name="metode_bayar" id="bank_bni"
+                                                        <input type="radio" name="metode_pembayaran" id="bank_bni"
                                                             value="BNI" class="mt-1 me-2">
                                                         <label for="bank_bni" class="d-flex align-items-start">
                                                             <div>
@@ -151,7 +151,7 @@
 
                                                 <div class="px-5 py-3">
                                                     <div class="d-flex align-items-start">
-                                                        <input type="radio" name="metode_bayar" id="bank_bri"
+                                                        <input type="radio" name="metode_pembayaran" id="bank_bri"
                                                             value="BRI" class="mt-1 me-2">
                                                         <label for="bank_bri" class="d-flex align-items-start">
                                                             <div>
@@ -172,7 +172,7 @@
 
                                                 <div class="px-5 py-3">
                                                     <div class="d-flex align-items-start">
-                                                        <input type="radio" name="metode_bayar" id="ovo"
+                                                        <input type="radio" name="metode_pembayaran" id="ovo"
                                                             value="OVO" class="mt-1 me-2">
                                                         <label for="ovo" class="d-flex align-items-start">
                                                             <div>
@@ -194,7 +194,7 @@
 
                                                 <div class="px-5 py-3">
                                                     <div class="d-flex align-items-start">
-                                                        <input type="radio" name="metode_bayar" id="dana"
+                                                        <input type="radio" name="metode_pembayaran" id="dana"
                                                             value="DANA" class="mt-1 me-2">
                                                         <label for="dana" class="d-flex align-items-start">
                                                             <div>
@@ -220,7 +220,7 @@
                                             <div class="card">
                                                 <div class="card-body">
 
-                                                    <p>Anda membayar dengan menggunakan {{$transaksiCustomDesign->metode_bayar}}</p>
+                                                    <p>Anda membayar dengan menggunakan {{$transaksiCustomDesign->metode_pembayaran}}</p>
                                                 </div>
                                             </div>
 

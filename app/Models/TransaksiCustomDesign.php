@@ -22,7 +22,7 @@ class TransaksiCustomDesign extends Model
         'total_pesanan',
         'status_pembayaran',
         'total_harga',
-        'metode_bayar',
+        'metode_pembayaran',
         'bukti_pembayaran',
         'no_resi',
         'kurir',

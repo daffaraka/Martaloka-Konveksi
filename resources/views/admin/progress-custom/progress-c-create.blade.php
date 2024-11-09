@@ -6,8 +6,8 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="font-weight-bold d-inline">Bukti Pembayaran</h5>
-                            <div class="d-flex justify-content-center">
+                            <h6 class="font-weight-bold d-inline mb-2">Bukti Pembayaran</h6>
+                            <div class="d-flex justify-content-center mt-3">
                                 <img class="img-fluid" style="max-height: 400px; object-fit:fill;"
                                     src="{{ asset('bukti_Pembayaran/' . $transaksi->bukti_pembayaran) }}"
                                     alt="Bukti pembayaran {{ $transaksi->bukti_pembayaran }}">
@@ -31,8 +31,8 @@
                                     <div class="col-4 px-2">
                                         <div class="border d-flex justify-content-center mb-1">
                                             <img class="img-fluid" style="height: 100px; object-fit: contain;"
-                                                src="{{ asset($design->designs) }}"
-                                                alt=" {{ $design->designs }}">
+                                                src="{{ asset($design->gambar_custom_design) }}"
+                                                alt=" {{ $design->gambar_custom_design }}">
                                         </div>
 
                                     </div>
@@ -56,6 +56,14 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
+                        <label for="">ID Pesanan</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->id }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Metode Pembayaran</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->metode_pembayaran }}" readonly>
+                    </div>
+                    <div class="form-group">
                         <label for="">Nama Pemesan</label>
                         <input type="text" class="form-control" value="{{ $transaksi->user->name }}" readonly>
                     </div>
@@ -69,16 +77,17 @@
                             readonly>
                     </div>
                     <div class="form-group">
-                        <label for="">Tanggal Teansaksi</label>
+                        <label for="">Tanggal Transaksi</label>
                         <input type="text" class="form-control"
                             value="{{ $transaksi->created_at->isoFormat('dddd, D MMMM Y') }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="">Deskripsi</label>
-                        <textarea name="" class="form-control" cols="30" rows="2" readonly>{{ $transaksi->deskripsi }}</textarea>
+                        <label for="">Catatan</label>
+                        <textarea name="" class="form-control" cols="30" rows="2" readonly>{{ $transaksi->catatan }}</textarea>
                     </div>
                 </div>
             </div>
+
 
         </div>
 

@@ -30,9 +30,10 @@ class TransaksiSeeder extends Seeder
                 'nama_pemesan' => fake()->name(),
                 'user_id' => $user_id,
                 'status_pembayaran' => $statuses[array_rand($statuses)],
-                'metode_bayar' => $metode[array_rand($metode)],
+                'metode_pembayaran' => $metode[array_rand($metode)],
                 'total_harga' => 0, // Ini akan diperbarui setelah produk ditambahkan
                 'delivery' => $delivery[array_rand($delivery)],
+                'catatan' => fake()->sentence(),
             ]);
 
             // Membuat antara 1 hingga 10 produk untuk setiap transaksi

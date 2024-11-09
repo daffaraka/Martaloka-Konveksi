@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('catatan')->nullable();
             $table->integer('total_pesanan');
             $table->integer('total_harga')->nullable();
-            $table->string('metode_bayar')->nullable();
+            $table->string('metode_pembayaran')->nullable();
             $table->string('bukti_pembayaran')->nullable();
             $table->enum('delivery', ['Diantar Ke Tempat Pemesan', 'Ambil Di Martaloka'])->nullable();
             $table->text('no_resi')->nullable();

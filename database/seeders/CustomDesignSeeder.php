@@ -44,7 +44,7 @@ class CustomDesignSeeder extends Seeder
                 'total_pesanan' => $total_pesanan,
                 'total_harga' => $total_pesanan * $harga_kategori,
                 'status_pembayaran' => $statuses[array_rand($statuses)],
-                'metode_bayar' => $metode[array_rand($metode)],
+                'metode_pembayaran' => $metode[array_rand($metode)],
                 'delivery' => $delivery[array_rand($delivery)],
             ]);
 

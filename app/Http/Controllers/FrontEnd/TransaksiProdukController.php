@@ -167,7 +167,7 @@ class TransaksiProdukController extends Controller
             'nomor_hp_pemesan' => $request->nomor_hp_pemesan,
             'catatan' => $request->catatan,
             'status_pembayaran' => 'Dalam Transaksi', // Atur status default sebagai 'Dalam Transaksi'
-            'metode_bayar' => $request->metode_bayar, // Misalkan metode pembayaran default
+            'metode_pembayaran' => $request->metode_pembayaran, // Misalkan metode pembayaran default
             'delivery' => $request->delivery
         ]);
 
