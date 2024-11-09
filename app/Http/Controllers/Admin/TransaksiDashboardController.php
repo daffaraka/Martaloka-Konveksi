@@ -187,6 +187,7 @@ class TransaksiDashboardController extends Controller
             'tujuan_antar' => $request->tujuan_antar ?? null,
             'tanggal_ambil' => $request->tanggal_ambil ?? null,
             'status_pembayaran' => 'Diterima',
+            'tanggal_ambil' => $request->tanggal_ambil
 
         ]);
         return redirect()->back()->with('success', 'Transaksi Telah Diterima');

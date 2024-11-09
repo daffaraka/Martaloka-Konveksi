@@ -245,7 +245,7 @@
                             </div>
                             <div class="mb-3">
                                 <label  class="form-label">Tanggal dan Jam Ambil</label>
-                                <input type="date" class="form-control" id="tgl_antar" name="tgl_antar">
+                                <input type="datetime-local" class="form-control" id="tanggal_ambil" name="tanggal_ambil">
                             </div>
 
                         </div>
