@@ -241,7 +241,7 @@
 
                             <div class="mb-3">
                                 <label  class="form-label">Alamat Martaloka Konveksi</label>
-                                <textarea class="form-control" name="" id="" cols="30" rows="3" readonly></textarea>
+                                <textarea class="form-control" name="" id="" cols="30" rows="3" readonly>Jalan Banteng, Banjar, Kec. Banjar, Kabupaten Buleleng, Bali 81152</textarea>
                             </div>
                             <div class="mb-3">
                                 <label  class="form-label">Tanggal dan Jam Ambil</label>

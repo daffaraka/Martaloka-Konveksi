@@ -10,7 +10,7 @@
                 @if ($transaksi->status_pembayaran == 'Belum Dibayar')
                     <a href="{{ route('transaksi.dibayar', $transaksi->id) }}" class="btn btn-block btn-primary"> Terima
                         transaksi</a>
-                    <a href="{{ route('transaksi.batal', $transaksi->id) }}" class="btn btn-block btn-danger"> Tolak
+                    <a href="{{ route('transaksiCustom.tolak', $transaksi->id) }}" class="btn btn-block btn-danger"> Tolak
                         transaksi</a>
                 @else
                     <button disabled class="btn btn-block btn-dark"> {{ $transaksi->status_pembayaran }}</button>
@@ -21,8 +21,24 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
+                        <label for="">ID Pesanan</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->id }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Metode Pembayaran</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->metode_pembayaran }}" readonly>
+                    </div>
+                    <div class="form-group">
                         <label for="">Nama Pemesan</label>
                         <input type="text" class="form-control" value="{{ $transaksi->user->name }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email Pemesan</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->email_pemesan }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nomor HP Pemesan</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->nomor_hp_pemesan }}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="">Status Pembayaran</label>
@@ -39,15 +55,12 @@
                             value="{{ $transaksi->created_at->isoFormat('dddd, D MMMM Y') }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="">Nama Pemesan</label>
-                        <input type="text" class="form-control" value="{{ $transaksi->user->name }}" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Nama Pemesan</label>
-                        <input type="text" class="form-control" value="{{ $transaksi->user->name }}" readonly>
+                        <label for="">Catatan</label>
+                        <textarea name="" class="form-control" cols="30" rows="2" readonly>{{ $transaksi->catatan }}</textarea>
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>

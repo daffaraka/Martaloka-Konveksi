@@ -10,7 +10,7 @@
                 @if ($transaksi->status_pembayaran == 'Belum Dibayar')
                     <button href="#" class="btn btn-block btn-info" id="terimaTransaksi" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" data-transaksi-id="{{ $transaksi->id }}">Terima transaksi</button>
-                    <a href="{{ route('transaksi.batal', $transaksi->id) }}" class="btn btn-block btn-danger"> Tolak
+                    <a href="{{ route('transaksi.tolak', $transaksi->id) }}" class="btn btn-block btn-danger"> Tolak
                         transaksi</a>
                 @else
                     <button disabled class="btn btn-block btn-dark"> {{ $transaksi->status_pembayaran }}</button>
@@ -21,8 +21,24 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
+                        <label for="">ID Pesanan</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->id }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Metode Pembayaran</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->metode_pembayaran }}" readonly>
+                    </div>
+                    <div class="form-group">
                         <label for="">Nama Pemesan</label>
                         <input type="text" class="form-control" value="{{ $transaksi->user->name }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email Pemesan</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->email_pemesan }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nomor HP Pemesan</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->nomor_hp_pemesan }}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="">Status Pembayaran</label>
@@ -34,17 +50,17 @@
                             readonly>
                     </div>
                     <div class="form-group">
-                        <label for="">Tanggal Teansaksi</label>
+                        <label for="">Tanggal Transaksi</label>
                         <input type="text" class="form-control"
                             value="{{ $transaksi->created_at->isoFormat('dddd, D MMMM Y') }}" readonly>
                     </div>
-
                     <div class="form-group">
-                        <label for="">Delivery</label>
-                        <input type="text" class="form-control" value="{{ $transaksi->delivery }}" readonly>
+                        <label for="">Catatan</label>
+                        <textarea name="" class="form-control" cols="30" rows="2" readonly>{{ $transaksi->catatan }}</textarea>
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>
