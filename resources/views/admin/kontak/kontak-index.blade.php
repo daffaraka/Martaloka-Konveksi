@@ -67,9 +67,9 @@
                                 data-bs-target="#detailModal{{ $data->id }}">
                                 <i class="fas fa-eye"></i> Detail
                             </button>
-                            <a href="{{ route('kontak.edit', $data->id) }}" class="btn btn-primary">
+                            {{-- <a href="{{ route('kontak.edit', $data->id) }}" class="btn btn-primary">
                                 <i class="fas fa-edit"></i> Edit
-                            </a>
+                            </a> --}}
                             <a href="{{ route('kontak.destroy', $data->id) }}" class="btn btn-danger">
                                 <i class="fas fa-trash"></i> Hapus
                             </a>

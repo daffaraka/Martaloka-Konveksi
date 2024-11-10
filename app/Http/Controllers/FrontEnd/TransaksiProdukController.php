@@ -6,6 +6,7 @@ use App\Models\Produk;
 use App\Models\Keranjang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use App\Models\Notification;
 use App\Models\TransaksiProduk;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -70,7 +71,20 @@ class TransaksiProdukController extends Controller
         return to_route('home.keranjang');
     }
 
-
+    private function createNotification($transaksi)
+    {
+        Notification::create([
+            'title' => 'Transaksi Baru',
+            'message' => 'Transaksi baru dibuat oleh ' . Auth::user()->name . ' - Total: Rp ' . number_format($transaksi->total_harga, 0, ',', '.'),
+            'type' => 'transaction',
+            'data' => [
+                'transaction_id' => $transaksi->id,
+                'customer_name' => Auth::user()->name,
+                'total_amount' => $transaksi->total_harga,
+                'status' => 'Dalam Transaksi'
+            ]
+        ]);
+    }
 
     public function checkout(Request $request)
     {
@@ -137,6 +151,8 @@ class TransaksiProdukController extends Controller
             }
 
             // $newKeranjang->update(['status' => 'Dalam Transaksi']);
+            $this->createNotification($transaksi);
+
 
             DB::commit();
             return to_route('home.formTransaksiPembelian', ['transaksi' => $transaksi]);

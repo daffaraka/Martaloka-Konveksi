@@ -85,30 +85,30 @@ class KontakController extends Controller
         return redirect()->route('home.kontak')->with('message', 'Pesan Anda telah dikirim dengan sukses!'); // Customize the message as needed
     }
     
-    public function edit($id)
-    {
-        $kontak = Kontak::findOrFail($id); // Use findOrFail to handle non-existing records
-        return view('admin.kontak.kontak-edit', [
-            'kontak' => $kontak,
-            'judul' => 'Edit Kontak'
-        ]);
-    }
+    // public function edit($id)
+    // {
+    //     $kontak = Kontak::findOrFail($id); // Use findOrFail to handle non-existing records
+    //     return view('admin.kontak.kontak-edit', [
+    //         'kontak' => $kontak,
+    //         'judul' => 'Edit Kontak'
+    //     ]);
+    // }
 
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'telepon' => 'required|string|max:15',
-            'email' => 'required|email',
-            'jenis_kelamin' => 'required|in:L,P',
-            'pesan' => 'required|string',
-        ]);
+    // public function update(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'nama' => 'required|string|max:255',
+    //         'telepon' => 'required|string|max:15',
+    //         'email' => 'required|email',
+    //         'jenis_kelamin' => 'required|in:L,P',
+    //         'pesan' => 'required|string',
+    //     ]);
 
-        $kontak = Kontak::findOrFail($id); // Use findOrFail to handle non-existing records
-        $kontak->update($request->only(['nama', 'telepon', 'email', 'jenis_kelamin', 'pesan']));
+    //     $kontak = Kontak::findOrFail($id); // Use findOrFail to handle non-existing records
+    //     $kontak->update($request->only(['nama', 'telepon', 'email', 'jenis_kelamin', 'pesan']));
 
-        return redirect()->route('kontak.index')->with('message', 'Kontak berhasil diperbarui!');
-    }
+    //     return redirect()->route('kontak.index')->with('message', 'Kontak berhasil diperbarui!');
+    // }
 
     public function destroy($id)
     {

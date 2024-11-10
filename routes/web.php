@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\TransaksiDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\KontakController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\NotificationController;
 
 // Frontend
 use App\Http\Controllers\Frontend\BerandaController;
@@ -159,6 +160,12 @@ Route::middleware('auth')->group(function () {
 
         Route::get('detail-produk/{id}', [ResponseController::class, 'detailTransaksi'])->name('response.detailTransaksi');
         Route::get('detail-custom/{id}', [ResponseController::class, 'detailCustom'])->name('response.detailCustom');
+
+        //Notifikasi Transaksi
+        Route::get('/notifications', [NotificationController::class, 'index']);
+        Route::post('/notifications/read/{id}', [NotificationController::class, 'markAsRead']);
+        Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead']);
+
 
     });
 });
