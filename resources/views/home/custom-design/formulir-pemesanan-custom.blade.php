@@ -3,19 +3,20 @@
 @section('content')
 
 
-<style>
-    .nice-select {
-        line-height: unset !important;
-        height: auto;
-        padding: 10px;
-        margin-bottom: 16px;
+    <style>
+        .nice-select {
+            line-height: unset !important;
+            height: auto;
+            padding: 10px;
+            margin-bottom: 16px;
 
-    }
-    .nice-select .list {
-        width: 100% !important;
+        }
 
-    }
-</style>
+        .nice-select .list {
+            width: 100% !important;
+
+        }
+    </style>
 
 
 
@@ -30,24 +31,28 @@
                     <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 px-xxl-5 px-xl-5 px-lg-5">
                         <div class="form-group mb-4">
                             <h6 class="mb-2" for=" ">Nama</h6>
-                            <input id=" " class="form-control" type="text" name="nama_pemesan" required value="{{ Auth::user()->name }}">
+                            <input id=" " class="form-control" type="text" name="nama_pemesan" required
+                                value="{{ Auth::user()->name }}">
                             <label>Isikan sesuai nama lengkap anda</label>
                         </div>
                         <div class="form-group mb-4">
                             <h6 class="mb-2" for=" ">Alamat</h6>
-                            <input id=" " class="form-control" type="text" name="alamat_pemesan" required value="{{ Auth::user()->alamat }}">
+                            <input id=" " class="form-control" type="text" name="alamat_pemesan" required
+                                value="{{ Auth::user()->alamat }}">
                             <label>Isikan sesuai alamat anda secara lengkap </label>
 
                         </div>
                         <div class="form-group mb-4">
                             <h6 class="mb-2" for=" ">Email</h6>
-                            <input id=" " class="form-control" type="email" name="email_pemesan" required value="{{ Auth::user()->email }}">
+                            <input id=" " class="form-control" type="email" name="email_pemesan" required
+                                value="{{ Auth::user()->email }}">
                             <label>Gunakan '@' , contoh : martaloka@gmail.com</label>
 
                         </div>
                         <div class="form-group mb-4">
                             <h6 class="mb-2" for=" ">Nomor Telepon</h6>
-                            <input id=" " class="form-control" type="number" name="nomor_hp_pemesan" required value="{{ Auth::user()->nomor_hp }}">
+                            <input id=" " class="form-control" type="number" name="nomor_hp_pemesan" required
+                                value="{{ Auth::user()->nomor_hp }}">
                             <label>Masukkan nomor telepon, contoh : 08123456789</label>
 
                         </div>
@@ -132,10 +137,17 @@
                                             value="0">
                                     </div>
                                 </div>
+
+                            </div>
+
+                            <h6 class="mb-2">Cowok Anak</h6>
+                            <hr>
+                            <div class="row">
+
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-4">
-                                        <label for="" class="font-weight-bold"> L1</label>
+                                        <label for="" class="font-weight-bold"> S </label>
 
                                         <input id="co_l1" class="form-control" type="number" name="co_l1"
                                             value="0">
@@ -144,7 +156,7 @@
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-4">
-                                        <label for="" class="font-weight-bold"> L2</label>
+                                        <label for="" class="font-weight-bold"> M</label>
 
                                         <input id="co_l2" class="form-control" type="number" name="co_l2"
                                             value="0">
@@ -154,7 +166,7 @@
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-4">
-                                        <label for="" class="font-weight-bold"> L3</label>
+                                        <label for="" class="font-weight-bold"> L</label>
 
                                         <input id="co_l3" class="form-control" type="number" name="co_l3"
                                             value="0">
@@ -163,7 +175,7 @@
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-4">
-                                        <label for="" class="font-weight-bold"> L4</label>
+                                        <label for="" class="font-weight-bold"> XL</label>
 
                                         <input id="co_l4" class="form-control" type="number" name="co_l4"
                                             value="0">
@@ -222,11 +234,17 @@
                                             value="0">
                                     </div>
                                 </div>
+                            </div>
+
+
+                            <h6 class="mb-2">Cewek Anak</h6>
+                            <hr>
+                            <div class="row">
 
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-4">
-                                        <label for="" class="font-weight-bold"> L1</label>
+                                        <label for="" class="font-weight-bold"> S</label>
 
                                         <input id="ce_l1" class="form-control" type="number" name="ce_l1"
                                             value="0">
@@ -235,7 +253,7 @@
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-4">
-                                        <label for="" class="font-weight-bold"> L2</label>
+                                        <label for="" class="font-weight-bold"> M</label>
 
                                         <input id=" " class="form-control" type="number" name="ce_l2"
                                             value="0">
@@ -245,7 +263,7 @@
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-4">
-                                        <label for="" class="font-weight-bold"> L3</label>
+                                        <label for="" class="font-weight-bold"> L</label>
 
                                         <input id=" " class="form-control" type="number" name="ce_l3"
                                             value="0">
@@ -254,7 +272,7 @@
                                 <div class="col-2 mr-1">
 
                                     <div class="form-group mb-4">
-                                        <label for="" class="font-weight-bold"> L4</label>
+                                        <label for="" class="font-weight-bold"> XL</label>
 
                                         <input id=" " class="form-control" type="number" name="ce_l4"
                                             value="0">
@@ -285,22 +303,25 @@
 
 
                     <div class="col-12 px-xxl-5 px-xl-5 px-lg-5 my-3">
-                        <div style="display: flex; align-items: flex-start; margin-bottom: 10px; margin-left: 50px;">
-                            <div class="single-partner-logo-box-style2">
-                                <a href="#">
-                                    <img src="{{ asset('assets/images/sponsor/bajur.png') }}" alt="Awesome Image" class="small-image" style="width: 130px; height: auto;">
-                                </a>
+                        <div class="row">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <div class="d-flex justify-content-md-center justify-content-sm-center">
+                                    <img src="{{ asset('assets/images/sponsor/bajur.png') }}" alt="Awesome Image"
+                                        class="small-image" style="width: 18rem; height: auto;">
+                                </div>
+
                             </div>
 
-                            <div class="single-partner-logo-box-style2">
-                                <a href="#">
-                                    <img src="{{ asset('assets/images/sponsor/bajuk.png') }}" alt="Awesome Image" class="small-image" style="width: 130px; height: auto;">
-                                </a>
-                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <div class="d-flex justify-content-md-center justify-content-sm-center">
 
+                                    <img src="{{ asset('assets/images/sponsor/bajuk.png') }}" alt="Awesome Image"
+                                        class="small-image" style="width: 18rem; height: auto;">
+                                </div>
+                            </div>
                         </div>
 
-                        <div style="margin-left: -360px; margin-top: 170px;">
+                        <div style="margin-left: -360px; margin-top: 50px;">
                             <span>Contoh Gambar Yang Diupload.</span>
                         </div>
 
@@ -313,11 +334,14 @@
                             <br>
                             <label>Gambar maksimal 2 MB</label>
 
-                            <img id="preview" src="#" alt="Preview Image" style="display:none; max-width: 200px; margin-top: 10px;" />
+                            <img id="preview" src="#" alt="Preview Image"
+                                style="display:none; max-width: 200px; margin-top: 10px;" />
                             <div id="newRowImage"></div>
 
-                            <button id="addRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Tambah Gambar</button>
-                            <button id="removeRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Kurangi</button>
+                            <button id="addRow" type="button" class="btn btn-sm btn-secondary mb-4 mt-5">Tambah
+                                Gambar</button>
+                            <button id="removeRow" type="button"
+                                class="btn btn-sm btn-secondary mb-4 mt-5">Kurangi</button>
                         </div>
                     </div>
                     {{-- Gambar --}}

@@ -242,6 +242,11 @@
                         <input type="text" class="form-control" value="" id="status_pembayaran" readonly>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="">Delivery</label>
+                        <input type="text" class="form-control" value="" id="delivery" readonly>
+                    </div>
+
 
                     <div class="kirim d-none" id="cek">
                         <div class="mb-3">
@@ -407,11 +412,14 @@
                     $('#id').val(transaksiId);
                     $('#nama_pemesan').val(response.nama_pemesan);
                     $('#status_pembayaran').val(response.status_pembayaran);
+                    $('#delivery').val(response.delivery);
 
                     if (response.delivery == 'Diantar Ke Tempat Pemesan') {
+                        $('#transaksiModalTitle').text('Diantar Ke Tempat Pemesan');
                         $('#cek').removeClass('d-none');
                         $('#pick').addClass('d-none');
                     } else {
+                        $('#transaksiModalTitle').text('Ambil Di Martaloka');
                         $('#pick').removeClass('d-none');
                         $('#cek').addClass('d-none');
                     }

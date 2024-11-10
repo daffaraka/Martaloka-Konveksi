@@ -196,7 +196,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="exampleModalLabel">Tambahkan Nomor Resi</h3>
+                    <h3 class="modal-title fs-5" id="transaksiModalTitle">Tambahkan Nomor Resi</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -211,6 +211,11 @@
                         <div class="mb-3">
                             <label for="">Status Transaksi</label>
                             <input type="text" class="form-control" value="" id="status_pembayaran" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="">Delivery</label>
+                            <input type="text" class="form-control" value="" id="delivery" readonly>
                         </div>
 
 
@@ -409,11 +414,13 @@
                     $('#id').val(transaksiId);
                     $('#nama_pemesan').val(response.nama_pemesan);
                     $('#status_pembayaran').val(response.status_pembayaran);
-
+                    $('#delivery').val(response.delivery);
                     if (response.delivery === 'Diantar Ke Tempat Pemesan') {
+                        $('#transaksiModalTitle').text('Diantar Ke Tempat Pemesan');
                         $('#kirim').removeClass('d-none');
                         $('#pick-up').addClass('d-none');
                     } else {
+                        $('#transaksiModalTitle').text('Ambil Di Martaloka');
                         $('#pick-up').removeClass('d-none');
                         $('#kirim').addClass('d-none');
                     }
