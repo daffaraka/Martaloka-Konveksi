@@ -17,7 +17,7 @@ class TransaksiSeeder extends Seeder
     public function run(): void
     {
         $produks = Produk::pluck('id')->toArray();
-        $users = User::pluck('id')->toArray();
+        // $users = User::pluck('id')->toArray();
         $statuses = ['Dalam Transaksi', 'Belum Dibayar', 'Dibayar','Diterima', 'Dibatalkan','Selesai'];
         $metode = ['BNI', 'BCA', 'Mandiri'];
         $size = ['S','M','L','XL','XXL'];
@@ -25,7 +25,7 @@ class TransaksiSeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             $total_harga = 0;
-            $user_id = $users[array_rand($users)];
+            $user_id = 1;
             $transaksi = Transaksi::create([
                 'nama_pemesan' => fake()->name(),
                 'user_id' => $user_id,

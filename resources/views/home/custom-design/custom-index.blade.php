@@ -28,7 +28,38 @@
 
 
                                                 <div class="col-8 pl-3">
-                                                    <h3>{{ $item->status_pembayaran ?? 'Belum ada status' }}</h3>
+                                                    @switch($item->status_pembayaran)
+                                                        @case('Dalam Transaksi')
+                                                            <button class="btn btn-secondary">Menunggu Pembayaran</button>
+                                                        @break
+
+                                                        @case('Dibayar')
+                                                            <button class="btn btn-info">Sudah Dibayar</button>
+                                                        @break
+
+                                                        @case('Belum Dibayar')
+                                                            <button class="btn btn-warning">Belum Dibayar</button>
+                                                        @break
+
+                                                        @case('Ditolak')
+                                                            <button class="btn btn-danger">Ditolak</button>
+                                                        @break
+
+                                                        @case('Dibatalkan')
+                                                            <button class="btn btn-outline-danger">Dibatalkan</button>
+                                                        @break
+
+                                                        @case('Selesai')
+                                                            <button class="btn btn-success">Selesai</button>
+                                                        @break
+
+                                                        @case('Diterima')
+                                                            <button class="btn btn-primary">Diterima</button>
+                                                        @break
+
+                                                        @default
+                                                            <button class="btn btn-outline-secondary">Status Tidak Valid</button>
+                                                    @endswitch
 
                                                     <div class="flex-grow-1 align-self-center overflow-hidden">
                                                         <div>

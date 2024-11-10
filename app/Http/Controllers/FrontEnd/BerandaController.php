@@ -151,7 +151,7 @@ class BerandaController extends Controller
 
         $transaksi->with(['detailTransaksi.produk', 'user'])->where('id', $transaksi->id)->first();
         $transaksi->bukti_pembayaran = $fileSaved;
-        $transaksi->status_pembayaran = 'Belum Dibayar';
+        $transaksi->status_pembayaran = 'Dibayar';
         $transaksi->save();
 
 

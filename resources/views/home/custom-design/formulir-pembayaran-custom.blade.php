@@ -34,13 +34,62 @@
 
                                     <div class="mb-2">
                                         <h5 class="card-title">Delivery</h5>
-                                        <p class="card-text">{{ $transaksiCustomDesign->delivery }}</p>
+                                        <button
+                                            class="btn {{ $transaksiCustomDesign->delivery == 'Diantar Ke Tempat Pemesan' ? 'btn-secondary' : 'btn-light shadow border' }}">{{ $transaksiCustomDesign->delivery }}</button>
+                                        {{-- <p class="card-text">{{ $transaksiCustomDesign->delivery }}</p> --}}
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 px-2">
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 px-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    @if ($transaksiCustomDesign->delivery == 'Diantar Ke Tempat Pemesan')
+                                        <div class="kirim " id="kirim">
+                                            <div class="mb-3">
+                                                <h5 class="card-title">Kurir</h5>
+                                                <input type="text" class="form-control" id="kurir" name="kurir"
+                                                    value="{{ $transaksiCustomDesign->kurir }}" readonly>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <h5 class="card-title">Nomor Resi</h5>
+                                                <input type="text" class="form-control" id="no_resi" name="no_resi"
+                                                    value="{{ $transaksiCustomDesign->no_resi }}" readonly>
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5 class="card-title">Tujuan Antar</h5>
+                                                <input type="text" class="form-control" id="tujuan_antar"
+                                                    name="tujuan_antar" value="{{ $transaksiCustomDesign->tujuan_antar }} "
+                                                    readonly>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="pick-up " id="pick-up">
+
+                                            <div class="mb-3">
+                                                <h5 class="card-title">Alamat Martaloka Konveksi</h5>
+                                                <textarea class="form-control" name="" id="" cols="30" rows="3" readonly>Jalan Banteng, Banjar, Kec. Banjar, Kabupaten Buleleng, Bali 81152</textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5 class="card-title">Tanggal dan Jam Ambil</h5>
+                                                <input type="text" class="form-control" id="tanggal_ambil"
+                                                    name="tanggal_ambil"
+                                                    value="{{ $transaksiCustomDesign->tanggal_ambil ? $transaksiCustomDesign->tanggal_ambil->isoFormat('dddd, D MMMM YYYY HH:mm') : 'Tanggal belum ditentukan' }}"
+                                                    readonly>
+                                            </div>
+
+                                        </div>
+                                    @endif
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 px-2">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="mb-2">
@@ -57,8 +106,9 @@
                                         </p>
                                     </div>
 
+
                                     <div class="mb-2">
-                                        <h5 class="card-title">Ukuran Cewek</h5>
+                                        <h5 class="card-title">Ukuran Cowok</h5>
                                         <p class="card-text">
                                             <span class="mx-1"> <b> S </b> :
                                                 {{ $transaksiCustomDesign->sizes->co_s }}</span>
@@ -70,13 +120,18 @@
                                                 {{ $transaksiCustomDesign->sizes->co_xl }}</span>
                                             <span class="mx-1"> <b> XXL </b> :
                                                 {{ $transaksiCustomDesign->sizes->co_xxl }}</span>
-                                            <span class="mx-1"> <b> L1 </b> :
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <h5 class="card-title">Ukuran Cowok Anak</h5>
+                                        <p class="card-text">
+                                            <span class="mx-1"> <b> S </b> :
                                                 {{ $transaksiCustomDesign->sizes->co_l1 }}</span>
-                                            <span class="mx-1"> <b> L2 </b> :
+                                            <span class="mx-1"> <b> M </b> :
                                                 {{ $transaksiCustomDesign->sizes->co_l2 }}</span>
-                                            <span class="mx-1"> <b> L3 </b> :
+                                            <span class="mx-1"> <b> L </b> :
                                                 {{ $transaksiCustomDesign->sizes->co_l3 }}</span>
-                                            <span class="mx-1"> <b> L4 </b> :
+                                            <span class="mx-1"> <b> XL </b> :
                                                 {{ $transaksiCustomDesign->sizes->co_l4 }}</span>
                                     </div>
 
@@ -93,13 +148,18 @@
                                                 {{ $transaksiCustomDesign->sizes->ce_xl }}</span>
                                             <span class="mx-1"> <b> XXL </b> :
                                                 {{ $transaksiCustomDesign->sizes->ce_xxl }}</span>
-                                            <span class="mx-1"> <b> L1 </b> :
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <h5 class="card-title">Ukuran Cewek Anak</h5>
+                                        <p class="card-text">
+                                            <span class="mx-1"> <b> S </b> :
                                                 {{ $transaksiCustomDesign->sizes->ce_l1 }}</span>
-                                            <span class="mx-1"> <b> L2 </b> :
+                                            <span class="mx-1"> <b> M </b> :
                                                 {{ $transaksiCustomDesign->sizes->ce_l2 }}</span>
-                                            <span class="mx-1"> <b> L3 </b> :
+                                            <span class="mx-1"> <b> L </b> :
                                                 {{ $transaksiCustomDesign->sizes->ce_l3 }}</span>
-                                            <span class="mx-1"> <b> L4 </b> :
+                                            <span class="mx-1"> <b> XL </b> :
                                                 {{ $transaksiCustomDesign->sizes->ce_l4 }}</span>
                                     </div>
 
@@ -130,7 +190,7 @@
                                                 <div class="px-5 py-3">
                                                     <div class="d-flex align-items-start">
                                                         <input type="radio" name="metode_pembayaran" id="bank_bni"
-                                                            value="BNI" class="mt-1 me-2">
+                                                            value="BNI" class="mt-1 me-2" required>
                                                         <label for="bank_bni" class="d-flex align-items-start">
                                                             <div>
                                                                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/BankNegaraIndonesia46-logo.svg/1200px-BankNegaraIndonesia46-logo.svg.png"
@@ -216,11 +276,78 @@
                                         </div>
                                     @else
                                         <div class="p-3">
-                                            <h4 class="text-left mb-3">Pembayaran sedang diproses</h4>
                                             <div class="card">
                                                 <div class="card-body">
+                                                    <h6>Anda membayar dengan menggunakan :</h6>
+                                                    @switch($transaksiCustomDesign->metode_pembayaran)
+                                                        @case('BNI')
+                                                            <div class=" py-3">
+                                                                <div class="d-flex align-items-start">
+                                                                    <label for="bank_bni" class="d-flex align-items-start">
+                                                                        <div>
+                                                                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/BankNegaraIndonesia46-logo.svg/1200px-BankNegaraIndonesia46-logo.svg.png"
+                                                                                class="img-fluid text-center ml-3" alt=""
+                                                                                style="max-height: 50px;">
+                                                                        </div>
 
-                                                    <p>Anda membayar dengan menggunakan {{$transaksiCustomDesign->metode_pembayaran}}</p>
+                                                                    </label>
+
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+                                                        @break
+
+                                                        @case('BRI')
+                                                            <div class=" py-3">
+                                                                <div class="d-flex align-items-start">
+                                                                    <label for="bank_bri" class="d-flex align-items-start">
+                                                                        <div>
+                                                                            <img src="https://media.suara.com/pictures/970x544/2024/06/04/49528-logo-bri-logo-bank-bri.jpg"
+                                                                                class="img-fluid text-center ml-3" alt=""
+                                                                                style="max-height: 50px;">
+                                                                        </div>
+
+                                                                    </label>
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+                                                        @break
+
+                                                        @case('OVO')
+                                                            <div class=" py-3">
+                                                                <div class="d-flex align-items-start">
+                                                                    <label for="ovo" class="d-flex align-items-start">
+                                                                        <div>
+                                                                            <img src="https://blogpictures.99.co/cara-menggunakan-ovo.jpg"
+                                                                                class="img-fluid text-center ml-3" alt=""
+                                                                                style="max-height: 50px;">
+                                                                        </div>
+
+                                                                    </label>
+
+                                                                </div>
+
+                                                                <hr>
+                                                            </div>
+                                                        @break
+
+                                                        @case('DANA')
+                                                            <div class=" py-3">
+                                                                <div class="d-flex align-items-start">
+                                                                    <label for="dana" class="d-flex align-items-start">
+                                                                        <div>
+                                                                            <img src="https://cdn.antaranews.com/cache/1200x800/2022/04/25/dana.jpg"
+                                                                                class="img-fluid text-center ml-3" alt=""
+                                                                                style="max-height: 50px;">
+                                                                        </div>
+
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        @break
+
+                                                        @default
+                                                    @endswitch
                                                 </div>
                                             </div>
 
@@ -249,7 +376,82 @@
                                     @else
                                         <h3 class="text-center mb-4">Pembayaran sedang diproses</h3>
 
-                                        <div class="px-3">
+                                        <div class="px-3 mt-3">
+                                            <button class="btn-one" type="button">
+                                                {{ $transaksiCustomDesign->status_pembayaran }}</button>
+                                            <div class="mt-3">
+                                                @switch($transaksiCustomDesign->status_pembayaran)
+                                                    @case('Dalam Transaksi')
+                                                        <p> Silahkan menunggu pihak Martaloka Konveksi Untuk melakukan
+                                                            konfirmasi.</p>
+                                                    @break
+
+                                                    @case('Dibayar')
+                                                        <p> Silahkan menunggu pihak Martaloka Konveksi Untuk melakukan
+                                                            konfirmasi.</p>
+                                                    @break
+
+                                                    @case('Belum Dibayar')
+                                                        <p> Silahkan melakukan pembayaran sebelum
+                                                            {{ date('d-m-Y', strtotime($transaksiCustomDesign->created_at . '+1 days')) }}.
+                                                        </p>
+                                                    @break
+
+                                                    @case('Ditolak')
+                                                        <p> Transaksi ditolak oleh pihak Martaloka Konveksi.</p>
+                                                        <h6>Keterangan : {{ $transaksiCustomDesign->keterangan_tambahan ?? '-' }}
+                                                        </h6>
+                                                    @break
+
+                                                    @case('Dibatalkan')
+                                                        <p> Transaksi dibatalkan oleh pihak Martaloka Konveksi.</p>
+                                                        <h6>Keterangan : {{ $transaksiCustomDesign->keterangan ?? '-' }}</h6>
+                                                    @break
+
+                                                    @case('Selesai')
+                                                        <p> Transaksi telah selesai.</p>
+                                                    @break
+
+                                                    @case('Diterima')
+                                                        <p> Silahkan menunggu pihak Martaloka Konveksi Untuk melakukan
+                                                            konfirmasi.</p>
+                                                    @break
+
+                                                    @default
+                                                        <p> Status transaksi tidak valid.</p>
+                                                @endswitch
+
+                                            </div>
+
+
+                                            @if ($transaksiCustomDesign->status_pembayaran == 'Selesai')
+                                                <div class="card mt-3">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Progress transaksi</h5>
+                                                        @if (empty($transaksiCustomDesign->progress))
+                                                            <p class="text-left">Belum ada progress transaksi</p>
+                                                        @else
+                                                            @foreach ($transaksiCustomDesign->progress as $index => $item)
+                                                                <li class="mb-3">
+                                                                    <h6 class="font-weight-bold">
+                                                                        {{ $item->nama_progress }}
+                                                                        {!! $index == 0 ? '<span class="badge badge-success"> Status terakhir </span>' : '' !!}</h6>
+
+                                                                    {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y H:mm:ss') }}
+                                                                    <br>
+                                                                </li>
+                                                                <button type="button" data-bs-toggle="modal"
+                                                                    data-bs-target="#staticBackdrop"
+                                                                    class="btn-one px-4 py-0" id="detailProgress"
+                                                                    data-id="{{ $item->id }}">Detail</button>
+                                                                <hr>
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                            {{-- <div class="px-3">
                                             <label class="font-weight-bold mb-3">Status sekarang :
                                                 {{ $transaksiCustomDesign->status_pembayaran }} </label> <br>
                                             <hr>
@@ -267,11 +469,36 @@
                                                     <hr>
                                                 </li>
                                             @endforeach
-                                            {{-- <button class="btn" type="button">
-                                                {{ $transaksiCustomDesign->status_pembayaran }}</button> --}}
-                                            {{-- {{$transaksiCustomDesign->progress}} --}}
 
-                                        </div>
+
+                                        </div> --}}
+
+                                            {{-- @if ($transaksiCustomDesign->status_pembayaran == 'Selesai')
+                                            <div class="card mt-3">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Progress transaksi</h5>
+                                                    @if (empty($transaksiCustomDesign->progress))
+                                                        <p class="text-left">Belum ada progress transaksi</p>
+                                                    @else
+                                                        @foreach ($transaksiCustomDesign->progress as $index => $item)
+                                                            <li class="mb-3">
+                                                                <h6 class="font-weight-bold">
+                                                                    {{ $item->nama_progress }}
+                                                                    {!! $index == 0 ? '<span class="badge badge-success"> Status terakhir </span>' : '' !!}</h6>
+
+                                                                {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y H:mm:ss') }}
+                                                                <br>
+                                                            </li>
+                                                            <button type="button" data-bs-toggle="modal"
+                                                                data-bs-target="#staticBackdrop" class="btn-one px-4 py-0"
+                                                                id="detailProgress"
+                                                                data-id="{{ $item->id }}">Detail</button>
+                                                            <hr>
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        @endif --}}
                                     @endif
                                 </div>
                             </div>
@@ -288,7 +515,7 @@
 
 
     <!-- Button trigger modal -->
-    <div class="modal fade" id="staticBackdrop"  data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -357,16 +584,19 @@
                         .then(data => {
                             // Isi data yang diterima ke dalam modal
                             document.getElementById('nama_progress').value = data.nama_progress;
-                            document.getElementById('deskripsi_proses').value = data.deskripsi_progress;
-                            document.getElementById('waktu_progress').value = new Intl.DateTimeFormat('id-ID', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: '2-digit',
-                                hour: '2-digit',
-                                minute: '2-digit',
-                                second: '2-digit'
-                            }).format(new Date(data.created_at));
-                            document.getElementById('gambar_proses').src = `/progress_custom/${data.gambar_progress}`;
+                            document.getElementById('deskripsi_proses').value = data
+                                .deskripsi_progress;
+                            document.getElementById('waktu_progress').value = new Intl
+                                .DateTimeFormat('id-ID', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: '2-digit',
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    second: '2-digit'
+                                }).format(new Date(data.created_at));
+                            document.getElementById('gambar_proses').src =
+                                `/progress_custom/${data.gambar_progress}`;
 
                             // Tampilkan modal setelah data diisi
 

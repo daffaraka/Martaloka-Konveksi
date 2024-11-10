@@ -49,24 +49,103 @@
                                         </div>
                                         <div class="flex-shrink-0 ms-2">
                                             {{-- Jika sudah dibayar --}}
-                                            @if (in_array($transaksi->status_pembayaran, ['Dibayar', 'Ditolak', 'Selesai']))
-                                                <div class="border p-3">
-                                                    <div class="form-group">
-                                                        <label for="bukti_pembayaran" class="fw-bold">Status Pembayaran :
-                                                            <b>
-                                                                {{ $transaksi->status_pembayaran }} </b> </label>
-                                                    </div>
 
-                                                    <div class="d-gap mt-3">
-                                                        <a href="{{ route('home.formUploadBuktiTransaksiPembelian', $transaksi->id) }}"
-                                                            class="btn btn-success text-uppercase rounded-0 w-100"
-                                                            type="submit">Lihat progress</a>
-                                                    </div>
+
+                                            {{-- @switch($data->status_pembayaran)
+                                            @case('Dalam Transaksi')
+                                                <button class="btn btn-secondary">Menunggu Pembayaran</button>
+                                            @break
+
+                                            @case('Dibayar')
+                                                <button class="btn btn-info">Sudah Dibayar</button>
+                                            @break
+
+                                            @case('Belum Dibayar')
+                                                <button class="btn btn-warning">Belum Dibayar</button>
+                                            @break
+
+                                            @case('Ditolak')
+                                                <button class="btn btn-danger">Ditolak</button>
+                                            @break
+
+                                            @case('Dibatalkan')
+                                                <button class="btn btn-outline-danger">Dibatalkan</button>
+                                            @break
+
+                                            @case('Selesai')
+                                                <button class="btn btn-success">Selesai</button>
+                                            @break
+
+                                            @case('Diterima')
+                                                <button class="btn btn-primary">Diterima</button>
+                                            @break
+
+                                            @default
+                                                <button class="btn btn-outline-secondary">Status Tidak Valid</button>
+                                        @endswitch --}}
+                                            {{-- @if (in_array($transaksi->status_pembayaran, ['Dibayar', 'Ditolak', 'Selesai'])) --}}
+                                            <div class="border p-3">
+                                                <div class="form-group">
+                                                    <label for="bukti_pembayaran" class="fw-bold">Status Pembayaran :
+                                                        <b>
+                                                            {{ $transaksi->status_pembayaran }} </b> </label>
                                                 </div>
+                                                <div class="d-gap mt-3">
+                                                    @switch($transaksi->status_pembayaran)
+                                                        @case('Dalam Transaksi')
+                                                            <a href="{{ route('home.formTransaksiPembelian', $transaksi->id) }}"
+                                                                class="btn btn-primary text-uppercase rounded-0 w-100">Lengkapi
+                                                                Pembayaran</a>
+                                                        @break
 
-                                                {{-- Jika belum dibayar --}}
-                                            @else
-                                                <div class="border p-3">
+                                                        @case('Belum Dibayar')
+                                                            <a href="{{ route('home.formTransaksiPembelian', $transaksi->id) }}"
+                                                                class="btn btn-primary text-uppercase rounded-0 w-100">Lengkapi
+                                                                Pembayaran</a>
+                                                        @break
+
+                                                        @case('Dibayar')
+                                                            <a href="{{ route('home.formUploadBuktiTransaksiPembelian', $transaksi->id) }}"
+                                                                class="btn btn-success text-uppercase rounded-0 w-100">Lihat
+                                                                progress</a>
+                                                        @break
+
+                                                        @case('Diterima')
+                                                            <a href="{{ route('home.formUploadBuktiTransaksiPembelian', $transaksi->id) }}"
+                                                                class="btn btn-success text-uppercase rounded-0 w-100">Lihat
+                                                                progress</a>
+                                                        @break
+
+                                                        @case('Ditolak')
+                                                            <a href="{{ route('home.formUploadBuktiTransaksiPembelian', $transaksi->id) }}"
+                                                                class="btn btn-danger text-uppercase rounded-0 w-100">Lihat
+                                                                Transaksi</a>
+                                                        @break
+
+                                                        @case('Dibatalkan')
+                                                            <a href="{{ route('home.formUploadBuktiTransaksiPembelian', $transaksi->id) }}"
+                                                                class="btn btn-danger text-uppercase rounded-0 w-100">Lihat
+                                                                Transaksi</a>
+                                                        @break
+
+                                                        @case('Selesai')
+                                                            <a href="{{ route('home.formUploadBuktiTransaksiPembelian', $transaksi->id) }}"
+                                                                class="btn btn-success text-uppercase rounded-0 w-100">Lihat
+                                                                progress</a>
+                                                        @break
+
+                                                        @default
+                                                            <button class="btn btn-outline-secondary">Status Tidak Valid</button>
+                                                    @endswitch
+                                                    {{-- <a href="{{ route('home.formUploadBuktiTransaksiPembelian', $transaksi->id) }}"
+                                                        class="btn btn-success text-uppercase rounded-0 w-100">Lihat
+                                                        progress</a> --}}
+                                                </div>
+                                            </div>
+
+                                            {{-- Jika belum dibayar --}}
+                                            {{-- @else --}}
+                                            {{-- <div class="border p-3">
                                                     <div class="form-group">
                                                         <label for="bukti_pembayaran" class="fw-bold">Status Pembayaran :
                                                             <b>
@@ -75,12 +154,11 @@
 
                                                     <div class="d-gap mt-3">
                                                         <a href="{{ route('home.formTransaksiPembelian', $transaksi->id) }}"
-                                                            class="btn btn-primary text-uppercase rounded-0 w-100"
-                                                            type="submit">Lengkapi
+                                                            class="btn btn-primary text-uppercase rounded-0 w-100">Lengkapi
                                                             Pembayaran</a>
                                                     </div>
-                                                </div>
-                                            @endif
+                                                </div> --}}
+                                            {{-- @endif --}}
 
 
 

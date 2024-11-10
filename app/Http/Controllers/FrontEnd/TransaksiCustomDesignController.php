@@ -34,7 +34,7 @@ class TransaksiCustomDesignController extends Controller
         // dd(is_array($request->file('gambar_custom_design')));
 
 
-        // dd($request->all());
+        dd($request->all());
 
         $validator = Validator::make($request->all(), [
             'nama_pemesan' => 'required',
@@ -73,7 +73,6 @@ class TransaksiCustomDesignController extends Controller
             'total_pesanan' => $request->total_pesanan,
             'total_harga' => $request->total_pesanan * $harga_kategori,
             'status_pembayaran' => 'Dalam Transaksi',
-            'metode_pembayaran' => 'Bank Transfer',
             'delivery' =>  $request->delivery
         ]);
 
@@ -137,13 +136,13 @@ class TransaksiCustomDesignController extends Controller
 
         $file = $request->file('bukti_bayar');
         $fileName = $file->getClientOriginalName();
-        $fileSaved = $transaksiCustomDesign->user->name . '-' . $request->metode_pembayaran . '-' . $fileName;
+        $fileSaved = $transaksiCustomDesign->user->name . '-' . $request->metode_pembayaran . '-' .now()->format('Y-m-d H-i-s') . '-' . $fileName;
         $file->move('custom_designs/bukti-bayar/', $fileSaved);
 
 
         $transaksiCustomDesign->update([
             'status_pembayaran' => 'Dibayar',
-            'metode_pembayaran' => $request->bank,
+            'metode_pembayaran' => $request->metode_pembayaran,
             'bukti_pembayaran' => $fileSaved,
         ]);
         // dd($transaksiCustomDesign);
