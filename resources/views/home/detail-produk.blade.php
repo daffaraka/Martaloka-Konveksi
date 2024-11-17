@@ -150,6 +150,10 @@
                                             class="font-weight-bold">Rp.{{ number_format($produk->harga_produk) }}</span>
                                     </li>
                                     <li>
+                                        Stok Tersedia <span
+                                            class="font-weight-bold">{{ number_format($produk->stok) }}</span>
+                                    </li>
+                                    <li>
                                         Size
                                         <div>
                                             <select class="nice-select w-25" name="size"

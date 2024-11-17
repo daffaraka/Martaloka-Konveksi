@@ -34,8 +34,6 @@ class TransaksiCustomDesignController extends Controller
         // dd(is_array($request->file('gambar_custom_design')));
 
 
-        dd($request->all());
-
         $validator = Validator::make($request->all(), [
             'nama_pemesan' => 'required',
             'alamat_pemesan' => 'required',

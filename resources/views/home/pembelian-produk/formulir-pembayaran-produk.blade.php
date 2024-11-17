@@ -234,7 +234,7 @@
                                                                         <p class="text-left">Belum ada progress transaksi
                                                                         </p>
                                                                     @else
-                                                                        @foreach ($transaksi->progress as $index => $item)
+                                                                        @foreach ($transaksi->progress()->latest()->get() as $index => $item)
                                                                             <li class="mb-3">
                                                                                 <h6 class="font-weight-bold">
                                                                                     {{ $item->nama_progress }}
@@ -245,8 +245,7 @@
                                                                             </li>
                                                                             <button type="button" data-bs-toggle="modal"
                                                                                 data-bs-target="#staticBackdrop"
-                                                                                class="btn-one px-4 py-0"
-                                                                                id="detailProgress"
+                                                                                class="btn-one px-4 py-0 detailProgress"
                                                                                 data-id="{{ $item->id }}">Detail</button>
                                                                             <hr>
                                                                         @endforeach
@@ -376,7 +375,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Tambahkan event listener ke tombol 'Detail' menggunakan event delegation
-        document.querySelectorAll('#detailProgress').forEach(function(button) {
+        document.querySelectorAll('.detailProgress').forEach(function(button) {
             button.addEventListener('click', function() {
                 var progressId = this.getAttribute('data-id');
 

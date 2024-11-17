@@ -199,7 +199,7 @@ class TransaksiProdukController extends Controller
 
     public function formUploadBuktiTransaksiPembelian(Transaksi $transaksi)
     {
-        $transaksi =  $transaksi->with(['detailTransaksi.produk.kategori', 'user'])->where('id', $transaksi->id)->first();
+        $transaksi =  $transaksi->with(['detailTransaksi.produk.kategori', 'user','progress'])->where('id', $transaksi->id)->first();
 
         return view('home.pembelian-produk.formulir-pembayaran-produk', compact('transaksi'));
     }
