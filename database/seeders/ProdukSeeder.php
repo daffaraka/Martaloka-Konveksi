@@ -22,7 +22,7 @@ class ProdukSeeder extends Seeder
         $produks = [];
 
         // Pastikan setiap kategori memiliki minimal 1 produk
-        foreach (range(5, 50) as $i) {
+        foreach (range(5, 10) as $i) {
             $produk = [
                 'nama_produk' => 'Produk ' . $i,
                 'deskripsi' => 'Deskripsi produk ' . $i,

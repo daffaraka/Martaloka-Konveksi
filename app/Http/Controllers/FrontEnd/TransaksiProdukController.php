@@ -73,7 +73,7 @@ class TransaksiProdukController extends Controller
 
     private function createNotification($transaksi)
     {
-        Notification::create([
+       $notification = Notification::create([
             'title' => 'Transaksi Baru',
             'message' => 'Transaksi baru dibuat oleh ' . Auth::user()->name . ' - Total: Rp ' . number_format($transaksi->total_harga, 0, ',', '.'),
             'type' => 'transaction',
@@ -84,6 +84,7 @@ class TransaksiProdukController extends Controller
                 'status' => 'Dalam Transaksi'
             ]
         ]);
+
     }
 
     public function checkout(Request $request)
@@ -110,10 +111,10 @@ class TransaksiProdukController extends Controller
         $productExistCheck = $productExist->get();
 
         if ($request->has('id_')) {
-            $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->whereIn('id', $request->id_)->where('user_id', Auth::user()->id)->get();
+            $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->whereIn('id', $request->id_)->where('status', 'Di Keranjang')->where('user_id', Auth::user()->id)->get();
         } else {
             // Jika tidak
-            $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->where('user_id', Auth::user()->id)->get();
+            $newKeranjang =  Keranjang::with(['produk.kategori', 'user'])->where('status', 'Di Keranjang')->where('user_id', Auth::user()->id)->get();
         }
 
         try {
@@ -125,6 +126,7 @@ class TransaksiProdukController extends Controller
                 $item->save();
             });
             // Jika request punya yang di checkbox
+
 
 
             foreach ($newKeranjang as $item) {
@@ -152,6 +154,7 @@ class TransaksiProdukController extends Controller
 
             // $newKeranjang->update(['status' => 'Dalam Transaksi']);
             $this->createNotification($transaksi);
+
 
 
             DB::commit();
@@ -196,7 +199,7 @@ class TransaksiProdukController extends Controller
 
     public function formUploadBuktiTransaksiPembelian(Transaksi $transaksi)
     {
-        $transaksi =  $transaksi->with(['detailTransaksi.produk.kategori', 'user'])->where('id', $transaksi->id)->first();
+        $transaksi =  $transaksi->with(['detailTransaksi.produk.kategori', 'user','progress'])->where('id', $transaksi->id)->first();
 
         return view('home.pembelian-produk.formulir-pembayaran-produk', compact('transaksi'));
     }

@@ -10,6 +10,7 @@
             margin-bottom: 16px;
 
         }
+
         .nice-select .list {
             width: 100% !important;
 
@@ -108,23 +109,24 @@
                             <h6 class="mb-2" for="my-input">Nama</h6>
                             <input id="my-input" class="form-control" type="text" name="nama_pemesan" required
                                 value="{{ Auth::user()->name }}"
-                                {{ $transaksi->status_pembayaran == 'Dalam Transaksi' ? '' : 'disabled' }}>
+                                {{ $transaksi->status_pembayaran != 'Dalam Transaksi' ? 'disabled' : '' }}>
                         </div>
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Alamat</h6>
                             <input id="my-input" class="form-control" type="text" name="alamat_pemesan" required
                                 value="{{ Auth::user()->alamat }}"
-                                {{ $transaksi->status_pembayaran == 'Dalam Transaksi' ? '' : 'disabled' }}>
+                                {{ $transaksi->status_pembayaran != 'Dalam Transaksi' ? 'disabled' : '' }}>
                         </div>
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="my-input">Email</h6>
                             <input id="my-input" class="form-control" type="email" name="email_pemesan" required
                                 value="{{ Auth::user()->email }}"
-                                {{ $transaksi->status_pembayaran == 'Dalam Transaksi' ? '' : 'disabled' }}>
+                                {{ $transaksi->status_pembayaran != 'Dalam Transaksi' ? 'disabled' : '' }}>
                         </div>
                         <div class="form-group mb-3">
                             <h6 class="mb-2" for="delivery">Delivery</h6>
-                            <select class="form-control w-100" id="delivery" name="delivery" required>
+                            <select class="form-control w-100" id="delivery" name="delivery" required
+                                {{ $transaksi->status_pembayaran != 'Dalam Transaksi' ? 'disabled' : '' }}>
                                 <option value="Diantar ke Tempat Pemesan">Diantar ke Tempat Pemesan</option>
                                 <option value="Ambil di Martaloka">Ambil di Martaloka</option>
                             </select>
@@ -134,14 +136,14 @@
                             <h6 class="mb-2" for="my-input">Nomor Telepon</h6>
                             <input id="my-input" class="form-control" type="number" name="nomor_hp_pemesan" required
                                 value="{{ Auth::user()->nomor_hp }}"
-                                {{ $transaksi->status_pembayaran == 'Dalam Transaksi' ? '' : 'disabled' }}>
+                                {{ $transaksi->status_pembayaran != 'Dalam Transaksi' ? 'disabled' : '' }}>
                         </div>
 
 
                         <div class="form-group mb-3">
                             <h3 class="mb-2">Catatan</h3>
                             <textarea name="catatan" id="" class="form-control" cols="120" rows="5"
-                                {{ $transaksi->status_pembayaran == 'Dalam Transaksi' ? '' : 'disabled' }}> {{ $transaksi->catatan ?? '' }}</textarea>
+                                {{ $transaksi->status_pembayaran != 'Dalam Transaksi' ? 'disabled' : '' }}> {{ $transaksi->catatan ?? '' }}</textarea>
 
                         </div>
 
@@ -157,7 +159,7 @@
                                             <div class="px-5 py-3">
                                                 <div class="d-flex align-items-start">
                                                     <input type="radio" name="metode_pembayaran" id="bank_bni"
-                                                        value="BNI" class="mt-1 me-2">
+                                                        value="BNI" class="mt-1 me-2" required>
                                                     <label for="bank_bni" class="d-flex align-items-start">
                                                         <div>
                                                             <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/BankNegaraIndonesia46-logo.svg/1200px-BankNegaraIndonesia46-logo.svg.png"
@@ -241,18 +243,68 @@
                                         @else
                                             @switch($transaksi->metode_pembayaran)
                                                 @case('BNI')
-                                                    <div>
-                                                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/BankNegaraIndonesia46-logo.svg/1200px-BankNegaraIndonesia46-logo.svg.png"
-                                                            class="img-fluid text-center ml-3" alt=""
-                                                            style="max-height: 50px;">
+                                                    <div class=" py-3">
+                                                        <div class="d-flex align-items-start">
+                                                            <label for="bank_bni" class="d-flex align-items-start">
+                                                                <div>
+                                                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/BankNegaraIndonesia46-logo.svg/1200px-BankNegaraIndonesia46-logo.svg.png"
+                                                                        class="img-fluid text-center ml-3" alt=""
+                                                                        style="max-height: 50px;">
+                                                                </div>
+
+                                                            </label>
+
+                                                        </div>
+                                                        <hr>
                                                     </div>
                                                 @break
 
                                                 @case('BRI')
-                                                    <div>
-                                                        <img src="https://media.suara.com/pictures/970x544/2024/06/04/49528-logo-bri-logo-bank-bri.jpg"
-                                                            class="img-fluid text-center ml-3" alt=""
-                                                            style="max-height: 50px;">
+                                                    <div class=" py-3">
+                                                        <div class="d-flex align-items-start">
+                                                            <label for="bank_bri" class="d-flex align-items-start">
+                                                                <div>
+                                                                    <img src="https://media.suara.com/pictures/970x544/2024/06/04/49528-logo-bri-logo-bank-bri.jpg"
+                                                                        class="img-fluid text-center ml-3" alt=""
+                                                                        style="max-height: 50px;">
+                                                                </div>
+
+                                                            </label>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                @break
+
+                                                @case('OVO')
+                                                    <div class=" py-3">
+                                                        <div class="d-flex align-items-start">
+                                                            <label for="ovo" class="d-flex align-items-start">
+                                                                <div>
+                                                                    <img src="https://blogpictures.99.co/cara-menggunakan-ovo.jpg"
+                                                                        class="img-fluid text-center ml-3" alt=""
+                                                                        style="max-height: 50px;">
+                                                                </div>
+
+                                                            </label>
+
+                                                        </div>
+
+                                                        <hr>
+                                                    </div>
+                                                @break
+
+                                                @case('DANA')
+                                                    <div class=" py-3">
+                                                        <div class="d-flex align-items-start">
+                                                            <label for="dana" class="d-flex align-items-start">
+                                                                <div>
+                                                                    <img src="https://cdn.antaranews.com/cache/1200x800/2022/04/25/dana.jpg"
+                                                                        class="img-fluid text-center ml-3" alt=""
+                                                                        style="max-height: 50px;">
+                                                                </div>
+
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 @break
 
@@ -274,7 +326,13 @@
 
 
                     <div class="d-grid px-5 w-100">
-                        <button class="btn-one w-100">Pesan</button>
+
+                        @if ($transaksi->status_pembayaran == 'Dalam Transaksi')
+                            <button class="btn-one w-100">Pesan</button>
+                        @else
+                            <a href="{{ route('home.formUploadBuktiTransaksiPembelian', $transaksi->id) }}"
+                                class="btn-one w-100 text-center">Menuju Formulir Pembayaran</a>
+                        @endif
 
                     </div>
             </form>

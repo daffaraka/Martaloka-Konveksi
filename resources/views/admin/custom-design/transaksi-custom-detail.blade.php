@@ -7,8 +7,8 @@
 
             <div class="d-gap mt-5">
 
-                @if ($transaksi->status_pembayaran == 'Belum Dibayar')
-                    <a href="{{ route('transaksi.dibayar', $transaksi->id) }}" class="btn btn-block btn-primary"> Terima
+                @if ($transaksi->status_pembayaran == 'Dibayar')
+                    <a href="{{ route('transaksiCustom.terima', $transaksi->id) }}" class="btn btn-block btn-primary"> Terima
                         transaksi</a>
                     <a href="{{ route('transaksiCustom.tolak', $transaksi->id) }}" class="btn btn-block btn-danger"> Tolak
                         transaksi</a>
