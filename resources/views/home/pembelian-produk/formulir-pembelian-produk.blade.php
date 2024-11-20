@@ -172,7 +172,7 @@
                                                 </div>
                                                 <div class="ms-2">
                                                     <p class="mb-0">No.rek : <b> 7543216</b> <br>
-                                                        <b> a.n Putu Suarbawa</b>
+                                                        <b> a.n Putu Sedana Yasa</b>
                                                     </p>
                                                 </div>
                                                 <hr>
@@ -193,7 +193,7 @@
                                                 </div>
                                                 <div class="ms-2">
                                                     <p class="mb-0">No.rek : <b> 7543216 </b> <br>
-                                                        a.n <b> Putu Suarbawa</b>
+                                                        a.n <b> Putu Sedana Yasa</b>
                                                     </p>
                                                 </div>
                                                 <hr>
@@ -214,8 +214,8 @@
 
                                                 </div>
                                                 <div class="ms-2">
-                                                    <p class="mb-0">OVO : <b> 085100000000</b> <br>
-                                                        <b> a.n Putu Suarbawa</b>
+                                                    <p class="mb-0">OVO : <b> 081337344259</b> <br>
+                                                        <b> a.n Putu Sedana Yasa</b>
                                                     </p>
                                                 </div>
                                                 <hr>
@@ -235,8 +235,8 @@
                                                     </label>
                                                 </div>
                                                 <div class="ms-2">
-                                                    <p class="mb-0">Dana : <b> 085100000000</b> <br>
-                                                        <b> a.n Putu Suarbawa</b>
+                                                    <p class="mb-0">Dana : <b> 085847728414</b> <br>
+                                                        <b> a.n Putu Sedana Yasa</b>
                                                     </p>
                                                 </div>
                                             </div>
