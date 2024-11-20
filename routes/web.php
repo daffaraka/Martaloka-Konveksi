@@ -78,9 +78,9 @@ Route::middleware('auth')->group(function () {
     // Dashboard Admin
     Route::group(['middleware' => 'isAdmin', 'prefix' => 'dashboard'], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/export/pdf', [DashboardController::class, 'exportPDF'])->name('export.pdf');
-        Route::get('/export/excel', [DashboardController::class, 'exportExcel'])->name('export.excel');
+        // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard/export/revenue-pdf', [DashboardController::class, 'exportRevenuePdf'])->name('dashboard.export.revenue-pdf');
+        Route::get('/dashboard/export/revenue-excel', [DashboardController::class, 'exportRevenueExcel'])->name('dashboard.export.revenue-excel');
 
         // Kontak Admin
         Route::get('kontak', [KontakController::class, 'index'])->name('kontak.index');

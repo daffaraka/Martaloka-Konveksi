@@ -16,7 +16,7 @@
                     </div>
 
                     <div class="card-body p-4">
-                        <form method="post" action="{{ route('profile.update') }}">
+                        <form method="post" action="{{ route('profileuser.update') }}">
                             @csrf
                             @method('patch')
 

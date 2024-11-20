@@ -44,7 +44,8 @@
                with font-awesome or any other icon font library -->
                 <li class="nav-header">INTRO</li>
                 <li class="nav-item ">
-                    <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}"
+                        class="nav-link {{ request()->routeIs('dashboard') ? 'menu-open active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
