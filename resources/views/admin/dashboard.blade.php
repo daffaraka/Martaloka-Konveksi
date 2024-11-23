@@ -67,19 +67,7 @@
                 @endfor
             </select>
         </div>
-        <div class="form-group">
-            <label for="month">Pilih Bulan:</label>
-            <select name="month" id="month" class="form-control" onchange="this.form.submit()">
-                <option value="">Semua Bulan</option> <!-- Tambahkan opsi untuk semua bulan -->
-                @foreach (range(1, 12) as $m)
-                    <option value="{{ $m }}" {{ $selectedMonth == $m ? 'selected' : '' }}>
-                        {{ DateTime::createFromFormat('!m', $m)->format('F') }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
     </form>
-
 
     <!-- Grafik Transaksi -->
     <div class="row">
@@ -116,22 +104,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Grafik Pendapatan Bulanan ({{ $selectedYear }})</h3>
-                    <div class="row mb-3">
-                        <div class="row mb-3">
-                            <div class="col-md-12 text-right">
-                                <a href="{{ route('dashboard.export.revenue-excel', ['year' => $selectedYear, 'month' => $selectedMonth]) }}"
-                                    class="btn btn-success btn-sm">
-                                    <i class="fas fa-file-excel"></i> Export to Excel
-                                </a>
-                                <a href="{{ route('dashboard.export.revenue-pdf', ['year' => $selectedYear, 'month' => $selectedMonth]) }}"
-                                    class="btn btn-danger btn-sm">
-                                    <i class="fas fa-file-pdf"></i> Export to PDF
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-
                 <div class="card-body">
                     <div class="chart-container" style="position: relative; height:400px;">
                         <canvas id="revenueChart"></canvas>
@@ -216,7 +189,7 @@
                                             @elseif($transaksi->status_pembayaran == 'Selesai')
                                                 <span class="badge bg-success">Selesai</span>
                                             @else
-                                                <span class="badge bg-info">Status Tidak Valid</span>
+                                                <span class="badge bg-secondary">Belum Dibayar</span>
                                             @endif
                                         </td>
                                         <td>Rp. {{ number_format($transaksi->total_harga) }}</td>

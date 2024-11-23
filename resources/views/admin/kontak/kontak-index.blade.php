@@ -63,21 +63,21 @@
                         <td>{{ $data->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                         <td>{{ $data->pesan }}</td>
                         <td class="text-center">
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                data-bs-target="#detailModal{{ $data->id }}">
-                                <i class="fas fa-eye"></i> Detail
-                            </button>
-                            {{-- <a href="{{ route('kontak.edit', $data->id) }}" class="btn btn-primary">
-                                <i class="fas fa-edit"></i> Edit
-                            </a> --}}
-                            <a href="{{ route('kontak.destroy', $data->id) }}" class="btn btn-danger">
-                                <i class="fas fa-trash"></i> Hapus
-                            </a>
-                            <a href="https://wa.me/+62{{ $data->telepon ?? 85847728414 }}" class="btn btn-warning">
-                                <i class="fa fa-phone" aria-hidden="true"></i> Hubungi
-                            </a>
-
+                            <div class="d-flex justify-content-center gap-5">
+                                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal"
+                                    data-bs-target="#detailModal{{ $data->id }}">
+                                    <i class="fas fa-eye"></i> Detail
+                                </button>
+                                <a href="{{ route('kontak.destroy', $data->id) }}" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i> Hapus
+                                </a>
+                                <a href="https://wa.me/+62{{ $data->telepon ?? 85847728414 }}"
+                                    class="btn btn-sm btn-warning">
+                                    <i class="fa fa-phone" aria-hidden="true"></i> Hubungi
+                                </a>
+                            </div>
                         </td>
+
                     </tr>
 
                     <!-- Modal Detail -->
